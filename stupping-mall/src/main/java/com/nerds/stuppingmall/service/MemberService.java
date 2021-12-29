@@ -20,14 +20,14 @@ public class MemberService {
 		return memberRepository.findAll();
 	}
 	
-	public void insertMember() {
-		Member m = new Member();
-		m.setPassword("987654321");
-		m.setName("김지성");
-		m.setEmail("js4012@naver.com");
-		m.setPhoneNum("010-9287-6446");
-		m.setBirth(Date.valueOf("1998-04-11"));
-		m.setMan(true);
+	public void insertMember(Member m) {
+//		Member m = new Member();
+//		m.setPassword("987654321");
+//		m.setName("김지성");
+//		m.setEmail("js4012@naver.com");
+//		m.setPhoneNum("010-9287-6446");
+//		m.setBirth(Date.valueOf("1998-04-11"));
+//		m.setMan(true);
 		memberRepository.save(m);
 	}
 }

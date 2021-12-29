@@ -19,10 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 public class Member {
 	@Id
 	private String _id;
+	private String id;
 	private String password;
 	private String name;
 	private String email;
 	private String phoneNum;
-	private Date birth;
+	private String birth;
 	private boolean man;
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <title>MemberAddPage</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <style>
+ 	form.form-example {
+    	display: table;
+	}
+	
+	div.form-example {
+	    display: table-row;
+	}
+	
+	label, input {
+	    display: table-cell;
+	    margin-bottom: 10px;
+	}
+	
+	label {
+	    padding-right: 10px;
+	}
+ </style>
+</head>
+<body>
+	<h1>Sign in</h1>
+	<hr>
+	<form action="addMember" method="post" class="form-example">
+	  <div class="form-example">
+	    <label for="id">Enter your id: </label>
+	    <input type="text" name="id" id="id" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="password">Enter your password: </label>
+	    <input type="password" name="password" id="password" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="name">Enter your name: </label>
+	    <input type="text" name="name" id="name" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="email">Enter your email: </label>
+	    <input type="email" name="email" id="email" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="phoneNum">Enter your phoneNum(XXX-XXXX-XXXX): </label>
+	    <input type="text" name="phoneNum" id="phoneNum">
+	  </div>
+	  <div class="form-example">
+	    <label for="birth">Enter your birth(XXXX-XX-XX): </label>
+	    <input type="date" min="1900-01-01" name="birth" id="birth">
+	  </div>
+	  <div class="form-example">
+	    <label for="gender">Choose your gender</label><br>
+  		<input type='radio' name='man' value=true />남성
+	    <input type='radio' name='man' value=false />여성
+	  </div>
+	  <div class="form-example">
+	    <input type="submit" value="Subscribe!">
+	  </div>
+	</form>
+	<hr>
+</body>
+</html>
