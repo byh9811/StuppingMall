@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Member {
 	@Id
 	private String _id;
-	private String id;
+	private String userId;
 	private String password;
 	private String name;
 	private String email;

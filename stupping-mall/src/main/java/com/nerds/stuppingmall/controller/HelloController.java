@@ -33,6 +33,17 @@ public class HelloController {
 		return sb.toString();
 	}
 	
+	@GetMapping("/passwordChangePage")
+	public String passwordChangePage() {
+		return "passwordChangePage";
+	}
+	
+	@PostMapping("/changePassword")
+	public String changePassword(String userId, String newPassword) {
+		memberService.updatePassword(userId, newPassword);
+		return "redirect:/";
+	}
+	
 	@GetMapping("/memberAddPage")
 	public String memberAddPage() {
 		return "memberAddPage";

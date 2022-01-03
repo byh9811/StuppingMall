@@ -21,13 +21,12 @@ public class MemberService {
 	}
 	
 	public void insertMember(Member m) {
-//		Member m = new Member();
-//		m.setPassword("987654321");
-//		m.setName("김지성");
-//		m.setEmail("js4012@naver.com");
-//		m.setPhoneNum("010-9287-6446");
-//		m.setBirth(Date.valueOf("1998-04-11"));
-//		m.setMan(true);
+		memberRepository.save(m);
+	}
+	
+	public void updatePassword(String userId, String password) {
+		Member m = memberRepository.findByUserId(userId);
+		m.setPassword(password);
 		memberRepository.save(m);
 	}
 }
