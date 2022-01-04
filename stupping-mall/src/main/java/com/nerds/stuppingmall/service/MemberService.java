@@ -29,4 +29,22 @@ public class MemberService {
 		m.setPassword(password);
 		memberRepository.save(m);
 	}
+	
+	public String findUserId(String name, String phoneNum) {
+		List<Member> members = memberRepository.findByName(name);
+		String userId = null;
+		for(Member m: members) {
+			if(m.getPhoneNum().equals(phoneNum))
+				userId = m.getUserId();
+		}
+		return userId;
+	}
+	
+	public String findPassword(String userId, String phoneNum) {
+		Member m = memberRepository.findByUserId(userId);
+		if(m.getPhoneNum().equals(phoneNum))
+			return m.getPassword();
+		else
+			return null;
+	}
 }

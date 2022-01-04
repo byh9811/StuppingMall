@@ -33,6 +33,26 @@ public class HelloController {
 		return sb.toString();
 	}
 	
+	@GetMapping("/userIdFindPage")
+	public String userIdFindPage() {
+		return "userIdFindPage";
+	}
+	
+	@PostMapping("/findUserId")
+	public @ResponseBody String findUserId(String name, String phoneNum) {
+		return memberService.findUserId(name, phoneNum);
+	}
+
+	@GetMapping("/passwordFindPage")
+	public String passwordFindPage() {
+		return "passwordFindPage";
+	}
+	
+	@PostMapping("/findPassword")
+	public @ResponseBody String findPassword(String userId, String phoneNum) {
+		return memberService.findPassword(userId, phoneNum);
+	}
+	
 	@GetMapping("/passwordChangePage")
 	public String passwordChangePage() {
 		return "passwordChangePage";
@@ -52,7 +72,6 @@ public class HelloController {
 	@PostMapping("/addMember")
 	public String save(Member m) {
 		memberService.insertMember(m);
-		
 		return "redirect:/";
 	}
 }
