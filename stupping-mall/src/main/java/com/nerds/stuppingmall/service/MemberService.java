@@ -47,4 +47,10 @@ public class MemberService {
 		else
 			return null;
 	}
+	
+	public void deleteUser(String userId, String password) {
+		Member m = memberRepository.findByUserId(userId);
+		if(m.getPassword().equals(password))
+			memberRepository.delete(m);
+	}
 }

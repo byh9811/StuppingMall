@@ -32,7 +32,20 @@ public class HelloController {
 		
 		return sb.toString();
 	}
+
+	@GetMapping("/userDeletePage")
+	public String userDeletePage() {
+		return "userDeletePage";
+	}
 	
+	@PostMapping("/deleteUser")
+	public String deleteUser(String userId, String password, String checkLetter) {
+		if(!checkLetter.equals("sure delete"))
+			return "redirect:/";
+		memberService.deleteUser(userId, password);
+		return "redirect:/members";
+	}
+
 	@GetMapping("/userIdFindPage")
 	public String userIdFindPage() {
 		return "userIdFindPage";
