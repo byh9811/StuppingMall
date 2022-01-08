@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StuppingMallApplicationTests {
+public class StuppingMallApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

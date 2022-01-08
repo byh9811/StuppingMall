@@ -2,6 +2,8 @@ package com.nerds.stuppingmall.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -25,9 +27,13 @@ public class MemberService {
 	}
 	
 	public void updatePassword(String userId, String password) {
-		Member m = memberRepository.findByUserId(userId);
-		m.setPassword(password);
-		memberRepository.save(m);
+		Optional<Member> m = memberRepository.findByUserId(userId);
+		if(!m.isPresent())
+			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
+		
+		Member member = m.get();
+		member.setPassword(password);
+		memberRepository.save(member);
 	}
 	
 	public String findUserId(String name, String phoneNum) {
@@ -41,16 +47,26 @@ public class MemberService {
 	}
 	
 	public String findPassword(String userId, String phoneNum) {
-		Member m = memberRepository.findByUserId(userId);
-		if(m.getPhoneNum().equals(phoneNum))
-			return m.getPassword();
+		Optional<Member> m = memberRepository.findByUserId(userId);
+		if(!m.isPresent())
+			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
+		
+		Member member = m.get();
+		if(member.getPhoneNum().equals(phoneNum))
+			return member.getPassword();
 		else
-			return null;
+			throw new NoSuchElementException("해당 전화번호가 존재하지 않습니다!!");
 	}
 	
 	public void deleteUser(String userId, String password) {
-		Member m = memberRepository.findByUserId(userId);
-		if(m.getPassword().equals(password))
-			memberRepository.delete(m);
+		Optional<Member> m = memberRepository.findByUserId(userId);
+		if(!m.isPresent())
+			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
+
+		Member member = m.get();
+		if(member.getPassword().equals(password))
+			memberRepository.delete(member);
+		else
+			throw new NoSuchElementException("비밀번호가 틀렸습니다!!");
 	}
 }

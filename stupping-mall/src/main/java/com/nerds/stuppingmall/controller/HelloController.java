@@ -20,7 +20,7 @@ public class HelloController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "main";
+		return "html/main";
 	}
 	
 	@GetMapping("/members")
