@@ -20,7 +20,12 @@ public class HelloController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "main";
+		return "redirect:/html/main.html";
+	}
+	
+	@GetMapping("/signIn")
+	public String signIn() {
+		return "redirect:/html/signIn.html";
 	}
 	
 	@GetMapping("/members")
@@ -68,7 +73,7 @@ public class HelloController {
 	
 	@GetMapping("/passwordChangePage")
 	public String passwordChangePage() {
-		return "passwordChangePage";
+		return "html/passwordChangePage";
 	}
 	
 	@PostMapping("/changePassword")
