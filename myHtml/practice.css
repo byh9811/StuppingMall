@@ -1,0 +1,29 @@
+.iphone{
+    width : 130px;
+    height : 150px;
+    
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 50px 100px -20px, rgba(0, 0, 0, 1.2) 0px 30px 60px -30px, rgba(0, 0, 0, 1.2) 0px -2px 6px 0px inset;
+    animation-name : change_color;
+    animation-duration: 2s; /*2초동안 실행한다.*/
+    /*animation은 특별한 설정이 없으면 갔다가 다시 원래대로
+    돌아온다..... 따라서 간거에서 끝내고싶으면 설정이 필요!*/
+    animation-fill-mode : forwards;
+    /*모든 animation은 페이지를 키자마자 바로인데,
+    delay를 줄 수 있다.*/
+    animation-delay: 2s; /*화면키고 2초있다가!*/
+    /*그리고 처음에서 바뀌는 속도
+    ex)처음에 느리다가 확 빨라짐. 처음부터 그대로...등등
+    */
+    animation-timing-function: ease-out;
+}
+@keyframes change_color{
+    from{ /*처음 상태!*/
+        background-color: white;
+    }
+    to{
+        background-color: gray;
+        border-radius : 50px;
+        /* border-radius: 25px; */
+    }
+}
