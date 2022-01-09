@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nerds.stuppingmall.domain.Member;
+import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
@@ -88,8 +89,8 @@ public class HelloController {
 	}
 	
 	@PostMapping("/addMember")
-	public String save(Member m) {
-		memberService.insertMember(m);
+	public String save(MemberDto memberDto) {
+		memberService.insertMember(memberDto);
 		return "redirect:/";
 	}
 }
