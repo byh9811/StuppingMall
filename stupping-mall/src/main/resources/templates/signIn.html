@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -144,14 +144,15 @@ form > .user{
         </div>
         <div class="sign_in">
             <!-- <h1 class="title">sign-in</h1> -->
-            <form action="#" method="post">
+            <form action="/signIn" method="post">
+            	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <div class="userId user">
                     <i class="fas fa-user"></i>
-                    <input type="search" name="userID" id="userID" placeholder="ID">
+                    <input type="search" name="userId" id="userId" placeholder="ID">
                 </div>
                 <div class="userPW user">
                     <i class="fas fa-unlock"></i>
-                    <input type="password" name="userPW" id="userPW" placeholder="PW">
+                    <input type="password" name="password" id="password" placeholder="PW">
                 </div>
                 <div class="user button_box">
                     <input type="submit" value="로그인">
