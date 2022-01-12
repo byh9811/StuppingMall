@@ -71,7 +71,8 @@ html,body{
     /* background-color: aqua; */
     font-family: 'Island Moments', cursive;
     text-shadow: 5px 10px 5px gray;
-    font-size : 3rem;
+    font-size : 4.5rem;
+    padding : 10px;
 }
 .formInput{
     width : 100%;
