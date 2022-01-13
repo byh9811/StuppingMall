@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -30,8 +30,9 @@
 				</div>
 				<div class="sub_logo">
 					<ul>
-						<li><a href="">로그인</a></li>
-						<li><a href="">회원가입</a></li>
+						<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
+						<li sec:authorize="isAnonymous()"><a th:href="@{/signIn}">로그인</a></li>
+						<li><a href="/memberAddPage">회원가입</a></li>
 						<li><a href="">오시는 길</a></li>
 					</ul>
 				</div>

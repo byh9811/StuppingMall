@@ -1,5 +1,10 @@
 <!DOCTYPE html>
+<<<<<<< HEAD:stupping-mall/src/main/resources/static/html/signIn.html
 <html lang="en">
+=======
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+>>>>>>> c36b7c194ab66974d4a9c57d38af271b8985db8b:stupping-mall/src/main/resources/templates/signIn.html
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -160,6 +165,7 @@ input{
         <i class="fas fa-users"></i>
     </div>
     <div class="wrapper">
+<<<<<<< HEAD:stupping-mall/src/main/resources/static/html/signIn.html
        
         <div class="wrapper_content">
             <div class="logo">
@@ -189,6 +195,32 @@ input{
                     
                 </form>
             </div>
+=======
+        <div class="logo">
+            <h1><a href="">stupping</a></h1>
+        </div>
+        <div class="sign_in">
+            <!-- <h1 class="title">sign-in</h1> -->
+            <form action="/signIn" method="post">
+            	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="userId user">
+                    <i class="fas fa-user"></i>
+                    <input type="search" name="userId" id="userId" placeholder="ID">
+                </div>
+                <div class="userPW user">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" name="password" id="password" placeholder="PW">
+                </div>
+                <div class="user button_box">
+                    <input type="submit" value="로그인">
+                </div>
+                <ul class="menu_list">
+                    <li><a href="">회원가입</a></li>
+                    <li><a href="">아이디 찾기</a></li>
+                    <li><a href="">비밀번호 찾기</a></li>
+                </ul>
+            </form>
+>>>>>>> c36b7c194ab66974d4a9c57d38af271b8985db8b:stupping-mall/src/main/resources/templates/signIn.html
         </div>
     </div>
 </body>

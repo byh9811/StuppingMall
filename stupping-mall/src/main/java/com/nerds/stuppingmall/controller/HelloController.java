@@ -26,7 +26,7 @@ public class HelloController {
 	
 	@GetMapping("/signIn")
 	public String signIn() {
-		return "redirect:/html/signIn.html";
+		return "signIn";
 	}
 	
 	@GetMapping("/members")
@@ -64,7 +64,7 @@ public class HelloController {
 
 	@GetMapping("/passwordFindPage")
 	public String passwordFindPage() {
-		return "passwordFindPage";
+		return "redirect:/html/passwordFindPage.html";
 	}
 	
 	@PostMapping("/findPassword")
