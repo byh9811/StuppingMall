@@ -1,14 +1,5 @@
-.box_1{
-    width : fit-content;
-    height: fit-content;
-    background-color: beige;
-}
-.box_2{
-    display : none;
-}
-.box_1:checked ~ .box_2{
-    display : block;
-    width : 100px;
-    height : 100px;
-    background-color: blue;
+input[type="checkbox"]{
+    width : 30px;
+    height : 30px;
+    border-radius : 25px;
 }

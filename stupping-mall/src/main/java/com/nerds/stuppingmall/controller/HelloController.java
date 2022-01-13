@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nerds.stuppingmall.domain.Member;
+import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
@@ -25,7 +26,7 @@ public class HelloController {
 	
 	@GetMapping("/signIn")
 	public String signIn() {
-		return "redirect:/html/signIn.html";
+		return "signIn";
 	}
 	
 	@GetMapping("/members")
@@ -63,7 +64,7 @@ public class HelloController {
 
 	@GetMapping("/passwordFindPage")
 	public String passwordFindPage() {
-		return "passwordFindPage";
+		return "redirect:/html/passwordFindPage.html";
 	}
 	
 	@PostMapping("/findPassword")
@@ -88,8 +89,8 @@ public class HelloController {
 	}
 	
 	@PostMapping("/addMember")
-	public String save(Member m) {
-		memberService.insertMember(m);
+	public String save(MemberDto memberDto) {
+		memberService.insertMember(memberDto);
 		return "redirect:/";
 	}
 }

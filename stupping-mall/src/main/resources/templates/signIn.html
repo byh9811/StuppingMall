@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<<<<<<< HEAD:stupping-mall/src/main/resources/static/html/signIn.html
+<html lang="en">
+=======
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+>>>>>>> c36b7c194ab66974d4a9c57d38af271b8985db8b:stupping-mall/src/main/resources/templates/signIn.html
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/signIn.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gugi&family=Hi+Melody&family=Island+Moments&family=Single+Day&family=Sunflower:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <!--font awsome!-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Lato:ital,wght@0,400;0,700;1,900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Roboto+Mono&family=Single+Day&display=swap"
+        rel="stylesheet">
+    <style>
+        *{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color : white;
+}
+i{
+    color : black;
+}
+.signUp_logo > i{
+    color : white;
+}
+html,body{
+    min-height : 100vh;
+    background-color: rgb(51, 47, 47);
+    
+    position : relative;
+}
+.wrapper{
+    height : 70vh;
+    width : 100%;
+    background-color: gray;
+    position : absolute;
+    top : 50%;
+    transform: translate(0,-50%);
+}
+.wrapper .wrapper_content{
+    margin : 0 auto;
+    width : 50%;
+    height : 100%;
+    border-radius : 25px;
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 50px 100px -20px, rgba(0, 0, 0, 1.2) 0px 30px 60px -30px, rgba(0, 0, 0, 1.2) 0px -2px 6px 0px inset;
+}
+.wrapper_content::before{
+    content: "";
+    position : absolute;
+    width : 50%;
+    height : 100%;
+    background-color: black;
+    opacity: 0.4;
+    z-index : -1000000;
+    border-radius : 25px;
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 50px 100px -20px, rgba(0, 0, 0, 1.2) 0px 30px 60px -30px, rgba(0, 0, 0, 1.2) 0px -2px 6px 0px inset;
+}
+.main_logo{
+    background-color: white;
+    position : absolute;
+    z-index : 100;
+    top : 50px;
+    left : 50%;
+    font-size : 36px;
+    width : 50px;
+    height : 50px;
+    transform: translate(-50%,0);
+    border-radius : 100%;
+}
+.logo{
+    width : 100%;
+    height : fit-content;
+    /* background-color: gray; */
+    position : relative;
+    text-align: center;
+    
+}
+.logo > h1 > a{
+    width : fit-content;
+    margin : 0 auto;
+    /* background-color: aqua; */
+    font-family: 'Island Moments', cursive;
+    text-shadow: 5px 10px 5px gray;
+    font-size : 4.5rem;
+    padding : 10px;
+}
+.formInput{
+    width : 100%;
+    height : calc(100% - 50px);
+    position : realtive;
+}
+form{
+    /* border : 5px solid white; */
+    width : fit-content;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+}
+.user{
+    background-color: white;
+    color : white;
+    width : 20vw;
+    height : 40px;
+    margin : 10px 0;
+    display : flex;
+    /* border : 3px solid white; */
+
+}
+.user > .id_logo{
+    flex-grow : 0.7;
+    /* background-color: aqua; */
+    position : relative;
+}
+.user > .id_input{
+    /* background-color: orange; */
+    position : relative;
+    width : 80%;
+    height : 100%;
+}
+.user > .pw_logo{
+    flex-grow : 0.7;
+    /* background-color: aqua; */
+    position : relative;
+}
+.user > .pw_input{
+    /* background-color: orange; */
+    position : relative;
+    width : 80%;
+    height : 100%;
+}
+i{
+    font-size : 24px;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+}
+input{
+    border : none;
+    outline : none;
+    width : 100%;
+    height : 100%;
+}
+.button_box{
+    text-align : center;
+    font-size : 1.5rem;
+}
+    </style>
+</head>
+<body>
+    <div class="main_logo">
+        <i class="fas fa-users"></i>
+    </div>
+    <div class="wrapper">
+<<<<<<< HEAD:stupping-mall/src/main/resources/static/html/signIn.html
+       
+        <div class="wrapper_content">
+            <div class="logo">
+                <h1><a href="">stupping</a></h1>
+            </div>
+            <div class="formInput">
+                <form action="#" method="post">
+                    <div class="userId user">
+                        <div class="id_logo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="id_input">
+                            <input type="search" name="userID" id="userID" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="userPW user">
+                        <div class="pw_logo">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <div class="pw_input">
+                            <input type="password" name="userPW" id="userPW" placeholder="PW">
+                        </div>
+                    </div>
+                    <div class="user button_box">
+                       <input type="submit" value="LOGIN">
+                    </div>
+                    
+                </form>
+            </div>
+=======
+        <div class="logo">
+            <h1><a href="">stupping</a></h1>
+        </div>
+        <div class="sign_in">
+            <!-- <h1 class="title">sign-in</h1> -->
+            <form action="/signIn" method="post">
+            	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <div class="userId user">
+                    <i class="fas fa-user"></i>
+                    <input type="search" name="userId" id="userId" placeholder="ID">
+                </div>
+                <div class="userPW user">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" name="password" id="password" placeholder="PW">
+                </div>
+                <div class="user button_box">
+                    <input type="submit" value="로그인">
+                </div>
+                <ul class="menu_list">
+                    <li><a href="">회원가입</a></li>
+                    <li><a href="">아이디 찾기</a></li>
+                    <li><a href="">비밀번호 찾기</a></li>
+                </ul>
+            </form>
+>>>>>>> c36b7c194ab66974d4a9c57d38af271b8985db8b:stupping-mall/src/main/resources/templates/signIn.html
+        </div>
+    </div>
+</body>
+</html>
