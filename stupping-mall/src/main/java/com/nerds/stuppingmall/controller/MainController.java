@@ -15,12 +15,12 @@ import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
-public class HelloController {
+public class MainController {
 	@Autowired
 	MemberService memberService;
 	
 	@GetMapping("/")
-	public String index() {
+	public String main() {
 		return "main";
 	}
 
