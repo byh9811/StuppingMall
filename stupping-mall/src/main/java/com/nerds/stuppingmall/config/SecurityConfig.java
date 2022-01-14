@@ -33,9 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 				.antMatchers("/**").permitAll()
 			.and()
 				.formLogin()
-				.loginPage("/signIn")
-				.usernameParameter("userId")
+				.loginPage("/login")
 				.defaultSuccessUrl("/")
+				.usernameParameter("userId")
 				.failureUrl("/passwordFindPage")
 			.and()
 				.logout()
@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 			.and()
-				.exceptionHandling().accessDeniedPage("/login/denied");
+				.exceptionHandling().accessDeniedPage("/forbidden");
 	}
 	
 	@Bean

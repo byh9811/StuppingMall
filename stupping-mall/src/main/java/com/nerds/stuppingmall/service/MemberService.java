@@ -79,8 +79,8 @@ public class MemberService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) {
-		Optional<Member> memberWrapper = memberRepository.findByUserId(username);
+	public UserDetails loadUserByUsername(String userId) {
+		Optional<Member> memberWrapper = memberRepository.findByUserId(userId);
 		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 
@@ -88,7 +88,7 @@ public class MemberService implements UserDetailsService {
 		
 		HashSet<GrantedAuthority> authorities = new HashSet<>();
 		
-		if("admin".equals(username)) {
+		if("admin".equals(userId)) {
 			authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
 		}
 		else {

@@ -21,11 +21,16 @@ public class HelloController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "redirect:/html/main.html";
+		return "main";
+	}
+
+	@GetMapping("/forbidden")
+	public String forbidden() {
+		return "redirect:/html/error403.html";
 	}
 	
-	@GetMapping("/signIn")
-	public String signIn() {
+	@GetMapping("/login")
+	public String loginPage() {
 		return "signIn";
 	}
 	
@@ -41,7 +46,7 @@ public class HelloController {
 
 	@GetMapping("/userDeletePage")
 	public String userDeletePage() {
-		return "userDeletePage";
+		return "redirect:/html/userDeletePage.html";
 	}
 	
 	@PostMapping("/deleteUser")
@@ -64,6 +69,11 @@ public class HelloController {
 
 	@GetMapping("/passwordFindPage")
 	public String passwordFindPage() {
+		return "redirect:/html/passwordFindPage.html";
+	}
+	
+	@PostMapping("/passwordFindPage")
+	public String passwordFindPage2() {
 		return "redirect:/html/passwordFindPage.html";
 	}
 	
