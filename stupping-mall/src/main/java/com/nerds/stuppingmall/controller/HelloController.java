@@ -68,13 +68,9 @@ public class HelloController {
 	}
 
 	@GetMapping("/passwordFindPage")
-	public String passwordFindPage() {
-		return "redirect:/html/passwordFindPage.html";
-	}
-	
 	@PostMapping("/passwordFindPage")
-	public String passwordFindPage2() {
-		return "redirect:/html/passwordFindPage.html";
+	public String passwordFindPage() {
+		return "passwordFindPage";
 	}
 	
 	@PostMapping("/findPassword")
