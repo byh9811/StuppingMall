@@ -15,17 +15,22 @@ import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
-public class HelloController {
+public class MainController {
 	@Autowired
 	MemberService memberService;
 	
 	@GetMapping("/")
-	public String index() {
-		return "redirect:/html/main.html";
+	public String main() {
+		return "main";
+	}
+
+	@GetMapping("/forbidden")
+	public String forbidden() {
+		return "redirect:/html/error403.html";
 	}
 	
-	@GetMapping("/signIn")
-	public String signIn() {
+	@GetMapping("/login")
+	public String loginPage() {
 		return "signIn";
 	}
 	
@@ -41,7 +46,7 @@ public class HelloController {
 
 	@GetMapping("/userDeletePage")
 	public String userDeletePage() {
-		return "userDeletePage";
+		return "redirect:/html/userDeletePage.html";
 	}
 	
 	@PostMapping("/deleteUser")
@@ -63,8 +68,9 @@ public class HelloController {
 	}
 
 	@GetMapping("/passwordFindPage")
+	@PostMapping("/passwordFindPage")
 	public String passwordFindPage() {
-		return "redirect:/html/passwordFindPage.html";
+		return "passwordFindPage";
 	}
 	
 	@PostMapping("/findPassword")
