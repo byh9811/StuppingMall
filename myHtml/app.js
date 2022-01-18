@@ -1,21 +1,28 @@
 const express = require("express"); //express모듈을 전체 다 불러온다!
 const app = express(); 
 const PORT = 8080;
+const bodyParser = require("body-parser");
+//post put방식의 data를 서버가 req.body를 통해 받을 수 있게하는 모듈!
+//express서버에 알려줘야함! body파서 쓸게! app.use...
 
+app.use(bodyParser.json()); //json형식으로 client에서 보낼 때는!!
+app.use(bodyParser.urlencoded({extended:true}));//인코딩해서 보낼때는 요고!
 app.use(express.static("public"));
-//pageFile대신에 /static으로 요청을 하면 수락된다!!
-//그냥 이미 pageFile아래 파일들을 선택할 수 있는 환경까지 제공이돼서...
-// /를 붙이지 않고 그냥 file이름만 불러주면 된다. 
-//vsCode상에서 myhtml까지 static으로 불려져있다고 생각하면 된다!!!!
 
-app.get("/",(req,res)=>{ //router기능!!
-    res.sendFile(__dirname + "/hello.html");
-    //
-    //현재 myHTML에 __dirname을 쓰면 도달하게해줌.
-    //대신 myhtml에서 내려가려면 /부터 시작해줘야함!! 꼭 /를 먼저 작성해줄 것.
-});
-app.get("/main",(req,res)=>{
-    res.sendFile(__dirname + "/hello.html");
+// app.set("views","./views");
+//views라는 폴더는 여기있다. 
+app.set("view engine","ejs");//express가 문자열을 해석한다.
+//나 ejs쓸거야!
+app.post("/email_post",(req,res)=>{
+    console.log(req.body); //req.body에 객체 형태로 담아서 출력됨.
+    res.render("first.ejs",{
+        //보낼 데이터 설정
+        'userId' : req.body.userId
+    });
+    //res : 서버에서 응답할 떄 쓰는 객체!
+})
+app.get("/",(req,res)=>{
+    res.sendFile(__dirname + "/practice.html");
 })
 app.listen(PORT,()=>{
     console.log(`${PORT}번 서버 연결 완료!!`);

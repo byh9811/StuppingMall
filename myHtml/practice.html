@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formhtml</title>
+</head>
+
+<body>
+    <!-- 
+    get : 보여달라! ==> 즉 데이터를 url에 심어서 서버로 보내는 방식이다.
+    post : 데이터를 url에 심어서x 감춘다!
+
+
+-->
+    <h2>2. GET 방식 & input 태그</h2>
+    <form action="/email_post" method="post">
+        <input type="text" name="userId" value="johndoe" />
+        <input type="password" name="userPwd" value="qwerty123" />
+        <input type="submit"></input>
+        <!-- userId=johndoe&userPwd=qwerty123 
+        name값은 서버에 보낼 변수 value는 name값에 넣어서 보낼 값이다!!
+        -->
+        <!--
+            req.body에 객체 형태로 name.value를 담아서 보낸다!!
+            즉 req는 서버에 보낼 때 담아보내는 객체!
+        -->
+    </form>
+</body>
+
+</html>
