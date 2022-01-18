@@ -1,8 +1,6 @@
 package com.nerds.stuppingmall.dto;
 
 import com.nerds.stuppingmall.domain.Member;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
