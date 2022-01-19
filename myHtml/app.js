@@ -4,7 +4,7 @@ const PORT = 8080;
 const bodyParser = require("body-parser");
 //post put방식의 data를 서버가 req.body를 통해 받을 수 있게하는 모듈!
 //express서버에 알려줘야함! body파서 쓸게! app.use...
-
+//파일 확인용 커밋
 app.use(bodyParser.json()); //json형식으로 client에서 보낼 때는!!
 app.use(bodyParser.urlencoded({extended:true}));//인코딩해서 보낼때는 요고!
 app.use(express.static("public"));
