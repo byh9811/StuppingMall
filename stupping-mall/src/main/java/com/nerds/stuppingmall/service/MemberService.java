@@ -85,11 +85,12 @@ public class MemberService implements UserDetailsService {
 		
 		HashSet<GrantedAuthority> authorities = new HashSet<>();
 		
-		if("admin".equals(userId)) {
-			authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-		}
-		else {
-			authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+		String role = member.getRole();
+		switch(role) {
+		case "ADMIN": authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue())); break;
+		case "SELLER": authorities.add(new SimpleGrantedAuthority(Role.SELLER.getValue())); break;
+		case "MEMBER": authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue())); break;
+		default: throw new NoSuchElementException("부적절한 역할입니다!!");
 		}
 		
 		return new User(member.getUserId(), member.getPassword(), authorities);
