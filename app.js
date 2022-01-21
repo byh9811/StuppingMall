@@ -15,4 +15,6 @@ app.set("view engine","ejs"); //ejs를 사용함!
 
 app.listen(3000,()=>{
     console.log("3000번 서버!")
-})
+});
+
+//착하게살게
