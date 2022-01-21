@@ -9,7 +9,7 @@ app.use("/myPage",myPageRouter);
 app.use("/login",authSignInRouter);
 app.use(express.static('./myWorkFolder/public'));
 //전체 폴더에서 절대경로로 설정을 해줘야한다!!!
-
+//이제 진짜 됨
 app.set("views","./myWorkFolder/views/auth");
 app.set("view engine","ejs"); //ejs를 사용함!
 
