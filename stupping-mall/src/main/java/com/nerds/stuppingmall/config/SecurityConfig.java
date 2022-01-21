@@ -30,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 	public void configure(HttpSecurity http) throws Exception {	// 각 http request에 대한 보안 설정
 		http.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/member/**").hasRole("MEMBER")
+				.antMatchers("/seller/**").hasRole("SELLER")
 				.antMatchers("/**").permitAll()
 			.and()
 				.formLogin()

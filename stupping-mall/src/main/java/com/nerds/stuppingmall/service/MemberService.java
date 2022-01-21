@@ -32,12 +32,13 @@ public class MemberService implements UserDetailsService {
 	}
 	
 	public void updatePassword(String userId, String password) {
-		Optional<Member> m = memberRepository.findByUserId(userId);
-		if(!m.isPresent())
+		Optional<Member> memberWrapper = memberRepository.findByUserId(userId);
+		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 		
-		Member member = m.get();
-		member.setPassword(password);
+		Member member = memberWrapper.get();
+		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
+		member.setPassword(pwdEncoder.encode(password));
 		memberRepository.save(member);
 	}
 	
@@ -76,7 +77,7 @@ public class MemberService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String userId) {
+	public MemberDto loadUserByUsername(String userId) {
 		Optional<Member> memberWrapper = memberRepository.findByUserId(userId);
 		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
@@ -93,6 +94,9 @@ public class MemberService implements UserDetailsService {
 		default: throw new NoSuchElementException("부적절한 역할입니다!!");
 		}
 		
-		return new User(member.getUserId(), member.getPassword(), authorities);
+		MemberDto memberDto = new MemberDto(member);
+		memberDto.setAuthorities(authorities);
+		
+		return memberDto;
 	}
 }

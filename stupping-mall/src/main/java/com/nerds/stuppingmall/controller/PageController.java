@@ -1,10 +1,15 @@
 package com.nerds.stuppingmall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.nerds.stuppingmall.domain.Member;
+import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
 import com.nerds.stuppingmall.service.Role;
 
@@ -39,8 +44,9 @@ public class PageController {
 		return "passwordFindPage";
 	}
 	
-	@GetMapping("/passwordChangePage")
-	public String passwordChangePage() {
+	@GetMapping("/member/passwordChangePage")
+	public String passwordChangePage(@AuthenticationPrincipal MemberDto memberDto, Model model) {
+		model.addAttribute("memberDto", memberDto);
 		return "passwordChangePage";
 	}
 	
