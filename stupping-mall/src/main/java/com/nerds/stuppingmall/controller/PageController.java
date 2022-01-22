@@ -55,4 +55,9 @@ public class PageController {
 		model.addAttribute("roles", Role.values());
 		return "memberAddPage";
 	}
+	
+	@GetMapping("/seller/productAddPage")
+	public String productAddPage() {
+		return "productAddPage";
+	}
 }
