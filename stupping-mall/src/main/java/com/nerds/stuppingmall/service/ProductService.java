@@ -44,7 +44,7 @@ public class ProductService {
 		String basePath = "C:\\img";
 		String filePath = basePath + "/" + companyName;
 		String url = null;
-		File folder = new File(basePath + filePath);
+		File folder = new File(filePath);
 		
 		if(!folder.exists())
 			folder.mkdirs();
