@@ -108,9 +108,20 @@ li{
 .sub_logo > a{
     padding : 2px 5px;
 }
+.main_logo{
+    position : absolute;
+    left : 130px;
+    top : 30px;
+    font-size : 1.5rem;
+    display : none;
+}
 /* << header 반응형 웹 media query >> */
 @media screen and (max-width : 900px){
+    .main.active{
+        display : flex;
+    }
     .main{
+        display : none;
         flex-direction: column;
     }
     .main > li{
@@ -138,5 +149,12 @@ li{
         right : 50%;
         transform: translate(50%,0);
     }
+    .main_logo{
+        display : flex;
+    }
     
+    /*메뉴가 클릭이 될 때는 보여주고 싶어!!*/
 }
+/*그럼 이제 내가 메뉴바를 클릭하면 메뉴바가 사라지고 나타나게
+해야해!! 메인 메뉴바를 그렇게 작성해주면 끝!!!!!!!
+*/

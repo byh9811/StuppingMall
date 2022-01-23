@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/authSignIn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <script src="/js/authSignIn.js" defer></script>
 </head>
 <body>
     <div class="myPage_container">
@@ -49,18 +50,30 @@
                 <a href=""><i class="fas fa-user"></i></a>
             </div>
             <div class="main_logo">
-                <a href=""><i class="fas fa-bars"></i></a>
+                <a href="" class="menu_navbar"><i class="fas fa-bars"></i></a>
             </div>
         </header>
+
+        <main class="login_container">
+
+        </main>
     </div>
 
     <script>
-        const menuIcon = document.querySelector(".icon");
-        const mainNav = document.querySelector(".main_nav");
+        const menu = document.querySelector(".main_logo");
+        //메뉴 아이콘 연결
+        const main = document.querySelector(".main");
+       //메인메뉴!
 
-        menuIcon.addEventListener("click",()=>{
-            mainNav.classList.toggle('active');
-        })
+       menu.addEventListener("click",()=>{
+           add();
+           //active class를 토글링 할 것!!
+           //이거 집 가서 보기!
+       })
+
+       function add(){
+           main.style.display="block";
+       }
     </script>
 </body>
 </html>
