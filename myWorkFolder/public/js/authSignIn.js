@@ -7,4 +7,5 @@
 
     menu.addEventListener("click",()=>{
         main.classList.toggle('active');
+        //뭐지...
     })
