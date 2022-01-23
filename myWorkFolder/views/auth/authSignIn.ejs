@@ -6,12 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/authSignIn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 <body>
-    <div class="login_container">
-        <div class="login_box">
-            sdss
-        </div>
+    <div class="myPage_container">
+        <header class="header">
+            <!--100% 다 채워지는 공간-->
+            <div class="header_contents">
+                <!--width : 90%로 해서 여기 안에다가 모든 컨텐츠 작성!-->
+                <h1 class="logo"><a href="">STUPPING</a></h1>
+
+                <nav class="sub_menu">
+                    <ul class="sub">
+                        <li><a href="">로그인</a></li>
+                        <li><a href="">로그아웃</a></li>
+                        <li><a href="">회원가입</a></li>
+                        <li><a href="">마이페이지</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search_box">
+                    <div class="search">
+                        <input type="search" name="" id="" placeholder="search_box">
+                        <input type="submit" value="검색!">
+                    </div>
+                </div>
+
+                <nav class="main_nav">
+                    <ul class="main">
+                        <li><a href="">카테고리</a></li>
+                        <li><a href="">카테고리</a></li>
+                        <li><a href="">카테고리</a></li>
+                        <li><a href="">카테고리</a></li>
+                        <li><a href="">카테고리</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sub_logo">
+                <a href=""><i class="fas fa-sign-in-alt"></i></a>
+                <a href=""><i class="fas fa-sign-out-alt"></i></a>
+                <a href=""><i class="fas fa-user-plus"></i></a>
+                <a href=""><i class="fas fa-user"></i></a>
+            </div>
+            <div class="main_logo">
+                <a href=""><i class="fas fa-bars"></i></a>
+            </div>
+        </header>
     </div>
+
+    <script>
+        const menuIcon = document.querySelector(".icon");
+        const mainNav = document.querySelector(".main_nav");
+
+        menuIcon.addEventListener("click",()=>{
+            mainNav.classList.toggle('active');
+        })
+    </script>
 </body>
 </html>

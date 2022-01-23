@@ -4,19 +4,139 @@
     box-sizing: border-box;
 }
 html,body{
+    height : 100vh;
+    background-color: #eaf6ff;
+}
+a{
+    text-decoration: none;
+    color : black;
+}
+li{
+    list-style-type: none;
+}
+.myPage_container{
+    width : 100vw;
     min-height : 100vh;
 }
-body{
-    background-image: url("https://static.hubzum.zumst.com/hubzum/2018/06/25/14/d6c40f900561471d9970f5dbf22f2cc9.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+.fas{
+    display : none;
+}
+.header_contents{
+    width : 80vw;
+    margin : 0 auto;
+    position : relative;
+    border : 1px solid black;
+    background-color: #0994ff;
+}
+.logo{
+    position : relative;
+    margin : 20px auto;
+    text-align : center;
+}
+.sub_menu{
+    position : absolute;
+    top : 20px;
+    right : 0;
+}
+.sub_menu > .sub{
+    display : flex;
+    list-style-type: none;
+}
+.sub > li{
+    padding : 5px 10px;
+    font-size : 1.1rem;
+}
+.search_box{
+    position : relative;
+    border : 1px solid black;
+    height : 40px;
+}
+.search{
+    position : absolute;
+    border : 1px solid black;
+    display : flex;
+    height : 100%;
+    right : 0;
+    border-radius : 25px;
+    overflow: hidden;
+}
+.search > input{
+    outline : none;
+    border : none;
+}
+.search > input[type="submit"]{
+    cursor: pointer;
+}
+.main{
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.login_container{
+.main > li{
+    font-size: 1.3rem;
+    padding : 10px 5px;
+    flex-grow: 1;
+    text-align: center;
+}
+.main > li:hover{
+    transition : all 0.5s;
+    background-color: #0994ff;
+}
+.icon{
+    display: none;
+    font-size : 1.6rem;
     position : absolute;
-    width : 100vw;
-    height : 60vh;
-    background-color: bisque;
-    top : 50%;
-    transform: translate(0,-50%);
+    top : 30px;
+    right : 100px;
+}
+/*반응형 웹을 만드려면 어느정도 공간이 필요한데,
+무작정 absolute하지말자 그럼 붕 떠 버림.
+그럼 마치 가상요소처럼 div를 생성하고 relative로
+공간을 확보해두고 그 안에서 absolute를 지정
+*/
+.sub_logo{
+    display : flex;
+    position : absolute;
+    top : 20px;
+    right : 40px;
+    font-size : 1.3rem;
+    width : 200px;
+    justify-content: space-around;
+    display : none; /*일단 삭제하고 반응형에서 다시 나타나게한다.*/
+}
+.sub_logo > a{
+    padding : 2px 5px;
+}
+/* << header 반응형 웹 media query >> */
+@media screen and (max-width : 900px){
+    .main{
+        flex-direction: column;
+    }
+    .main > li{
+        width : 100%;
+        border : 1px solid black;
+    }
+    .main > li:hover{
+        background-color: #eaf6ff;
+        transition: all 0.5s;
+        border-radius : 25px;
+    }
+    .sub_menu{
+        display : none;
+    }
+    .sub_logo{
+        display : block;
+    }
+    .sub_logo > a:hover{
+        transition : all 0.5s;
+        background-color: #eaf6ff;
+        border-radius : 25px;
+    }
+    .search{
+        border : 3px solid black;
+        right : 50%;
+        transform: translate(50%,0);
+    }
+    
 }
