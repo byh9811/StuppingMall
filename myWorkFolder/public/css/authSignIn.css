@@ -14,6 +14,44 @@ a{
 li{
     list-style-type: none;
 }
+/*checkbox 꾸미기*/
+.checkbox_container{
+    position : absolute;
+    left : 170px;
+    top : 20px;
+    width : 80px;
+    height : 40px;
+    background-color: white;
+}
+input[type="checkbox"]{
+    width : 100%;
+    height : 100%;
+    /*checkbox상자가 다 안 채워져도 클릭하면
+    클릭이 됨.*/
+    appearance: none;
+    outline : none;
+    border : none;
+    transition: all 0.4s;
+}
+input[type="checkbox"]::before{
+    content : "";
+    position : absolute;
+    width : 40%;
+    height :100%;
+    border-radius : 50%;
+    background-color: #0994ff;
+    transition: all 0.4s;
+}
+input[type="checkbox"]:checked{
+    background-color: rgb(88, 203, 241);
+    transition: all 0.4s;
+}
+input[type="checkbox"]:checked::before{
+    content : "";
+    margin : 0 40px;
+    transition: all 0.4s;
+    background-color: beige;
+}
 .myPage_container{
     width : 100vw;
     min-height : 100vh;
@@ -67,6 +105,7 @@ li{
 .search > input[type="submit"]{
     cursor: pointer;
 }
+
 .main{
     display : flex;
     justify-content: space-around;
@@ -78,6 +117,7 @@ li{
     padding : 10px 5px;
     flex-grow: 1;
     text-align: center;
+    position : sticky;
 }
 .main > li:hover{
     transition : all 0.5s;
@@ -149,12 +189,32 @@ li{
         right : 50%;
         transform: translate(50%,0);
     }
-    .main_logo{
+    .main_logo.active{
         display : flex;
     }
+    
     
     /*메뉴가 클릭이 될 때는 보여주고 싶어!!*/
 }
 /*그럼 이제 내가 메뉴바를 클릭하면 메뉴바가 사라지고 나타나게
 해야해!! 메인 메뉴바를 그렇게 작성해주면 끝!!!!!!!
 */
+/*===== 여기까지 반응형 헤더 끝! =====*/
+
+/* << 이제 로그인 컨테이너 시작!! >> */
+.login_container{
+    position : absolute;
+    top : 200px;
+    height : 500px;
+    width : 100vw;
+}
+.login_contents{
+    width : 50%;
+    height : 100%;
+    margin : 0 auto;
+    position : relative;
+    background-color: #fff;
+    border-radius : 25%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
