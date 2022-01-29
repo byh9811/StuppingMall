@@ -1,15 +1,18 @@
 package com.nerds.stuppingmall.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+<<<<<<< Updated upstream
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+=======
+>>>>>>> Stashed changes
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,19 +22,29 @@ import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.repository.MemberRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
-public class MemberService implements UserDetailsService {
-	@Autowired
-	MemberRepository memberRepository;
+@RequiredArgsConstructor
+public class MemberService {
+	private final BCryptPasswordEncoder pwdEncoder;
+	private final MemberRepository memberRepository;
 	
-	public List<Member> findAllMember() {
-		return memberRepository.findAll();
+	public Optional<Member> findByUserId(String userId) {
+		return memberRepository.findByUserId(userId);
 	}
 	
-	public void insertMember(MemberDto memberDto) {
-		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
+	public List<MemberDto> findAllMember() {
+		List<MemberDto> list = new ArrayList<>();
+		for(Member elem: memberRepository.findAll())
+			list.add(new MemberDto(elem));
+		return list;
+	}
+	
+	public MemberDto insertMember(MemberDto memberDto) {
 		memberDto.setPassword(pwdEncoder.encode(memberDto.getPassword()));
 		memberRepository.save(memberDto.toDomain());
+		return memberDto;
 	}
 	
 	public void updatePassword(String userId, String password) {
@@ -39,8 +52,13 @@ public class MemberService implements UserDetailsService {
 		if(!m.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 		
+<<<<<<< Updated upstream
 		Member member = m.get();
 		member.setPassword(password);
+=======
+		Member member = memberWrapper.get();
+		member.setPassword(pwdEncoder.encode(password));
+>>>>>>> Stashed changes
 		memberRepository.save(member);
 	}
 	
@@ -77,6 +95,7 @@ public class MemberService implements UserDetailsService {
 		else
 			throw new NoSuchElementException("비밀번호가 틀렸습니다!!");
 	}
+<<<<<<< Updated upstream
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) {
@@ -97,4 +116,6 @@ public class MemberService implements UserDetailsService {
 		
 		return new User(member.getUserId(), member.getPassword(), authorities);
 	}
+=======
+>>>>>>> Stashed changes
 }

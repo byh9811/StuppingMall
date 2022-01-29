@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+ <title>Review Add Page</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <style>
+ 	form.form-example {
+    	display: table;
+	}
+	
+	div.form-example {
+	    display: table-row;
+	}
+	
+	label, input {
+	    display: table-cell;
+	    margin-bottom: 10px;
+	}
+	
+	label {
+	    padding-right: 10px;
+	}
+ </style>
+</head>
+<body>
+	<h1>Add Review</h1>
+	<hr>
+	<form action="/member/reviewProduct" method="post" class="form-example">
+	  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	  <div class="form-example">
+	    <label for="name">Enter product name: </label>
+	    <input type="text" name="name" id="name" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="category">Enter product category: </label>
+	    <input type="text" name="category" id="category" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="price">Enter product price: </label>
+	    <input type="number" name="price" id="price" required>
+	  </div>
+	  <div class="form-example">
+	    <label for="imgFile">Select product image: </label>
+	    <input type="file" name="imgFile" id="imgFile">
+	  </div>
+	  <div class="form-example">
+	    <input type="submit" value="Subscribe!">
+	  </div>
+	</form>
+	<hr>
+</body>
+</html>

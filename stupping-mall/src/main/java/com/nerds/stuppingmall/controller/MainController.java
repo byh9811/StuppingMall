@@ -3,13 +3,22 @@ package com.nerds.stuppingmall.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< Updated upstream:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MainController.java
+=======
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+>>>>>>> Stashed changes:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MemberController.java
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+<<<<<<< Updated upstream:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MainController.java
 import org.springframework.web.bind.annotation.RestController;
 
+=======
+
+import com.nerds.stuppingmall.domain.AuthRequest;
+>>>>>>> Stashed changes:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MemberController.java
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.dto.MemberDto;
 import com.nerds.stuppingmall.service.MemberService;
@@ -19,6 +28,7 @@ public class MainController {
 	@Autowired
 	MemberService memberService;
 	
+<<<<<<< Updated upstream:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MainController.java
 	@GetMapping("/")
 	public String main() {
 		return "main";
@@ -49,6 +59,8 @@ public class MainController {
 		return "redirect:/html/userDeletePage.html";
 	}
 	
+=======
+>>>>>>> Stashed changes:stupping-mall/src/main/java/com/nerds/stuppingmall/controller/MemberController.java
 	@PostMapping("/deleteUser")
 	public String deleteUser(String userId, String password, String checkLetter) {
 		if(!checkLetter.equals("sure delete"))
