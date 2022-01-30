@@ -1,7 +1,5 @@
 package com.nerds.stuppingmall.dto;
 
-<<<<<<< Updated upstream
-=======
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -9,15 +7,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.nerds.stuppingmall.domain.AuthRequest;
->>>>>>> Stashed changes
 import com.nerds.stuppingmall.domain.Member;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Builder
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class MemberDto {
 	private String _id;
 	private String userId;
@@ -31,8 +31,6 @@ public class MemberDto {
 	public Member toDomain() {
 		return new Member(_id, userId, password, name, email, phoneNum, birth, man);
 	}
-<<<<<<< Updated upstream
-=======
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() { return authorities; }
@@ -55,5 +53,4 @@ public class MemberDto {
 	public AuthRequest toAuthRequest() {
 		return new AuthRequest(userId, password, role);
 	}
->>>>>>> Stashed changes
 }

@@ -16,8 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.nerds.stuppingmall.filter.CustomAuthenticationFilter;
+import com.nerds.stuppingmall.filter.JwtAuthenticationFilter;
 import com.nerds.stuppingmall.handler.CustomLoginSuccessHandler;
 import com.nerds.stuppingmall.provider.CustomAuthenticationProvider;
+import com.nerds.stuppingmall.provider.JwtProvider;
 import com.nerds.stuppingmall.service.AuthenticationService;
 import com.nerds.stuppingmall.service.MemberService;
 
@@ -27,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity	// spring security config 명시
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 메서드 구현하여 설정
-	private final AuthenticationService authenticationService;
+	private final JwtProvider jwtProvider;
 
 	// resource/static 기준으로 권한 없이 접근할 수 있게 함
 	@Override
@@ -37,8 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {	// 각 http request에 대한 보안 설정
-		http.csrf().disable().authorizeRequests()
+		http.httpBasic().disable()
+			.csrf().disable().authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/customer/**").hasRole("CUSTOMER")
 				.antMatchers("/**").permitAll()
 			.and()
 				.exceptionHandling().accessDeniedPage("/forbidden")
@@ -46,26 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 				.formLogin().disable()
-			.addFilterBefore(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-		
-//		http.authorizeRequests()
-//				.antMatchers("/admin/**").hasRole("ADMIN")
-//				.antMatchers("/member/**").hasRole("MEMBER")
-//				.antMatchers("/seller/**").hasRole("SELLER")
-//				.antMatchers("/**").permitAll()
-//			.and()
-//				.formLogin()
-//				.loginPage("/login")
-//				.defaultSuccessUrl("/")
-//				.usernameParameter("userId")
-//				.failureUrl("/passwordFindPage")
-//			.and()
-//				.logout()
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//				.logoutSuccessUrl("/")
-//				.invalidateHttpSession(true)
-//			.and()
-//				.exceptionHandling().accessDeniedPage("/forbidden");
+			.addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Bean
@@ -79,28 +64,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 		return super.authenticationManagerBean();
 	}
 	
-	@Bean
-	public CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
-		CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
-		customAuthenticationFilter.setFilterProcessesUrl("/user/login");
-		customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());
-		customAuthenticationFilter.afterPropertiesSet();
-		
-		return customAuthenticationFilter;
-	}
-	
-	@Bean
-	public CustomLoginSuccessHandler customLoginSuccessHandler() {
-		return new CustomLoginSuccessHandler();
-	}
-	
-	@Bean
-	public CustomAuthenticationProvider customAuthenticationProvider() {
-		return new CustomAuthenticationProvider(authenticationService, bCryptPasswordEncoder());
-	}
-	
-	@Override
-	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
-		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider());
-	}
 }

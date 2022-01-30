@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.nerds.stuppingmall.domain.Member;
 
-public interface MemberRepository extends MongoRepository<Member, Long> {
+public interface MemberRepository extends MongoRepository<Member, String> {
 	Optional<Member> findByUserId(String userId);
 	List<Member> findByName(String name);
 }

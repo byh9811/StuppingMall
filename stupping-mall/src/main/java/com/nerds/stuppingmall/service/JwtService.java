@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.AuthRequest;
 import com.nerds.stuppingmall.dto.MemberDto;
+import com.nerds.stuppingmall.enumerate.Role;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

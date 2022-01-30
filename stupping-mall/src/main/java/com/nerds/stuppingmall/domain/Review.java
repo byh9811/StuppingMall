@@ -4,7 +4,7 @@ package com.nerds.stuppingmall.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.nerds.stuppingmall.service.Role;
+import com.nerds.stuppingmall.enumerate.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.nerds.stuppingmall.domain;
 
-import com.nerds.stuppingmall.service.Role;
+import com.nerds.stuppingmall.enumerate.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

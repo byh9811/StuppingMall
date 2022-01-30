@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-<<<<<<< Updated upstream
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-=======
->>>>>>> Stashed changes
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -48,17 +43,12 @@ public class MemberService {
 	}
 	
 	public void updatePassword(String userId, String password) {
-		Optional<Member> m = memberRepository.findByUserId(userId);
-		if(!m.isPresent())
+		Optional<Member> memberWrapper = memberRepository.findByUserId(userId);
+		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 		
-<<<<<<< Updated upstream
-		Member member = m.get();
-		member.setPassword(password);
-=======
 		Member member = memberWrapper.get();
 		member.setPassword(pwdEncoder.encode(password));
->>>>>>> Stashed changes
 		memberRepository.save(member);
 	}
 	
@@ -95,27 +85,4 @@ public class MemberService {
 		else
 			throw new NoSuchElementException("비밀번호가 틀렸습니다!!");
 	}
-<<<<<<< Updated upstream
-
-	@Override
-	public UserDetails loadUserByUsername(String userId) {
-		Optional<Member> memberWrapper = memberRepository.findByUserId(userId);
-		if(!memberWrapper.isPresent())
-			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
-
-		Member member = memberWrapper.get();
-		
-		HashSet<GrantedAuthority> authorities = new HashSet<>();
-		
-		if("admin".equals(userId)) {
-			authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-		}
-		else {
-			authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-		}
-		
-		return new User(member.getUserId(), member.getPassword(), authorities);
-	}
-=======
->>>>>>> Stashed changes
 }

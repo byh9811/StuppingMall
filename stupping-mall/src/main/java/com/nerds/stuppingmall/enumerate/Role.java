@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.service;
+package com.nerds.stuppingmall.enumerate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Role {
-	ADMIN("ROLE_ADMIN"), MEMBER("ROLE_MEMBER");
+	ADMIN("ROLE_ADMIN"), SUPPLIER("ROLE_SUPPLIER"), CUSTOMER("ROLE_CUSTOMER");
 	
 	private String value;
 }
