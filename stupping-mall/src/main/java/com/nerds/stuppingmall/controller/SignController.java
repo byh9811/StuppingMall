@@ -29,15 +29,9 @@ public class SignController {
 	private final BCryptPasswordEncoder passwordEncoder;
 	
 	@PostMapping("/signUp")
-	public SingleResult<String> signUp(String id, String password, String name, String email, String phoneNum, String birth, boolean man, Role role) {
-		MemberSignupRequestDto memberSignupRequestDto = MemberSignupRequestDto.builder()
-				.id(id)
-				.password(password)
-				.name(name)
-				.email(email)
-				.phoneNum(phoneNum)
-				.role(role.getValue())
-				.man(man);
+	public SingleResult<String> signUp(MemberSignupRequestDto memberSignupRequestDto) {
+		String signUpId = signService.signUp(memberSignupRequestDto);
+		return responseService.getSingleResult(signUpId);
 	}
 	
 	@GetMapping("/list")
