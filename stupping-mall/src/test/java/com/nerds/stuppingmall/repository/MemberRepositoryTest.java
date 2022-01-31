@@ -15,7 +15,7 @@ public class MemberRepositoryTest extends StuppingMallApplicationTests {
 	
 	@Test
 	public void read() {
-		Optional<Member> m = memberRepository.findByUserId("ㅠㅛㅗ135700");
+		Optional<Member> m = memberRepository.findById("ㅠㅛㅗ135700");
 		
 //		m.ifPresent(member -> {
 //			System.out.println("selected member: " + member.getName());

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.dto.MemberDto;
+import com.nerds.stuppingmall.dto.Authentication;
+import com.nerds.stuppingmall.enumerate.Role;
 import com.nerds.stuppingmall.service.MemberService;
-import com.nerds.stuppingmall.service.Role;
 
 @Controller
 public class PageController {
@@ -22,15 +22,21 @@ public class PageController {
 	public String main() {
 		return "main";
 	}
+
+	@GetMapping("/signUpPage")
+	public String signUpPage(Model model) {
+		model.addAttribute("roles", Role.values());
+		return "signUp";
+	}
 	
 	@GetMapping("/login")
 	public String loginPage() {
 		return "signIn";
 	}
 	
-	@GetMapping("/userDeletePage")
-	public String userDeletePage() {
-		return "userDeletePage";
+	@GetMapping("/memberBanPage")
+	public String memberBanPage() {
+		return "memberBanPage";
 	}
 	
 	@GetMapping("/userIdFindPage")
@@ -38,25 +44,13 @@ public class PageController {
 		return "userIdFindPage";
 	}
 	
-	@GetMapping("/passwordFindPage")
-	@PostMapping("/passwordFindPage")
-	public String passwordFindPage() {
-		return "passwordFindPage";
-	}
-	
-	@GetMapping("/member/passwordChangePage")
-	public String passwordChangePage(@AuthenticationPrincipal MemberDto memberDto, Model model) {
-		model.addAttribute("memberDto", memberDto);
+	@GetMapping("/passwordChangePage")
+	public String passwordChangePage(@AuthenticationPrincipal Authentication authentication, Model model) {
+		model.addAttribute("id", authentication.getId());
 		return "passwordChangePage";
 	}
 	
-	@GetMapping("/memberAddPage")
-	public String memberAddPage(Model model) {
-		model.addAttribute("roles", Role.values());
-		return "memberAddPage";
-	}
-	
-	@GetMapping("/seller/productAddPage")
+	@GetMapping("/productAddPage")
 	public String productAddPage() {
 		return "productAddPage";
 	}

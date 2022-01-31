@@ -8,5 +8,5 @@ import com.nerds.stuppingmall.domain.Product;
 
 public interface ProductRepository extends MongoRepository<Product, String> {
 	List<Product> findByName(String name);
-	List<Product> findBySeller(String seller);
+	List<Product> findBySupplierId(String supplierId);
 }

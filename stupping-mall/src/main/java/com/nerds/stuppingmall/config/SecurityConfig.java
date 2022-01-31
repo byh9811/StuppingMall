@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.nerds.stuppingmall.service.CustomUserDetailsService;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Configuration		// Configure Bean 명시
@@ -19,7 +20,7 @@ import com.nerds.stuppingmall.service.MemberService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 메서드 구현하여 설정
 	
 	@Autowired
-	MemberService memberService;
+	CustomUserDetailsService customUserDetailsService;
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {	// resource/static 기준으로 권한 없이 접근할 수 있게 함
@@ -30,15 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 	public void configure(HttpSecurity http) throws Exception {	// 각 http request에 대한 보안 설정
 		http.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
-				.antMatchers("/member/**").hasRole("MEMBER")
-				.antMatchers("/seller/**").hasRole("SELLER")
+				.antMatchers("/customer/**").hasRole("CUSTOMER")
+				.antMatchers("/supplier/**").hasRole("SUPPLIER")
 				.antMatchers("/**").permitAll()
 			.and()
 				.formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/")
-				.usernameParameter("userId")
-				.failureUrl("/passwordFindPage")
+				.usernameParameter("id")
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -49,12 +49,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 }
