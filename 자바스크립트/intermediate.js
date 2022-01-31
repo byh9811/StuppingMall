@@ -201,6 +201,17 @@ console.log(Math.sqrt(16));
  * 11. find(함수) : 더 복잡한 걸 찾을 수 있다. 짝수를 찾는다던가.
  *     단!!! find는 첫 번째 값만 찾아서 반환해준다!
  * //미성년자 찾기!!!!
+ * 
+ * 12. filter : find 업그레이드 >> 
+ *     조건을 만족하는 모든 원소를 배열로 반환.
+ *     그래서 변수에 저장해서 출력하면 배열이 됨.
+ *     또 메서드 활용이 가능하다!
+ * 
+ * 13. arr.reverse(); 배열을 역순으로 출력해준다. 
+ * 최근 가입한 유져 보여주기.
+ * 최근 작성된 댓글 부터 보기!! 등등 최신순 정렬있지?? 그거 reverse로해!
+ * 
+ * 14. map() 개중요함!!!!!!!!!!!
  */
 const arr = [1,2,3,4,5,6];
 const spliceResult = arr.splice(1,3);//2 3 4삭제!
@@ -217,24 +228,13 @@ console.log(spliceResult); //2 3 4를 배열로 반환한다!
 // }
 // console.log(concatArr([1,2,3],[4,5,6]));
 // //concat배열 함수 굉장히 중요하다.
-let users = ['user1','user2','user3'];
-users.forEach((list,index)=>{
-     console.log(list + "1");
-})
+const ages = [19,20,21,23];
 
-//미성년자 찾기!!!
+const result = ages.filter((item)=>{
+    if(item > 19){
+       return item;
+    }
+}) //모든 원소를 배열로 만든 후 반환해준다.
 
-const userList = [
-       {name : "김지성", age : 25},
-       {name : "지성", age : 19},
-       {name : "jisung", age : 24},
-       {name : "king", age : 27},
-]
 
-userList.find((item)=>{
-     if(item.age < 20){
-            return console.log('미성년자입니다!');
-     }else{
-            return console.log('미성년자는 없습니다!');
-     }
-})
+console.log(result.reverse(result.concat(1,3))); //concat은 합치는 것.

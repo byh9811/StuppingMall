@@ -57,24 +57,33 @@
             </ul>
         </nav>
         <main class="login_container">
-            <div class="login_contents">
-                <div class="login_logo">
-                    <a href="">
-                        <i class="fas fa-users"></i>
-                    </a>
-                </div>
-                <div class="login_box">
-                    <form action="" method="post">
-                        <div class="id_box box">
-                            <a href=""><i class="fas fa-user"></i></a>
-                            <input type="text" name="" id="">
+            <div class="login_box">
+                <form action="#" method="post" class="login_form">
+                    <h1 class="login_title">LOG IN</h1>
+                    <div class="real_box">
+                        <div class="id_box">
+                            <div class="idLogo_box">
+                                <i class="fas fa-portrait"></i>
+                            </div>
+                            <div class="idText_box">
+                                <input type="text" name="userId" id="userId" placeholder="ID">
+                            </div>
                         </div>
-                        <div class="pw_box box">
-                            <a href=""><i class="fas fa-user"></i></a>
-                            <input type="password" name="" id="">
+
+                        <div class="pw_box">
+                            <div class="pwLogo_box">
+                                <i class="fas fa-unlock"></i>
+                            </div>
+                            <div class="pwText_box">
+                                <input type="password" name="userPw" id="userPw" placeholder="PW">
+                            </div>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="button_box">
+                            <input type="submit" value="LOGIN">
+                        </div>
+                    </div>
+                </form>
             </div>
         </main>
     </div>

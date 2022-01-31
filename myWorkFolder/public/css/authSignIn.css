@@ -194,40 +194,9 @@ img{
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
-.login_container{
-    width : 100vw;
-    height : 500px;
-    border : 3px solid white;
-    position : relative;
-    top : 100px;
-}
-.login_contents{
-    height : 100%;
-    width : 40%;
-    border : 3px solid white;
-    margin : 0 auto;
-    position : relative;
-    border-radius : 50px;
-}
-.login_logo{
-    position : absolute;
-    border : 3px solid white;
-    top : 30px;
-    left : 50%;
-    transform: translate(-50%,0);
-    text-align: center;
-}
-.login_logo i{
-    font-size : 48px;
-}
-.login_box{
-    border : 1px solid black;
-    position : relative;
-    top : 100px;
-    height : 200px;
-}
+
 form{
-    border : 1px solid black;
+    
     height : 100%;
     position : relative;
 }
@@ -243,6 +212,143 @@ form > .box{
 .box > input{
     height : 100%;
     color : gray;
+}
+/* << login_container >> */
+.login_container{
+    width : 100vw;
+    height : 70vh;
+    position : relative;
+    top : 50px;
+    
+}
+.login_box{
+    height : 100%;
+    width : 50%;
+    position : relative;
+    left : 50%;
+    transform: translate(-50%);
+}
+.login_form{
+    width : 70%;
+    height : 90%;
+    background-color: rgb(51, 47, 47);
+    position : relative;
+    left : 50%;
+    top : 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 2px 4px, rgba(0, 0, 0, 0.9) 0px 7px 13px -3px, rgba(0, 0, 0, 0.9) 0px -3px 0px inset;
+    border-radius : 5%;
+}
+.login_form > .login_title{
+    position : relative;
+    top : 50px;
+    text-align: center;
+}
+.real_box{
+    position : relative;
+    top : 50px;
+    margin : 30px 0;
+    padding : 30px 0;
+    margin : 0 auto;
+}
+.id_box,.pw_box{
+    display : flex;
+    margin : 0 auto;
+    height : 50px;
+    width : 250px;
+}
+.id_box > .idLogo_box{
+    flex-grow : 2;
+    border-radius : 50%;
+    background-color: rgb(218, 102, 102);
+    position : relative;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    height : 80%;
+    position : relative;
+    top : 50%;
+    transform : translate(0,-50%);
+}
+.idLogo_box > i{
+    color : white;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+}
+.id_box > .idText_box{
+    flex-grow : 8;
+    border-radius : 25px;
+    background-color: rgb(51, 47, 47);
+    
+    position : relative;
+}
+#userId{
+    background-color: rgb(51, 47, 47);
+    outline: none;
+    border: none;
+    color : gray;
+    border-radius : 25px;
+}
+.idText_box > input[type="text"]{
+    width : 80%;
+    height : 70%;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+    color : black;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background-color: white;
+}
+.pw_box{
+    display : flex;
+}
+.pwLogo_box{
+    flex-grow : 2;
+    position : relative;
+    border-radius : 50%;
+    height : 80%;
+    top : 50%;
+    transform: translate(0,-50%);
+    background-color: rgb(218, 102, 102);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.pwLogo_box > i{
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+}
+.pwText_box{
+    flex-grow : 8;
+    position : relative;
+}
+.pwText_box > input[type="password"]{
+    width : 80%;
+    height : 70%;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    outline: none;
+    border: none;
+    color : gray;
+    border-radius : 25px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.button_box{
+    width : 47%;
+    margin : 15px auto;
+    height : 45px;
+}
+input[type="submit"]{
+    width : 100%;
+    height : 100%;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    color : black;
+    background-color: white;
 }
 @media screen and (max-width : 1000px){
     .logo{

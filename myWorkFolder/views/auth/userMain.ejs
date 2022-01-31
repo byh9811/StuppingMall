@@ -18,8 +18,10 @@
 </head>
 <!-- 에니메이션 시간 후에 자동으로 wrapper띄우는 setTimeout함수 적자!!-->
 <body>
-    <a href="" class="logo"><i class="fas fa-bars realLogo"></i></a>
     <div class="loading">
+       <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
     </div>
     <div class="wrapper">
         <div class="wrapper_content">
@@ -230,15 +232,12 @@
         <script>
             const wrapper = document.querySelector(".wrapper");
             const loading = document.querySelector(".loading");
-            
-            const main_nav = document.querySelector(".main_nav");
-            const logo = document.querySelector(".logo");
-            const realLogo = document.querySelector(".realLogo");
+            const ring = document.querySelector(".ring");
 
             wrapper.style.display = "none";
             loading.style.display = "block"; //처음엔 얘만 생김!!
-            
-            loading.addEventListener("animationend",()=>{
+            //3번째 링을 선택해줘야해!!!!
+            ring.addEventListener("animationend",()=>{
                 changeUI();                
             })
             function changeUI(){
@@ -246,9 +245,6 @@
                 wrapper.style.display = "block";
             }
 
-            realLogo.addEventListener("click",()=>{
-                main_nav.style.display = "block";
-            });
         </script>
 </body>
 
