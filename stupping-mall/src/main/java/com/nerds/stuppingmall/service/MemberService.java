@@ -77,5 +77,9 @@ public class MemberService {
 		}
 		return userId;
 	}
+
+	public Member getMyPage(String id) {
+		return memberRepository.findById(id).get();
+	}
 	
 }
