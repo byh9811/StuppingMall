@@ -23,7 +23,7 @@ public class AdminController {
 	@GetMapping("/allMembers")
 	public String list(Model model) {
 		List<Member> members = memberService.findAllMember();
-		model.addAttribute(members);
+		model.addAttribute("members", members);
 		return "memberInfo";
 	}
 
