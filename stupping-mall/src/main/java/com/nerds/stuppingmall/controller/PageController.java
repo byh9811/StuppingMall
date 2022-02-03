@@ -1,5 +1,8 @@
 package com.nerds.stuppingmall.controller;
 
+import java.time.LocalTime;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +22,8 @@ public class PageController {
 	MemberService memberService;
 	
 	@GetMapping("/")
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("date", LocalTime.now());
 		return "main";
 	}
 
@@ -30,7 +34,8 @@ public class PageController {
 	}
 	
 	@GetMapping("/login")
-	public String loginPage() {
+	public String loginPage(Model model) {
+		model.addAttribute("date", LocalTime.now());
 		return "signIn";
 	}
 	

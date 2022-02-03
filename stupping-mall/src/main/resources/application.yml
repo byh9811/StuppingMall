@@ -2,3 +2,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/stupping_mall
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false

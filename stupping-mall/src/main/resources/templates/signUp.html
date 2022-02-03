@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!-- xmlns:th 유지 요망!! -->
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
  <title>Sign Up Page</title>
@@ -25,10 +26,13 @@
 <body>
 	<h1>Sign Up</h1>
 	<hr>
+	<!-- action 유지 및 이하 name 유지 요망!! -->
 	<form action="signUp" method="post" class="form-example">
+		<!-- input 태그 유지 요망!! -->
 	  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	  <div class="form-example">
 	    <label for="role">Choose your role</label>
+	    <!-- input 태그 유지 요망!! -->
 		<input th:each="role: ${roles}" th:if="${!role.name().equals('ADMIN')}" type='radio' name='role' th:value="${role}" th:text="${role.getDisplay()}" />
 	  </div>
 	  <div class="form-example">
