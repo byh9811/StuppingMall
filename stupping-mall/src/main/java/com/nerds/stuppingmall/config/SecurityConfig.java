@@ -21,11 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 	
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
-	
-	@Override
-	public void configure(WebSecurity web) throws Exception {	// resource/static 기준으로 권한 없이 접근할 수 있게 함
-		web.ignoring().antMatchers("/js/**", "/css/**", "/img/**", "/lib/**");
-	}
+//	
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {	// resource/static 기준으로 권한 없이 접근할 수 있게 함
+//		web.ignoring().antMatchers("/js/**", "/css/**", "/img/**", "/lib/**");
+//	}
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {	// 각 http request에 대한 보안 설정
