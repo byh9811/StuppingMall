@@ -260,7 +260,7 @@ form > .box{
 .id_box > .idLogo_box{
     flex-grow : 2;
     border-radius : 50%;
-    background-color: rgb(218, 102, 102);
+    background-color: rgb(58, 52, 52);
     position : relative;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     height : 80%;
@@ -299,6 +299,7 @@ form > .box{
     color : black;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     background-color: white;
+    text-align: center;
 }
 .pw_box{
     display : flex;
@@ -332,6 +333,7 @@ form > .box{
     transform: translate(-50%,-50%);
     background-color: white;
     outline: none;
+    text-align: center;
     border: none;
     color : gray;
     border-radius : 25px;

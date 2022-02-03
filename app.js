@@ -17,4 +17,8 @@ app.listen(3000,()=>{
     console.log("3000번 서버!")
 });
 
-//착하게살게
+function 김지성(){
+    console.log('김지성');
+}
+김지성();
+//
