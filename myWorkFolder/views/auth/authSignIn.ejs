@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/authSignIn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <script src="/js/authSignIn.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="logo">
+                <a href="">
+                <i class="fas fa-bars realLogo"></i>
+                 </a>
+        </div>
+            <h1><a href="http://localhost:3000">STUPPING</a></h1>
+            <div class="search_box">
+                <form action="" method="post">
+                    <input type="search" name="" id="" placeholder="search">
+                    <a href=""><i class="fas fa-search"></i></a>
+                </form>
+            </div>
+            <div class="sub_logo">
+                <ul class="sub">
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/signIn}" href="http://localhost:3000/login">로그인</a></li>
+                    <li><a href="/memberAddPage">회원가입</a></li>
+                    <li><a href="http://localhost:3000/myPage">마이페이지</a></li>
+                </ul>
+            </div>
+            <div class="sub_iconMenu">
+                <ul class="icon_menu">
+                    <li><a href="">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a></li>
+                    <li><a href="">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a></li>
+                    <li><a href="">
+                            <i class="fas fa-user-plus"></i>
+                        </a></li>
+                    <li><a href="http://localhost:3000/myPage">
+                            <i class="fas fa-user"></i>
+                        </a></li>
+                </ul>
+            </div>
+        </header>
+        <nav class="main_nav">
+            <ul class="list_1">
+                <li><a href="">카테고리</a></li>
+                <li><a href="">HELLO</a></li>
+                <li><a href="">HELLO</a></li>
+                <li><a href="">HELLO</a></li>
+                <li><a href="">HELLO</a></li>
+            </ul>
+        </nav>
+        <main class="login_container">
+            <div class="login_box">
+                <form action="#" method="post" class="login_form">
+                    <h1 class="login_title">LOG IN</h1>
+                    <div class="real_box">
+                        <div class="id_box">
+                            <div class="idLogo_box">
+                                <i class="fas fa-portrait"></i>
+                            </div>
+                            <div class="idText_box">
+                                <input type="text" name="userId" id="userId" placeholder="ID">
+                            </div>
+                        </div>
+
+                        <div class="pw_box">
+                            <div class="pwLogo_box">
+                                <i class="fas fa-unlock"></i>
+                            </div>
+                            <div class="pwText_box">
+                                <input type="password" name="userPw" id="userPw" placeholder="PW">
+                            </div>
+                        </div>
+
+                        <div class="button_box">
+                            <input type="submit" value="LOGIN">
+                        </div>
+
+                        <div class="sub_login_logo">
+                            <a href="">id찾기</a>
+                            <a href="">pw찾기</a>
+                            <a href="">hello</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const logo = document.querySelector(".logo");
+        const realLogo = document.querySelector(".realLogo");
+        const main_nav = document.querySelector(".main_nav");
+        logo.addEventListener("click",()=>{
+            main_nav.style.display = "block";
+        })
+    </script>
+</body>
+</html>

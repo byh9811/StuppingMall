@@ -1,0 +1,272 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+    color : white; /*기본 font-color을 white로!*/
+}
+html,body{
+    min-height : 100vh;
+}
+body{
+    margin : 0;
+    background-color: rgb(51, 47, 47);
+    position : relative;
+}
+
+
+.logo{
+    width : 20px;
+    height : 20px;
+    background-color: black;
+    color : white;
+    position : absolute;
+    left : 15%;
+    top : 7%;
+    display : none;
+}
+.logo > i{
+    font-size : 30px;
+}
+.loading{
+    height : 100px;
+    width : 500px;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform : translate(-50%,-50%);
+}
+
+a{
+    text-decoration: none;
+    color : white;
+}
+img{
+    border-radius : 5px;
+}
+.wrapper{
+    width : 100vw;
+    height : 100%;
+    /* border : 1px solid white; */
+    
+}
+.wrapper_content{
+    width : 93%;
+    height : 100%;
+    /* border : 1px solid white; */
+    margin : 0 auto;
+    position : relative;
+    /* background-color: chartreuse; */
+}
+.header{
+    width : 100%;
+    height : 90px;
+    /* background-color: antiquewhite; */
+    position : relative;
+    /*로고를 absolute로 움직여줄 수 있음..*/
+}
+.header > h1{
+    /* width : fit-content; 이러며 h1에 효과를주면 box전체가 움직여버림...*/
+    position : absolute;
+    left : 50%;
+    top : 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Island Moments', cursive;
+    text-shadow: 5px 10px 5px gray;
+}
+.header > h1:hover{
+    transition: all,0.3s;
+    font-size : 2.5rem;
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+}
+.search_box{
+    position : absolute;
+    top : 50%;
+    right : 5%;
+    width : 250px;
+    height : 50px;
+    /* border : 1px solid white; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(0, 0, 0, 0.35) 0px -2px 6px 0px inset;
+    border-radius : 25px;
+}
+.search_box:hover{
+    transition: all,0.4s;
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 50px 100px -20px, rgba(0, 0, 0, 1.2) 0px 30px 60px -30px, rgba(0, 0, 0, 1.2) 0px -2px 6px 0px inset;
+    font-size : 1.2rem;
+}
+.search_box i:hover{
+    transition: all,0.4s;
+    color : white;
+    transform: scale(1.2);
+    margin : 0;
+}
+.search_box input[type="search"]{
+    position : absolute;
+    top : 50%;
+    left : 5%;
+    transform: translate(0,-50%);
+    outline: none;
+    border: none;
+    background-color: rgb(51, 47, 47);
+    opacity: 0.5;
+    width : 200px;
+}
+.search_box a{
+    position : absolute;
+    top : 50%;
+    right : 20px;
+    transform: translate(0,-50%);
+}
+.search_box i{
+    color : gray;
+}
+.sub_logo{
+    position : absolute;
+    right : 5%;
+    top : 5px;
+}
+.sub_logo > ul{
+    display : flex;
+    list-style : none;
+}
+.sub_logo li:hover{
+    transition: all,0.3s;
+    
+    /* margin : 0px 10px; */
+    border-radius : 25px;
+    background-color: gray;
+    color : white
+}
+.sub_logo > ul > li{
+    padding : 6px 10px;
+}
+.sub_iconMenu{
+    display : none;
+}
+.icon_menu{ /*아이콘 메뉴 이걸로 없애고 하는 거*/
+    display : flex;
+    width : 300px;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    position : absolute;
+    top : 40%;
+    right : 5%;
+}
+.icon_menu li{
+    width : 30px;
+    height : 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin : 5px;
+}
+.icon_menu li i:nth-child(1):hover{
+    transform: scale(1.3);
+    transition : all 0.5s;
+}
+.icon_menu i{
+    color : gray;
+}
+/* << header 반응형 웹!! 미디어쿼리!! >> */
+
+/*================ << header >> ================*/
+
+/*================ << NAV >> ================*/
+
+.main_nav{
+    width : 100%;
+    height : 50px;
+    /* border : 1px solid white; */
+    position : relative;
+    top : 50px;
+    border-top : 1px solid black;
+    border-bottom : 1px solid black;
+}
+.main_nav > .list_1{
+    /* border : 1px solid white; */
+    display : flex;
+    margin : 0 auto;
+    list-style : none;
+    height : 100%;
+    width : 80%;
+    background-color: rgb(49, 47, 47);
+    
+}
+.list_1 > li{
+    flex-grow : 1; /*다들 1씩 차지한다! 공평하게*/
+    /* border-right : 1px solid gray; */
+    line-height : 50px;
+    text-align : center;
+    color : rgb(44, 44, 44);
+}
+.list_1 > li:hover{
+    border-radius: 80px / 0px;
+    box-shadow: rgba(0, 0, 0, 1.2) 0px 50px 100px -20px, rgba(0, 0, 0, 1.2) 0px 30px 60px -30px, rgba(0, 0, 0, 1.2) 0px -2px 6px 0px inset;
+    background-color: rgb(51, 47, 47);
+    font-size : 32px;
+    transition: all,0.5s;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+
+@media screen and (max-width : 1000px){
+    .logo{
+        display : inline;
+    }
+    .sub_logo > ul{
+        display : none;
+    }
+    .search_box{
+        /*중앙으로 위치 옮긴다!!*/
+        position : absolute;
+        left : 50%;
+        top : 95%;
+        transform: translate(-50%,0);
+        width : 50%;
+    }
+    .search_box > input[type="search"]{
+        width : 90%;
+        border : 1px solid white;
+    }
+    .search_box > a{
+        width : 20%;
+    }
+    .main_nav{
+        display : none;
+        
+    }
+    .main_nav > .list_1{
+        /* border : 1px solid white; */
+        position : relative;
+        display : flex;
+        flex-direction: column;
+        margin : 0 auto;
+        list-style : none;
+        height : 100%;
+        width : 80%;
+        background-color: rgb(49, 47, 47);
+        z-index : 1000;
+    }
+    .list_1 > li{
+        flex-grow : 1; /*다들 1씩 차지한다! 공평하게*/
+        /* border-right : 1px solid gray; */
+        line-height : 50px;
+        text-align : center;
+        color : rgb(44, 44, 44);
+    }
+    .sub_iconMenu{
+        display : block;
+    }
+    .contents > .image_contents{
+        display : block;
+    }
+}
+
+/*
+css : 
+-1) nth-child( ) ==> 형제관계에서 쓸 수 있다.
+    부자관계 아니야!!!!!!!!
+    
+-2) 선택자 공부 더 열심히하자!!
+*/ 
