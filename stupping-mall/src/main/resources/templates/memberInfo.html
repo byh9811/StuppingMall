@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <title>Member Info Page</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Member Info</h1>
+	<hr>
+	<table style="width:100%">
+	    <tr style="background-color:lightgrey">
+	        <th>ID</th>
+	        <th>이름</th>
+	        <th>회원구분</th>
+	        <th>이메일</th>
+	        <th>전화번호</th>
+	        <th>생일</th>
+	        <th>성별</th>
+	    </tr>
+		<tr th:each="member : ${members}">
+			<td th:text="${member._id}"></td>
+			<td th:text="${member.name}"></td>
+			<td th:text="${member.role}"></td>
+			<td th:text="${member.email}"></td>
+			<td th:text="${member.phoneNum}"></td>
+			<td th:text="${member.birth}"></td>
+			<td th:if="${member.man}">남자</td>
+			<td th:unless="${member.man}">여자</td>
+		</tr>
+	</table>
+	<hr>
+</body>
+</html>
