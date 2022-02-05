@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <title>Notebook Info Page</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Notebook Info</h1>
+	<hr>
+	<table style="width:100%">
+	    <tr style="background-color:lightgrey">
+	        <th>상품명</th>
+	        <th>판매사</th>
+	        <th>판매일</th>
+	        <th>이미지</th>
+	        <th>가격</th>
+	        <th>조회수</th>
+	        <th>별점</th>
+	        <th>구매수</th>
+	        <th>CPU</th>
+	        <th>GPU</th>
+	        <th>무게</th>
+	        <th>화면크기</th>
+	        <th>RAM</th>
+	        <th>SSD</th>
+	        <th>HDD</th>
+	        <th>배터리</th>
+	        <th>추천용도</th>
+	    </tr>
+		<tr th:each="notebook : ${notebooks}">
+			<td th:text="${notebook.name}"></td>
+			<td th:text="${notebook.supplierName}"></td>
+			<td th:text="${notebook.manufactureDate}"></td>
+			<td th:text="${notebook.img}"></td>
+			<td th:text="${notebook.price}"></td>
+			<td th:text="${notebook.view}"></td>
+			<td th:text="${notebook.rate}"></td>
+			<td th:text="${notebook.salesVolume}"></td>
+			<td th:text="${notebook.cpuName}"></td>
+			<td th:text="${notebook.gpuName}"></td>
+			<td th:text="${notebook.weight}"></td>
+			<td th:text="${notebook.screenSize}"></td>
+			<td th:text="${notebook.ramSize}"></td>
+			<td th:text="${notebook.ssdSize}"></td>
+			<td th:text="${notebook.hddSize}"></td>
+			<td th:text="${notebook.batterySize}"></td>
+			<td th:text="${notebook.usage.name()}"></td>
+		</tr>
+	</table>
+	<hr>
+</body>
+</html>

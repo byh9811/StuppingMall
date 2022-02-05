@@ -1,23 +1,20 @@
 package com.nerds.stuppingmall.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.domain.Product;
+
 import com.nerds.stuppingmall.dto.Authentication;
-import com.nerds.stuppingmall.dto.MemberSignUpRequestDto;
-import com.nerds.stuppingmall.dto.ProductAddRequestDto;
-import com.nerds.stuppingmall.dto.ProductDto;
+import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
+import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 import com.nerds.stuppingmall.service.MemberService;
-import com.nerds.stuppingmall.service.ProductService;
+import com.nerds.stuppingmall.service.NotebookService;
 
 @Controller
 @RequestMapping("/supplier")
@@ -25,26 +22,26 @@ public class SupplierController {
 	@Autowired
 	MemberService memberService;
 	@Autowired
-	ProductService productService;
+	NotebookService notebookService;
 	
-	@PostMapping("/addProduct")
-	public String addProduct(@AuthenticationPrincipal Authentication authentication, ProductAddRequestDto productAddRequestDto) {
-		String id = productService.addProduct(authentication.getId(), productAddRequestDto);
-		return "redirect:/productInfo?id=" + id;
+	@PostMapping("/addNotebook")
+	public String addNotebook(@AuthenticationPrincipal Authentication authentication, NotebookAddRequestDto notebookAddRequestDto) {
+		String id = notebookService.addNotebook(authentication.getId(), notebookAddRequestDto);
+		return "redirect:/notebookInfo?id=" + id;
 	}
 	
-	@GetMapping("/myProducts")
-	public String myProducts(@AuthenticationPrincipal Authentication authentication, Model model) {
-		List<Product> products = productService.getMyProducts(authentication.getId());
-		model.addAttribute("products", products);
+	@GetMapping("/myNotebooks")
+	public String myNotebooks(@AuthenticationPrincipal Authentication authentication, Model model) {
+		List<NotebookInfoResponseDto> notebooks = notebookService.getMyNotebooks(authentication.getId());
+		model.addAttribute("notebooks", notebooks);
 		
-		return "productInfo";
+		return "notebookInfo";
 	}
 	
-	@PostMapping("/deleteProduct")
-	public String deleteProduct(@AuthenticationPrincipal Authentication authentication, String productId) {
-		productService.deleteProduct(authentication.getId(), productId);
+	@PostMapping("/deleteNotebook")
+	public String deleteNotebook(@AuthenticationPrincipal Authentication authentication, String productId) {
+		notebookService.deleteNotebook(authentication.getId(), productId);
 		
-		return "redirect:/myProducts";
+		return "redirect:/myNotebooks";
 	}
 }

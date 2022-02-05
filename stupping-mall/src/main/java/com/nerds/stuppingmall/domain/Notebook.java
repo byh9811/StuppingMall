@@ -9,21 +9,29 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection="products")
+@Document(collection="notebooks")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Product {
+public class Notebook {
 	@Id
 	private String _id;
 	private String name;
-	private String category;
-	private int price;
-	private String img;
 	private String supplierId;
+	private String manufactureDate;
+	private String img;
+	private int price;
 	private int view;
 	private double rate;
 	private int salesVolume;
-	private String date;
+	private String cpuName;
+	private String gpuName;
+	private double weight;
+	private int screenSize;
+	private int ramSize;
+	private int ssdSize;
+	private int hddSize;
+	private int batterySize;
+	private String usage;
 }
