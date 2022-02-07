@@ -10,19 +10,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nerds.stuppingmall.domain.Category;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 import com.nerds.stuppingmall.enumerate.Usage;
+import com.nerds.stuppingmall.repository.CategoryRepository;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class NotebookService {
-	@Autowired
-	NotebookRepository notebookRepository;
-	@Autowired
-	MemberRepository memberRepository;
+	final NotebookRepository notebookRepository;
+	final MemberRepository memberRepository;
+	final CategoryRepository categoryRepository;
 	
 	public NotebookInfoResponseDto getNotebook(String id) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(id);
@@ -54,6 +58,79 @@ public class NotebookService {
 	}
 
 	public String addNotebook(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
+		String url = saveImgFile(supplierId, notebookAddRequestDto);
+		addCategories(supplierId, notebookAddRequestDto);
+		Notebook notebook = Notebook.builder()
+								.name(notebookAddRequestDto.getName())
+								.supplierId(supplierId)
+								.manufactureDate(notebookAddRequestDto.getManufactureDate())
+								.img(url)
+								.price(notebookAddRequestDto.getPrice())
+								.view(0)
+								.rate(0.0)
+								.salesVolume(0)
+								.cpuName(notebookAddRequestDto.getCpuName())
+								.gpuName(notebookAddRequestDto.getGpuName())
+								.weight(notebookAddRequestDto.getWeight())
+								.screenSize(notebookAddRequestDto.getScreenSize())
+								.ramSize(notebookAddRequestDto.getRamSize())
+								.ssdSize(notebookAddRequestDto.getSsdSize())
+								.hddSize(notebookAddRequestDto.getHddSize())
+								.batterySize(notebookAddRequestDto.getBatterySize())
+								.usage(Usage.DOCUMENT.getValue())
+								.build();
+								
+		return notebookRepository.save(notebook).get_id();
+	}
+
+	private void addCategories(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
+		addSupplierNameCategory(memberRepository.findById(supplierId).get().getName());
+		addCpuNameCategory(notebookAddRequestDto.getCpuName());
+		addGpuNameCategory(notebookAddRequestDto.getGpuName());
+		addManuYearCategory(notebookAddRequestDto.getManufactureDate());
+	}
+
+	private void addSupplierNameCategory(String name) {
+		Category cate = categoryRepository.findById("SupplierName").get();
+		List<String> supplierNames = cate.getList();
+		if(supplierNames.contains(name))
+			return;
+		supplierNames.add(name);
+		cate.setList(supplierNames);
+		categoryRepository.save(cate);
+	}
+
+	private void addCpuNameCategory(String name) {
+		Category cate = categoryRepository.findById("CpuName").get();
+		List<String> cpuNames = cate.getList();
+		if(cpuNames.contains(name))
+			return;
+		cpuNames.add(name);
+		cate.setList(cpuNames);
+		categoryRepository.save(cate);
+	}
+
+	private void addGpuNameCategory(String name) {
+		Category cate = categoryRepository.findById("GpuName").get();
+		List<String> gpuNames = cate.getList();
+		if(gpuNames.contains(name))
+			return;
+		gpuNames.add(name);
+		cate.setList(gpuNames);
+		categoryRepository.save(cate);
+	}
+
+	private void addManuYearCategory(String year) {
+		Category cate = categoryRepository.findById("ManuYear").get();
+		List<String> manuYears = cate.getList();
+		if(manuYears.contains(year))
+			return;
+		manuYears.add(year);
+		cate.setList(manuYears);
+		categoryRepository.save(cate);
+	}
+
+	private String saveImgFile(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
 		String basePath = "C:\\img";
 		String filePath = basePath + "/" + supplierId;
 		String url = null;
@@ -97,28 +174,7 @@ public class NotebookService {
 				}
             }
 		}
-		
-		Notebook notebook = Notebook.builder()
-								.name(notebookAddRequestDto.getName())
-								.supplierId(supplierId)
-								.manufactureDate(notebookAddRequestDto.getManufactureDate())
-								.img(url)
-								.price(notebookAddRequestDto.getPrice())
-								.view(0)
-								.rate(0.0)
-								.salesVolume(0)
-								.cpuName(notebookAddRequestDto.getCpuName())
-								.gpuName(notebookAddRequestDto.getGpuName())
-								.weight(notebookAddRequestDto.getWeight())
-								.screenSize(notebookAddRequestDto.getScreenSize())
-								.ramSize(notebookAddRequestDto.getRamSize())
-								.ssdSize(notebookAddRequestDto.getSsdSize())
-								.hddSize(notebookAddRequestDto.getHddSize())
-								.batterySize(notebookAddRequestDto.getBatterySize())
-								.usage(Usage.DOCUMENT.getValue())
-								.build();
-								
-		return notebookRepository.save(notebook).get_id();
+		return url;
 	}
 
 	public List<NotebookInfoResponseDto> getNotebooks(String name) {
