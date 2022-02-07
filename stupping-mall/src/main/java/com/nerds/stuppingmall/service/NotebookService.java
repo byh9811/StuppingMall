@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.nerds.stuppingmall.domain.Category;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
+import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.CategoryRepository;
@@ -202,6 +203,106 @@ public class NotebookService {
 					.build());
 		}
 		return notebookDtos;
+	}
+
+	public List<NotebookInfoResponseDto> getNotebooks(NotebookInfoRequestDto notebookInfoRequestDto) {
+		List<Notebook> notebooks = notebookRepository.findAll();
+		notebooks = notebookInfoRequestDto.getSupplierNames().isEmpty() ? notebooks : filterNotebooksWithSupplierNames(notebooks, notebookInfoRequestDto.getSupplierNames());
+		notebooks = notebookInfoRequestDto.getCpuNames().isEmpty() ? notebooks : filterNotebooksWithCpuNames(notebooks, notebookInfoRequestDto.getCpuNames());
+		notebooks = notebookInfoRequestDto.getGpuNames().isEmpty() ? notebooks : filterNotebooksWithGpuNames(notebooks, notebookInfoRequestDto.getGpuNames());
+		notebooks = notebookInfoRequestDto.getManufactureYears().isEmpty() ? notebooks : filterNotebooksWithManuYears(notebooks, notebookInfoRequestDto.getManufactureYears());
+
+		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			notebookDtos.add(NotebookInfoResponseDto.builder()
+					.name(notebook.getName())
+					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
+					.manufactureDate(notebook.getManufactureDate())
+					.img(notebook.getImg())
+					.price(notebook.getPrice())
+					.view(notebook.getView())
+					.rate(notebook.getRate())
+					.salesVolume(notebook.getSalesVolume())
+					.cpuName(notebook.getCpuName())
+					.gpuName(notebook.getGpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.ssdSize(notebook.getSsdSize())
+					.hddSize(notebook.getHddSize())
+					.batterySize(notebook.getBatterySize())
+					.usage(Usage.valueOf(notebook.getUsage()))
+					.build());
+		}
+		return notebookDtos;
+	}
+
+	private List<Notebook> filterNotebooksWithManuYears(List<Notebook> notebooks, List<String> manufactureYears) {
+		List<Notebook> newNotebooks = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			String year = notebook.getManufactureDate().substring(0, 4);
+			boolean flag = false;
+			for(String manufactureYear: manufactureYears) {
+				if(manufactureYear.equals(year)) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag)
+				newNotebooks.add(notebook);
+		}
+		return newNotebooks;
+	}
+
+	private List<Notebook> filterNotebooksWithGpuNames(List<Notebook> notebooks, List<String> gpuNames) {
+		List<Notebook> newNotebooks = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			String name = notebook.getGpuName();
+			boolean flag = false;
+			for(String gpuName: gpuNames) {
+				if(gpuName.equals(name)) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag)
+				newNotebooks.add(notebook);
+		}
+		return newNotebooks;
+	}
+
+	private List<Notebook> filterNotebooksWithCpuNames(List<Notebook> notebooks, List<String> cpuNames) {
+		List<Notebook> newNotebooks = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			String name = notebook.getCpuName();
+			boolean flag = false;
+			for(String cpuName: cpuNames) {
+				if(cpuName.equals(name)) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag)
+				newNotebooks.add(notebook);
+		}
+		return newNotebooks;
+	}
+
+	private List<Notebook> filterNotebooksWithSupplierNames(List<Notebook> notebooks, List<String> supplierNames) {
+		List<Notebook> newNotebooks = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			String name = memberRepository.findById(notebook.getSupplierId()).get().getName();
+			boolean flag = false;
+			for(String supplierName: supplierNames) {
+				if(supplierName.equals(name)) {
+					flag = true;
+					break;
+				}
+			}
+			if(flag)
+				newNotebooks.add(notebook);
+		}
+		return newNotebooks;
 	}
 
 	public List<NotebookInfoResponseDto> getMyNotebooks(String supplierId) {

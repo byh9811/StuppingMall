@@ -34,4 +34,9 @@ public class Notebook {
 	private int hddSize;
 	private int batterySize;
 	private String usage;
+	
+	@Override
+	public boolean equals(Object o) {
+		return _id.equals(((Notebook)o).get_id());
+	}
 }

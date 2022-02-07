@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.enumerate.Role;
+import com.nerds.stuppingmall.service.CategoryService;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
 public class PageController {
 	@Autowired
-	MemberService memberService;
+	CategoryService categoryService;
 	
 	@GetMapping("/")
 	public String main(Model model) {
