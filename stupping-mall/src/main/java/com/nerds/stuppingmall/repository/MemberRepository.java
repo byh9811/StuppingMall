@@ -8,5 +8,4 @@ import com.nerds.stuppingmall.domain.Member;
 
 public interface MemberRepository extends MongoRepository<Member, String> {
 	List<Member> findByName(String name);
-	String findNameBy_id(String id);
 }

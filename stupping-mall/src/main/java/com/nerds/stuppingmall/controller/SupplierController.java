@@ -26,6 +26,8 @@ public class SupplierController {
 	
 	@PostMapping("/addNotebook")
 	public String addNotebook(@AuthenticationPrincipal Authentication authentication, NotebookAddRequestDto notebookAddRequestDto) {
+		if(notebookAddRequestDto.getGpuName().isEmpty())
+			notebookAddRequestDto.setGpuName("내장 그래픽");
 		String id = notebookService.addNotebook(authentication.getId(), notebookAddRequestDto);
 		return "redirect:/notebookInfo?id=" + id;
 	}

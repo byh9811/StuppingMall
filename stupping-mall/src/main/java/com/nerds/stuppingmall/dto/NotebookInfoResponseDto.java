@@ -23,10 +23,10 @@ public class NotebookInfoResponseDto {
 	private String cpuName;
 	private String gpuName;
 	private double weight;
-	private int screenSize;
+	private double screenSize;
 	private int ramSize;
 	private int ssdSize;
 	private int hddSize;
-	private int batterySize;
+	private double batterySize;
 	private Usage usage;
 }

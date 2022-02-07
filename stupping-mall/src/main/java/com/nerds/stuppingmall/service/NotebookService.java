@@ -34,7 +34,7 @@ public class NotebookService {
 		
 		return NotebookInfoResponseDto.builder()
 				.name(notebook.getName())
-				.supplierName(memberRepository.findNameBy_id(notebook.get_id()))
+				.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
 				.manufactureDate(notebook.getManufactureDate())
 				.img(notebook.getImg())
 				.price(notebook.getPrice())
@@ -127,7 +127,7 @@ public class NotebookService {
 		for(Notebook notebook: notebooks) {
 			notebookDtos.add(NotebookInfoResponseDto.builder()
 					.name(notebook.getName())
-					.supplierName(memberRepository.findNameBy_id(notebook.get_id()))
+					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
 					.manufactureDate(notebook.getManufactureDate())
 					.img(notebook.getImg())
 					.price(notebook.getPrice())
@@ -151,7 +151,7 @@ public class NotebookService {
 	public List<NotebookInfoResponseDto> getMyNotebooks(String supplierId) {
 		List<Notebook> myNotebooks = notebookRepository.findBySupplierId(supplierId);
 		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
-		String supplierName = memberRepository.findNameBy_id(supplierId);
+		String supplierName = memberRepository.findById(supplierId).get().getName();
 		
 		for(Notebook notebook: myNotebooks) {
 			notebookDtos.add(NotebookInfoResponseDto.builder()
@@ -179,12 +179,15 @@ public class NotebookService {
 
 	public void deleteNotebook(String supplierId, String notebookId) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(notebookId);
-		
 		if(!notebookWrapper.isPresent())
 			throw new NoSuchElementException("존재하지 않는 상품입니다!!");
 		if(!notebookWrapper.get().getSupplierId().equals(supplierId))
 			throw new NoSuchElementException("잘못된 접근입니다!!");
 		
-		notebookRepository.deleteById(notebookId);
+		Notebook notebook = notebookWrapper.get();
+		notebookRepository.deleteById(notebook.get_id());
+		File file = new File(notebook.getImg());
+		if(file.exists())
+			file.delete();
 	}
 }
