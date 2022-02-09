@@ -8,6 +8,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Category;
@@ -346,5 +350,11 @@ public class NotebookService {
 		File file = new File(notebook.getImg());
 		if(file.exists())
 			file.delete();
+	}
+	
+	public List<Notebook> getNotebookPageTest(int curPage) {
+		Pageable pageable = PageRequest.of(curPage, 10, Sort.Direction.DESC, "ManufactureDate");
+		Page<Notebook> result = notebookRepository.findAll(pageable);
+		return result.getContent();
 	}
 }
