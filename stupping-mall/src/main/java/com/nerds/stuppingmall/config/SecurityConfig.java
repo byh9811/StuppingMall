@@ -16,7 +16,7 @@ import com.nerds.stuppingmall.service.CustomUserDetailsService;
 @Configuration		// Configure Bean 명시
 @EnableWebSecurity	// spring security config 명시
 public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 메서드 구현하여 설정
-	
+	// To Test Git.
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
 	
