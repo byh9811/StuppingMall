@@ -1,25 +1,22 @@
 package com.nerds.stuppingmall.controller;
 
 import java.time.LocalTime;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.enumerate.Role;
+import com.nerds.stuppingmall.service.CategoryService;
 import com.nerds.stuppingmall.service.MemberService;
 
 @Controller
 public class PageController {
 	@Autowired
-	MemberService memberService;
+	CategoryService categoryService;
 	
 	@GetMapping("/")
 	public String main(Model model) {
@@ -55,8 +52,8 @@ public class PageController {
 		return "passwordChangePage";
 	}
 	
-	@GetMapping("/productAddPage")
-	public String productAddPage() {
-		return "productAddPage";
+	@GetMapping("/notebookAddPage")
+	public String notebookAddPage() {
+		return "notebookAddPage";
 	}
 }

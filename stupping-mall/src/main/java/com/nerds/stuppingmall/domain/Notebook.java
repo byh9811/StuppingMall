@@ -1,0 +1,42 @@
+package com.nerds.stuppingmall.domain;
+
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Document(collection="notebooks")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class Notebook {
+	@Id
+	private String _id;
+	private String name;
+	private String supplierId;
+	private String manufactureDate;
+	private String img;
+	private int price;
+	private int view;
+	private double rate;
+	private int salesVolume;
+	private String cpuName;
+	private String gpuName;
+	private double weight;
+	private int screenSize;
+	private int ramSize;
+	private int ssdSize;
+	private int hddSize;
+	private int batterySize;
+	private String usage;
+	
+	@Override
+	public boolean equals(Object o) {
+		return _id.equals(((Notebook)o).get_id());
+	}
+}
