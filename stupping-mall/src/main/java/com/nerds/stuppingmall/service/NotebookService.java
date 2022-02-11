@@ -9,9 +9,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Category;
@@ -32,6 +37,7 @@ public class NotebookService {
 	final NotebookRepository notebookRepository;
 	final MemberRepository memberRepository;
 	final CategoryRepository categoryRepository;
+	final MongoTemplate mongoTemplate;
 	
 	public NotebookInfoResponseDto getNotebook(String id) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(id);
@@ -351,10 +357,53 @@ public class NotebookService {
 		if(file.exists())
 			file.delete();
 	}
-	
-	public List<Notebook> getNotebookPageTest(int curPage) {
-		Pageable pageable = PageRequest.of(curPage, 10, Sort.Direction.DESC, "ManufactureDate");
-		Page<Notebook> result = notebookRepository.findAll(pageable);
-		return result.getContent();
+
+	// 이거 되면 getNotebooks(notebookInfoRequestDto) 삭제
+	public List<Notebook> categorySearchTest(int curPage, NotebookInfoRequestDto notebookInfoRequestDto) {
+		Pageable pageable = PageRequest.of(curPage, 10);
+		Query query = new Query();
+		Criteria[] outerCriterias = new Criteria[4];
+		if(!notebookInfoRequestDto.getSupplierNames().isEmpty()) {
+			Criteria criteria = new Criteria();
+			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getSupplierNames().size()];
+			for(int i=0; i<notebookInfoRequestDto.getSupplierNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("SupplierName").is(notebookInfoRequestDto.getSupplierNames().get(i));
+			}
+			outerCriterias[0] = criteria.orOperator(innerCriterias);
+		}
+		if(!notebookInfoRequestDto.getCpuNames().isEmpty()) {
+			Criteria criteria = new Criteria();
+			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getCpuNames().size()];
+			for(int i=0; i<notebookInfoRequestDto.getCpuNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("CpuName").is(notebookInfoRequestDto.getCpuNames().get(i));
+			}
+			outerCriterias[0] = criteria.orOperator(innerCriterias);
+		}
+		if(!notebookInfoRequestDto.getGpuNames().isEmpty()) {
+			Criteria criteria = new Criteria();
+			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getGpuNames().size()];
+			for(int i=0; i<notebookInfoRequestDto.getGpuNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("GpuName").is(notebookInfoRequestDto.getGpuNames().get(i));
+			}
+			outerCriterias[0] = criteria.orOperator(innerCriterias);
+		}
+		if(!notebookInfoRequestDto.getManufactureYears().isEmpty()) {
+			Criteria criteria = new Criteria();
+			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getManufactureYears().size()];
+			for(int i=0; i<notebookInfoRequestDto.getManufactureYears().size(); i++) {
+				innerCriterias[i] = Criteria.where("ManuYear").is(notebookInfoRequestDto.getManufactureYears().get(i));
+			}
+			outerCriterias[0] = criteria.orOperator(innerCriterias);
+		}
+		
+		Criteria criteria = new Criteria();
+		query.addCriteria(criteria.andOperator(outerCriterias));
+		// 이거 왜하는지?
+		query.with(pageable);
+		
+		List<Notebook> list = mongoTemplate.find(query, Notebook.class, "notebooks");
+		Page<Notebook> pn = PageableExecutionUtils.getPage(list, pageable, () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
+		//Page<Notebook> pn = new PageImpl<>(list, pageable, mongoTemplate.count(query, Notebook.class));
+		return pn.getContent();
 	}
 }
