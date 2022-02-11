@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.nerds.stuppingmall.dto.Authentication;
+import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.enumerate.Role;
 import com.nerds.stuppingmall.service.CategoryService;
 import com.nerds.stuppingmall.service.MemberService;
@@ -55,5 +56,15 @@ public class PageController {
 	@GetMapping("/notebookAddPage")
 	public String notebookAddPage() {
 		return "notebookAddPage";
+	}
+	
+	@GetMapping("/notebookCategorySearchPage")
+	public String notebookCategorySearchPage(Model model) {
+		NotebookInfoRequestDto categories = categoryService.getExistingCategories();
+		model.addAttribute("SupplierNames", categories.getSupplierNames());
+		model.addAttribute("CpuNames", categories.getCpuNames());
+		model.addAttribute("GpuNames", categories.getGpuNames());
+		model.addAttribute("ManuYears", categories.getManufactureYears());
+		return "notebookCategorySearchPage";
 	}
 }

@@ -359,7 +359,7 @@ public class NotebookService {
 	}
 
 	// 이거 되면 getNotebooks(notebookInfoRequestDto) 삭제
-	public List<Notebook> categorySearchTest(int curPage, NotebookInfoRequestDto notebookInfoRequestDto) {
+	public List<NotebookInfoResponseDto> categorySearchTest(int curPage, NotebookInfoRequestDto notebookInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, 10);
 		Query query = new Query();
 		Criteria[] outerCriterias = new Criteria[4];
@@ -404,6 +404,30 @@ public class NotebookService {
 		List<Notebook> list = mongoTemplate.find(query, Notebook.class, "notebooks");
 		Page<Notebook> pn = PageableExecutionUtils.getPage(list, pageable, () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
 		//Page<Notebook> pn = new PageImpl<>(list, pageable, mongoTemplate.count(query, Notebook.class));
-		return pn.getContent();
+		List<Notebook> notebooks = pn.getContent();
+
+		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			notebookDtos.add(NotebookInfoResponseDto.builder()
+					.name(notebook.getName())
+					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
+					.manufactureDate(notebook.getManufactureDate())
+					.img(notebook.getImg())
+					.price(notebook.getPrice())
+					.view(notebook.getView())
+					.rate(notebook.getRate())
+					.salesVolume(notebook.getSalesVolume())
+					.cpuName(notebook.getCpuName())
+					.gpuName(notebook.getGpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.ssdSize(notebook.getSsdSize())
+					.hddSize(notebook.getHddSize())
+					.batterySize(notebook.getBatterySize())
+					.usage(Usage.valueOf(notebook.getUsage()))
+					.build());
+		}
+		return notebookDtos;
 	}
 }
