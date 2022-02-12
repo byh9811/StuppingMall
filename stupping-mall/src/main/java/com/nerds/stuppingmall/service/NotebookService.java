@@ -362,14 +362,15 @@ public class NotebookService {
 	public List<NotebookInfoResponseDto> categorySearchTest(int curPage, NotebookInfoRequestDto notebookInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, 10);
 		Query query = new Query();
-		Criteria[] outerCriterias = new Criteria[4];
+		List<Criteria> outerCriterias = new ArrayList<>();
+		// 이거 로직 바꿔야됨 supplierName -> supplierId
 		if(!notebookInfoRequestDto.getSupplierNames().isEmpty()) {
 			Criteria criteria = new Criteria();
 			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getSupplierNames().size()];
 			for(int i=0; i<notebookInfoRequestDto.getSupplierNames().size(); i++) {
 				innerCriterias[i] = Criteria.where("SupplierName").is(notebookInfoRequestDto.getSupplierNames().get(i));
 			}
-			outerCriterias[0] = criteria.orOperator(innerCriterias);
+			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
 		if(!notebookInfoRequestDto.getCpuNames().isEmpty()) {
 			Criteria criteria = new Criteria();
@@ -377,7 +378,7 @@ public class NotebookService {
 			for(int i=0; i<notebookInfoRequestDto.getCpuNames().size(); i++) {
 				innerCriterias[i] = Criteria.where("CpuName").is(notebookInfoRequestDto.getCpuNames().get(i));
 			}
-			outerCriterias[0] = criteria.orOperator(innerCriterias);
+			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
 		if(!notebookInfoRequestDto.getGpuNames().isEmpty()) {
 			Criteria criteria = new Criteria();
@@ -385,7 +386,7 @@ public class NotebookService {
 			for(int i=0; i<notebookInfoRequestDto.getGpuNames().size(); i++) {
 				innerCriterias[i] = Criteria.where("GpuName").is(notebookInfoRequestDto.getGpuNames().get(i));
 			}
-			outerCriterias[0] = criteria.orOperator(innerCriterias);
+			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
 		if(!notebookInfoRequestDto.getManufactureYears().isEmpty()) {
 			Criteria criteria = new Criteria();
@@ -393,7 +394,7 @@ public class NotebookService {
 			for(int i=0; i<notebookInfoRequestDto.getManufactureYears().size(); i++) {
 				innerCriterias[i] = Criteria.where("ManuYear").is(notebookInfoRequestDto.getManufactureYears().get(i));
 			}
-			outerCriterias[0] = criteria.orOperator(innerCriterias);
+			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
 		
 		Criteria criteria = new Criteria();

@@ -26,33 +26,36 @@
 	<h1>Search Notebook</h1>
 	<hr>
 	<form action="/notebooksInfo/category" method="get" class="form-example">
-	  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	  <div class="form-example">
-	    <label for="name">Supplier Name</label>
-	    <div th:each="SupplierName : ${SupplierNames}" class="form-check">
-	      <input type="checkbox" th:field="*{SupplierNames}" th:value="${SupplierName}" class="form-check-input">
-    	  <label th:text="${SupplierName}" class="form-check-label"></label>
+	    <label>Supplier Name</label>
+	    <div th:each="supplierName : ${supplierNames}" class="form-check form-check-inline">
+	      <input type="checkbox" name="supplierNames" th:value="${supplierName}" class="form-check-input">
+	      <input type="hidden" name="_supplierNames" value="on">
+    	  <label th:text="${supplierName}" class="form-check-label"></label>
 	    </div>
 	  </div>
 	  <div class="form-example">
 	    <label for="name">Cpu Name</label>
-	    <div th:each="CpuName : ${CpuNames}" class="form-check">
-	      <input type="checkbox" th:field="*{CpuNames}" th:value="${CpuName}" class="form-check-input">
-    	  <label th:text="${CpuName}" class="form-check-label"></label>
+	    <div th:each="cpuName : ${cpuNames}" class="form-check form-check-inline">
+	      <input type="checkbox" name="cpuNames" th:value="${cpuName}" class="form-check-input">
+	      <input type="hidden" name="_cpuNames" value="on">
+    	  <label th:text="${cpuName}" class="form-check-label"></label>
 	    </div>
 	  </div>
 	  <div class="form-example">
 	    <label for="name">Gpu Name</label>
-	    <div th:each="GpuName : ${GpuNames}" class="form-check">
-	      <input type="checkbox" th:field="*{GpuNames}" th:value="${GpuName}" class="form-check-input">
-    	  <label th:text="${GpuName}" class="form-check-label"></label>
+	    <div th:each="gpuName : ${gpuNames}" class="form-check form-check-inline">
+	      <input type="checkbox" name="gpuNames" th:value="${gpuName}" class="form-check-input">
+	      <input type="hidden" name="_gpuNames" value="on">
+    	  <label th:text="${gpuName}" class="form-check-label"></label>
 	    </div>
 	  </div>
 	  <div class="form-example">
 	    <label for="name">Manufacture Year</label>
-	    <div th:each="ManuYear : ${ManuYears}" class="form-check">
-	      <input type="checkbox" th:field="*{ManuYears}" th:value="${ManuYear}" class="form-check-input">
-    	  <label th:text="${ManuYear}" class="form-check-label"></label>
+	    <div th:each="manufactureYear : ${manufactureYears}" class="form-check form-check-inline">
+	      <input type="checkbox" name="manufactureYears" th:value="${manufactureYear}" class="form-check-input">
+	      <input type="hidden" name="_manufactureYears" value="on">
+    	  <label th:text="${manufactureYear}" class="form-check-label"></label>
 	    </div>
 	  </div>
 	  <div class="form-example">
