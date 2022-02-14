@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.service;
+package com.nerds.stuppingmall.service.Authentication;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;

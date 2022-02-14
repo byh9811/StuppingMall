@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.service;
+package com.nerds.stuppingmall.service.category;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryService {
+public class CategoryStatusService {
 	final CategoryRepository categoryRepository;
 	
 	public NotebookInfoRequestDto getExistingCategories() {

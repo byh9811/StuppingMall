@@ -37,7 +37,7 @@ public class NotebookController {
 	
 	@GetMapping("/notebooksInfo/category")
 	public String getProductsInfoByCategory(NotebookInfoRequestDto notebookInfoRequestDto, Model model) {
-		List<NotebookInfoResponseDto> notebooks = notebookService.categorySearchTest(1, notebookInfoRequestDto);
+		List<NotebookInfoResponseDto> notebooks = notebookService.categorySearchTest(0, notebookInfoRequestDto);
 		model.addAttribute("notebooks", notebooks);
 		return "notebookInfo";
 	}

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.enumerate.Role;
-import com.nerds.stuppingmall.service.CategoryService;
 import com.nerds.stuppingmall.service.MemberService;
+import com.nerds.stuppingmall.service.category.CategoryStatusService;
 
 @Controller
 public class PageController {
 	@Autowired
-	CategoryService categoryService;
+	CategoryStatusService categoryStatusService;
 	
 	@GetMapping("/")
 	public String main(Model model) {
@@ -60,7 +60,7 @@ public class PageController {
 	
 	@GetMapping("/notebookCategorySearchPage")
 	public String notebookCategorySearchPage(Model model) {
-		NotebookInfoRequestDto categories = categoryService.getExistingCategories();
+		NotebookInfoRequestDto categories = categoryStatusService.getExistingCategories();
 		model.addAttribute("supplierNames", categories.getSupplierNames());
 		model.addAttribute("cpuNames", categories.getCpuNames());
 		model.addAttribute("gpuNames", categories.getGpuNames());
