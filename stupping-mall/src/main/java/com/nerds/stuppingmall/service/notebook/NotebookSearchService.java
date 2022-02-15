@@ -137,9 +137,11 @@ public class NotebookSearchService {
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
 		
-		Criteria criteria = new Criteria();
-		query.addCriteria(criteria.andOperator(outerCriterias));
-		query.with(pageable);
+		if(!outerCriterias.isEmpty()) {
+			Criteria criteria = new Criteria();
+			query.addCriteria(criteria.andOperator(outerCriterias));
+			query.with(pageable);
+		}
 		
 		List<Notebook> notebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
 		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();

@@ -19,7 +19,7 @@ public class NotebookDetailsService {
 	final NotebookRepository notebookRepository;
 	final MemberRepository memberRepository;
 	
-	public NotebookInfoResponseDto getNotebook(String id) {
+	public NotebookInfoResponseDto findNotebook(String id) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(id);
 
 		if(!notebookWrapper.isPresent())

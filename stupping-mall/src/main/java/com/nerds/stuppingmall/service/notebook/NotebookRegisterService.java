@@ -89,7 +89,7 @@ public class NotebookRegisterService {
 	private void addManuYearCategory(String year) {
 		Category cate = categoryRepository.findById("ManuYear").get();
 		List<String> manuYears = cate.getList();
-		if(manuYears.contains(year))
+		if(manuYears.contains(year.substring(0, 4)))
 			return;
 		manuYears.add(year);
 		cate.setList(manuYears);

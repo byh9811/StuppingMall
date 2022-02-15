@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.enumerate.Role;
-import com.nerds.stuppingmall.service.MemberService;
 import com.nerds.stuppingmall.service.category.CategoryStatusService;
 
 @Controller

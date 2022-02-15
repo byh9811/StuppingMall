@@ -1,6 +1,5 @@
 package com.nerds.stuppingmall.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.dto.Authentication;
-import com.nerds.stuppingmall.service.MemberService;
+import com.nerds.stuppingmall.service.member.MemberDeregisterService;
+import com.nerds.stuppingmall.service.member.MemberDetailsService;
+import com.nerds.stuppingmall.service.member.MemberModifyService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/customer")
 public class CustomerController {
-	@Autowired
-	MemberService memberService;
+	final MemberDetailsService memberDetailsService;
+	final MemberDeregisterService memberDeregisterService;
+	final MemberModifyService memberModifyService;
 
 	@GetMapping("/myPage")
-	public String getMyPage(@AuthenticationPrincipal Authentication authentication, Model model) {
-		Member member = memberService.getMyPage(authentication.getId());
+	public String MyPageDetail(@AuthenticationPrincipal Authentication authentication, Model model) {
+		Member member = memberDetailsService.findMemberById(authentication.getId());
 		Member[] members = new Member[1];
 		members[0] = member;
 		model.addAttribute("members", members);
@@ -29,13 +34,13 @@ public class CustomerController {
 	
 	@PostMapping("/leave")
 	public String leave(@AuthenticationPrincipal Authentication authentication) {
-		memberService.leave(authentication.getId());
+		memberDeregisterService.removeMember(authentication.getId());
 		return "redirect:/logout";
 	}
 	
 	@PostMapping("changePassword")
 	public String changePassword(@AuthenticationPrincipal Authentication authentication, String newPassword) {
-		memberService.updatePassword(authentication.getId(), newPassword);
+		memberModifyService.updatePassword(authentication.getId(), newPassword);
 		return "redirect:/logout";
 	}
 	

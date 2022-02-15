@@ -2,7 +2,7 @@ package com.nerds.stuppingmall.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +13,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
-import com.nerds.stuppingmall.service.MemberService;
-import com.nerds.stuppingmall.service.NotebookService;
+import com.nerds.stuppingmall.service.notebook.NotebookDeregisterService;
+import com.nerds.stuppingmall.service.notebook.NotebookRegisterService;
+import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/supplier")
 public class SupplierController {
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	NotebookService notebookService;
+	final NotebookRegisterService notebookRegisterService;
+	final NotebookSearchService notebookSearchService;
+	final NotebookDeregisterService notebookDeregisterService;
 	
 	@PostMapping("/addNotebook")
 	public String addNotebook(@AuthenticationPrincipal Authentication authentication, NotebookAddRequestDto notebookAddRequestDto) {
 		if(notebookAddRequestDto.getGpuName().isEmpty())
 			notebookAddRequestDto.setGpuName("내장 그래픽");
-		String id = notebookService.addNotebook(authentication.getId(), notebookAddRequestDto);
+		String id = notebookRegisterService.addNotebook(authentication.getId(), notebookAddRequestDto);
 		return "redirect:/notebookInfo?id=" + id;
 	}
 	
 	@GetMapping("/myNotebooks")
 	public String myNotebooks(@AuthenticationPrincipal Authentication authentication, Model model) {
-		List<NotebookInfoResponseDto> notebooks = notebookService.getMyNotebooks(authentication.getId());
-		model.addAttribute("notebooks", notebooks);
+		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(0, authentication.getId());
+		model.addAttribute("notebooks", notebookPages.getContent());
+		model.addAttribute("curPage", notebookPages.getNumber());
+		model.addAttribute("maxPage", notebookPages.getTotalPages());
 		
 		return "notebookInfo";
 	}
 	
 	@PostMapping("/deleteNotebook")
 	public String deleteNotebook(@AuthenticationPrincipal Authentication authentication, String productId) {
-		notebookService.deleteNotebook(authentication.getId(), productId);
+		notebookDeregisterService.removeNotebook(authentication.getId(), productId);
 		
 		return "redirect:/myNotebooks";
 	}
