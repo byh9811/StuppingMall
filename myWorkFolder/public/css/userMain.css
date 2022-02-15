@@ -163,10 +163,10 @@ li{
     background-color: rgb(162, 209, 231);
     transition : all 0.5s;
 }    
-.menu:hover{
+/* .menu:hover{
     transition: all 0.5s;
     margin-left : 0%;
-}
+} */
 .menu > *:nth-child(1){
     flex-grow: 3;
 }
@@ -208,7 +208,7 @@ li{
 .nav_change{
     height : 100px;
     transition: all 1s;
-    background-color: rgb(182, 177, 177);
+    background-color: rgb(236, 228, 228);
     border-radius: 50px;
 }
 .real_nav_change{
@@ -218,4 +218,23 @@ li{
 .real_nav_hover{
     border-radius : 50%;
     background-color: bisque;
+}
+
+/*main디자인!!*/
+.main{
+    width : 80vw;
+    min-height : 100vh;
+    margin : 0 auto;
+    border : 5px solid black;
+}
+.main > *{
+    height : 33vh;
+    width : 100%;
+    border : 3px solid black;
+}
+.footer{
+    width : 80vw;
+    height : 100px;
+    margin : 0 auto;
+    border : 6px solid black;
 }

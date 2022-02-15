@@ -56,4 +56,31 @@ function move(number){
     }
 }
         
-        
+
+//이제 scroll event2
+/**
+ * 1. 얼마 스크롤이 됐을 때 event가 나타나는 코드
+ * 2. 뭘 눌렀을 때 그 위치로 자동으로 scroll이 되는 코드!!
+ * (자기소개서 페이지 만들 때 반드시 필요한 기술!!)
+ * 
+ * 변수 scope제대로 공부 안 하면 코드 더러워짐...
+ * 
+ */
+
+const menu = document.querySelectorAll('.menu');
+const content = document.querySelectorAll('.content');
+//각 content의 top위치를 저장하는 변수를 만들어줘야함!!!
+for(let i=0; i<content.length; i++){
+    menu[i].addEventListener('mouseover',()=>{
+        const topOffset = content[i].offsetTop; //위치 저장!
+        window.scroll({top : topOffset, behavior : 'smooth'});
+    })
+    menu[i].addEventListener('mouseleave',()=>{
+        const topOffset = content[i].offsetTop; //위치 저장!
+        window.scroll({top : topOffset, behavior : 'smooth'});
+    })
+}
+
+
+
+
