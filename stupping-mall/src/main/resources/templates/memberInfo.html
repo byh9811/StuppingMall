@@ -16,6 +16,7 @@
 	        <th>전화번호</th>
 	        <th>생일</th>
 	        <th>성별</th>
+	        <th>계좌</th>
 	    </tr>
 		<tr th:each="member : ${members}">
 			<td th:text="${member._id}"></td>
@@ -26,6 +27,7 @@
 			<td th:text="${member.birth}"></td>
 			<td th:if="${member.man}">남자</td>
 			<td th:unless="${member.man}">여자</td>
+			<td th:text="${member.account.bank} + ' ' + ${member.account.accountNumber}"></td>
 		</tr>
 	</table>
 	<hr>

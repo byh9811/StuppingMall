@@ -1,5 +1,8 @@
 package com.nerds.stuppingmall.dto;
 
+import java.util.ArrayList;
+
+import com.nerds.stuppingmall.domain.Account;
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.enumerate.Role;
 
@@ -21,6 +24,8 @@ public class MemberSignUpRequestDto {
 	private String phoneNum;
 	private String birth;
 	private boolean man;
+	private String bank;
+	private String accountNumber;
 	
 	public Member toDomain() {
 		return Member.builder()
@@ -32,6 +37,8 @@ public class MemberSignUpRequestDto {
 				.birth(birth)
 				.man(man)
 				.role(role.getValue())
+				.account(new Account(bank, accountNumber))
+				.myPicks(new ArrayList<String>())
 				.build();
 	}
 }
