@@ -67,20 +67,44 @@ function move(number){
  * 
  */
 
+
 const menu = document.querySelectorAll('.menu');
 const content = document.querySelectorAll('.content');
 //각 content의 top위치를 저장하는 변수를 만들어줘야함!!!
 for(let i=0; i<content.length; i++){
     menu[i].addEventListener('mouseover',()=>{
-        const topOffset = content[i].offsetTop; //위치 저장!
-        window.scroll({top : topOffset, behavior : 'smooth'});
+        const topOffset = (content[i+1].offsetTop); //위치 저장!
+        window.scroll({top : (topOffset), behavior : 'smooth'});
+        //갔을 때!!!
     })
     menu[i].addEventListener('mouseleave',()=>{
-        const topOffset = content[i].offsetTop; //위치 저장!
-        window.scroll({top : topOffset, behavior : 'smooth'});
+        const topOffset = content[i+1].offsetTop; //위치 저장!
+        window.scroll({top : (topOffset), behavior : 'smooth'});
     })
 }
 
 
+//원리 일단 동작을 시킬 요소들을 전부 연결한다.
+/**
+ * 2. 그 이동할 위치를 offsetTop함수를 이용해서 변수에 저장한다.
+ * 3. 이벤트를 준다!!
+ * 
+ * ..4. 추가적으로 그 위치에 이동했을 때 classList.add를 이용해서.
+ * 어떤 css animation을 줄 생각이다.
+ */
 
+
+/**
+ * top8상품 animation
+ * 
+ */
+
+const items = document.querySelectorAll('.items');
+for(let i=0; i<items.length; i++){
+    const item = items[i].childNodes; //자식들!!
+    //[0 3]까지는 item[0]의 자식!!
+    item[i].addEventListener('click',()=>{
+        item[i].classList.add('change');
+    })
+}
 

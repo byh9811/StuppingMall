@@ -219,22 +219,80 @@ li{
     border-radius : 50%;
     background-color: bisque;
 }
-
+/*scroll시에 변화를 줄 css*/
+.font-size{
+    font-size : 3rem;
+}
 /*main디자인!!*/
 .main{
     width : 80vw;
     min-height : 100vh;
     margin : 0 auto;
-    border : 5px solid black;
+    /* border : 5px solid black; */
 }
-.main > *{
-    height : 33vh;
+/*article은 생략!! section크기에 따라서 다름!*/
+.article{
+    width : 100%;
+    min-height : 100vh;
+    border : 8px solid black;
+    position : relative;
+    top : 0;
+    left : 0;
+}
+
+.top8{
     width : 100%;
     border : 3px solid black;
+    position : relative;
+    top : 20%;
 }
-.footer{
-    width : 80vw;
-    height : 100px;
-    margin : 0 auto;
-    border : 6px solid black;
+.top8 h1{
+    border : 3px solid black;
+    font-size : 3rem;
+    width : fit-content;
+    margin : 10px auto;
+    font-family: 'Jua', sans-serif;
+}
+.top8_items{
+    border : 3px solid black;
+    position : relative;
+    margin : 30px 20px;
+}
+.items{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    position : relative; /*자식들을 전부 hover했을 때 위치 바꿔줄거임!*/
+}
+.items > *{
+    flex-grow: 1;
+    margin : 5px 20px;
+    border : none;
+    cursor : pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    height : 200px; /*임의로 지정한거임!*/
+    border-radius : 10%;
+    transition : all 0.5s;
+}
+/* .items > *:hover{
+    transition : all 1s;
+    position : absolute; 
+    top : 50%;
+    transform: translateY(-50%);
+    background-color: bisque;
+    z-index : 1;
+    width : 100%;
+    text-align: center;
+    font-size : 3rem;
+} */
+.change{
+    transition : all 1s;
+    position : absolute; /*위로 띄운 다음에 너비 넓혀야함!*/
+    top : 50%;
+    transform: translateY(-50%);
+    background-color: bisque;
+    z-index : 1;
+    width : 100%;
+    text-align: center;
+    font-size : 3rem; /*이거 그냥 임의로!!*/
 }
