@@ -234,7 +234,7 @@ li{
 .article{
     width : 100%;
     min-height : 100vh;
-    border : 8px solid black;
+    /* border : 8px solid black; */
     position : relative;
     top : 0;
     left : 0;
@@ -242,19 +242,19 @@ li{
 
 .top8{
     width : 100%;
-    border : 3px solid black;
+    /* border : 3px solid black; */
     position : relative;
     top : 20%;
 }
 .top8 h1{
-    border : 3px solid black;
+    /* border : 3px solid black; */
     font-size : 3rem;
     width : fit-content;
-    margin : 10px auto;
+    margin : 10% auto;
     font-family: 'Jua', sans-serif;
 }
 .top8_items{
-    border : 3px solid black;
+    /* border : 3px solid black; */
     position : relative;
     margin : 30px 20px;
 }
@@ -263,8 +263,9 @@ li{
     justify-content: space-between;
     align-items: center;
     position : relative; /*자식들을 전부 hover했을 때 위치 바꿔줄거임!*/
+    margin: 10% auto;
 }
-.items > *{
+.items > .item{
     flex-grow: 1;
     margin : 5px 20px;
     border : none;
@@ -273,18 +274,30 @@ li{
     height : 200px; /*임의로 지정한거임!*/
     border-radius : 10%;
     transition : all 0.5s;
+    overflow-x: hidden;
 }
-/* .items > *:hover{
-    transition : all 1s;
-    position : absolute; 
-    top : 50%;
-    transform: translateY(-50%);
-    background-color: bisque;
-    z-index : 1;
-    width : 100%;
-    text-align: center;
-    font-size : 3rem;
-} */
+.item .item_carousel{
+    width : 200%;
+    height : 100%;
+    display : flex;
+}
+.item_carousel > *{
+    flex-grow : 1;
+    /* border-right : 3px solid black; */
+}
+.item_carousel .pre{
+    background-color: rgb(184, 165, 82);
+}
+.item_carousel .next{
+    background-color: rgb(104, 133, 197);
+}
+
+
+
+
+
+
+
 .change{
     transition : all 1s;
     position : absolute; /*위로 띄운 다음에 너비 넓혀야함!*/
@@ -296,3 +309,8 @@ li{
     text-align: center;
     font-size : 3rem; /*이거 그냥 임의로!!*/
 }
+/* 
+.content{
+    border:10px solid black;
+    height : 100px;
+} */

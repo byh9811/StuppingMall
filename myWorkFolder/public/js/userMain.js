@@ -70,16 +70,12 @@ function move(number){
 
 const menu = document.querySelectorAll('.menu');
 const content = document.querySelectorAll('.content');
+
 //각 content의 top위치를 저장하는 변수를 만들어줘야함!!!
-for(let i=0; i<content.length; i++){
+for(let i=0; i<menu.length; i++){
     menu[i].addEventListener('mouseover',()=>{
-        const topOffset = (content[i+1].offsetTop); //위치 저장!
-        window.scroll({top : (topOffset), behavior : 'smooth'});
-        //갔을 때!!!
-    })
-    menu[i].addEventListener('mouseleave',()=>{
-        const topOffset = content[i+1].offsetTop; //위치 저장!
-        window.scroll({top : (topOffset), behavior : 'smooth'});
+        const helloTop = content[i+1].offsetTop;
+        window.scroll({top : (helloTop), behavior : 'smooth'});
     })
 }
 
@@ -99,12 +95,21 @@ for(let i=0; i<content.length; i++){
  * 
  */
 
-const items = document.querySelectorAll('.items');
-for(let i=0; i<items.length; i++){
-    const item = items[i].childNodes; //자식들!!
-    //[0 3]까지는 item[0]의 자식!!
-    item[i].addEventListener('click',()=>{
-        item[i].classList.add('change');
+//item을 hover하면 item_carousel이 -100%만큼 이동!!
+const item = document.querySelectorAll('.item');
+
+for(let i=0; i<item.length; i++){
+    item[i].addEventListener('mouseover',()=>{
+        const item_carousel = document.querySelectorAll('.item_carousel');
+        item_carousel[i].style.transform = 'translateX(-50%)';
+        item_carousel[i].style.transition = 'all 0.5s';
+        item[i].style.borderRadius = '50%';
+
+    })
+    item[i].addEventListener('mouseleave',()=>{
+        const item_carousel = document.querySelectorAll('.item_carousel');
+        item_carousel[i].style.transform = 'translateX(0)';
+        item_carousel[i].style.transition = 'all 0.5s';
+        item[i].style.borderRadius = '10%';
     })
 }
-
