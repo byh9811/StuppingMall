@@ -18,6 +18,7 @@ public class MemberRegisterService {
 	public Member addMember(MemberSignUpRequestDto memberSignUpRequestDto) {
 		memberSignUpRequestDto.setPassword(pwdEncoder.encode(memberSignUpRequestDto.getPassword()));
 		Member member = memberSignUpRequestDto.toDomain();
+		member.setBalance(0);
 		memberRepository.save(member);
 		return member;
 	}

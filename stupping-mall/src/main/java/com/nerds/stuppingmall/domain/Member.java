@@ -32,4 +32,5 @@ public class Member {
 	private boolean man;
 	private List<String> myPicks;
 	private Account account;
+	private int balance;
 }
