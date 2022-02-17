@@ -1,191 +1,189 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
-    <title>Main page</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gugi&family=Hi+Melody&family=Island+Moments&family=Single+Day&family=Sunflower:wght@300&display=swap"
-        rel="stylesheet">
-    <!--dsdsdsd-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="./css/userMain.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script defer src="./js/userMain.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Lobster&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Redressed&family=Roboto+Mono&family=Rowdies:wght@300;700&family=Single+Day&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Redressed&family=Roboto+Mono&family=Rowdies:wght@300;700&family=Single+Day&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Roboto+Mono&family=Single+Day&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Roboto+Mono&family=Rowdies:wght@300;700&family=Single+Day&display=swap"
+        rel="stylesheet">
+    <script defer src="./userMain.js"></script>
 </head>
-<!-- 에니메이션 시간 후에 자동으로 wrapper띄우는 setTimeout함수 적자!!-->
+
 <body>
     <div class="container">
-        <header class="header">
-            <div class="header_contents">
-                <div class="header_main">
+        <div class="container_contents">
+            <header class="header content">
+                <!-- 캐러셀 박스!!!!!!!!!!-->
+                <div class="carousel_container">
+                    <div class="box">
+                        <div class="text_box">
+                            <h1 class="title">Mac Book</h1>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                Fuga nam iusto dolores quod iste soluta velit repellendus enim quam laboriosam,
+                            </p>
+                        </div>
+                        <img src="./img/img.png" alt="">
+                    </div>
+                    <div class="box">
+                        <div class="text_box">
+                            <h1 class="title">Mac Book</h1>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                Fuga nam iusto dolores quod iste soluta velit repellendus enim quam laboriosam,
+                            </p>
+                        </div>
+                        <img src="./img/img.png" alt="">
+                    </div>
+                    <div class="box">
+                        <div class="text_box">
+                            <h1 class="title">Mac Book</h1>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                Fuga nam iusto dolores quod iste soluta velit repellendus enim quam laboriosam,
+                            </p>
+                        </div>
+                        <img src="./img/img.png" alt="">
+                    </div>
+                </div>
+                <!-- 캐러셀 박스!!!!!!!!!!-->
+                <div class="shift_box">
+                    <div class="shift"></div>
+                    <div class="shift"></div>
+                    <div class="shift"></div>
+                </div>
+
+                <nav class="sub_nav">
                     <div class="logo">
-                        <h1><a href="">stupping</a></h1>
+                        <h1><a href="" class="stupping">stupping</a></h1>
                     </div>
-                    <nav class="main_nav">
-                        <ul class="real_nav">
-                            <li class="li"><a href="">TOP8</a></li>
-                            <li class="li"><a href="">HOMEPAGE EX</a></li>
-                            <li class="li"><a href="">GRAPH</a></li>
-                            <li class="li"><a href="">CATEGORY</a></li>
-                            <li class="li"><a href="">TO BUY</a></li>
-                        </ul>
-                    </nav>
-                    <div class="sub_menu">
-                        <!-- 로그인 장바구니 -->
-                        <ul class="sub_list">
-                            <li><a href="">
-                                    <img
-                                        src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/000000/external-sign-in-call-to-action-bearicons-gradient-bearicons.png" />
-                                </a></li>
-                            <li><a href="">
-                                    <img
-                                        src="https://img.icons8.com/external-bearicons-gradient-bearicons/64/000000/external-sign-up-call-to-action-bearicons-gradient-bearicons-1.png" />
-                                </a></li>
-                            <li><a href="">
-                                    <img
-                                        src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-bucket-fine-arts-kiranshastry-gradient-kiranshastry.png" />
-                                </a></li>
-                            <li><a href="">
-                                    <img src="https://img.icons8.com/office/16/000000/change-user-male--v1.png" />
-                                </a></li>
+                    <div class="sub_logo">
+                        <ul class="sub">
+                            <li><a href="">Login</a></li>
+                            <li><a href="">Sign up</a></li>
+                            <li><a href="">My Page</a></li>
+                            <li><a href="">Bucket</a></li>
                         </ul>
                     </div>
+                </nav>
+            </header>
 
-                    <div class="search_box">
-                        <form action="" method="get">
-                            <input type="search" name="item" id="item" placeholder="회사이름 or 상품명">
-                            <input type="submit" value="GO">
-                        </form>
+            <nav class="main_nav">
+                <ul class="main_bar">
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+
+
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>TOP8</h1>
+                                <img
+                                    src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-eight-womens-day-flatart-icons-outline-flatarticons.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>CATEGORY</h1>
+                                <img src="https://img.icons8.com/ios-glyphs/30/000000/category.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>EXPLAIN</h1>
+                                <img
+                                    src="https://img.icons8.com/external-wanicon-lineal-wanicon/64/000000/external-presentation-world-oceans-day-wanicon-lineal-wanicon.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>TO BUY</h1>
+                                <img src="https://img.icons8.com/pastel-glyph/64/000000/sale-time--v2.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>GRAPH</h1>
+                                <img
+                                    src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/000000/external-graph-cyber-monday-vitaliy-gorbachev-fill-vitaly-gorbachev.png" />
+                            </div>
+                        </a></li>
+                </ul>
+            </nav>
+            <main class="main">
+                <div class="content top8">
+                    <div class="text">
+                        <h1 class="title">TOP8</h1>
                     </div>
-                </div>
-
-                <div class="carousel_box">
-                    <div class="text_carousel">
-                        <div class="textbox">
-                            <div class="text">
-                                <h1>MacBook Pro</h1><br><br>
-                                <p>프로다운 막강한 파워.
-                                    가장 얇고 가벼운 MacBook이<br> Apple M1 칩으로 완전히
-                                    새롭게 탈바꿈했습니다.<br>
-                                    최대 3.5배 빨라진 CPU. 최대 5배 빨라진 GPU.
-                                </p>
-                            </div>
-                            <div class="text">
-                                <h1>MacBook Pro</h1><br><br>
-                                <p>프로다운 막강한 파워.
-                                    가장 얇고 가벼운 MacBook이<br> Apple M1 칩으로 완전히
-                                    새롭게 탈바꿈했습니다.<br>
-                                    최대 3.5배 빨라진 CPU. 최대 5배 빨라진 GPU.
-                                </p>
-                            </div>
-                            <div class="text">
-                                <h1>MacBook Pro</h1><br><br>
-                                <p>프로다운 막강한 파워.
-                                    가장 얇고 가벼운 MacBook이<br> Apple M1 칩으로 완전히
-                                    새롭게 탈바꿈했습니다.<br>
-                                    최대 3.5배 빨라진 CPU. 최대 5배 빨라진 GPU.
-                                </p>
-                            </div>
+                    <div class="item_card">
+                        <div class="item_1 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_2 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_3 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_3 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_3 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_3 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
+                        </div>
+                        <div class="item_3 items">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-witb-spacegray-202110_FMT_WHH?wid=592&hei=784&fmt=p-jpg&qlt=95&.v=1633027249000"
+                                alt="">
                         </div>
                     </div>
-                    <div class="pic_carousel">
-                        <div class="picbox">
-                            <div class="pic">
-                                <img src="https://file2.nocutnews.co.kr/newsroom/image/2018/03/05/20180305123327193466_0_710_400.jpg"
-                                    alt="" class="macBook">
-
-                            </div>
-                            <div class="pic">
-                                <img src="https://file2.nocutnews.co.kr/newsroom/image/2018/03/05/20180305123327193466_0_710_400.jpg"
-                                    alt="" class="macBook">
-
-                            </div>
-                            <div class="pic">
-                                <img src="https://file2.nocutnews.co.kr/newsroom/image/2018/03/05/20180305123327193466_0_710_400.jpg"
-                                    alt="" class="macBook">
-
-                            </div>
-                        </div>
+                </div>
+                <div class="content category">
+                    <div class="category_content">
+                        카테고리
                     </div>
                 </div>
-            </div>
-            <div class="shift_box">
-                <div class="shift" onclick="move(0)"></div>
-                <div class="shift" onclick="move(100)"></div>
-                <div class="shift" onclick="move(200)"></div>
-            </div>
-        </header>
-        <main class="main">
-
-        </main>
+                <div class="explain content">
+                    <div class="explain_content">
+                        홈페이지 장점 설명
+                    </div>
+                </div>
+                <div class="to_buy content">
+                    <div class="to_buy_content">
+                        잘 사는 법
+                    </div>
+                </div>
+                <div class="graph content">
+                    <div class="graph_content">
+                        그래프
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
 
-
-    <script>
-
-        const li = document.querySelectorAll('.li');
-        for (let i = 0; i < li.length; i++) {
-            li[i].addEventListener('mouseover', () => {
-                if (i !== 0) {
-                    li[0].style.backgroundColor = 'rgb(156, 201, 111)';
-                } else { //다른것들에 hover가 된 경우!!!
-                    li[i].style.backgroundColor = 'rgb(156, 201, 111)';
-                }
-            })
-            // 클릭 이벤트도 만들자! 다른걸 클릭하면 0의 모든 건 사라지고 그
-            // 배경에 색이 입혀진다.!!!
-            li[i].addEventListener('click', () => {
-                if (i === 0) {
-
-                } else {
-                    //0이 아닌 다른 요소에 click을 했을 경우!!
-                    //클릭한 요소만 색이 채워지고 다른 색은 싹 다 지워진다!
-                    li[i].style.backgroundColor = 'rgb(156, 201, 111)';
-                    li[i !== i].style.backgroundColor = 'rgb(86, 175, 126)';
-                }
-            })
-        }
-        // ================== << 캐러셀 자바스크립트 >> ==================
-        // shift를 선택을 하면 저 상자가 -100vw씩 transform되는거!!!
-        //어떤 shift를 선택을 하냐에 따라 .carousel둘 다 얼만큼 움직이냐~~
-        const shift = document.querySelectorAll('.shift');
-        for (let i = 0; i < shift.length; i++) {
-            shift[i].addEventListener('mouseover', () => {
-                move(i * 100); //move함수를 작동시킨다!!
-            })
-        }
-
-        function move(number) {
-            const carousel_realbox = document.querySelector('.carousel_realbox');
-            const carousel_realtext = document.querySelector('.carousel_realtext');
-
-            if (number === 0) {
-                carousel_realbox.style.transform = 'translateX(0)';
-                carousel_realbox.style.transition = 'all 1s';
-
-                carousel_realtext.style.transform = 'translateX(0)';
-                carousel_realtext.style.transition = 'all 1s';
-            } else if (number === 100) {
-                carousel_realbox.style.transform = 'translateX(-35.3%)';
-                carousel_realbox.style.transition = 'all 1s';
-
-                carousel_realtext.style.transform = 'translateX(-33.3%)';
-                carousel_realtext.style.transition = 'all 1s';
-            } else {
-                carousel_realbox.style.transform = 'translateX(-68.6%)';
-                carousel_realbox.style.transition = 'all 1s';
-
-                carousel_realtext.style.transform = 'translateX(-66.6%)';
-                carousel_realtext.style.transition = 'all 1s';
-            }
-            // 반응형 할 때 carousel이 서로 붙는 순간 따로따로 한 칸 내려준다!
-        }
-
-
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 
 </html>
