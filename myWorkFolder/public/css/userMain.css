@@ -5,312 +5,300 @@
 }
 html,body{
     min-height : 100vh;
-    background-color: rgb(218, 216, 216);
 }
 a{
     text-decoration: none;
+    color : white;
 }
 li{
     list-style-type: none;
 }
 .container{
-    position : relative;
     width : 100vw;
-    height : 300vh;
-    /* border : 3px solid black; */
-    overflow-x : hidden;
-    overflow-y: scroll;
+    min-height : 100vh;
+    background-color: rgb(70, 69, 71);
+}
+.container_contents{
+    width : 85vw;
+    min-height : 100vh;
+    margin : 0 auto;
+    position : relative;
+    background-color: transparent;
 }
 .header{
-    width : 100vw;
-    height : 500px;
+    width : 100%;
+    height : 800px; /*일단은 임의로!!*/
     /* border : 3px solid black; */
     position : relative;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
-.header_contents{
-    width : 80%;
+.carousel_container{
+    width : 300%;
     height : 100%;
-    margin : 0 auto;
+    /* border : 3px solid black; */
+    display : flex;
+}
+.box{
+    flex-grow : 1;
+    /* border-right : 3px solid gray; */
+    position : relative;
+}
+.box img{   
+    position : absolute;
+    width : 60%;
+    height : 90%;
+    top : 50%;
+    right : 7%;
+    transform: translateY(-50%);
     /* border : 3px solid black; */
 }
-.header_main{
-    height : 10%;
-    width : 90%;
-    /* border : 3px solid black; */
-    position : fixed;
-    background-color: transparent;
-    top : 0;
+.box .text_box{
+    width : 50%;
+    height : 100%;
+    position : absolute;
+    top : 60%;
+    left : 0%;
+    transform: translateY(-50%);
+    color : white;
+    text-align: center;
+    z-index: 1;
+}
+.text_box h1{
+    padding-top : 15%;
+    font-size: 5rem;
+}
+.text_box p {
+    padding-top : 5%;
+    font-size: 1.3rem;
+    width : 50%;
+    margin : 0 auto;
+}
+.shift_box{
+    display : flex;
+    position : absolute;
+    bottom : 5%;
     left : 50%;
     transform: translateX(-50%);
-    right : 0;
-    z-index : 10000;
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 1s;
+    width : 70px;
+    height : 40px;
 }
-.header_main > .logo{
-    font-size : 0.8rem;
-    font-family: 'Festive', cursive;
-    padding : 3px 10px;
+.shift_box > *{
+    flex-grow : 1;
+    margin : 3px 6px;
+    /* border : 1px solid white; */
+    height : 50%;
+    width : 30px;
+    background-color: rgb(48, 46, 46);
+    border-radius : 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    cursor : pointer;
 }
-.logo a{
-    color : black;
-}
-.scroll_nav{
-    /* border : 3px solid black; */
-    margin : 0 auto;
+/*header의 캐러셀!!!!!*/
+/*sub_menu*/
+.sub_nav{
     position : fixed;
     top : 0px;
     left : 50%;
-    transform : translateX(-50%);
-    padding : 20px 20px;
-    text-align: center;
-    display : none;
-}
-.list_2{
-    display : flex;
-    width : 800px;
-    margin : 0 auto;
-}
-.list_2 > *{
-    flex-grow : 1;
-    padding : 3px 15px;
-}
-.sub_nav{
-    /* border : 3px solid black; */
-}
-.sub_nav > .list_1{
-    display : flex;
-}
-.list_1 > *{
-    flex-grow : 1;
-    /* border : 3px solid black; */
-    padding : 3px 10px;
-}
-.list_1 a{
-    color : black;
-}
-/*header전체를 차지하는 캐러셀 박스!*/
-.carousel_box{
-    position : absolute;
-    top : 0;
-    left : 0;
-    width : 300vw;
-    height : 100%;/*header의 */
-    /* border : 10px solid black; */
-    overflow-x: hidden;
-    display : flex;
-}
-.carousel_box > *{
-    flex-grow: 1;
-    border-right : 3px solid black;
-}
-.shift_box{
-    position : absolute;
-    bottom : 10px;
-    left : 50%;
     transform: translateX(-50%);
+    width : 100%;
+    z-index : 10000;
+    /* border : 3px solid white; */
     display : flex;
-}
-.shift{
-    flex-grow : 1;
-    /* border : 1px solid black; */
-    padding : 2px 5px;
-    cursor : pointer;
-    margin : 0 5px;
-    background-color: blanchedalmond;
-    border-radius : 50%;
-    height : 20px;
-    width : 20px;
-}
-.box img{
-    width : 100%;
-    height : 100%;
-}
-
-/*main_nav*/
-.main_nav{
-    width : 25%;
-    height : 90%;
-    position : fixed;
-    top : 50%;
-    right : 0;
-    transform : translateY(-30%);
-    
-}
-.main_nav > .main_bar{
-    width : 100%;
-    height : 100%;
-}
-.main_bar > li{
-    height : 10%;
-    width : 100%;
-    /* border : 3px solid black; */
-    /*nav통째 div이다 이걸 크기 조절해야함!*/
-}
-.menu{
-    width : 100%;
-    height : 100%;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    margin-top : 5%;
-    margin-left: 80%;
-    position : relative;
-    display : flex;
-    overflow: hidden;
-    background-color: rgb(162, 209, 231);
+    height : 70px;
+    background-color: transparent;
     transition : all 0.5s;
-}    
-/* .menu:hover{
-    transition: all 0.5s;
-    margin-left : 0%;
-} */
-.menu > *:nth-child(1){
-    flex-grow: 3;
 }
-.menu > *:nth-child(2){
-    flex-grow: 7;
+.sub_nav::before{
+    content : '';
+    position : absolute;
+    width : 100%;
+    height : 100%;
+    background-color: black;
+    opacity : 0.7;
+}
+.logo{
+    width: fit-content;
+    /* border : 3px solid white; */
+    margin-left : 10%;
+}
+.logo > *{
+    position : relative;
+    top : 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s;
+}
+.logo > *:hover{
+    transition : all 0.5s;
+    font-size : 1.7rem;
+}
+.sub{
+    display : flex;
+    /* border : 3px solid white; */
+    position : absolute;
+    right : 10%;
+    top : 50%;
+    transform: translateY(-50%);
+}
+.sub > *{
+    padding : 5px 15px;
+}
+.sub > *:hover{
+    background-color: rgb(112, 107, 107);
+    border-radius : 25%;
+    transition : all 0.5s;
+    transform: scale(1.2);
+}
+.here{
+    height : 3000px;
+    width : 100vw;
+    /* border : 3px solid white; */
+}
+/* ============== << MAIN _ NAV >> ==============*/
+.main_nav{
+    position : fixed;
+    right : -100px;
+    top : 20%;
+    width : 300px;
+    height : 120px;
+    z-index : 100;
 }
 
-.picture{
+.main_bar > *{
+    text-align: center;
+    transform : translateX(70px);
+    transition : all 0.5s;
+    margin-top : 13px;
+    margin-right : -0px;
+    width : 100%;
+    cursor : pointer;
+    background-color: rgb(36, 36, 36);
+}
+
+.main_bar > *:hover{
+    transition : all 0.5s;
+    transform: translateX(-100px);
+}
+.main_bar img{
     width : 50px;
     height : 50px;
-    position : relative;
-    margin : auto auto;
-    top : 50%;
-    transform: translateY(-50%);
-    border-radius : 25px;
 }
-.picture img{
-    width : 100%;
-    height : 100%;
+.menu_icon{
+    display : flex;
 }
-.title > .text{
-    width : 80%;
-    height : 50%;
-    position : relative;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    color : white;
+.menu_icon > h1{
+    line-height : 50px;
+    margin-right : 15px;
 }
+/* ============== << MAIN _ NAV >> ==============*/
+/*
+nav change
 
-/*불러올 class*/
-.logo_change{
-    font-size : 1.3rem;
-    color : white;
-    margin-left : 50px;
-    transition: all 0.5s;
-}
+*/
 .nav_change{
-    height : 100px;
-    transition: all 1s;
-    background-color: rgb(236, 228, 228);
-    border-radius: 50px;
-}
-.real_nav_change{
-    transition: all 0.5s;
-    padding : 5px 30px;
-}
-.real_nav_hover{
-    border-radius : 50%;
-    background-color: bisque;
-}
-/*scroll시에 변화를 줄 css*/
-.font-size{
-    font-size : 3rem;
-}
-/*main디자인!!*/
-.main{
-    width : 80vw;
-    min-height : 100vh;
-    margin : 0 auto;
-    /* border : 5px solid black; */
-}
-/*article은 생략!! section크기에 따라서 다름!*/
-.article{
-    width : 100%;
-    min-height : 100vh;
-    /* border : 8px solid black; */
-    position : relative;
-    top : 0;
-    left : 0;
-}
-
-.top8{
-    width : 100%;
-    /* border : 3px solid black; */
-    position : relative;
-    top : 20%;
-}
-.top8 h1{
-    /* border : 3px solid black; */
-    font-size : 3rem;
-    width : fit-content;
-    margin : 10% auto;
-    font-family: 'Jua', sans-serif;
-}
-.top8_items{
-    /* border : 3px solid black; */
-    position : relative;
-    margin : 30px 20px;
-}
-.items{
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-    position : relative; /*자식들을 전부 hover했을 때 위치 바꿔줄거임!*/
-    margin: 10% auto;
-}
-.items > .item{
-    flex-grow: 1;
-    margin : 5px 20px;
-    border : none;
-    cursor : pointer;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    height : 200px; /*임의로 지정한거임!*/
-    border-radius : 10%;
     transition : all 0.5s;
-    overflow-x: hidden;
+    font-size : 1.3rem;
+    height : 80px;
 }
-.item .item_carousel{
-    width : 200%;
-    height : 100%;
-    display : flex;
-}
-.item_carousel > *{
-    flex-grow : 1;
-    /* border-right : 3px solid black; */
-}
-.item_carousel .pre{
-    background-color: rgb(184, 165, 82);
-}
-.item_carousel .next{
-    background-color: rgb(104, 133, 197);
+.content:not(:first-child){
+    width : 100vw;
+    height : 1000px;
+    font-size : 1.5rem;
+    color : white;
 }
 
-
-
-
-
-
-
-.change{
-    transition : all 1s;
-    position : absolute; /*위로 띄운 다음에 너비 넓혀야함!*/
-    top : 50%;
-    transform: translateY(-50%);
-    background-color: bisque;
-    z-index : 1;
-    width : 100%;
+/* ================== << MAIN >> ==================*/
+.main{
+    position : relative;
+}
+.main > .content{
+    font-size : 2.5rem;
     text-align: center;
-    font-size : 3rem; /*이거 그냥 임의로!!*/
+    color : white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    position : relative;
+    z-index : 99;
 }
-/* 
-.content{
-    border:10px solid black;
+
+.top8 > .text{
     height : 100px;
-} */
+}
+.item_card{
+    /*이거 fixed로 고정 한 후 스크롤 하면 계속해서 멈춘 상태로 카드만 슥슥 나온다!!*/
+    height : fit-content;
+    margin : 5% 0;
+}
+.items img{
+    width : 40%;
+    margin : 0 auto;
+    height : 300px;
+}
+.items{ /*여기에 이제 사진이랑 설명 다 들어가!!!!!!*/
+    position: sticky;
+    /*여기에 스크롤이 오면 opacity가 점점 변한다!!! transition적용 시켜줘야함.*/
+    top : 50px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    height : 450px;
+    width : 35%;
+    margin : 5% auto;
+    /*img가 들어있는 box들에게 sticky를 주면 scroll되다가 나오면 고정이 됨.*/
+    transition : all 0.5s;
+}
+.items:hover{
+    transition : all 0.5s;
+    transform: scale(1.3);
+}
+
+/*category*/
+.category{
+    width : 80vw;
+    margin : 50px auto;
+    position : relative;
+}
+.category_content{
+    position : absolute;
+    width : 85%;
+    left : 0;
+    top : 0;
+    border : 5px solid white;
+}
+
+.explain{
+    width : 80vw;
+    margin : 50px auto;
+    position : relative;
+}
+.explain_content{
+    position : absolute;
+    width : 85%;
+    left : 0;
+    top : 0;
+    border : 5px solid white;
+}
+
+.to_buy{
+    width : 80vw;
+    margin : 50px auto;
+    position : relative;
+}
+.to_buy_content{
+    position : absolute;
+    width : 85%;
+    left : 0;
+    top : 0;
+    border : 5px solid white;
+}
+
+.graph{
+    width : 80vw;
+    margin : 50px auto;
+    position : relative;
+}
+.graph_content{
+    position : absolute;
+    width : 85%;
+    left : 0;
+    top : 0;
+    border : 5px solid white;
+}
