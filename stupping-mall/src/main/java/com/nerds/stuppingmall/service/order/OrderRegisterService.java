@@ -39,7 +39,6 @@ public class OrderRegisterService {
 						.payment(payment)
 						.build();
 		
-		notebook.setSalesVolume(notebook.getSalesVolume()+1);
 		member.setBalance(BalanceAfterPurchase);
 		admin.setBalance(admin.getBalance()+payment);
 		notebookRepository.save(notebook);

@@ -41,7 +41,7 @@ public class NotebookSearchService {
 			notebookDtos.add(NotebookInfoResponseDto.builder()
 					.name(notebook.getName())
 					.supplierName(supplierName)
-					.manufactureDate(notebook.getManufactureDate())
+					.registerDate(notebook.getRegisterDate())
 					.img(notebook.getImg())
 					.price(notebook.getPrice())
 					.view(notebook.getView())
@@ -76,7 +76,7 @@ public class NotebookSearchService {
 			notebookDtos.add(NotebookInfoResponseDto.builder()
 					.name(notebook.getName())
 					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-					.manufactureDate(notebook.getManufactureDate())
+					.registerDate(notebook.getRegisterDate())
 					.img(notebook.getImg())
 					.price(notebook.getPrice())
 					.view(notebook.getView())
@@ -128,11 +128,11 @@ public class NotebookSearchService {
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
-		if(!notebookInfoRequestDto.getManufactureYears().isEmpty()) {
+		if(!notebookInfoRequestDto.getRegisterYears().isEmpty()) {
 			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getManufactureYears().size()];
-			for(int i=0; i<notebookInfoRequestDto.getManufactureYears().size(); i++) {
-				innerCriterias[i] = Criteria.where("manufactureDate").regex("("+notebookInfoRequestDto.getManufactureYears().get(i)+")+");
+			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getRegisterYears().size()];
+			for(int i=0; i<notebookInfoRequestDto.getRegisterYears().size(); i++) {
+				innerCriterias[i] = Criteria.where("manufactureDate").regex("("+notebookInfoRequestDto.getRegisterYears().get(i)+")+");
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
@@ -150,7 +150,7 @@ public class NotebookSearchService {
 			notebookDtos.add(NotebookInfoResponseDto.builder()
 					.name(notebook.getName())
 					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-					.manufactureDate(notebook.getManufactureDate())
+					.registerDate(notebook.getRegisterDate())
 					.img(notebook.getImg())
 					.price(notebook.getPrice())
 					.view(notebook.getView())

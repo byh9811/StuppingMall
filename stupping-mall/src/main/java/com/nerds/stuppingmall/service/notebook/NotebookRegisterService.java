@@ -29,7 +29,7 @@ public class NotebookRegisterService {
 		Notebook notebook = Notebook.builder()
 								.name(notebookAddRequestDto.getName())
 								.supplierId(supplierId)
-								.manufactureDate(notebookAddRequestDto.getManufactureDate())
+								.registerDate(notebookAddRequestDto.getRegisterDate())
 								.img(url)
 								.price(notebookAddRequestDto.getPrice())
 								.view(0)
@@ -53,7 +53,7 @@ public class NotebookRegisterService {
 		addSupplierNameCategory(memberRepository.findById(supplierId).get().getName());
 		addCpuNameCategory(notebookAddRequestDto.getCpuName());
 		addGpuNameCategory(notebookAddRequestDto.getGpuName());
-		addManuYearCategory(notebookAddRequestDto.getManufactureDate());
+		addManuYearCategory(notebookAddRequestDto.getRegisterDate());
 	}
 
 	private void addSupplierNameCategory(String name) {
