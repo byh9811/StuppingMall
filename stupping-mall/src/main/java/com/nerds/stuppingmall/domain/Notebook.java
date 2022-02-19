@@ -29,6 +29,8 @@ public class Notebook {
 	private String gpuName;
 	private double weight;
 	private double screenSize;
+	private int cpuScore;
+	private int gpuScore;
 	private int ramSize;
 	private int ssdSize;
 	private int hddSize;

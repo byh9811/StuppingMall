@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Category;
@@ -26,6 +32,8 @@ public class NotebookRegisterService {
 	public String addNotebook(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
 		String url = saveImgFile(supplierId, notebookAddRequestDto);
 		addCategories(supplierId, notebookAddRequestDto);
+		int cpuScore = getCpuScore(notebookAddRequestDto.getCpuName());
+		int gpuScore = getGpuScore(notebookAddRequestDto.getGpuName());
 		Notebook notebook = Notebook.builder()
 								.name(notebookAddRequestDto.getName())
 								.supplierId(supplierId)
@@ -39,6 +47,8 @@ public class NotebookRegisterService {
 								.gpuName(notebookAddRequestDto.getGpuName())
 								.weight(notebookAddRequestDto.getWeight())
 								.screenSize(notebookAddRequestDto.getScreenSize())
+								.cpuScore(cpuScore)
+								.gpuScore(gpuScore)
 								.ramSize(notebookAddRequestDto.getRamSize())
 								.ssdSize(notebookAddRequestDto.getSsdSize())
 								.hddSize(notebookAddRequestDto.getHddSize())
@@ -49,11 +59,45 @@ public class NotebookRegisterService {
 		return notebookRepository.save(notebook).get_id();
 	}
 
+	private int getGpuScore(String gpuName) {
+		final String passmarkUrl = "https://www.videocardbenchmark.net/gpu_list.php";
+		Connection conn = Jsoup.connect(passmarkUrl);
+		int score = -1;
+		try {
+			Document document = conn.get();
+			Element element = document.getElementById("cputable");
+			List<Node> nodes = element.child(1).childNodes();
+			for(Node node: nodes) {
+				if(node.childNode(0).childNode(0).toString().equals(gpuName))
+					score = Integer.parseInt(node.childNode(1).toString());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return score;
+	}
+
+	private int getCpuScore(String cpuName) {
+		final String passmarkUrl = "https://www.cpubenchmark.net/cpu.php?cpu=" + cpuName;
+		Connection conn = Jsoup.connect(passmarkUrl);
+		int score = -1;
+		try {
+			Document document = conn.get();
+			Element element = document.getElementsByClass("right-desc").get(0);
+			score = Integer.parseInt(element.child(2).text());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return score;
+	}
+
 	private void addCategories(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
 		addSupplierNameCategory(memberRepository.findById(supplierId).get().getName());
 		addCpuNameCategory(notebookAddRequestDto.getCpuName());
 		addGpuNameCategory(notebookAddRequestDto.getGpuName());
-		addManuYearCategory(notebookAddRequestDto.getRegisterDate());
+		addRegistYearCategory(notebookAddRequestDto.getRegisterDate());
 	}
 
 	private void addSupplierNameCategory(String name) {
@@ -86,13 +130,13 @@ public class NotebookRegisterService {
 		categoryRepository.save(cate);
 	}
 
-	private void addManuYearCategory(String year) {
-		Category cate = categoryRepository.findById("ManuYear").get();
-		List<String> manuYears = cate.getList();
-		if(manuYears.contains(year.substring(0, 4)))
+	private void addRegistYearCategory(String year) {
+		Category cate = categoryRepository.findById("RegistYear").get();
+		List<String> registYears = cate.getList();
+		if(registYears.contains(year.substring(0, 4)))
 			return;
-		manuYears.add(year);
-		cate.setList(manuYears);
+		registYears.add(year);
+		cate.setList(registYears);
 		categoryRepository.save(cate);
 	}
 
