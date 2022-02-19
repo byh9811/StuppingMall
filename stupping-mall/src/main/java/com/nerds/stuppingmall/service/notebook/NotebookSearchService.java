@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
+import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
@@ -170,5 +171,46 @@ public class NotebookSearchService {
 
 		Page<NotebookInfoResponseDto> notebookPages = PageableExecutionUtils.getPage(notebookDtos, pageable, () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
 		return notebookPages;
+	}
+	
+	public Page<NotebookInfoResponseDto> getMyPicks(int curPage, String customerId) {
+		Member customer = memberRepository.findById(customerId).get();
+		List<String> notebookIds = customer.getMyPicks();
+		List<Criteria> criterias = new ArrayList<>();
+		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
+		Query query = new Query();
+		for(String notebookId: notebookIds)
+			criterias.add(Criteria.where("notebookId").is(notebookId));
+		Criteria criteria = new Criteria();
+		query.addCriteria(criteria.orOperator(criterias));
+		query.with(pageable);
+		
+		List<Notebook> notebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
+		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
+		for(Notebook notebook: notebooks) {
+			notebookDtos.add(NotebookInfoResponseDto.builder()
+					.name(notebook.getName())
+					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
+					.registerDate(notebook.getRegisterDate())
+					.img(notebook.getImg())
+					.price(notebook.getPrice())
+					.view(notebook.getView())
+					.rate(notebook.getRate())
+					.salesVolume(notebook.getSalesVolume())
+					.cpuName(notebook.getCpuName())
+					.gpuName(notebook.getGpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.ssdSize(notebook.getSsdSize())
+					.hddSize(notebook.getHddSize())
+					.batterySize(notebook.getBatterySize())
+					.usage(Usage.valueOf(notebook.getUsage()))
+					.build());
+		}
+		
+		return PageableExecutionUtils.getPage(
+				notebookDtos, pageable,
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
 	}
 }

@@ -51,6 +51,7 @@ public class OrderModifyService {
 	public Order finishDelivery(String orderId) {
 		Order order = orderRepository.findById(orderId).get();
 		
+		order.setDeliveredDate(LocalDate.now().toString());
 		order.setStatus("배송 완료");
 		return orderRepository.save(order);
 	}
@@ -74,6 +75,32 @@ public class OrderModifyService {
 		memberRepository.save(admin);
 		memberRepository.save(supplier);
 		notebookRepository.save(notebook);
+		return orderRepository.save(order);
+	}
+	
+	public Order makeObjection(String orderId) {
+		Order order = orderRepository.findById(orderId).get();
+		
+		order.setStatus("이의신청 진행중");
+		order.setPayDate(LocalDate.now().toString());
+		
+		return orderRepository.save(order);
+	}
+	
+	public Order acceptObjection(String orderId) {
+		Order order = orderRepository.findById(orderId).get();
+		
+		order.setStatus("이의신청 승인됨");
+		order.setPayDate(LocalDate.now().toString());
+		
+		return orderRepository.save(order);
+	}
+	
+	public Order denyObjection(String orderId, String reason) {
+		Order order = orderRepository.findById(orderId).get();
+		
+		order.setStatus("이의신청 반려됨(사유: " + reason + ")");
+		
 		return orderRepository.save(order);
 	}
 }
