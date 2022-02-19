@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class NotebookInfoResponseDto {
 	private String name;
 	private String supplierName;
-	private String manufactureDate;
+	private String registerDate;
 	private String img;
 	private int price;
 	private int view;

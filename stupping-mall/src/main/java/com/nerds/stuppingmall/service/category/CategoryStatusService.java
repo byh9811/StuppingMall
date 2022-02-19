@@ -32,7 +32,7 @@ public class CategoryStatusService {
 							.supplierNames(categoryRepository.findById("SupplierName").get().getList())
 							.cpuNames(categoryRepository.findById("CpuName").get().getList())
 							.gpuNames(categoryRepository.findById("GpuName").get().getList())
-							.manufactureYears(categoryRepository.findById("ManuYear").get().getList())
+							.registerYears(categoryRepository.findById("RegistYear").get().getList())
 							.build();
 	}
 }

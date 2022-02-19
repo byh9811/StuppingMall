@@ -15,5 +15,5 @@ public class NotebookInfoRequestDto {
 	private List<String> supplierNames;
 	private List<String> cpuNames;
 	private List<String> gpuNames;
-	private List<String> manufactureYears;
+	private List<String> registerYears;
 }

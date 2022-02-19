@@ -51,11 +51,11 @@
 	    </div>
 	  </div>
 	  <div class="form-example">
-	    <label for="name">Manufacture Year</label>
-	    <div th:each="manufactureYear : ${manufactureYears}" class="form-check form-check-inline">
-	      <input type="checkbox" name="manufactureYears" th:value="${manufactureYear}" class="form-check-input">
-	      <input type="hidden" name="_manufactureYears" value="on">
-    	  <label th:text="${manufactureYear}" class="form-check-label"></label>
+	    <label for="name">register Date</label>
+	    <div th:each="registerYear : ${registerYears}" class="form-check form-check-inline">
+	      <input type="checkbox" name="registerYears" th:value="${registerYear}" class="form-check-input">
+	      <input type="hidden" name="registerYears" value="on">
+    	  <label th:text="${registerYear}" class="form-check-label"></label>
 	    </div>
 	  </div>
 	  <div class="form-example">

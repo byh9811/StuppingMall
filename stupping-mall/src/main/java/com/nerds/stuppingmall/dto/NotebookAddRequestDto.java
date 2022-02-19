@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class NotebookAddRequestDto {
 	private String name;
-	private String manufactureDate;
+	private String registerDate;
 	private MultipartFile imgFile;
 	private int price;
 	private String cpuName;

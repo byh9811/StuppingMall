@@ -1,5 +1,6 @@
 package com.nerds.stuppingmall.service.member;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -24,6 +25,30 @@ public class MemberModifyService {
 		
 		Member member = memberWrapper.get();
 		member.setPassword(pwdEncoder.encode(password));
+		return memberRepository.save(member);
+	}
+
+	public Member updateBalance(String id, int money) {
+		Optional<Member> memberWrapper = memberRepository.findById(id);
+		Member member = memberWrapper.get();
+		// 페이 서비스 작동 성공
+		member.setBalance(member.getBalance() + money);
+		return memberRepository.save(member);
+	}
+	
+	public Member addMyPick(String customerId, String notebookId) {
+		Member member = memberRepository.findById(customerId).get();
+		List<String> myPicks = member.getMyPicks();
+		myPicks.add(notebookId);
+		member.setMyPicks(myPicks);
+		return memberRepository.save(member);
+	}
+	
+	public Member removeMyPick(String customerId, String notebookId) {
+		Member member = memberRepository.findById(customerId).get();
+		List<String> myPicks = member.getMyPicks();
+		myPicks.remove(notebookId);
+		member.setMyPicks(myPicks);
 		return memberRepository.save(member);
 	}
 }

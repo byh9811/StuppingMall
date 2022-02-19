@@ -30,7 +30,7 @@ public class NotebookDetailsService {
 		return NotebookInfoResponseDto.builder()
 				.name(notebook.getName())
 				.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-				.manufactureDate(notebook.getManufactureDate())
+				.registerDate(notebook.getRegisterDate())
 				.img(notebook.getImg())
 				.price(notebook.getPrice())
 				.view(notebook.getView())

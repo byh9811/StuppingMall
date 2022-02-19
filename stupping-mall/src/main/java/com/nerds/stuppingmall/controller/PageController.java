@@ -63,7 +63,7 @@ public class PageController {
 		model.addAttribute("supplierNames", categories.getSupplierNames());
 		model.addAttribute("cpuNames", categories.getCpuNames());
 		model.addAttribute("gpuNames", categories.getGpuNames());
-		model.addAttribute("manufactureYears", categories.getManufactureYears());
+		model.addAttribute("manufactureYears", categories.getRegisterYears());
 		return "notebookCategorySearchPage";
 	}
 }
