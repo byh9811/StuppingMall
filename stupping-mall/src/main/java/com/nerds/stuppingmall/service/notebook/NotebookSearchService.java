@@ -18,6 +18,7 @@ import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.NotebookRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +27,37 @@ import lombok.RequiredArgsConstructor;
 public class NotebookSearchService {
 	final MongoTemplate mongoTemplate;
 	final MemberRepository memberRepository;
+	final NotebookRepository notebookRepository;
 	final int SIZE_PER_PAGE = 10;
+	
+	public List<NotebookInfoResponseDto> getRecent8Notebooks() {
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
+		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
+
+		for(Notebook notebook: notebooks) {
+			notebookDtos.add(NotebookInfoResponseDto.builder()
+					.name(notebook.getName())
+					.supplierName(notebook.getSupplierId())
+					.registerDate(notebook.getRegisterDate())
+					.img(notebook.getImg())
+					.price(notebook.getPrice())
+					.view(notebook.getView())
+					.rate(notebook.getRate())
+					.salesVolume(notebook.getSalesVolume())
+					.cpuName(notebook.getCpuName())
+					.gpuName(notebook.getGpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.ssdSize(notebook.getSsdSize())
+					.hddSize(notebook.getHddSize())
+					.batterySize(notebook.getBatterySize())
+					.usage(Usage.valueOf(notebook.getUsage()))
+					.build());
+		}
+		
+		return notebookDtos;
+	}
 	
 	public Page<NotebookInfoResponseDto> findNotebooksBySupplierId(int curPage, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
