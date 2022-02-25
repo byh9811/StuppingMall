@@ -1,6 +1,8 @@
 package com.nerds.stuppingmall.domain;
 
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -21,7 +23,7 @@ public class Notebook {
 	private String supplierId;
 	private String supplierName;
 	private String registerDate;
-	private String img;
+	private List<String> imgs;
 	private int price;
 	private int view;
 	private double rate;

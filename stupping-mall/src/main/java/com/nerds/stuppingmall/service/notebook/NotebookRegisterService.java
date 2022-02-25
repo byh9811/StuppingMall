@@ -2,6 +2,9 @@ package com.nerds.stuppingmall.service.notebook;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.Connection;
@@ -9,8 +12,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nerds.stuppingmall.domain.Category;
 import com.nerds.stuppingmall.domain.Notebook;
@@ -30,7 +33,7 @@ public class NotebookRegisterService {
 	final CategoryRepository categoryRepository;
 	
 	public String addNotebook(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
-		String url = saveImgFile(supplierId, notebookAddRequestDto);
+		List<String> urls = saveImgFile(supplierId, notebookAddRequestDto);
 		addCategories(supplierId, notebookAddRequestDto);
 		int cpuScore = getCpuScore(notebookAddRequestDto.getCpuName());
 		int gpuScore = getGpuScore(notebookAddRequestDto.getGpuName());
@@ -38,7 +41,7 @@ public class NotebookRegisterService {
 								.name(notebookAddRequestDto.getName())
 								.supplierId(supplierId)
 								.registerDate(notebookAddRequestDto.getRegisterDate())
-								.img(url)
+								.imgs(urls)
 								.price(notebookAddRequestDto.getPrice())
 								.view(0)
 								.rate(0.0)
@@ -140,50 +143,53 @@ public class NotebookRegisterService {
 		categoryRepository.save(cate);
 	}
 
-	private String saveImgFile(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
+	private List<String> saveImgFile(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
 		String basePath = "C:\\img";
-		String filePath = basePath + "/" + supplierId;
-		String url = null;
-		File folder = new File(filePath);
+		String folderPath = basePath + "/" + supplierId + "/" + notebookAddRequestDto.getName();
+		File folder = new File(folderPath);
+		List<String> urls = new ArrayList<>();
 		
 		if(!folder.exists())
 			folder.mkdirs();
 		
-		if(!notebookAddRequestDto.getImgFile().isEmpty()) {
-            // jpeg, png, gif 파일들만 받아서 처리
-            String contentType = notebookAddRequestDto.getImgFile().getContentType();
-            String originalFileExtension;
-            
-            // 확장자 명이 없으면 이 파일은 잘 못 된 것이다
-            if (!contentType.isEmpty()) {
-                if(contentType.contains("image/jpeg")){
-                    originalFileExtension = ".jpg";
-                }
-                else if(contentType.contains("image/png")){
-                    originalFileExtension = ".png";
-                }
-                else if(contentType.contains("image/gif")){
-                    originalFileExtension = ".gif";
-                }
-                // 다른 파일 명이면 에러 발생
-                else {
-                	throw new IllegalStateException("허용된 형식이 아닙니다!!");
-                }
-                // 각 이름은 겹치면 안되므로 나노 초까지 동원하여 지정
-                String fileName = notebookAddRequestDto.getName() + originalFileExtension;
+		if(!notebookAddRequestDto.getImgFiles().isEmpty()) {
+			for(MultipartFile imgFile: notebookAddRequestDto.getImgFiles()) {
+	            // jpeg, png, gif 파일들만 받아서 처리
+	            String contentType = imgFile.getContentType();
+	            String originalFileExtension;
+	            
+	            // 확장자 명이 없으면 이 파일은 잘 못 된 것이다
+	            if (!contentType.isEmpty()) {
+	                if(contentType.contains("image/jpeg")){
+	                    originalFileExtension = ".jpg";
+	                }
+	                else if(contentType.contains("image/png")){
+	                    originalFileExtension = ".png";
+	                }
+	                else if(contentType.contains("image/gif")){
+	                    originalFileExtension = ".gif";
+	                }
+	                // 다른 파일 명이면 에러 발생
+	                else {
+	                	throw new IllegalStateException("허용된 형식이 아닙니다!!");
+	                }
+	                // 각 이름은 겹치면 안되므로 나노 초까지 동원하여 지정
+	                String fileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuuMMddHHmmssSSSSSS")) + originalFileExtension;
 
-                // 저장된 파일로 변경하여 이를 보여주기 위함
-                url = filePath + "/" + fileName;
-                File file = new File(url);
-                try {
-                	notebookAddRequestDto.getImgFile().transferTo(file);
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-            }
+	                // 저장된 파일로 변경하여 이를 보여주기 위함
+	                String url = folderPath + "/" + fileName;
+	                File file = new File(url);
+	                try {
+	                	imgFile.transferTo(file);
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+	                urls.add(url);
+	            }
+			}
 		}
-		return url;
+		return urls;
 	}
 }

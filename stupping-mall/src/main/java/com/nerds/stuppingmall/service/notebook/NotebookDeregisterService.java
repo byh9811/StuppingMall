@@ -24,8 +24,11 @@ public class NotebookDeregisterService {
 		
 		Notebook notebook = notebookWrapper.get();
 		notebookRepository.deleteById(notebook.get_id());
-		File file = new File(notebook.getImg());
-		if(file.exists())
-			file.delete();
+		File folder = new File("C:\\img/" + notebook.getSupplierId() + "/" + notebook.getName());
+		if(folder.exists()) {
+			for(File file: folder.listFiles())
+				file.delete();
+			folder.delete();
+		}
 	}
 }

@@ -40,7 +40,7 @@ public class NotebookSearchService {
 					.name(notebook.getName())
 					.supplierName(notebook.getSupplierId())
 					.registerDate(notebook.getRegisterDate())
-					.img(notebook.getImg())
+					.imgs(notebook.getImgs())
 					.price(notebook.getPrice())
 					.view(notebook.getView())
 					.rate(notebook.getRate())

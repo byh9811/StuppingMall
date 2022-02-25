@@ -1,5 +1,7 @@
 package com.nerds.stuppingmall.dto;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -8,7 +10,7 @@ import lombok.Data;
 public class NotebookAddRequestDto {
 	private String name;
 	private String registerDate;
-	private MultipartFile imgFile;
+	private List<MultipartFile> imgFiles;
 	private int price;
 	private String cpuName;
 	private String gpuName;

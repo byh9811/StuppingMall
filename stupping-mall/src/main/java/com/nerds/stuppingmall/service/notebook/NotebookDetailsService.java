@@ -31,7 +31,7 @@ public class NotebookDetailsService {
 				.name(notebook.getName())
 				.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
 				.registerDate(notebook.getRegisterDate())
-				.img(notebook.getImg())
+				.imgs(notebook.getImgs())
 				.price(notebook.getPrice())
 				.view(notebook.getView())
 				.rate(notebook.getRate())
