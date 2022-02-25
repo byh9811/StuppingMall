@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.nerds.stuppingmall.domain.Notebook;
 
-public interface NotebookRepository extends MongoRepository<Notebook, String> {
+public interface NotebookRepository extends MongoRepository<Notebook, String>, CustomizedNotebookRepository {
 	@Query(sort = "{_id: -1}")
 	List<Notebook> findBy(Pageable pageable);
 	List<Notebook> findByName(String name);

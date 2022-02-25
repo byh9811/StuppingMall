@@ -37,8 +37,8 @@ public class SupplierController {
 	}
 	
 	@GetMapping("/myNotebooks")
-	public String getMyNotebooks(@AuthenticationPrincipal Authentication authentication, Model model) {
-		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(0, authentication.getId());
+	public String getMyNotebooks(int curPage, String sortingOrder, @AuthenticationPrincipal Authentication authentication, Model model) {
+		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(curPage, sortingOrder, authentication.getId());
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());

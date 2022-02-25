@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -59,189 +60,63 @@ public class NotebookSearchService {
 		return notebookDtos;
 	}
 	
-	public Page<NotebookInfoResponseDto> findNotebooksBySupplierId(int curPage, String supplierId) {
+	public Page<NotebookInfoResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-		Query query = new Query();
-		query.addCriteria(Criteria.where("supplierId").is(supplierId));
-		query.with(pageable);
+		Sort sort;
 		
-		List<Notebook> myNotebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
-		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
-		String supplierName = memberRepository.findById(supplierId).get().getName();
-		
-		for(Notebook notebook: myNotebooks) {
-			notebookDtos.add(NotebookInfoResponseDto.builder()
-					.name(notebook.getName())
-					.supplierName(supplierName)
-					.registerDate(notebook.getRegisterDate())
-					.img(notebook.getImg())
-					.price(notebook.getPrice())
-					.view(notebook.getView())
-					.rate(notebook.getRate())
-					.salesVolume(notebook.getSalesVolume())
-					.cpuName(notebook.getCpuName())
-					.gpuName(notebook.getGpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.ssdSize(notebook.getSsdSize())
-					.hddSize(notebook.getHddSize())
-					.batterySize(notebook.getBatterySize())
-					.usage(Usage.valueOf(notebook.getUsage()))
-					.build());
+		switch(sortingOrder) {
+		case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+		case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
+		case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+		case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+		case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+		case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+		default: throw new RuntimeException();
 		}
 		
-		return PageableExecutionUtils.getPage(
-				notebookDtos, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
+		return notebookRepository.customFindNotebooksBySupplierId(pageable, sort, supplierId);
 	}
 	
-	public Page<NotebookInfoResponseDto> findNotebooksByName(int curPage, String name) {
+	public Page<NotebookInfoResponseDto> findNotebooksByName(int curPage, String sortingOrder, String name) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-		Query query = new Query();
-		query.addCriteria(Criteria.where("name").regex(name));
-		query.with(pageable);
+		Sort sort;
 		
-		List<Notebook> notebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
-		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
-		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseDto.builder()
-					.name(notebook.getName())
-					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-					.registerDate(notebook.getRegisterDate())
-					.img(notebook.getImg())
-					.price(notebook.getPrice())
-					.view(notebook.getView())
-					.rate(notebook.getRate())
-					.salesVolume(notebook.getSalesVolume())
-					.cpuName(notebook.getCpuName())
-					.gpuName(notebook.getGpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.ssdSize(notebook.getSsdSize())
-					.hddSize(notebook.getHddSize())
-					.batterySize(notebook.getBatterySize())
-					.usage(Usage.valueOf(notebook.getUsage()))
-					.build());
+		switch(sortingOrder) {
+		case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+		case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
+		case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+		case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+		case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+		case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+		default: throw new RuntimeException();
 		}
 		
-		return PageableExecutionUtils.getPage(
-				notebookDtos, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
+		return notebookRepository.customFindNotebooksByName(pageable, sort, name);
 	}
 
-	public Page<NotebookInfoResponseDto> findNotebooksByCategory(int curPage, NotebookInfoRequestDto notebookInfoRequestDto) {
+	public Page<NotebookInfoResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, NotebookInfoRequestDto notebookInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-		Query query = new Query();
-		List<Criteria> outerCriterias = new ArrayList<>();
-		// 이거 로직 바꿔야됨 supplierName -> supplierId
-		if(!notebookInfoRequestDto.getSupplierNames().isEmpty()) {
-			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getSupplierNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getSupplierNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("supplierId").is(notebookInfoRequestDto.getSupplierNames().get(i));
-			}
-			outerCriterias.add(criteria.orOperator(innerCriterias));
-		}
-		if(!notebookInfoRequestDto.getCpuNames().isEmpty()) {
-			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getCpuNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getCpuNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("cpuName").is(notebookInfoRequestDto.getCpuNames().get(i));
-			}
-			outerCriterias.add(criteria.orOperator(innerCriterias));
-		}
-		if(!notebookInfoRequestDto.getGpuNames().isEmpty()) {
-			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getGpuNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getGpuNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("gpuName").is(notebookInfoRequestDto.getGpuNames().get(i));
-			}
-			outerCriterias.add(criteria.orOperator(innerCriterias));
-		}
-		if(!notebookInfoRequestDto.getRegisterYears().isEmpty()) {
-			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getRegisterYears().size()];
-			for(int i=0; i<notebookInfoRequestDto.getRegisterYears().size(); i++) {
-				innerCriterias[i] = Criteria.where("manufactureDate").regex("("+notebookInfoRequestDto.getRegisterYears().get(i)+")+");
-			}
-			outerCriterias.add(criteria.orOperator(innerCriterias));
+		Sort sort;
+		
+		switch(sortingOrder) {
+		case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+		case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
+		case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+		case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+		case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+		case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+		default: throw new RuntimeException();
 		}
 		
-		if(!outerCriterias.isEmpty()) {
-			Criteria criteria = new Criteria();
-			query.addCriteria(criteria.andOperator(outerCriterias));
-			query.with(pageable);
-		}
-		
-		List<Notebook> notebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
-		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
-		
-		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseDto.builder()
-					.name(notebook.getName())
-					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-					.registerDate(notebook.getRegisterDate())
-					.img(notebook.getImg())
-					.price(notebook.getPrice())
-					.view(notebook.getView())
-					.rate(notebook.getRate())
-					.salesVolume(notebook.getSalesVolume())
-					.cpuName(notebook.getCpuName())
-					.gpuName(notebook.getGpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.ssdSize(notebook.getSsdSize())
-					.hddSize(notebook.getHddSize())
-					.batterySize(notebook.getBatterySize())
-					.usage(Usage.valueOf(notebook.getUsage()))
-					.build());
-		}
-
-		Page<NotebookInfoResponseDto> notebookPages = PageableExecutionUtils.getPage(notebookDtos, pageable, () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
-		return notebookPages;
+		return notebookRepository.customFindNotebooksByCategory(pageable, sort, notebookInfoRequestDto);
 	}
 	
 	public Page<NotebookInfoResponseDto> getMyPicks(int curPage, String customerId) {
+		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
+		
 		Member customer = memberRepository.findById(customerId).get();
 		List<String> notebookIds = customer.getMyPicks();
-		List<Criteria> criterias = new ArrayList<>();
-		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-		Query query = new Query();
-		for(String notebookId: notebookIds)
-			criterias.add(Criteria.where("notebookId").is(notebookId));
-		Criteria criteria = new Criteria();
-		query.addCriteria(criteria.orOperator(criterias));
-		query.with(pageable);
 		
-		List<Notebook> notebooks = mongoTemplate.find(query, Notebook.class, "notebooks");
-		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
-		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseDto.builder()
-					.name(notebook.getName())
-					.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
-					.registerDate(notebook.getRegisterDate())
-					.img(notebook.getImg())
-					.price(notebook.getPrice())
-					.view(notebook.getView())
-					.rate(notebook.getRate())
-					.salesVolume(notebook.getSalesVolume())
-					.cpuName(notebook.getCpuName())
-					.gpuName(notebook.getGpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.ssdSize(notebook.getSsdSize())
-					.hddSize(notebook.getHddSize())
-					.batterySize(notebook.getBatterySize())
-					.usage(Usage.valueOf(notebook.getUsage()))
-					.build());
-		}
-		
-		return PageableExecutionUtils.getPage(
-				notebookDtos, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Notebook.class));
+		return notebookRepository.customFindNotebooksByNotebookIds(pageable, notebookIds);
 	}
 }

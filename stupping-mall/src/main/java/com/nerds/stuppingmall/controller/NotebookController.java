@@ -34,8 +34,8 @@ public class NotebookController {
 	}
 
 	@GetMapping("/notebooksInfo")
-	public String getProductsInfoByName(String name, Model model) {
-		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksByName(0, name);
+	public String getProductsInfoByName(int curPage, String sortingOrder, String name, Model model) {
+		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksByName(curPage, sortingOrder, name);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());
@@ -43,8 +43,8 @@ public class NotebookController {
 	}
 	
 	@GetMapping("/notebooksInfo/category")
-	public String getProductsInfoByCategory(NotebookInfoRequestDto notebookInfoRequestDto, Model model) {
-		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksByCategory(0, notebookInfoRequestDto);
+	public String getProductsInfoByCategory(int curPage, String sortingOrder, NotebookInfoRequestDto notebookInfoRequestDto, Model model) {
+		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksByCategory(curPage, sortingOrder, notebookInfoRequestDto);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());

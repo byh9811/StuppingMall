@@ -19,6 +19,7 @@ public class Notebook {
 	private String _id;
 	private String name;
 	private String supplierId;
+	private String supplierName;
 	private String registerDate;
 	private String img;
 	private int price;
