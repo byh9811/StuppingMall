@@ -3,29 +3,21 @@ package com.nerds.stuppingmall.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.mongodb.assertions.Assertions;
 import com.nerds.stuppingmall.StuppingMallApplication;
 import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 
 @ExtendWith(SpringExtension.class)
@@ -34,43 +26,56 @@ import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 @DataMongoTest
 public class NotebookRepositoryTest {
 	@Autowired
-	MongoTemplate mongoTemplate;
-	@Autowired
 	NotebookRepository notebookRepository;
 	
 	final int SIZE_PER_PAGE = 10;
 	
 //	@Test
-	public void saveOrder() {
+	public void saveNotebook() {
 		for(int i=1; i<20; i++) {
 			// given
-			Order order = Order.builder()
-						.customerId("byh9811")
+			List<String> imgs = new ArrayList<>();
+			imgs.add("C:\\img\\Samsung\\삼성전자 갤럭시북 프로360 NT950QDB-KC59G/삼성 갤럭시북 15.png");
+			imgs.add("C:\\img\\Samsung\\삼성전자 갤럭시북 프로360 NT950QDB-KC59G/삼성 갤럭시북 17.png");
+			
+			Notebook notebook = Notebook.builder()
+						.name("삼성전자 갤럭시북 프로360 NT950QDB-KC59G")
 						.supplierId("Samsung")
-						.notebookId("notebookId"+i)
-						.status("주문완료")
-						.payDate(LocalDate.now().toString())
-						.deliveredDate(null)
-						.payment(500000)
+						.supplierName("삼성")
+						.registerDate(LocalDate.now().toString())
+						.imgs(imgs)
+						.price(959000)
+						.view(0)
+						.rate(0.0)
+						.salesVolume(0)
+						.cpuName("i5-1135G7")
+						.gpuName("내장 그래픽")
+						.weight(1.6)
+						.screenSize(15)
+						.cpuScore(1056)
+						.gpuScore(20000)
+						.ramSize(16)
+						.ssdSize(512)
+						.hddSize(1000)
+						.batterySize(65.4)
+						.usage("사무용")
 						.build();
 			
 			// when
-			Order savedOrder = mongoTemplate.save(order, "orders");
+			Notebook savedNotebook = notebookRepository.save(notebook);
 			
 			// then
-			assertEquals(order, savedOrder);
+			assertEquals(notebook, savedNotebook);
 		}
 	}
 	
 	@Test
-	public void readOrder() {
+	public void readNotebook() {
 		// given
 		String supplierId = "Samsung";
-		Query query = new Query();
-		query.addCriteria(Criteria.where("supplierId").is(supplierId));
 		
 		// when
-		List<NotebookInfoResponseDto> myNotebooks = mongoTemplate.find(query, NotebookInfoResponseDto.class, "notebooks");
+		List<Notebook> myNotebooks = notebookRepository.findBySupplierId(supplierId);
 		
 		// then
 		assertEquals(1, myNotebooks.size());

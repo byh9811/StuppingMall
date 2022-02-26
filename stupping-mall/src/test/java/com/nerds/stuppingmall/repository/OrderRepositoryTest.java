@@ -62,19 +62,10 @@ public class OrderRepositoryTest {
 	@Test
 	public void readOrder() {
 		// given
-		int curPage = 1;
+		int curPage = 0;
 		String customerId = "byh9811";
 		
-//		// when
-//		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-//		Query query = new Query(Criteria.where("customerId").is(customerId));
-//		query.with(Sort.by(Sort.Direction.DESC, "_id"));
-//		query.with(pageable);
-//
-//		List<Order> myOrders = mongoTemplate.find(query, Order.class, "orders");
-//		Page<Order> orderPages = PageableExecutionUtils.getPage(
-//				myOrders, pageable,
-//				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Order.class));
+		// when
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Page<Order> orderPages = orderRepository.customFindOrdersByCustomerId(pageable, customerId);
 		
