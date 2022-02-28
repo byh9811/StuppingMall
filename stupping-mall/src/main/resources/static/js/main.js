@@ -1,4 +1,3 @@
-'use strict';
 const shift = document.querySelectorAll('.shift');
 const carousel_container = document.querySelector('.carousel_container');
 
@@ -49,3 +48,42 @@ for(let i=0; i<hover.length; i++){
 /**
  * 그냥 비교할 수 있게 안 사라지게 하는 게 좋을 것 같음!!
  */
+
+
+// const ex = document.querySelectorAll('.ex');
+// const real = document.querySelectorAll('.real');
+// for(let i=0; i<ex.length; i++){
+//     ex[i].addEventListener('mouseover',()=>{
+//         real[i].style.display = 'block';
+//         real[i].style.transition = 'all 0.5s';
+//     });
+// }
+
+//노트북 실제 객체!!!!! 하....ㅜ 이거 프론트단에서도 만들고싶은데.... 
+//객체의 값을 웹에다가 띄울 수 없나.... 
+
+const panel = document.querySelectorAll('.panel');
+const carousel_3d = document.querySelector('.carousel_3d');
+
+for(let i=0; i<panel.length; i++){
+    panel[i].addEventListener('mouseover',()=>{
+        //mouseover잘 돌아감!!!!
+        here(i * -45 + 'deg');
+        
+    })
+
+}
+
+function here(deg){
+    carousel_3d.style.transition = "all 1s";
+    carousel_3d.style.transform = `rotateY(${deg})`;
+}
+
+
+
+const cate_img = document.querySelectorAll('.cate_img');
+const cate_real = document.querySelectorAll('.cate_real');
+
+for(let i=0; i<cate_img.length; i++){
+    
+}
