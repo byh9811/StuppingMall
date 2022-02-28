@@ -1,5 +1,7 @@
 package com.nerds.stuppingmall.dto;
 
+import java.util.List;
+
 import com.nerds.stuppingmall.enumerate.Usage;
 
 import lombok.AllArgsConstructor;
@@ -14,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class NotebookInfoResponseDto {
 	private String name;
 	private String supplierName;
-	private String manufactureDate;
-	private String img;
+	private String registerDate;
+	private List<String> imgs;
 	private int price;
 	private int view;
 	private double rate;

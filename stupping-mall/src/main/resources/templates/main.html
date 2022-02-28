@@ -71,9 +71,9 @@
 					<div class="sub_logo">
 						<ul class="sub">
 							<li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+							<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 							<li><a href="/signUpPage">SignUp</a></li>
 							<li><a href="/customer/myPage">MyPage</a></li> 
-							<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 							<li sec:authorize="isAuthenticated()"><a href="/customer/myPage">Bucket</a></li>
 						</ul>
 					</div>

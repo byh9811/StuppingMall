@@ -11,9 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class NotebookInfoRequestDto {
-	private List<String> supplierNames;
-	private List<String> cpuNames;
-	private List<String> gpuNames;
-	private List<String> registerYears;
+public class NotebookCompareInfoResponseDto {
+	private int cpuScore;
+	private int gpuScore;
+	private int ramSize;
+	private double weight;
+	private double batterySize;
+	private double screenSize;
 }
