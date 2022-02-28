@@ -24,41 +24,152 @@
     </style>
 </head>
 <body>
-    <div class="main_logo">
-        <i class="fas fa-users"></i>
-    </div>
-    <div class="wrapper">      
-        <div class="wrapper_content">
-            <div class="logo">
-                <h1><a href="">Stupping</a></h1>
+    <div class="container">
+        <header class="header">
+            <div class="header_contents">
+                <div class="logo">
+                    <h1><a href="" class="stupping">stupping</a></h1>
+                </div>
+                <div class="sub_logo">
+                    <ul class="sub">
+                        <li><a href="">Login</a></li>
+                        <li><a href="">Sign up</a></li>
+                        <li><a href="">My Page</a></li>
+                        <li><a href="">Bucket</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="formInput">
-            	<!-- th:action 유지 요망!! -->
-                <form th:action="@{/login}" method="post">
-                    <div class="userId user">
-                        <div class="id_logo">
-                            <i class="fas fa-user"></i>
+        </header>
+        <nav class="main_nav">
+            <ul class="main_bar">
+                <!--이제 여기 A태그에 각 URL을 넣어주면 돼!! 좋다 지금!!-->
+                <li>
+                    <a href="">
+                        <div class="menu1 menu">
+                            <div class="menu1_img" id="menu">
+                                <div class="picture">
+                                    <img
+                                        src="https://img.icons8.com/external-bearicons-flat-bearicons/64/000000/external-Top-10-miscellany-texts-and-badges-bearicons-flat-bearicons.png" />
+                                </div>
+                            </div>
+                            <div class="title">
+                                <div class="text">
+                                    <h1>TOP 10</h1>
+                                </div>
+                            </div>
                         </div>
-                        <div class="id_input">
-                        	<!-- name 유지 요망!! -->
-                            <input type="search" name="id" id="id" placeholder="ID">
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="menu2 menu">
+                            <div class="menu2_img" id="menu">
+                                <div class="picture">
+                                    <img src="https://img.icons8.com/stickers/100/000000/category.png" />
+                                </div>
+    
+                            </div>
+                            <div class="title">
+                                <div class="text">
+                                    <h1>CATEGORY</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="menu3 menu">
+                            <div class="menu3_img" id="menu">
+                                <div class="picture">
+                                    <img
+                                        src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/000000/external-homepage-website-development-xnimrodx-lineal-color-xnimrodx.png" />
+                                </div>
+    
+                            </div>
+                            <div class="title">
+                                <div class="text">
+                                    <h1>HOMEPAGE</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="menu4 menu">
+                            <div class="menu4_img" id="menu">
+                                <div class="picture">
+                                    <img
+                                        src="https://img.icons8.com/external-vitaliy-gorbachev-blue-vitaly-gorbachev/60/000000/external-graph-cyber-monday-vitaliy-gorbachev-blue-vitaly-gorbachev.png" />
+                                </div>
+                            </div>
+                            <div class="title">
+                                <div class="text">
+                                    <h1>GRAPH</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <div class="menu5 menu">
+                            <div class="menu5_img" id="menu">
+                                <div class="picture">
+                                    <img
+                                        src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/000000/external-buy-call-to-action-bearicons-glyph-bearicons.png" />
+                                </div>
+    
+                            </div>
+                            <div class="title">
+                                <div class="text">
+                                    <h1>BUY</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    
+        <main class="main">
+            <div class="login_box">
+                <form action="" method="post" class="login_form">
+                    <div class="login_logo">
+                        <div class="real_logo">
+                            <img class="logo_image"
+                                src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry-1.png" />
                         </div>
                     </div>
-                    <div class="userPW user">
-                        <div class="pw_logo">
-                            <i class="fas fa-unlock"></i>
-                        </div>
-                        <div class="pw_input">
-                        	<!-- name 유지 요망!! -->
-                            <input type="password" name="password" id="password" placeholder="PW">
-                        </div>
+                    <div class="login_text">
+                        <h1>LOGIN</h1>
                     </div>
-                    <div class="user button_box">
-                       <input type="submit" value="LOGIN">
+                    <div class="id_box">
+                        <input type="text" name="userID" id="userID" placeholder="ID">
+                    </div>
+                    <div class="pw_box">
+                        <input type="password" name="userPW" id="userPW" placeholder="PW">
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="LOGIN">
+                    </div>
+                    <div class="login_menu">
+                        <div class="facebook">
+                            <a href=""><img src="https://img.icons8.com/doodle/48/000000/facebook-new.png" /></a>
+                        </div>
+                        <div class="kakao">
+                            <a href=""><img src="https://img.icons8.com/color/48/000000/kakaotalk.png" /></a>
+                        </div>
+                        <div class="add">
+                            <a href=""><img src="https://img.icons8.com/ios-filled/50/000000/git.png" /></a>
+                        </div>
                     </div>
                 </form>
             </div>
-        </div>
+        </main>
+    
     </div>
+
 </body>
 </html>
