@@ -1,6 +1,8 @@
 package com.nerds.stuppingmall.domain;
 
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,8 +21,9 @@ public class Notebook {
 	private String _id;
 	private String name;
 	private String supplierId;
-	private String manufactureDate;
-	private String img;
+	private String supplierName;
+	private String registerDate;
+	private List<String> imgs;
 	private int price;
 	private int view;
 	private double rate;
@@ -28,11 +31,13 @@ public class Notebook {
 	private String cpuName;
 	private String gpuName;
 	private double weight;
-	private int screenSize;
+	private double screenSize;
+	private int cpuScore;
+	private int gpuScore;
 	private int ramSize;
 	private int ssdSize;
 	private int hddSize;
-	private int batterySize;
+	private double batterySize;
 	private String usage;
 	
 	@Override

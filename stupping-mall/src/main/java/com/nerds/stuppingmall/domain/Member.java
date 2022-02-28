@@ -1,6 +1,8 @@
 package com.nerds.stuppingmall.domain;
 
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -28,4 +30,7 @@ public class Member {
 	private String phoneNum;
 	private String birth;
 	private boolean man;
+	private List<String> myPicks;
+	private Account account;
+	private int balance;
 }

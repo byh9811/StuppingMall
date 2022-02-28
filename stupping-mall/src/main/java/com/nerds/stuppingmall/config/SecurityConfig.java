@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.nerds.stuppingmall.service.CustomUserDetailsService;
+import com.nerds.stuppingmall.service.authentication.CustomUserDetailsService;
 
 @Configuration		// Configure Bean 명시
 @EnableWebSecurity	// spring security config 명시
