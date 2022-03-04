@@ -17,6 +17,7 @@ import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
+import com.nerds.stuppingmall.dto.NotebookInfoResponseSimpleDto;
 import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
@@ -31,29 +32,19 @@ public class NotebookSearchService {
 	final NotebookRepository notebookRepository;
 	final int SIZE_PER_PAGE = 10;
 	
-	public List<NotebookInfoResponseDto> getRecent8Notebooks() {
+	public List<NotebookInfoResponseSimpleDto> getRecent8Notebooks() {
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
-		List<NotebookInfoResponseDto> notebookDtos = new ArrayList<>();
+		List<NotebookInfoResponseSimpleDto> notebookDtos = new ArrayList<>();
 
 		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseDto.builder()
+			notebookDtos.add(NotebookInfoResponseSimpleDto.builder()
 					.name(notebook.getName())
-					.supplierName(notebook.getSupplierId())
-					.registerDate(notebook.getRegisterDate())
-					.imgs(notebook.getImgs())
+					.img(notebook.getImgs().get(0))
 					.price(notebook.getPrice())
-					.view(notebook.getView())
-					.rate(notebook.getRate())
-					.salesVolume(notebook.getSalesVolume())
 					.cpuName(notebook.getCpuName())
-					.gpuName(notebook.getGpuName())
 					.weight(notebook.getWeight())
 					.screenSize(notebook.getScreenSize())
 					.ramSize(notebook.getRamSize())
-					.ssdSize(notebook.getSsdSize())
-					.hddSize(notebook.getHddSize())
-					.batterySize(notebook.getBatterySize())
-					.usage(Usage.valueOf(notebook.getUsage()))
 					.build());
 		}
 		

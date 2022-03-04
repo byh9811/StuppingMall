@@ -50,6 +50,4 @@ public class NotebookController {
 		model.addAttribute("maxPage", notebookPages.getTotalPages());
 		return "notebookInfo";
 	}
-	
-	
 }
