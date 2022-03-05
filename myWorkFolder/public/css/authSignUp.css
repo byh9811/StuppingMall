@@ -21,6 +21,7 @@ a{
     width : 80vw;
     height : 90vh;
     position : absolute;
+    overflow: visible;
     top : 50%;
     left : 50%;
     transform: translate(-50%,-50%);
@@ -159,10 +160,10 @@ a{
 /*LOGIN 메인 작성!!!*/
 .login_box{
     position : absolute;
-    width : 500px;
-    height : 500px;
+    width : 650px;
+    height : 600px;
     top : 50%;
-    left : 50%;
+    left : 47%;
     border-radius : 5%;
     transform: translate(-50%,-50%);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -183,6 +184,7 @@ a{
 .login_form{
     width : 100%;
     height : 100%;
+    border : 3px solid black;
 }
 .login_form > .login_logo{
     height : 15%;
@@ -191,7 +193,7 @@ a{
 .login_logo > .real_logo{
     width : 70px;
     height : 70px;
-    margin : -7% auto;
+    margin : 0 auto;
     border-radius : 50%;
     position : relative;
 }
@@ -213,93 +215,21 @@ a{
     top : 50%;
     left : 50%;
     transform: translate(-50%,-50%);
+    z-index : 10000;
 }
-.login_text{
-    text-align: center;
-}
-.id_box{
-    position : relative;
-    top : 10%;
-    height : 15%;
-    width : 100%;
-    text-align: center;
-}
-.id_box > input{
-    width : 200px;
-    height : 30px;
-    font-size : 1.3rem;
-    position : relative;
-    top : 50%;
-    outline : none;
-    border : none;
-    background-color: transparent;
-    border-bottom: 3px solid black;
-}
-
-
-.pw_box{
-    position : relative;
-    top : 10%;
-    height : 15%;
-    width : 100%;
-    text-align: center;
-}
-.pw_box > input{
-    width : 200px;
-    height : 30px;
-    font-size : 1.3rem;
-    position : relative;
-    top : 50%;
-    outline : none;
-    border : none;
-    background-color: transparent;
-    border-bottom: 3px solid black;
-}
-.button{
-    position : relative;
-    top : 10%;
-    height : 15%;
-    width : 100%;
-    text-align: center;
-}
-.button > input{
-    cursor : pointer;
-    position : relative;
-    width : 200px;
-    height : 30px;
-    top : 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    outline: none;
-    border : none;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    border-radius : 5%;
-}
-
-.login_menu{
-    position : relative;
-    top : 5%;
-    height : 15%;
-    width : 100%;
+.signUp_form{
     display : flex;
-    justify-content: center;
-    align-items: center;
-}
-.login_menu > *{
-    width : 8%;
-    height : 50%;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    margin : 0 4%;
-    border-radius: 25%;
-    background-color: transparent;
-    overflow: hidden;
-}
-.login_menu > *:hover{
-    transition : all 0.5s;
-    transform : scale(1.2);    
-}
-.login_menu > * img{
     width : 100%;
     height : 100%;
+    border : 3px solid black;
 }
-
+.sign_left{
+    flex-grow : 1;
+    height : 100%;
+    border : 1px solid black;
+}
+.sign_right{
+    flex-grow : 1;
+    height : 100%;
+    border : 1px solid black;
+}
