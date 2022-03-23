@@ -3,6 +3,7 @@ package com.nerds.stuppingmall.service.notebook;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -47,10 +48,27 @@ public class NotebookSearchService {
 					.ramSize(notebook.getRamSize())
 					.build());
 		}
-		
+
 		return notebookDtos;
 	}
 	
+	public Page<NotebookResponseBasicDto> getMyNotebook(int curPage, String sortingOrder, String supplierId) {
+		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
+		Sort sort;
+
+		switch(sortingOrder) {
+			case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+			case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
+			case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+			case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+			case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+			case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+			default: throw new RuntimeException();
+		}
+
+		return notebookRepository.customFindNotebookBasicDtosBySupplierId(pageable, sort, supplierId);
+	}
+
 	public Page<NotebookInfoResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
@@ -67,7 +85,24 @@ public class NotebookSearchService {
 		
 		return notebookRepository.customFindNotebooksBySupplierId(pageable, sort, supplierId);
 	}
-	
+
+	public Page<NotebookResponseBasicDto> findNotebookBasicDtosByName(int curPage, String sortingOrder, String name) {
+		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
+		Sort sort;
+
+		switch(sortingOrder) {
+			case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+			case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
+			case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+			case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+			case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+			case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+			default: throw new RuntimeException();
+		}
+
+		return notebookRepository.customFindNotebookBasicDtosByName(pageable, sort, name);
+	}
+
 	public Page<NotebookInfoResponseDto> findNotebooksByName(int curPage, String sortingOrder, String name) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;

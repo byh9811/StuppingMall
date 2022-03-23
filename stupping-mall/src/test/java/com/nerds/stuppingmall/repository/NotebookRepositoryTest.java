@@ -1,15 +1,18 @@
 package com.nerds.stuppingmall.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookInfoResponseSimpleDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.annotation.DirtiesContext;
@@ -75,10 +78,23 @@ public class NotebookRepositoryTest {
 		String supplierId = "Samsung";
 		
 		// when
-		List<Notebook> myNotebooks = notebookRepository.findBySupplierId(supplierId);
-		
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
+		List<NotebookInfoResponseSimpleDto> notebookDtos = new ArrayList<>();
+
+		for(Notebook notebook: notebooks) {
+			notebookDtos.add(NotebookInfoResponseSimpleDto.builder()
+					.name(notebook.getName())
+					.img(notebook.getImgs().get(0))
+					.price(notebook.getPrice())
+					.cpuName(notebook.getCpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.build());
+		}
+
 		// then
-		assertEquals(1, myNotebooks.size());
-		assertEquals("삼성 갤럭시북 15", myNotebooks.get(0).getName());
+		assertEquals(8, notebooks.size());
+		assertNotNull(notebookDtos.get(0).getImg());
 	}
 }

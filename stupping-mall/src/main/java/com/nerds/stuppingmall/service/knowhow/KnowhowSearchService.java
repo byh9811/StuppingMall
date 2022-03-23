@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class KnowhowSearchService {
-	KnowhowRepository knowhowRepository;
+	final KnowhowRepository knowhowRepository;
 	
 	public List<Knowhow> getAllKnowhows() {
 		return knowhowRepository.findAll();

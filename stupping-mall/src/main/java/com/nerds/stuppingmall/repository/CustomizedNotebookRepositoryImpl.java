@@ -3,6 +3,7 @@ package com.nerds.stuppingmall.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,35 @@ import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepository {
 	@Autowired
 	MongoTemplate mongoTemplate;
-	
+
+	@Override
+	public Page<NotebookResponseBasicDto> customFindNotebookBasicDtosBySupplierId(Pageable pageable, Sort sort, String supplierId) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("supplierId").is(supplierId));
+		query.with(sort);
+		query.with(pageable);
+
+		List<NotebookResponseBasicDto> notebooks = mongoTemplate.find(query, NotebookResponseBasicDto.class, "notebooks");
+
+		return PageableExecutionUtils.getPage(
+				notebooks, pageable,
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookResponseBasicDto.class));
+	}
+
+	@Override
+	public Page<NotebookResponseBasicDto> customFindNotebookBasicDtosByName(Pageable pageable, Sort sort, String name) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("name").regex(name));
+		query.with(sort);
+		query.with(pageable);
+
+		List<NotebookResponseBasicDto> notebooks = mongoTemplate.find(query, NotebookResponseBasicDto.class, "notebooks");
+
+		return PageableExecutionUtils.getPage(
+				notebooks, pageable,
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookResponseBasicDto.class));
+	}
+
 	@Override
 	public Page<NotebookInfoResponseDto> customFindNotebooksBySupplierId(Pageable pageable, Sort sort, String supplierId) {
 		Query query = new Query();

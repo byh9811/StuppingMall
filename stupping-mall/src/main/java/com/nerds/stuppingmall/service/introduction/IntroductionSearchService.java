@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class IntroductionSearchService {
-	IntroductionRepository introductionRepository;
+	final IntroductionRepository introductionRepository;
 	
 	public List<Introduction> getAllIntroductions() {
 		return introductionRepository.findAll();

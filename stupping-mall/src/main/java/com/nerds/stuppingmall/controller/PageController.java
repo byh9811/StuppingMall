@@ -1,7 +1,11 @@
 package com.nerds.stuppingmall.controller;
 
 import java.time.LocalTime;
+import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookInfoResponseSimpleDto;
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +24,10 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class PageController {
-	CategoryStatusService categoryStatusService;
-	NotebookSearchService notebookSearchService;
-	IntroductionSearchService introductionSearchService;
-	KnowhowSearchService knowhowSearchService;
+	final CategoryStatusService categoryStatusService;
+	final NotebookSearchService notebookSearchService;
+	final IntroductionSearchService introductionSearchService;
+	final KnowhowSearchService knowhowSearchService;
 	
 	@GetMapping("/")
 	public String main(@AuthenticationPrincipal Authentication authentication, Model model) {
@@ -32,8 +36,17 @@ public class PageController {
 		model.addAttribute("categories", categoryStatusService.getExistingCategories());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
-		if(authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SELLER"))) {
+		if(authentication == null) {
+
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("CUSTOMER"))) {
 			
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
+			Page<NotebookResponseBasicDto> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
+			model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
+			model.addAttribute("curPage", notebookResponseBasicDtoPages.getNumber());
+			model.addAttribute("maxPage", notebookResponseBasicDtoPages.getTotalPages());
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+
 		}
 		return "main";
 	}

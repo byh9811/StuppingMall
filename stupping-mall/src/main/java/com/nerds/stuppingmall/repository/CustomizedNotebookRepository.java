@@ -2,6 +2,7 @@ package com.nerds.stuppingmall.repository;
 
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,8 @@ import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 
 public interface CustomizedNotebookRepository {
+	Page<NotebookResponseBasicDto> customFindNotebookBasicDtosBySupplierId(Pageable pageable, Sort sort, String supplierId);
+	Page<NotebookResponseBasicDto> customFindNotebookBasicDtosByName(Pageable pageable, Sort sort, String name);
 	Page<NotebookInfoResponseDto> customFindNotebooksBySupplierId(Pageable pageable, Sort sort, String supplierId);
 	Page<NotebookInfoResponseDto> customFindNotebooksByName(Pageable pageable, Sort sort, String name);
 	Page<NotebookInfoResponseDto> customFindNotebooksByCategory(Pageable pageable, Sort sort, NotebookInfoRequestDto notebookInfoRequestDto);
