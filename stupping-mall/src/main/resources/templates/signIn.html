@@ -131,7 +131,7 @@
 
         <main class="main">
             <div class="login_box">
-                <form action="" method="post" class="login_form">
+                <form  th:action="@{/login}"  method="post" class="login_form">
                     <div class="login_logo">
                         <div class="real_logo">
                             <img class="logo_image" src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-user-interface-kiranshastry-lineal-kiranshastry-1.png"/>
@@ -141,13 +141,13 @@
                         <h1>LOGIN</h1>
                     </div>
                     <div class="id_box">
-                        <input type="text" name="userID" id="userID" placeholder="ID">
+                        <input type="text" name="id" id="userId" placeholder="ID">
                     </div>
                     <div class="pw_box">
-                        <input type="password" name="userPW" id="userPW" placeholder="PW">
+                        <input type="password" name="password" id="userPw" placeholder="PW">
                     </div>
                     <div class="button">
-                        <input type="submit" value="LOGIN">
+                        <Button type="submit" value="LOGIN">
                     </div>
                     <div class="login_menu">
                         <div class="facebook">
@@ -156,7 +156,7 @@
                         <div class="kakao">
                             <a href=""><img src="https://img.icons8.com/color/48/000000/kakaotalk.png"/></a>
                         </div>
-                        <div class="add">
+                        <div class="github">
                             <a href=""><img src="https://img.icons8.com/ios-filled/50/000000/git.png"/></a>
                         </div>
                     </div>

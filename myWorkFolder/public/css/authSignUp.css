@@ -1,235 +1,278 @@
 *{
     margin : 0;
     padding : 0;
-    box-sizing: border-box;
+    box-sizing : border-box;
 }
 html,body{
     min-height : 100vh;
-    background-color: rgb(70, 69, 71);
-}
-body{
-    position : relative;
-}
-ul{
-    list-style-type: none;
 }
 a{
     text-decoration: none;
-    /* color : black; */
+    color : white;
 }
+li{
+    list-style-type: none;
+}
+
 .container{
-    width : 80vw;
-    height : 90vh;
-    position : absolute;
-    overflow: visible;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%,-50%);
-    border-radius : 10px;
-    background-color: rgb(176, 174, 180);
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    overflow: hidden; /*여기서 carousel이 일어난다!*/
+    width : 100vw;
+    min-height : 100vh;
+    background-color: rgb(70, 69, 71);
 }
-.container::before{
-    content : "";
-    position : absolute;
-    top : 0;
-    left : 0;
-    width : 100%;
-    height : 100%;
+.container_contents{
+    width : 85vw;
+    min-height : 100vh;
+    margin : 0 auto;
+    position : relative;
     background-color: transparent;
-    opacity: 0.6;
+    /* border : 5px solid white; */
 }
-
-.header{
+.container_contents::before{
+    content : '';
     position : absolute;
-    top : 0;
-    left : 0;
-    width : 100%;
-    /* border : 1px solid black; */
-}
-.header_contents{
-    width : 100%;
-    /* border : 4px solid black; */
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.header_contents .sub_logo{
-    /* border : 1px solid black; */
-    position : relative;
-    right : 15px;
-}
-.logo{
-    position : relative;
-    top : 20px;
-    left : 5%;
-    font-family: 'Lobster', cursive;
-}
-.logo a{
-    color : black;
-}
-.sub{
-    display : flex;
-}
-.sub > li{
-    flex-grow : 1;
-    /* border : 1px solid black; */
-    padding : 4px 10px;
-}
-.sub a{
-    font-size : 0.8rem;
-    color : black;
-    font-family: 'Rowdies', cursive;
-}
-.sub li:hover{
-    transition: all 1s;
-    color : black;
-    background-color: antiquewhite;
+    top : 10%;
+    left : -3%;
+    width : 300px;
+    height : 300px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border-radius : 50%;
-    transform : scale(1.3);
+    opacity: 0.6;
+    background: linear-gradient(to left, #304352,#d7d3cc);
 }
-
-
-/*여기까지가 header 그 밑에 이제 nav_bar*/
-
-.main_nav{
-    width : 25%;
-    height : 50%;
+.header{
+    width : 100%;
+    height : 800px; /*일단은 임의로!!*/
+    /* border : 3px solid black; */
+    position : relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+/*============ search box ============*/
+.search_box{
     position : absolute;
-    top : 100px;
-    right : 0;
+    z-index : 1;
+    width : 200px;
+    height : 30px;
+    top : 10%;
+    right : 4%;
 }
-.main_nav > .main_bar{
-    
+.search_form{
     width : 100%;
     height : 100%;
-}
-.main_bar > li{
-    height : 20%;
-    width : 100%;
-}
-.menu{
-    width : 100%;
-    height : 100%;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    margin-top : 5%;
-    margin-left: 80%;
     position : relative;
     display : flex;
     overflow: hidden;
-    background-color: rgb(226, 133, 100);
-}    
-.menu:hover{
-    transition: all 0.5s;
-    margin-left : 0%;
+    border-radius: 10px;
 }
-.menu > *:nth-child(1){
-    flex-grow: 3;
-}
-.menu > *:nth-child(2){
-    flex-grow: 7;
-}
-
-.picture{
-    width : 50px;
-    height : 50px;
-    position : relative;
-    margin : auto auto;
-    top : 50%;
-    transform: translateY(-50%);
-    border-radius : 25px;
-}
-.picture img{
-    width : 100%;
-    height : 100%;
-}
-.title > .text{
-    width : 80%;
-    height : 50%;
-    position : relative;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    color : white;
-}
-
-
-/*LOGIN 메인 작성!!!*/
-.login_box{
-    position : absolute;
-    width : 650px;
-    height : 600px;
-    top : 50%;
-    left : 47%;
-    border-radius : 5%;
-    transform: translate(-50%,-50%);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-
-.login_box::after{
-    content : "";
-    position : absolute;
-    top : 0;
-    left : 0;
-    width : 100%;
-    height : 100%;
-    border-radius : 5%;
-    background-color: rgb(201, 201, 221);
-    z-index : -100;
-    opacity: 0.2;
-}
-.login_form{
-    width : 100%;
-    height : 100%;
-    border : 3px solid black;
-}
-.login_form > .login_logo{
-    height : 15%;
-    width : 100%;
-}
-.login_logo > .real_logo{
-    width : 70px;
-    height : 70px;
-    margin : 0 auto;
-    border-radius : 50%;
-    position : relative;
-}
-.real_logo::before{
+.search_form::before{
     content : '';
     position : absolute;
-    top : 0;
-    left : 0;
     width : 100%;
     height : 100%;
-    border-radius: 50%;
-    background-color: rgb(218, 240, 247);
+    background-color: black;
     opacity: 0.6;
+    z-index : -1;
 }
-.logo_image{
+input[type="search"]{
+    width : 90%;
+    height : 100%;
+    background-color: transparent;
+    outline : none;
+    border : none;
+    color : white;
+    text-align: center;
+}
+input[type="submit"]{
+    width : 15%;
+    height : 100%;
+    background-color: aliceblue;
+    outline : none;
+    border : none;
+    color : gray;
+    cursor : pointer;
+}
+
+/*sub_menu*/
+.sub_nav{
+    position : fixed;
+    top : 0px;
+    left : 50%;
+    transform: translateX(-50%);
+    width : 100%;
+    z-index : 10000;
+    /* border : 3px solid white; */
+    display : flex;
+    height : 70px;
+    background-color: transparent;
+    transition : all 0.5s;
+}
+.sub_nav::before{
+    content : '';
+    position : absolute;
+    width : 100%;
+    height : 100%;
+    background-color: black;
+    opacity : 0.7;
+}
+.logo{
+    width: fit-content;
+    /* border : 3px solid white; */
+    margin-left : 10%;
+}
+.logo > *{
+    position : relative;
+    top : 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s;
+}
+.logo > *:hover{
+    transition : all 0.5s;
+    font-size : 1.7rem;
+}
+.sub{
+    display : flex;
+    /* border : 3px solid white; */
+    position : absolute;
+    right : 10%;
+    top : 50%;
+    transform: translateY(-50%);
+}
+.sub > *{
+    padding : 5px 15px;
+}
+.sub > *:hover{
+    background-color: rgb(112, 107, 107);
+    border-radius : 25%;
+    transition : all 0.5s;
+    transform: scale(1.2);
+}
+.here{
+    height : 3000px;
+    width : 100vw;
+    /* border : 3px solid white; */
+}
+/* ============== << MAIN _ NAV >> ==============*/
+.main_nav{
+    position : fixed;
+    right : -100px;
+    top : 20%;
+    width : 300px;
+    height : 120px;
+    z-index : 100;
+}
+
+.main_bar > *{
+    text-align: center;
+    transform : translateX(70px);
+    transition : all 0.5s;
+    margin-top : 13px;
+    margin-right : -0px;
+    width : 100%;
+    cursor : pointer;
+    background-color: rgb(36, 36, 36);
+}
+
+.main_bar > *:hover{
+    transition : all 0.5s;
+    transform: translateX(-100px);
+}
+.main_bar img{
     width : 50px;
     height : 50px;
+}
+.menu_icon{
+    display : flex;
+}
+.menu_icon > h1{
+    line-height : 50px;
+    margin-right : 15px;
+}
+/* ============== << MAIN _ NAV >> ==============*/
+/*
+nav change
+
+*/
+.nav_change{
+    transition : all 0.5s;
+    font-size : 1.3rem;
+    height : 80px;
+}
+.content:not(:first-child){
+    width : 100%;
+    height : 600px;
+    /* border : 3px solid black; */
+    margin : 30px auto; /*가운데 정렬!*/
+}
+.user_sign_up{
+    width : 70vw;
+    height : 60%;
+    
+    position : absolute;
+    /*부모가 relative걸림!!*/
+    top : 10%;
+    left : 50%;
+    transform: translateX(-50%);
+    margin : 5% auto;
+
+}
+.user_sign_up::before{
+    content : '';
+    position : absolute;
+    left : 0;
+    top : 0;
+    width : 100%;
+    height : 100%;
+    background-color: #304352;
+    opacity: 0.5;
+    border-radius : 5%;
+    z-index : -1;
+}
+.sign_up_title{
+    color : white;
+    text-align: center;
+    padding : 3px 0;
+    /* border : 3px solid white; */
+}
+.user_form{
+    position : relative;
+    /*나중에 회원가입 완료버튼 absolute줄거임!!*/
+    width : 90%;
+    height : 90%;
+    /* background-color: rgb(85, 82, 78); */
+    /* border : 3px solid white; */
+    left : 50%;
+    top : 50%;
+    transform : translate(-50%,-50%);
+    color : white;
+    font-size : 1rem;
+    display : flex;
+}
+.form_left,.form_right{flex-grow : 1; height : 100%; text-align: center;}
+.input_box{
+    /* border : 3px solid black; */
+    padding : 5px 0;
+}
+.input_title{
+    padding : 5px 0;
+}
+#userId,#userPw,#userName,#userEmail,
+#userPhone,#userBirth,#userBank,#userAccount{
+    border : none;
+    outline : none;
+    background-color: white;
+    color : black;
+    height : 30px;
+    width : 200px;
+    font-size : 1.1rem;
+}
+#user_signUp_button{
+    background-color: rgb(32, 32, 32);
+    color : white;
+    font-size: 1.2rem;
+    height : 20%;
     position : absolute;
     top : 50%;
     left : 50%;
     transform: translate(-50%,-50%);
-    z-index : 10000;
-}
-.signUp_form{
-    display : flex;
-    width : 100%;
-    height : 100%;
-    border : 3px solid black;
-}
-.sign_left{
-    flex-grow : 1;
-    height : 100%;
-    border : 1px solid black;
-}
-.sign_right{
-    flex-grow : 1;
-    height : 100%;
-    border : 1px solid black;
+    border-radius : 15%;
 }

@@ -9,61 +9,97 @@
     <link
         href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gugi&family=Hi+Melody&family=Island+Moments&family=Single+Day&family=Sunflower:wght@300&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/userMain.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/myPage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script defer src="../../js/myPage.js"></script>
 </head>
 <!-- 에니메이션 시간 후에 자동으로 wrapper띄우는 setTimeout함수 적자!!-->
 
 <body>
 
-    <div class="wrapper">
-        <div class="wrapper_content">
-            <header class="header">
-                <h1><a href="http://localhost:3000">STUPPING</a></h1>
+    <div class="container">
+        <div class="container_contents">
+            <header class="header content">
+                <!-- 캐러셀 박스!!!!!!!!!!-->
+        
                 <div class="search_box">
-                    <form action="" method="post">
-                        <input type="search" name="" id="" placeholder="search">
-                        <a href=""><i class="fas fa-search"></i></a>
+                    <form action="#" class="search_form" method="post">
+                        <input type="search" name="search" id="search" placeholder="모델명 or 회사이름">
+                        <input type="submit" value="go" class="search_button">
                     </form>
                 </div>
-                <div class="sub_logo">
-                    <ul class="sub">
-                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
-                        <li sec:authorize="isAnonymous()"><a th:href="@{/signIn}"
-                                href="http://localhost:3000/login">로그인</a></li>
-                        <li><a href="/memberAddPage">회원가입</a></li>
-                        <li><a href="http://localhost:3000/myPage">마이페이지</a></li>
-                    </ul>
-                </div>
-                <div class="sub_iconMenu">
-                    <ul class="icon_menu">
-                        <li><a href="">
-                                <i class="fas fa-sign-in-alt"></i>
-                            </a></li>
-                        <li><a href="">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a></li>
-                        <li><a href="">
-                                <i class="fas fa-user-plus"></i>
-                            </a></li>
-                        <li><a href="http://localhost:3000/myPage">
-                                <i class="fas fa-user"></i>
-                            </a></li>
-                    </ul>
-                </div>
+                
+                <!-- 캐러셀 박스 생략!!!!!!!!!!-->
+               
+                <nav class="sub_nav">
+                    <div class="logo">
+                        <h1><a href="" class="stupping">stupping</a></h1>
+                    </div>
+                    <div class="sub_logo">
+                        <ul class="sub">
+                            <li><a href="http://localhost:3000/login">Login</a></li>
+                            <li><a href="http://localhost:3000/authSignUp">Sign up</a></li>
+                            <li><a href="http://localhost:3000/myPage">My Page</a></li>
+                            <li><a href="">Bucket</a></li>
+                        </ul>
+                    </div>
+                </nav>
             </header>
             <nav class="main_nav">
-                <ul class="list_1">
-                    <li><a href="">카테고리</a></li>
-                    <li><a href="">HELLO</a></li>
-                    <li><a href="">HELLO</a></li>
-                    <li><a href="">HELLO</a></li>
-                    <li><a href="">HELLO</a></li>
+                <ul class="main_bar">
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+            
+            
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>TOP8</h1>
+                                <img
+                                    src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-eight-womens-day-flatart-icons-outline-flatart./img/img.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>CATEGORY</h1>
+                                <img src="https://img.icons8.com/ios-glyphs/30/000000/cat./img/img.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>EXPLAIN</h1>
+                                <img
+                                    src="https://img.icons8.com/external-wanicon-lineal-wanicon/64/000000/external-presentation-world-oceans-day-wanicon-lineal-wa./img/img.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>TO BUY</h1>
+                                <img src="https://img.icons8.com/pastel-glyph/64/000000/sale-tim./img/img.png" />
+                            </div>
+                        </a></li>
+                    <li class="hover"><a href="">
+                            <div class="menu_icon">
+                                <h1>GRAPH</h1>
+                                <img
+                                    src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/000000/external-graph-cyber-monday-vitaliy-gorbachev-fill-vitaly-gorb./img/img.png" />
+                            </div>
+                        </a></li>
                 </ul>
             </nav>
+
+            <main class="myPage_main">
+                <div class="user_page">
+                    sdsdsds
+                </div>
+            </main>
+        </div>
+    </div>
 </body>
 </html>
