@@ -131,16 +131,16 @@
 					<div class="stage">
 						<div class="carousel_3d">
 							<!-- 여기에 반복문!!-->
-							<div class="panel" th:each="recentNotebooks : ${items}">
+							<div class="panel" th:each="recentNotebook : ${recentNotebooks}">
 								<a href="">
 									<div class="item">
 										<div class="item_img">
-											<img th:value="${recentNotebooks.img}" src="./ph1.png" alt="">
+											<img th:value="${recentNotebook.img}" src="./ph1.png" alt="">
 										</div>
 										<div class="item_ex">
 											<div class="text_box">
-												<p th:value="${recentNotebooks.name}">이름 : </p>
-												<p th:value="${recentNotebooks.price}">가격 : </p>
+												<p th:value="${recentNotebook.name}">이름 : </p>
+												<p th:value="${recentNotebook.price}">가격 : </p>
 											</div>
 										</div>
 									</div>
