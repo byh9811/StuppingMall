@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class NotebookInfoResponseSimpleDto {
+	private String id;
 	private String name;
 	private int price;
 	private String img;

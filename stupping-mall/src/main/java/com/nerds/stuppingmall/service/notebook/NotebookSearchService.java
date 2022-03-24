@@ -39,6 +39,7 @@ public class NotebookSearchService {
 
 		for(Notebook notebook: notebooks) {
 			notebookDtos.add(NotebookInfoResponseSimpleDto.builder()
+					.id(notebook.get_id())
 					.name(notebook.getName())
 					.img(notebook.getImgs().get(0))
 					.price(notebook.getPrice())
