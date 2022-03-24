@@ -25,6 +25,19 @@ li{
     margin : 0 auto;
     position : relative;
     background-color: transparent;
+    /* border : 5px solid white; */
+}
+.container_contents::before{
+    content : '';
+    position : absolute;
+    top : 10%;
+    left : -3%;
+    width : 300px;
+    height : 300px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius : 50%;
+    opacity: 0.6;
+    background: linear-gradient(to left, #304352,#d7d3cc);
 }
 .header{
     width : 100%;
@@ -79,7 +92,6 @@ input[type="submit"]{
     cursor : pointer;
 }
 
-/*header의 캐러셀!!!!! 없앰!!!!!!!!!!!*/
 /*sub_menu*/
 .sub_nav{
     position : fixed;
@@ -177,7 +189,7 @@ input[type="submit"]{
 }
 /* ============== << MAIN _ NAV >> ==============*/
 /*
-nav change : ==> 
+nav change
 
 */
 .nav_change{
@@ -191,15 +203,76 @@ nav change : ==>
     /* border : 3px solid black; */
     margin : 30px auto; /*가운데 정렬!*/
 }
-
-/*mypage시작!!!!!!*/
-
-.myPage_main{
+.user_sign_up{
+    width : 70vw;
+    height : 60%;
+    
     position : absolute;
-    top : 110px;
-    left : 0;
-    border : 5px solid white;
+    /*부모가 relative걸림!!*/
+    top : 10%;
+    left : 50%;
+    transform: translateX(-50%);
+    margin : 5% auto;
 
-    height : 200px;
+}
+.user_sign_up::before{
+    content : '';
+    position : absolute;
+    left : 0;
+    top : 0;
     width : 100%;
+    height : 100%;
+    background-color: #304352;
+    opacity: 0.5;
+    border-radius : 5%;
+    z-index : -1;
+}
+.sign_up_title{
+    color : white;
+    text-align: center;
+    padding : 3px 0;
+    /* border : 3px solid white; */
+}
+.user_form{
+    position : relative;
+    /*나중에 회원가입 완료버튼 absolute줄거임!!*/
+    width : 90%;
+    height : 90%;
+    /* background-color: rgb(85, 82, 78); */
+    /* border : 3px solid white; */
+    left : 50%;
+    top : 50%;
+    transform : translate(-50%,-50%);
+    color : white;
+    font-size : 1rem;
+    display : flex;
+}
+.form_left,.form_right{flex-grow : 1; height : 100%; text-align: center;}
+.input_box{
+    /* border : 3px solid black; */
+    padding : 5px 0;
+}
+.input_title{
+    padding : 5px 0;
+}
+#userId,#userPw,#userName,#userEmail,
+#userPhone,#userBirth,#userBank,#userAccount{
+    border : none;
+    outline : none;
+    background-color: white;
+    color : black;
+    height : 30px;
+    width : 200px;
+    font-size : 1.1rem;
+}
+#user_signUp_button{
+    background-color: rgb(32, 32, 32);
+    color : white;
+    font-size: 1.2rem;
+    height : 20%;
+    position : absolute;
+    top : 50%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+    border-radius : 15%;
 }
