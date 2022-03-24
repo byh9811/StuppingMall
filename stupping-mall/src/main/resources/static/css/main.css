@@ -594,3 +594,9 @@ color : black;}
     border : 1px solid white;
     transform : translateY(-50%);
 }
+
+/* =========== hover class ===========*/
+.hover{
+    display : none;
+    transition : all 0.5s;
+}
