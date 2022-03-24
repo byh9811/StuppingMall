@@ -130,126 +130,22 @@
 					</div>
 					<div class="stage">
 						<div class="carousel_3d">
-							<div class="panel"><a href="">
+							<!-- 여기에 반복문!!-->
+							<div class="panel" th:each="recentNotebooks : ${items}">
+								<a href="">
 									<div class="item">
-										<div class="number">1</div>
 										<div class="item_img">
-											<img src="./ph1.png" alt="">
+											<img th:value="${recentNotebooks.img}" src="./ph1.png" alt="">
 										</div>
 										<div class="item_ex">
 											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
+												<p th:value="${recentNotebooks.name}">이름 : </p>
+												<p th:value="${recentNotebooks.price}">가격 : </p>
 											</div>
 										</div>
 									</div>
 								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">2</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">3</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">4</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">5</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">6</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">7</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
-							<div class="panel"><a href="">
-									<div class="item">
-										<div class="number">8</div>
-										<div class="item_img">
-											<img src="./ph1.png" alt="">
-										</div>
-										<div class="item_ex">
-											<div class="text_box">
-												<p>이름 : </p>
-												<p>가격 : </p>
-												<p>이미지 : </p>
-											</div>
-										</div>
-									</div>
-								</a></div>
+							<!-- 여기에 반복문! -->
 						</div>
 					</div>
 				</div>
