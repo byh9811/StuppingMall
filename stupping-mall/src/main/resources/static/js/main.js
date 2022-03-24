@@ -81,9 +81,11 @@ function here(deg){
 
 
 
-const cate_img = document.querySelectorAll('.cate_img');
-const cate_real = document.querySelectorAll('.cate_real');
-
-for(let i=0; i<cate_img.length; i++){
-    
+// ======================= hover하면 속성 더 보이기!!!! =======================
+const _panel = document.querySelectorAll('.panel');
+const _hover = document.querySelectorAll('._hover');
+for(let i=0; i<_panel.length; i++){
+    _panel.addEventListener('mouseover',()=>{
+        _panel.classList.toggle('hover');
+    })
 }

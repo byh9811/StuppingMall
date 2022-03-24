@@ -126,7 +126,7 @@
 			<main class="main">
 				<div class="content top8">
 					<div class="text">
-						<h3 id="title">TOP8</h1>
+						<h3 id="title">TOP8</h3>
 					</div>
 					<div class="stage">
 						<div class="carousel_3d">
@@ -141,6 +141,10 @@
 											<div class="text_box">
 												<p th:value="${recentNotebook.name}">이름 : </p>
 												<p th:value="${recentNotebook.price}">가격 : </p>
+												<p th:value="${recentNotebook.weight}" class="hover">무게 : </p>
+												<p th:value="${recentNotebook.screenSize}" class="hover">스크린크기 : </p>
+												<p th:value="${recentNotebook.cpuName}" class="hover">cpu이름 : </p>
+												<p th:value="${recentNotebook.ramSize}" class="hover">ram크기 : </p>
 											</div>
 										</div>
 									</div>
