@@ -78,14 +78,3 @@ function here(deg){
     carousel_3d.style.transition = "all 1s";
     carousel_3d.style.transform = `rotateY(${deg})`;
 }
-
-
-
-// ======================= hover하면 속성 더 보이기!!!! =======================
-const _panel = document.querySelectorAll('.panel');
-const _hover = document.querySelectorAll('._hover');
-for(let i=0; i<_panel.length; i++){
-    _panel.addEventListener('mouseover',()=>{
-        _panel.classList.toggle('hover');
-    })
-}
