@@ -1,7 +1,10 @@
 package com.nerds.stuppingmall.service.member;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.nerds.stuppingmall.service.email.EmailSendService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,9 @@ import lombok.RequiredArgsConstructor;
 public class MemberInfoService {
 	final MemberRepository memberRepository;
 
-	public String findMemberId(String name, String phoneNum) {
-		List<Member> members = memberRepository.findByName(name);
+	public String findMemberId(String email) {
+		Optional<Member> memberWrapper = memberRepository.findByEmail(email);
+		Member member = memberWrapper.get();
 		String userId = null;
 		for(Member member: members) {
 			if(member.getPhoneNum().equals(phoneNum))

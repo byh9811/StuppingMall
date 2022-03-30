@@ -23,8 +23,8 @@ public class SignController {
 	}
 
 	@PostMapping("/findUserId")
-	public @ResponseBody String findMemberId(String name, String phoneNum) {
-		return memberInfoService.findMemberId(name, phoneNum);
+	public @ResponseBody String findMemberId(String email) {
+		return memberInfoService.findMemberId(email);
 	}
 
 }
