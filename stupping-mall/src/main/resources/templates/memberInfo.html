@@ -17,6 +17,9 @@
 	        <th>생일</th>
 	        <th>성별</th>
 	        <th>계좌</th>
+			<th>잔액</th>
+			<th>수정</th>
+			<th>삭제</th>
 	    </tr>
 		<tr th:each="member : ${members}">
 			<td th:text="${member._id}"></td>
@@ -28,6 +31,9 @@
 			<td th:if="${member.man}">남자</td>
 			<td th:unless="${member.man}">여자</td>
 			<td th:text="${member.account.bank} + ' ' + ${member.account.accountNumber}"></td>
+			<td th:text="${member.balance}"></td>
+			<td><button>수정 ajax 버튼</button></td>
+			<td><button>삭제 ajax 버튼</button></td>
 		</tr>
 	</table>
 	<hr>

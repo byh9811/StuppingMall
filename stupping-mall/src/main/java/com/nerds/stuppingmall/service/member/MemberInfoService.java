@@ -21,11 +21,6 @@ public class MemberInfoService {
 	public String findMemberId(String email) {
 		Optional<Member> memberWrapper = memberRepository.findByEmail(email);
 		Member member = memberWrapper.get();
-		String userId = null;
-		for(Member member: members) {
-			if(member.getPhoneNum().equals(phoneNum))
-				userId = member.get_id();
-		}
-		return userId;
+		return member.get_id();
 	}
 }

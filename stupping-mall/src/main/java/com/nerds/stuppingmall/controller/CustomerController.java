@@ -40,13 +40,7 @@ public class CustomerController {
 		memberDeregisterService.removeMember(authentication.getId());
 		return "redirect:/logout";
 	}
-	
-	@PostMapping("/changePassword")
-	public String changePassword(@AuthenticationPrincipal Authentication authentication, String newPassword) {
-		memberModifyService.updatePassword(authentication.getId(), newPassword);
-		return "redirect:/logout";
-	}
-	
+
 	@PostMapping("/addBalance")
 	public String addBalance(@AuthenticationPrincipal Authentication authentication, int money) {
 		memberModifyService.updateBalance(authentication.getId(), money);
