@@ -1,5 +1,11 @@
 package com.nerds.stuppingmall.controller;
 
+import com.nerds.stuppingmall.domain.Introduction;
+import com.nerds.stuppingmall.domain.Knowhow;
+import com.nerds.stuppingmall.domain.Report;
+import com.nerds.stuppingmall.service.introduction.IntroductionModifyService;
+import com.nerds.stuppingmall.service.knowhow.KnowhowModifyService;
+import com.nerds.stuppingmall.service.report.ReportSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +19,8 @@ import com.nerds.stuppingmall.service.member.MemberDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/admin")
@@ -20,6 +28,8 @@ public class AdminController {
 	final MemberDeregisterService memberDeregisterService;
 	final MemberDetailsService memberDetailsService;
 	final ReportSearchService reportSearchService;
+	final IntroductionModifyService introductionModifyService;
+	final KnowhowModifyService knowhowModifyService;
 
 	@GetMapping("/allMembers")
 	public String allMemberList(Model model) {
@@ -37,11 +47,23 @@ public class AdminController {
 	}
 
 	@GetMapping("/reports")
-	public String reportList(Model model) {
-		Page<Report> reportPage = reportSearchService.findAllReports();
+	public String reportList(Model model, int curPage) {
+		Page<Report> reportPage = reportSearchService.findAllReports(curPage);
 		model.addAttribute("reports", reportPage.getContent());
 		model.addAttribute("curPage", reportPage.getNumber());
 		model.addAttribute("maxPage", reportPage.getTotalPages());
 		return "report";
+	}
+
+	@PostMapping("/updateIntroduction")
+	public String updateIntroduction(List<Introduction> introductions) {
+		introductionModifyService.updateIntroduction(introductions);
+		return "introductionModifyPage";
+	}
+
+	@PostMapping("/updateKnowhow")
+	public String updateKnowhow(List<Knowhow> knowhows) {
+		knowhowModifyService.updateKnowhow(knowhows);
+		return "updateKnowhow";
 	}
 }

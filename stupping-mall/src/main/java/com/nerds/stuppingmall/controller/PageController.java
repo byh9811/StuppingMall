@@ -93,4 +93,15 @@ public class PageController {
 		model.addAttribute("manufactureYears", categories.getRegisterYears());
 		return "notebookCategorySearchPage";
 	}
+
+	@GetMapping("/introductionModifyPage")
+	public String introductionModifyPage() {
+		return "introductionModifyPage";
+	}
+
+	@GetMapping("/knowhowModifyPage")
+	public String knowhowModifyPage() {
+		return "knowhowModifyPage";
+	}
+
 }
