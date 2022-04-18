@@ -14,6 +14,7 @@ import com.nerds.stuppingmall.service.member.MemberRegisterService;
 import lombok.RequiredArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class SignController {
 	final MemberModifyService memberModifyService;
 	
 	@PostMapping("/signUp")
-	public String save(MemberSignUpRequestDto memberSignUpRequestDto) {
+	public String save(@Valid MemberSignUpRequestDto memberSignUpRequestDto) {
 		memberRegisterService.addMember(memberSignUpRequestDto);
 		return "redirect:/";
 	}
