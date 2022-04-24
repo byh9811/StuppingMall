@@ -104,4 +104,9 @@ public class PageController {
 		return "knowhowModifyPage";
 	}
 
+	@GetMapping("/emailTestPage")
+	public String emailTestPage() {
+		return "mailtest";
+	}
+
 }

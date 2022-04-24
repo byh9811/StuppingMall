@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,8 +34,8 @@ public class RestController {
         return orderSearchService.findSales(duration, notebookId);
     }
 
-    @PostMapping("accessKey")
-    public void authenticateEmail(HttpServletRequest request, String email) {
+    @PostMapping("setKey")
+    public @ResponseBody String authenticateEmail(HttpServletRequest request, String email) {
         try {
             String key = emailSendService.sendMessage(email);
             HttpSession session = request.getSession();
@@ -43,5 +44,7 @@ public class RestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return "Success";
     }
 }
