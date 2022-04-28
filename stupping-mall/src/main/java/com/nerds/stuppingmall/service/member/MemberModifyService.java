@@ -3,7 +3,10 @@ package com.nerds.stuppingmall.service.member;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
+import com.nerds.stuppingmall.domain.Account;
+import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,25 @@ import lombok.RequiredArgsConstructor;
 public class MemberModifyService {
 	final MemberRepository memberRepository;
 	final BCryptPasswordEncoder pwdEncoder;
-	
+
+	public Member updateInfo(String id, AccessibleInfoRequestDto newInfo) {
+		Member member = memberRepository.findById(id).get();
+		member.setName(newInfo.getName());
+		String newPassword = newInfo.getPassword();
+		if(newPassword.length()!=0) {
+			if(Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,20}$", newPassword))
+				member.setPassword(newInfo.getPassword());
+			else throw new NoSuchElementException("패턴이 올바르지 않습니다.");
+		}
+		member.setEmail(newInfo.getEmail());
+		member.setPhoneNum(newInfo.getPhoneNum());
+		member.setBirth(newInfo.getBirth());
+		member.setAccount(new Account(newInfo.getBank(), newInfo.getBankNumber()));
+		memberRepository.save(member);
+
+		return member;
+	}
+
 	public Member updatePassword(String id, String password) {
 		Optional<Member> memberWrapper = memberRepository.findById(id);
 		if(!memberWrapper.isPresent())

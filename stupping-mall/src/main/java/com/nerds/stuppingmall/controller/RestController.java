@@ -8,6 +8,7 @@ import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

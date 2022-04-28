@@ -2,6 +2,7 @@ package com.nerds.stuppingmall.service.member;
 
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.MyPageResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,31 @@ public class MemberDetailsService {
 	public Member findMemberById(String id) {
 		return memberRepository.findById(id).get();
 	}
-	
+
+	public MyPageResponseDto getMyPage(String id) {
+		Member member = memberRepository.findById(id).get();
+		return MyPageResponseDto.builder()
+				.id(member.get_id())
+				.name(member.getName())
+				.email(member.getEmail())
+				.phoneNum(member.getPhoneNum())
+				.birth(member.getBirth())
+				.man(member.isMan())
+				.account(member.getAccount())
+				.balance(member.getBalance())
+				.build();
+	}
+
+	public List<String> getMyPicks(String id) {
+		Member member = memberRepository.findById(id).get();
+		return member.getMyPicks();
+	}
+
+	public List<String> getMyRecentFinds(String id) {
+		Member member = memberRepository.findById(id).get();
+		return member.getRecentFinds();
+	}
+
 	public Page<Member> findAllMembers(int curPage) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Page<Member> members = memberRepository.findAll(pageable);

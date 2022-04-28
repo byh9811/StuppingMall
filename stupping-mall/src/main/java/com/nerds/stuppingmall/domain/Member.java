@@ -33,4 +33,5 @@ public class Member {
 	private List<String> myPicks;
 	private Account account;
 	private int balance;
+	private List<String> recentFinds;
 }

@@ -1,5 +1,8 @@
 package com.nerds.stuppingmall.controller;
 
+import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
+import com.nerds.stuppingmall.dto.MyPageResponseDto;
+import com.nerds.stuppingmall.service.order.OrderSearchService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,10 @@ import com.nerds.stuppingmall.service.member.MemberModifyService;
 import com.nerds.stuppingmall.service.order.OrderRegisterService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,16 +32,51 @@ public class CustomerController {
 	final MemberDeregisterService memberDeregisterService;
 	final MemberModifyService memberModifyService;
 	final OrderRegisterService orderRegisterService;
+	final OrderSearchService orderSearchService;
+
+	@GetMapping("/myOrders")
+	public @ResponseBody HashMap<String, List<Order>> getMyOrders(@AuthenticationPrincipal Authentication authentication) {
+		List<Order> myOrders = orderSearchService.findMyOrders(authentication.getId());
+
+		HashMap<String, List<Order>> json = new HashMap<>();
+		json.put("orders", myOrders);
+
+		return json;
+	}
+
+	@GetMapping("/myPicks")
+	public @ResponseBody HashMap<String, List<String>> getMyPicks(@AuthenticationPrincipal Authentication authentication) {
+		List<String> myPicks = memberDetailsService.getMyPicks(authentication.getId());
+
+		HashMap<String, List<String>> json = new HashMap<>();
+		json.put("picks", myPicks);
+
+		return json;
+	}
+
+	@GetMapping("/myRecentFinds")
+	public @ResponseBody HashMap<String, List<String>> myRecentFinds(@AuthenticationPrincipal Authentication authentication) {
+		List<String> myFinds = memberDetailsService.getMyRecentFinds(authentication.getId());
+
+		HashMap<String, List<String>> json = new HashMap<>();
+		json.put("finds", myFinds);
+
+		return json;
+	}
 
 	@GetMapping("/myPage")
 	public String MyPageDetail(@AuthenticationPrincipal Authentication authentication, Model model) {
-		Member member = memberDetailsService.findMemberById(authentication.getId());
-		Member[] members = new Member[1];
-		members[0] = member;
-		model.addAttribute("members", members);
+		MyPageResponseDto myPageDto = memberDetailsService.getMyPage(authentication.getId());
+		model.addAttribute("myInfo", myPageDto);
 		return "memberInfo";
 	}
-	
+
+	@PostMapping("/updateMyInfo")
+	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, AccessibleInfoRequestDto accessibleInfoRequestDto) {
+		memberModifyService.updateInfo(authentication.getId(), accessibleInfoRequestDto);
+		return "redirect:/customer/myPage";
+	}
+
 	@PostMapping("/leave")
 	public String leave(@AuthenticationPrincipal Authentication authentication) {
 		memberDeregisterService.removeMember(authentication.getId());

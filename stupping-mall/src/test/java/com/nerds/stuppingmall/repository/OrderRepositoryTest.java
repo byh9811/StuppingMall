@@ -67,7 +67,7 @@ public class OrderRepositoryTest {
 		
 		// when
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
-		Page<Order> orderPages = orderRepository.customFindOrdersByCustomerId(pageable, customerId);
+		List<Order> orderPages = orderRepository.findOrdersByCustomerId(pageable, customerId);
 		
 		// then
 		for(Order order: orderPages.getContent())
