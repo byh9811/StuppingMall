@@ -4,6 +4,7 @@ import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.member.MemberModifyService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,7 +30,7 @@ public class SignController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/findUserId")
+	@GetMapping("/findUserId")
 	public @ResponseBody String findMemberId(HttpServletRequest request, String email, String key) {
 		if(request.getSession().getAttribute(email).equals(key))
 			return "redirect:/error/incorrectKey";
