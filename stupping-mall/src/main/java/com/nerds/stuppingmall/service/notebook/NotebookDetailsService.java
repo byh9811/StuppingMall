@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
+import com.nerds.stuppingmall.dto.NotebookListResponseDto;
 import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
@@ -19,7 +19,7 @@ public class NotebookDetailsService {
 	final NotebookRepository notebookRepository;
 	final MemberRepository memberRepository;
 	
-	public NotebookInfoResponseDto findNotebook(String id) {
+	public NotebookListResponseDto findNotebook(String id) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(id);
 
 		if(!notebookWrapper.isPresent())
@@ -27,7 +27,7 @@ public class NotebookDetailsService {
 		
 		Notebook notebook = notebookWrapper.get();
 		
-		return NotebookInfoResponseDto.builder()
+		return NotebookListResponseDto.builder()
 				.name(notebook.getName())
 				.supplierName(memberRepository.findById(notebook.getSupplierId()).get().getName())
 				.registerDate(notebook.getRegisterDate())

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
-import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
+import com.nerds.stuppingmall.dto.NotebookListResponseDto;
 import com.nerds.stuppingmall.service.notebook.NotebookDeregisterService;
 import com.nerds.stuppingmall.service.notebook.NotebookRegisterService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
@@ -41,7 +41,7 @@ public class SupplierController {
 	
 	@GetMapping("/myNotebooks")
 	public String getMyNotebooks(int curPage, String sortingOrder, @AuthenticationPrincipal Authentication authentication, Model model) {
-		Page<NotebookInfoResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(curPage, sortingOrder, authentication.getId());
+		Page<NotebookListResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(curPage, sortingOrder, authentication.getId());
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());
