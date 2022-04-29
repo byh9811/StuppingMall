@@ -38,7 +38,6 @@ public class Notebook {
 	private int ssdSize;
 	private int hddSize;
 	private double batterySize;
-	private String usage;
 	
 	@Override
 	public boolean equals(Object o) {

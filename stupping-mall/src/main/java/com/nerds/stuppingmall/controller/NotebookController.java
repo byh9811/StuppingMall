@@ -3,6 +3,7 @@ package com.nerds.stuppingmall.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.domain.Notebook;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +25,9 @@ public class NotebookController {
 	
 	@GetMapping("/notebookInfo")
 	public String getProductInfoById(String id, Model model) {
-		NotebookListResponseDto notebook = notebookDetailsService.findNotebook(id);
-		// 단일 검색 페이지 만들면 단일값 리턴으로 고칠것
-		List<NotebookListResponseDto> notebookList = new ArrayList<>();
-		notebookList.add(notebook);
-		
-		model.addAttribute("notebooks", notebookList);
+		Notebook notebook = notebookDetailsService.findNotebook(id);
+
+		model.addAttribute("notebook", notebook);
 		return "notebookInfo";
 	}
 

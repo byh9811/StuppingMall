@@ -1,9 +1,5 @@
 package com.nerds.stuppingmall.dto;
 
-import java.util.List;
-
-import com.nerds.stuppingmall.enumerate.Usage;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
