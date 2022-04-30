@@ -7,6 +7,8 @@ import com.nerds.stuppingmall.repository.CategoryRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryStatusService {
@@ -19,5 +21,9 @@ public class CategoryStatusService {
 							.gpuNames(categoryRepository.findById("GpuName").get().getList())
 							.registerYears(categoryRepository.findById("RegistYear").get().getList())
 							.build();
+	}
+
+	public List<String> getExistingCategory(String category) {
+		return categoryRepository.findById(category).get().getList();
 	}
 }

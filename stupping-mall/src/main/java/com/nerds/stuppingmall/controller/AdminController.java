@@ -3,10 +3,15 @@ package com.nerds.stuppingmall.controller;
 import com.nerds.stuppingmall.domain.Introduction;
 import com.nerds.stuppingmall.domain.Knowhow;
 import com.nerds.stuppingmall.domain.Report;
+import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.introduction.IntroductionModifyService;
+import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
 import com.nerds.stuppingmall.service.knowhow.KnowhowModifyService;
+import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
+import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.report.ReportSearchService;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +24,7 @@ import com.nerds.stuppingmall.service.member.MemberDetailsService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -30,6 +36,19 @@ public class AdminController {
 	final ReportSearchService reportSearchService;
 	final IntroductionModifyService introductionModifyService;
 	final KnowhowModifyService knowhowModifyService;
+	final NotebookSearchService notebookSearchService;
+	final IntroductionSearchService introductionSearchService;
+	final KnowhowSearchService knowhowSearchService;
+
+	@GetMapping("/main")
+	public String adminMain(@AuthenticationPrincipal Authentication authentication, Model model) {
+		model.addAttribute("date", LocalTime.now());
+		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
+		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
+		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
+
+		return "adminMain";
+	}
 
 	@GetMapping("/allMembers")
 	public String allMemberList(Model model) {

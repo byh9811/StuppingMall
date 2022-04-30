@@ -2,7 +2,12 @@ package com.nerds.stuppingmall.controller;
 
 import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
 import com.nerds.stuppingmall.dto.MyPageResponseDto;
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
+import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
+import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +26,7 @@ import com.nerds.stuppingmall.service.order.OrderRegisterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +39,19 @@ public class CustomerController {
 	final MemberModifyService memberModifyService;
 	final OrderRegisterService orderRegisterService;
 	final OrderSearchService orderSearchService;
+	final NotebookSearchService notebookSearchService;
+	final IntroductionSearchService introductionSearchService;
+	final KnowhowSearchService knowhowSearchService;
+
+	@GetMapping("/main")
+	public String customerMain(@AuthenticationPrincipal Authentication authentication, Model model) {
+		model.addAttribute("date", LocalTime.now());
+		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
+		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
+		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
+
+		return "customerMain";
+	}
 
 	@GetMapping("/myOrders")
 	public @ResponseBody HashMap<String, List<Order>> getMyOrders(@AuthenticationPrincipal Authentication authentication) {

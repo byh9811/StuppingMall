@@ -1,5 +1,10 @@
 package com.nerds.stuppingmall.controller;
 
+import com.nerds.stuppingmall.domain.Introduction;
+import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.service.category.CategoryStatusService;
+import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
+import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,6 +25,7 @@ import com.nerds.stuppingmall.service.order.OrderSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -30,7 +36,24 @@ public class SupplierController {
 	final NotebookSearchService notebookSearchService;
 	final NotebookDeregisterService notebookDeregisterService;
 	final OrderSearchService orderSearchService;
-	
+	final IntroductionSearchService introductionSearchService;
+	final KnowhowSearchService knowhowSearchService;
+
+	@GetMapping("/main")
+	public String supplierMain(@AuthenticationPrincipal Authentication authentication, Model model) {
+		model.addAttribute("date", LocalTime.now());
+		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
+		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
+		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
+
+		Page<NotebookResponseBasicDto> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
+		model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
+		model.addAttribute("curPage", notebookResponseBasicDtoPages.getNumber());
+		model.addAttribute("maxPage", notebookResponseBasicDtoPages.getTotalPages());
+
+		return "supplierMain";
+	}
+
 	@PostMapping("/addNotebook")
 	public String addNotebook(@AuthenticationPrincipal Authentication authentication, NotebookAddRequestDto notebookAddRequestDto) {
 		if(notebookAddRequestDto.getGpuName().isEmpty())
