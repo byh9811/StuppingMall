@@ -3,7 +3,7 @@ const carousel_container = document.querySelector('.carousel_container');
 
 for(let i=0; i<shift.length; i++){
     shift[i].addEventListener('mouseover',()=>{
-        move(i * -33.3);
+        move(i * -100);
     })
 }
 function move(number){
