@@ -81,16 +81,6 @@ public class PageController {
 	public String notebookAddPage() {
 		return "notebookAddPage";
 	}
-	
-	@GetMapping("/notebookCategorySearchPage")
-	public String notebookCategorySearchPage(Model model) {
-		NotebookInfoRequestDto categories = categoryStatusService.getExistingCategories();
-		model.addAttribute("supplierNames", categories.getSupplierNames());
-		model.addAttribute("cpuNames", categories.getCpuNames());
-		model.addAttribute("gpuNames", categories.getGpuNames());
-		model.addAttribute("manufactureYears", categories.getRegisterYears());
-		return "notebookCategorySearchPage";
-	}
 
 	@GetMapping("/introductionModifyPage")
 	public String introductionModifyPage() {

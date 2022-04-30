@@ -3,6 +3,7 @@ package com.nerds.stuppingmall.controller;
 import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
 import com.nerds.stuppingmall.dto.MyPageResponseDto;
 import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.service.category.CategoryStatusService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
 import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
@@ -42,11 +43,13 @@ public class CustomerController {
 	final NotebookSearchService notebookSearchService;
 	final IntroductionSearchService introductionSearchService;
 	final KnowhowSearchService knowhowSearchService;
+	final CategoryStatusService categoryStatusService;
 
 	@GetMapping("/main")
 	public String customerMain(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
+		model.addAttribute("categories", categoryStatusService.getCategoryNames());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 
@@ -54,33 +57,28 @@ public class CustomerController {
 	}
 
 	@GetMapping("/myOrders")
-	public @ResponseBody HashMap<String, List<Order>> getMyOrders(@AuthenticationPrincipal Authentication authentication) {
+	public String getMyOrders(@AuthenticationPrincipal Authentication authentication, Model model) {
 		List<Order> myOrders = orderSearchService.findMyOrders(authentication.getId());
 
-		HashMap<String, List<Order>> json = new HashMap<>();
-		json.put("orders", myOrders);
+		model.addAttribute("orders", myOrders);
 
-		return json;
+		return "orderList";
 	}
 
 	@GetMapping("/myPicks")
-	public @ResponseBody HashMap<String, List<String>> getMyPicks(@AuthenticationPrincipal Authentication authentication) {
+	public String getMyPicks(@AuthenticationPrincipal Authentication authentication, Model model) {
 		List<String> myPicks = memberDetailsService.getMyPicks(authentication.getId());
-
-		HashMap<String, List<String>> json = new HashMap<>();
-		json.put("picks", myPicks);
-
-		return json;
+		model.addAttribute("picks", myPicks);
+		return "pickList";
 	}
 
 	@GetMapping("/myRecentFinds")
-	public @ResponseBody HashMap<String, List<String>> myRecentFinds(@AuthenticationPrincipal Authentication authentication) {
+	public String myRecentFinds(@AuthenticationPrincipal Authentication authentication, Model model) {
 		List<String> myFinds = memberDetailsService.getMyRecentFinds(authentication.getId());
 
-		HashMap<String, List<String>> json = new HashMap<>();
-		json.put("finds", myFinds);
+		model.addAttribute("recentFinds", myFinds);
 
-		return json;
+		return "recentFindList";
 	}
 
 	@GetMapping("/myPage")

@@ -8,6 +8,7 @@ import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,10 @@ public class CategoryController {
     final CategoryStatusService categoryStatusService;
 
     @GetMapping("/category")
-    public Map<String, List<String>> getCategory(String category) {
+    public String getCategory(String category, Model model) {
         List<String> cateList = categoryStatusService.getExistingCategory(category);
-        Map<String, List<String>> json = new HashMap<>();
-        json.put(category, cateList);
+        model.addAttribute("category", cateList);
 
-        return json;
+        return "categoryElementPage";
     }
 }

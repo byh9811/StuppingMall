@@ -1,5 +1,6 @@
 package com.nerds.stuppingmall.service.category;
 
+import com.nerds.stuppingmall.domain.Category;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
@@ -8,19 +9,17 @@ import com.nerds.stuppingmall.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryStatusService {
 	final CategoryRepository categoryRepository;
 	
-	public NotebookInfoRequestDto getExistingCategories() {
-		return NotebookInfoRequestDto.builder()
-							.supplierNames(categoryRepository.findById("SupplierName").get().getList())
-							.cpuNames(categoryRepository.findById("CpuName").get().getList())
-							.gpuNames(categoryRepository.findById("GpuName").get().getList())
-							.registerYears(categoryRepository.findById("RegistYear").get().getList())
-							.build();
+	public List<String> getCategoryNames() {
+		List<Category> categories = categoryRepository.findAll();
+
+		return categories.stream().map(category -> category.get_id()).collect(Collectors.toList());
 	}
 
 	public List<String> getExistingCategory(String category) {
