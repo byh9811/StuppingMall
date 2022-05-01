@@ -1,0 +1,199 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/authMain.css(ver=${date})}">
+    <script defer th:href="@{/js/authMain.js(ver=${date})}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header_contents">
+                <div class="main_logo">
+                    <h2><a href="">Stupping</a></h2>
+                </div>
+
+                <ul class="sub_nav">
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                    <li><a href="/signUpPage">SignUp</a></li>
+                    <li><a href="/customer/myPage">MyPage</a></li>
+                    <!-- <li>
+                        <form action="#" method="get" class="main_search">
+                            <input type="search" name="userSearchItem" id="userSearchItem" placeholder="상품 or 회사이름">
+                            <input type="submit" value="search">
+                        </form>
+                    </li> -->
+
+                </ul>
+                <div class="sub_toggle_nav"></div>
+                <form action="#" method="get" class="main_search_2">
+                    <input type="search" name="userSearchItem" id="userSearchItem" placeholder="상품 or 회사이름">
+                    <input type="submit" value="search">
+                </form>
+            </div> <!-- 여기는 fixed로 돼서 둥둥 떠다님. -->
+            <div class="carousel">
+                <!--사실상 첫 번째 요소 header제일 상단에 위치!-->
+                <th:block th:each="topNotebook: ${topNotebooks}">
+                    <a th:onclick="|javascript:getItemById('${topNotebook._id}')|" class="carousel_container">
+                        <!-- a태그로 감쌌음. -->
+                        <div class="item">
+                            <div class="image">
+                                <img th:src="${topNotebook.img}" alt="" srcset="">
+                            </div>
+                        </div>
+                    </a>
+                </th:block>
+                <div class="carousel_shift">
+                    <th:block th:each="num : ${#numbers.sequence(1,3)}">
+                        <div class="shift"></div>
+                    </th:block>
+                </div>
+            </div> <!-- ======= << carousel 끝 >> =======-->
+        </header>
+        <nav class="main_nav">
+            <ul class="main_bar">
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+        
+        
+                        </div>
+                    </a></li>
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+                            <h1>TOP8</h1>
+                            <img
+                                src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-eight-womens-day-flatart-icons-outline-flatart./img/img.png" />
+                        </div>
+                    </a></li>
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+                            <h1>CATEGORY</h1>
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/cat./img/img.png" />
+                        </div>
+                    </a></li>
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+                            <h1>EXPLAIN</h1>
+                            <img
+                                src="https://img.icons8.com/external-wanicon-lineal-wanicon/64/000000/external-presentation-world-oceans-day-wanicon-lineal-wa./img/img.png" />
+                        </div>
+                    </a></li>
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+                            <h1>TO BUY</h1>
+                            <img src="https://img.icons8.com/pastel-glyph/64/000000/sale-tim./img/img.png" />
+                        </div>
+                    </a></li>
+                <li class="hover"><a href="">
+                        <div class="menu_icon">
+                            <h1>GRAPH</h1>
+                            <img
+                                src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/000000/external-graph-cyber-monday-vitaliy-gorbachev-fill-vitaly-gorb./img/img.png" />
+                        </div>
+                    </a></li>
+            </ul>
+        </nav>
+        <main class="main">
+            <div class="content top8">
+                <div class="text">
+                    <h4 id="title">TOP8</h4>
+                </div>
+                <div class="stage">
+                    <div class="carousel_3d">
+                        <th:block th:each="recentNotebook : ${recentNotebooks}">
+                            <div class="panel">
+                                <a th:href="@{/notebookInfo(id=${recentNotebook.id})}" class="item_link">
+                                    <div class="item">
+                                        <div th:text="${recentNotebookStat.count}" class="number"></div>
+                                        <div class="item_img">
+                                            <img th:src="${recentNotebook.img}" alt="">
+                                        </div>
+                                        <div class="item_ex">
+                                            <div class="text_box">
+                                                <p th:text="recentNotebook.name">이름 : </p>
+                                                <p th:text="recentNotebook.price">가격 : </p>
+                                                <p th:text="recentNotebook.weight">무게 : </p>
+                                                <p th:text="recentNotebook.screenSize">화면크기 : </p>
+                                                <p th:text="recentNotebook.cpuName">CPU : </p>
+                                                <p th:text="recentNotebook.ramSize">RAM : </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <div class="content category">
+                <div class="text">
+                    <h4 id="title">category</h4>
+                </div>
+                <div class="category_container">
+                    <div class="category_box">
+                        <th:block th:each="categoryName : ${categoryNames}">
+                            <div class="category_items">
+                                <div class="items_name">
+                                    <span th:text="${categoryName}"><h3></h3></span>
+                                </div>
+                                <div class="items_contents"></div>
+                                <input type="button" value="search" class="cate_ajax_button">
+                            </div>
+                        </th:block>
+                    </div>
+                    <div class="category_ajax"></div>
+                </div>
+            </div>
+
+            <div class="content advantage">
+                <div class="text">
+                    <h4 id="title">홈페이지 장점</h4>
+                </div>
+                <div class="advantage_box">
+                    <th:block th:each="{introduction: ${introductions}">
+                        <div class="advantage_items">
+                            <div class="logo">
+                                <span>
+                                    <h3 th:text="${introduction.title}"></h3>
+                                </span>
+                            </div>
+                            <div th:text="${introduction.content}" class="ad_explain"></div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+
+            <div class="content good_buy">
+                <div class="text">
+                    <h4 id="title">우잘사</h4>
+                </div>
+                <th:block th:each="knowhow: ${knowhows}">
+                    <div class="knowhow">
+                        <div class="knowhow_method">
+                            <span>
+                                <h3 th:text="${knowhow.purpose}"></h3>
+                            </span>
+                        </div>
+                        <ul class="knowhow_list">
+                            <li th:text="${knowhow.explanation1}"></li>
+                            <li th:text="${knowhow.explanation2}"></li>
+                            <li th:text="${knowhow.explanation3}"></li>
+                        </ul>
+                    </div>
+                </th:block>
+            </div>    
+        </main>
+        <footer class="footer"></footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+
+</html>

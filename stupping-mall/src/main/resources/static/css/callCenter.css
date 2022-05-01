@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+    background-color: rgb(56, 54, 54);
+}
+
+.call_container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: transparent;
+    position: relative;
+}
+.call_container > .title{
+    height : 30vh;
+    width : fit-content;
+    font-size : 2rem;
+    margin : 3% auto;
+}

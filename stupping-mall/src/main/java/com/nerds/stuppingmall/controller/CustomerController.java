@@ -53,7 +53,7 @@ public class CustomerController {
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 
-		return "customerMain";
+		return "customer/customerMain";
 	}
 
 	@GetMapping("/myOrders")

@@ -58,7 +58,7 @@ public class PageController {
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("date", LocalTime.now());
-		return "signIn";
+		return "common/login";
 	}
 	
 	@GetMapping("/memberBanPage")
