@@ -8,17 +8,20 @@ import com.nerds.stuppingmall.repository.KnowhowRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class KnowhowModifyService {
 	KnowhowRepository knowhowRepository;
-	
-	public Knowhow updateKnowhow(int index, Knowhow newKnowhow) {
-		Knowhow knowhow = knowhowRepository.findById(index).get();
-		
-		knowhow.setPurpose(newKnowhow.getPurpose());
-		knowhow.setExplanation(newKnowhow.getExplanation());
-		
-		return knowhowRepository.save(knowhow);
+
+	public void updateKnowhow(List<Knowhow> newKnowhows) {
+		for(Knowhow newKnowhow: newKnowhows) {
+			Knowhow knowhow = new Knowhow();
+			knowhow.setPurpose(newKnowhow.getPurpose());
+			knowhow.setExplanation(newKnowhow.getExplanation());
+
+			knowhowRepository.save(knowhow);
+		}
 	}
 }

@@ -9,17 +9,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
-import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
+import com.nerds.stuppingmall.dto.NotebookListResponseDto;
 import com.nerds.stuppingmall.dto.NotebookInfoResponseSimpleDto;
-import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
 
@@ -70,7 +66,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebookBasicDtosBySupplierId(pageable, sort, supplierId);
 	}
 
-	public Page<NotebookInfoResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
+	public Page<NotebookListResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -104,7 +100,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebookBasicDtosByName(pageable, sort, name);
 	}
 
-	public Page<NotebookInfoResponseDto> findNotebooksByName(int curPage, String sortingOrder, String name) {
+	public Page<NotebookListResponseDto> findNotebooksByName(int curPage, String sortingOrder, String name) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -121,7 +117,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByName(pageable, sort, name);
 	}
 
-	public Page<NotebookInfoResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, NotebookInfoRequestDto notebookInfoRequestDto) {
+	public Page<NotebookListResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, NotebookInfoRequestDto notebookInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -138,7 +134,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByCategory(pageable, sort, notebookInfoRequestDto);
 	}
 	
-	public Page<NotebookInfoResponseDto> getMyPicks(int curPage, String customerId) {
+	public Page<NotebookListResponseDto> getMyPicks(int curPage, String customerId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		
 		Member customer = memberRepository.findById(customerId).get();

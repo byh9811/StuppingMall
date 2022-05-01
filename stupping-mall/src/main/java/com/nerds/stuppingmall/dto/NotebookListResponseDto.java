@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class NotebookInfoResponseSimpleDto {
+public class NotebookListResponseDto {
 	private String id;
 	private String name;
-	private int price;
 	private String img;
+	private int price;
 	private String cpuName;
-	private double weight;
-	private double screenSize;
-	private int ramSize;
 }

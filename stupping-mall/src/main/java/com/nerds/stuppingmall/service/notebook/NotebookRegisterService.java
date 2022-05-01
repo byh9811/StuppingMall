@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.nerds.stuppingmall.domain.Category;
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
-import com.nerds.stuppingmall.enumerate.Usage;
 import com.nerds.stuppingmall.repository.CategoryRepository;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
@@ -56,7 +55,6 @@ public class NotebookRegisterService {
 								.ssdSize(notebookAddRequestDto.getSsdSize())
 								.hddSize(notebookAddRequestDto.getHddSize())
 								.batterySize(notebookAddRequestDto.getBatterySize())
-								.usage(Usage.DOCUMENT.getValue())
 								.build();
 								
 		return notebookRepository.save(notebook).get_id();

@@ -13,15 +13,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.nerds.stuppingmall.StuppingMallApplication;
 import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.dto.NotebookInfoResponseDto;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = StuppingMallApplication.class)

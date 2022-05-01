@@ -18,17 +18,6 @@ import com.nerds.stuppingmall.domain.Order;
 public class CustomizedOrderRepositoryImpl implements CustomizedOrderRepository {
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
-	@Override
-	public Page<Order> customFindOrdersByCustomerId(Pageable pageable, String customerId) {
-		Query query = new Query(Criteria.where("customerId").is(customerId));
-		query.with(pageable);
-
-		List<Order> myOrders = mongoTemplate.find(query, Order.class, "orders");
-		return PageableExecutionUtils.getPage(
-				myOrders, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), Order.class));
-	}
 
 	@Override
 	public Map<String, Long> customCountWeekSalesByNotebookId(String notebookId) {

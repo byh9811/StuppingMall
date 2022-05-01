@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {	// 필요한 
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 			.and()
-				.exceptionHandling().accessDeniedPage("/forbidden");
+				.exceptionHandling().accessDeniedPage("/error/forbidden");
 	}
 	
 	@Bean

@@ -28,27 +28,25 @@ public class PageController {
 	final NotebookSearchService notebookSearchService;
 	final IntroductionSearchService introductionSearchService;
 	final KnowhowSearchService knowhowSearchService;
-	
+
 	@GetMapping("/")
-	public String main(@AuthenticationPrincipal Authentication authentication, Model model) {
-		model.addAttribute("date", LocalTime.now());
-		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
-		model.addAttribute("categories", categoryStatusService.getExistingCategories());
-		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
+	public String main(@AuthenticationPrincipal Authentication authentication) {
+		String redirectURI;
+
 		if(authentication == null) {
-
-		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("CUSTOMER"))) {
-			
-		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("SUPPLIER"))) {
-			Page<NotebookResponseBasicDto> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
-			model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
-			model.addAttribute("curPage", notebookResponseBasicDtoPages.getNumber());
-			model.addAttribute("maxPage", notebookResponseBasicDtoPages.getTotalPages());
-		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
-
+			redirectURI = "/login";
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) {
+			redirectURI = "/customer/main";
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_SUPPLIER"))) {
+			redirectURI = "/supplier/main";
+		} else if(authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+			redirectURI = "/admin/main";
+		} else {
+			redirectURI = "/error/forbidden";
+			System.out.println("error occured");
 		}
-		return "main";
+
+		return "redirect:"+redirectURI;
 	}
 
 	@GetMapping("/signUpPage")
@@ -83,14 +81,20 @@ public class PageController {
 	public String notebookAddPage() {
 		return "notebookAddPage";
 	}
-	
-	@GetMapping("/notebookCategorySearchPage")
-	public String notebookCategorySearchPage(Model model) {
-		NotebookInfoRequestDto categories = categoryStatusService.getExistingCategories();
-		model.addAttribute("supplierNames", categories.getSupplierNames());
-		model.addAttribute("cpuNames", categories.getCpuNames());
-		model.addAttribute("gpuNames", categories.getGpuNames());
-		model.addAttribute("manufactureYears", categories.getRegisterYears());
-		return "notebookCategorySearchPage";
+
+	@GetMapping("/introductionModifyPage")
+	public String introductionModifyPage() {
+		return "introductionModifyPage";
 	}
+
+	@GetMapping("/knowhowModifyPage")
+	public String knowhowModifyPage() {
+		return "knowhowModifyPage";
+	}
+
+	@GetMapping("/emailTestPage")
+	public String emailTestPage() {
+		return "mailtest";
+	}
+
 }
