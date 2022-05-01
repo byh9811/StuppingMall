@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Notebook Category Search Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        form.form-example {
+            display: table;
+        }
+
+        div.form-example {
+            display: table-row;
+        }
+
+        label,
+        input {
+            display: table-cell;
+            margin-bottom: 10px;
+        }
+
+        label {
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Search Notebook</h1>
+    <hr>
+    <form action="/notebooksInfo/category" method="get" class="form-example">
+        <div class="form-example">
+            <label>Supplier Name</label>
+            <div th:each="supplierName : ${supplierNames}" class="form-check form-check-inline">
+                <input type="checkbox" name="supplierNames" th:value="${supplierName}" class="form-check-input">
+                <input type="hidden" name="_supplierNames" value="on">
+                <label th:text="${supplierName}" class="form-check-label"></label>
+            </div>
+        </div>
+        <div class="form-example">
+            <label for="name">Cpu Name</label>
+            <div th:each="cpuName : ${cpuNames}" class="form-check form-check-inline">
+                <input type="checkbox" name="cpuNames" th:value="${cpuName}" class="form-check-input">
+                <input type="hidden" name="_cpuNames" value="on">
+                <label th:text="${cpuName}" class="form-check-label"></label>
+            </div>
+        </div>
+        <div class="form-example">
+            <label for="name">Gpu Name</label>
+            <div th:each="gpuName : ${gpuNames}" class="form-check form-check-inline">
+                <input type="checkbox" name="gpuNames" th:value="${gpuName}" class="form-check-input">
+                <input type="hidden" name="_gpuNames" value="on">
+                <label th:text="${gpuName}" class="form-check-label"></label>
+            </div>
+        </div>
+        <div class="form-example">
+            <label for="name">register Date</label>
+            <div th:each="registerYear : ${registerYears}" class="form-check form-check-inline">
+                <input type="checkbox" name="registerYears" th:value="${registerYear}" class="form-check-input">
+                <input type="hidden" name="registerYears" value="on">
+                <label th:text="${registerYear}" class="form-check-label"></label>
+            </div>
+        </div>
+        <div class="form-example">
+            <input type="submit" value="Subscribe!">
+        </div>
+    </form>
+    <hr>
+</body>
+
+</html>

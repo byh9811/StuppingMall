@@ -78,3 +78,21 @@ function here(deg){
     carousel_3d.style.transition = "all 1s";
     carousel_3d.style.transform = `rotateY(${deg})`;
 }
+
+
+
+// ======================= hover하면 속성 더 보이기!!!! =======================
+const panel_box = document.querySelectorAll('.panel_box');
+
+for(let i=0; i<panel_box.length; i++){
+    panel_box[i].addEventListener('mouseover',()=>{
+        // .look class를 추가해주세요!!!
+        panel_box[i].className.add('look');
+    })
+    panel_box[i].addEventListener('mouseleave',()=>{
+        // .look class를 추가해주세요!!!
+        panel_box[i].className.remove('look');
+    })
+}
+//toggle함수!!!!
+// 

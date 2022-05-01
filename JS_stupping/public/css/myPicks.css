@@ -1,0 +1,45 @@
+*{
+    margin : 0;
+    padding : 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+html,body{
+    min-height: 100vh;
+    background-color: darkgray;
+}
+.container{
+    width : 100vw;
+    min-height : 100vh;
+    background-color: rgb(56, 54, 54);
+    position : relative;
+}
+.container > .title{
+    width : fit-content;
+    height : fit-content;
+    padding : 2% 3%;
+    border : 2px solid black;
+    margin : 0 auto;
+    color : white;
+    font-weight: 800;
+}
+.container > .item_container{
+    width : 80%;
+    min-height : 80vh;
+    background-color: orange;
+    position : absolute;
+    margin : 3% 0;
+    left : 50%;
+    transform : translateX(-50%);
+    overflow-y: scroll;
+}
+
+.item_list_box{
+    height : 40vh;
+    width : 100%;
+    display : flex;
+}
+.item_box > .item{
+    min-width : 25%;
+    border : 3px solid white;
+}

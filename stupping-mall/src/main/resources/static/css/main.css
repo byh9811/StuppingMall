@@ -597,6 +597,11 @@ color : black;}
 
 /* =========== hover class ===========*/
 .hover{
-    display : none;
-    transition : all 0.5s;
+    display : none; /*나타나라!*/
+    transition : all 0.5s; 
 }
+.look{
+    display : block;
+    transition: all 0.5s;
+}
+/*hover가 되면 look 불러오기!!*/

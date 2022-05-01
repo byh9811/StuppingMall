@@ -1,0 +1,605 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-collapse: collapse;
+}
+
+html,
+body {
+    min-height: 100vh;
+    background-color: rgb(65, 63, 63);
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 90vw;
+    min-height: 100vh;
+    background-color: transparent;
+    margin: 0 auto;
+    /* border : 3px solid white; */
+}
+
+/*=========== << header >> ===========*/
+.header {
+    position: relative;
+    width: 100%;
+    /* border : 3px solid white; */
+}
+
+.header a {
+    color: white;
+}
+
+.header_contents {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    z-index: 1;
+    /* border : 4px solid black; */
+}
+
+.header_contents>.main_logo {
+    padding: 4vh 5vh;
+}
+
+.header_contents>.sub_nav {
+    display: flex;
+    /* border : 3px solid white; */
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_contents>.sub_nav>li {
+    padding: 2vh 2vh;
+}
+
+.header_contents>.sub_nav>li:nth-child(5) {
+    display: none;
+}
+
+.header_contents>.sub_nav>li:hover {
+    transition: all 0.5s;
+    /* transform : scale(1.2); */
+    background-color: black;
+    border-radius: 10px;
+}
+
+.header_contents>.sub_toggle_nav {
+    /* border : 2px solid black; */
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    background-color: aquamarine;
+    display: none;
+}
+
+.header_contents>.main_search {
+    display: none;
+}
+
+.header_contents>.main_search>input {
+    border: none;
+    outline: none;
+}
+
+.header_contents>.main_search_2 {
+    position: absolute;
+    top: 10vh;
+    right: 2vw;
+    /* border : 1px solid black; */
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width: fit-content;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.header_contents>.main_search_2:nth-child(1) {
+    flex-grow: 8;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.header_contents>.main_search_2:nth-child(2) {
+    flex-grow: 2;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.carousel {
+    position: relative;
+    min-width: 100vw;
+    left : -5vw;
+    height: 500px;
+    background-color: transparent;
+    background-color: rgb(48, 46, 46);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+}
+
+.carousel>a {
+    display: block;
+    min-width: 100%;
+    height: 100%;
+    /* background-color: orange; */
+    /* border-right : 3px solid black; */
+}
+
+.carousel .item {
+    width: 100%;
+    height: 100%;
+    /* border : 5px solid blue; */
+}
+
+.carousel .image {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel_shift {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    /* border : 2px solid black; */
+}
+
+.carousel_shift>.shift {
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 2px 3px;
+}
+/* ============== << MAIN _ NAV >> ==============*/
+.main_nav {
+    position: fixed;
+    right: -100px;
+    top: 20%;
+    width: 300px;
+    height: 120px;
+    z-index: 100;
+}
+
+.main_bar>* {
+    text-align: center;
+    transform: translateX(70px);
+    transition: all 0.5s;
+    margin-top: 13px;
+    margin-right: -0px;
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(36, 36, 36);
+}
+
+.main_bar>*:hover {
+    transition: all 0.5s;
+    transform: translateX(-100px);
+}
+
+.main_bar img {
+    width: 50px;
+    height: 50px;
+}
+
+.menu_icon {
+    display: flex;
+}
+
+.menu_icon>h1 {
+    line-height: 50px;
+    margin-right: 15px;
+}
+/*================ << main >> ================*/
+.main {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    /* border : 3px solid white; */
+}
+
+/*========== << top 8 carousel >> ============*/
+.main>.content {
+    /* font-size: 2.5rem; */
+    text-align: center;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    position: relative;
+    /* z-index: 1; */
+    border-radius: 10px;
+}
+
+
+.top8 .title {
+    border: 1px solid white;
+}
+
+.stage {
+    margin: 25px 0;
+    height: 500px;
+    width: 100%;
+    /* border : 3px solid white; */
+
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel_3d {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    /* animation : gogo 10s infinite linear; */
+}
+
+.panel {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* border : 2px solid black; */
+    cursor: pointer;
+    backface-visibility: hidden;
+    /*hidden으로 하면 뒷 배경이 안 보인다!!*/
+    transition : all 0.5s;
+    overflow: hidden;
+    background-color: black;
+    
+}
+.panel a{
+    color : black;
+}
+.panel:hover{
+    transition : all 0.5s;
+    height : 100%;
+    color : white;
+    background-color: transparent;
+}
+.panel:nth-child(1) {
+    transform: rotateY(0deg) translateZ(301px);
+}
+
+.panel:nth-child(2) {
+    transform: rotateY(45deg) translateZ(301px);
+}
+
+.panel:nth-child(3) {
+    transform: rotateY(90deg) translateZ(301px);
+}
+
+.panel:nth-child(4) {
+    transform: rotateY(135deg) translateZ(301px);
+}
+
+.panel:nth-child(5) {
+    transform: rotateY(180deg) translateZ(301px);
+}
+
+.panel:nth-child(6) {
+    transform: rotateY(225deg) translateZ(301px);
+}
+
+.panel:nth-child(7) {
+    transform: rotateY(270deg) translateZ(301px);
+}
+
+.panel:nth-child(8) {
+    transform: rotateY(315deg) translateZ(301px);
+}
+
+.panel:hover {
+    transition: all 1s;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 2px 4px, rgba(0, 0, 0, 0.9) 0px 7px 13px -3px, rgba(0, 0, 0, 0.8) 0px -3px 0px inset;
+    border-radius: 5%;
+}
+
+.panel a {
+    color: white;
+}
+
+.number {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    /* border : 2px solid white; */
+    font-size: 1.2rem;
+}
+
+.item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.item_img {
+    width: 60%;
+    height: 50%;
+    /* border : 1px solid white; */
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.item_img>img {
+    width: 100%;
+    height: 100%;
+}
+
+.item_ex {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50%;
+    width: 80%;
+    /* border : 2px solid white; */
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    text-align: center;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.text_box>p {
+    font-size: 0.8rem;
+}
+
+@keyframes gogo {
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/*============ << category >> ============*/
+.content > .text{
+    width : fit-content;
+    height : fit-content;
+    padding : 1% 1%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin : 0 auto;
+}
+.category_container{
+    width : 70vw;
+    height : 100vh;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin : 2% auto;
+}
+.category .category_box{
+    flex-grow : 1;
+    height : 30%;
+    border : 2px solid white;
+    display : flex;
+    justify-content: space-between;
+    align-items : center;
+}
+.category .category_items{
+    flex-grow: 1;
+    margin : 2% 3%;
+    height : 100%;
+    border : 1px solid black;
+}
+.category .category_items > .items_name{
+    width : fit-content;
+    height : fit-content;
+    margin : 10px auto;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.category .category_items>.items_name > span{
+    font-weight: bold;
+    color : gray
+}
+.category .category_items > .items_contents{
+    height : 50%;
+    width : 80%;
+    margin : 0 auto;
+    border : 2px solid white;
+}
+.category .category_items input[type="button"]{
+    width : 35%;
+    height : 15%;
+    background-color: transparent;
+    color : white;
+    margin : 3% 0;
+    cursor : pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius : 25%;
+    
+}
+.category .category_ajax{
+    flex-grow : 1;
+    width : 100%;
+    height : 50%;
+    border : 2px solid white;
+    overflow-y: scroll;
+}
+/*============== << 홈페이지 장점 >> ==============*/
+.advantage > .advantage_box{
+    width : 70%;
+    height : 50vh;
+    border : 2px solid white;
+    margin : 5% auto;
+    display : flex;
+    align-items: center;
+}
+.advantage>.advantage_box > .advantage_items{
+    flex-grow: 1;
+    height : 100%;
+    border : 2px solid black;
+    background-color: white;
+}
+.advantage>.advantage_box>.advantage_items:nth-child(1){background-color: gray;}
+.advantage>.advantage_box>.advantage_items:nth-child(2){background-color: rgb(62, 60, 60);}
+.advantage>.advantage_box>.advantage_items:nth-child(3){background-color: rgb(152, 210, 245);}
+.advantage>.advantage_box>.advantage_items:nth-child(4){background-color: rgb(100, 207, 207);}
+
+.advantage_items > .logo{
+    width : fit-content;
+    height : fit-content;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    margin : 0 auto;
+    padding : 2% 2%;
+}
+.advantage_items > .ad_explain{
+    width : 80%;
+    height : 70%;
+    margin : 50% auto;
+    background-color: beige;
+    transform : translateY(-30%);
+}
+/*============= << 우잘사 >> =============*/
+.good_buy > .knowhow{
+    width : 80%;
+    height : 40vh;
+    margin : 5% auto;
+    border : 3px solid white;
+    background-color: transparent;
+    position : relative;
+}
+.good_buy>.knowhow > .knowhow_method{
+    width : fit-content;
+    height : fit-content;
+    padding : 2% 2%;
+    background-color: black;
+    position : absolute;
+    top : 50%;
+    left : 5%;
+    transform : translateY(-50%);
+}
+.knowhow_list{
+    border : 1px solid black;
+    width : 60%;
+    height : 100%;
+    position : absolute;
+    right : 0;
+    display : flex;
+    flex-direction: column;
+}
+.knowhow_list > li{
+    flex-grow : 1;
+    text-align: center;
+    /* line-height: 33%; */
+}
+/*============= << class 추가 해야하는 거!! >> =============*/
+.nav_change {
+    background-color: black;
+}
+
+.search_local_change {
+    top: 0;
+}
+
+/*일단 애니메이션은 넣어놓고 작동은 안 시킴!! 선언만 함.*/
+@media screen and (max-width : 768px) {
+    .container {
+        background-color: rgb(114, 161, 215);
+    }
+
+    .header_contents {
+        flex-direction: column;
+        width: 90vw;
+    }
+
+    .header_contents>.sub_toggle_nav {
+        display: block;
+        cursor: pointer;
+        top: 13%;
+        left: 5%;
+    }
+
+    .header_contents>.main_logo {
+        border: 2px solid white;
+        width: 100%;
+        text-align: center;
+    }
+
+    .header_contents>.sub_nav {
+        flex-direction: column;
+        width: fit-content;
+        position: relative;
+        left: 0;
+    }
+
+    .header_contents>.sub_nav>li {
+        width: 90vw;
+        text-align: center;
+        cursor: pointer;
+        /* border: 2px solid white; */
+        position: relative;
+        left: 0;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .header_contents>.sub_nav>li:hover {
+        transition: all 0.5s;
+    }
+
+    .header_contents>.sub_nav>li:nth-child(5) {
+        display: flex;
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    .header_contents input[type="search"] {
+        width: 500px;
+        height: 50px;
+        /* border : 3px solid black; */
+    }
+
+    .header_contents input[type="submit"] {
+        flex-grow: 2;
+        width: 80px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .header_contents>.main_search_2 {
+        display: none;
+    }
+}
