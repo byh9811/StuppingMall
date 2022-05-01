@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/adminIndex.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="admin_nav">
+            <li><a href="">
+                    <h3>Stupping</h3>
+                </a></li>
+            <li class="list two"><a>회원정보</a></li>
+            <li class="list five"><a>노트북정보</a></li>
+            <li class="list six"><a>주문정보</a></li>
+            <li class="list eleven"><a>신고</a></li>
+        </ul>
+        <div class="main_contents">
+            <div class="ajax_contents"></div>
+        </div>
+    </div>
+
+    <script>
+        const ajax = document.querySelector('.ajax_contents');
+        const list = document.querySelectorAll('.list');
+
+        let url_list = ['member-info','notebook-info', 'order-info','report'];
+        list.forEach((value, index) => {
+            value.addEventListener('click', () => {
+                _fetch(url_list[index]);
+            })
+        })
+
+        function _fetch(url) {
+            fetch(`http://localhost:3000/admin/${url}`,get)
+                .then((response) => {
+                    response.text()
+                        .then((text) => {
+                            ajax.innerHTML = text;
+                        })
+                })
+        }
+    </script>
+</body>
+
+</html>

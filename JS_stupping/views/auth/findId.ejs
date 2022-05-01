@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/findId.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header content">
+            <!-- 캐러셀 박스!!!!!!!!!!-->
+            <div class="search_box">
+                <form action="#" class="search_form" method="post">
+                    <input type="search" name="search" id="search" placeholder="모델명 or 회사이름">
+                    <input type="submit" value="go" class="search_button">
+                </form>
+            </div>
+            <nav class="sub_nav">
+                <div class="logo">
+                    <h1><a href="" class="stupping">stupping</a></h1>
+                </div>
+                <div class="sub_logo">
+                    <ul class="sub">
+                        <li><a href="http://localhost:3000/login">Login</a></li>
+                        <li><a href="http://localhost:3000/authSignUp">Sign up</a></li>
+                        <li><a href="http://localhost:3000/myPage">My Page</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="title">
+                <h2>id find</h2>
+            </div>
+            <form action="" method="get">
+                <input type="email" name="" id="useriD" placeholder="이메일 입력"><br />
+                <input type="submit" value="이메일 확인">
+            </form>
+
+            <div class="id_here">
+                아이디 ajax로 돌려주기!
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const id = document.querySelector('.id_here');
+
+
+        function _fetch(url) {
+            fetch(`http://localhost:3000/admin/${url}`, get)
+                .then((response) => {
+                    response.text()
+                        .then((text) => {
+                            ajax.innerHTML = text;
+                        })
+                })
+        }
+    </script>
+</body>
+
+</html>

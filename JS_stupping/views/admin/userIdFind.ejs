@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>UserId Find Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        form.form-example {
+            display: table;
+        }
+
+        div.form-example {
+            display: table-row;
+        }
+
+        label,
+        input {
+            display: table-cell;
+            margin-bottom: 10px;
+        }
+
+        label {
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>UserId Find</h1>
+    <hr>
+    <form action="findUserId" method="post" class="form-example">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div class="form-example">
+            <label for="name">Enter your name: </label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="form-example">
+            <label for="phoneNum">Enter your phoneNum: </label>
+            <input type="text" name="phoneNum" id="phoneNum" required>
+        </div>
+        <div class="form-example">
+            <input type="submit" value="Find!">
+        </div>
+    </form>
+    <hr>
+</body>
+
+</html>

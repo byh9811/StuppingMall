@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Member Info Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Member Info</h1>
+    <hr>
+    <table style="width:100%">
+        <tr style="background-color:lightgrey">
+            <th>신고자</th>
+            <th>피신고자</th>
+            <th>사유</th>
+        </tr>
+        <tr th:each="report : ${reports}">
+            <td th:text="${report.reporterID}"></td>
+            <td th:text="${report.reporteeID}"></td>
+            <td th:text="${report.reason}"></td>
+        </tr>
+    </table>
+    <hr>
+</body>
+
+</html>
