@@ -22,5 +22,7 @@ public class Knowhow {
 	@Id
 	private String _id;
 	private String purpose;
-	private String explanation;
+	private String explanation1;
+	private String explanation2;
+	private String explanation3;
 }

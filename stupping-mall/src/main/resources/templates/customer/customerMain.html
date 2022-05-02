@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" th:href="@{/css/authMain.css(ver=${date})}">
-    <script defer th:href="@{/js/authMain.js(ver=${date})}"></script>
+    <script defer th:src="@{/js/authMain.js(ver=${date})}"></script>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
             <div class="carousel">
                 <!--사실상 첫 번째 요소 header제일 상단에 위치!-->
                 <th:block th:each="topNotebook: ${topNotebooks}">
-                    <a th:onclick="|javascript:getItemById('${topNotebook.id}')|" class="carousel_container">
+                    <a th:data-parameter1="${topNotebook.id}" th:onclick="getItemById(this.getAttribute('data-parameter1'))" class="carousel_container">
                         <!-- a태그로 감쌌음. -->
                         <div class="item">
                             <div class="image">
@@ -156,7 +156,7 @@
                     <h4 id="title">홈페이지 장점</h4>
                 </div>
                 <div class="advantage_box">
-                    <th:block th:each="{introduction: ${introductions}">
+                    <th:block th:each="introduction: ${introductions}">
                         <div class="advantage_items">
                             <div class="logo">
                                 <span>

@@ -19,7 +19,9 @@ public class KnowhowModifyService {
 		for(Knowhow newKnowhow: newKnowhows) {
 			Knowhow knowhow = new Knowhow();
 			knowhow.setPurpose(newKnowhow.getPurpose());
-			knowhow.setExplanation(newKnowhow.getExplanation());
+			knowhow.setExplanation1(newKnowhow.getExplanation1());
+			knowhow.setExplanation2(newKnowhow.getExplanation2());
+			knowhow.setExplanation3(newKnowhow.getExplanation3());
 
 			knowhowRepository.save(knowhow);
 		}
