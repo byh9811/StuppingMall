@@ -3,7 +3,7 @@ package com.nerds.stuppingmall.service.notebook;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.dto.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
-import com.nerds.stuppingmall.dto.NotebookListResponseDto;
-import com.nerds.stuppingmall.dto.NotebookInfoResponseSimpleDto;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
 
@@ -29,12 +26,12 @@ public class NotebookSearchService {
 	final NotebookRepository notebookRepository;
 	final int SIZE_PER_PAGE = 10;
 	
-	public List<NotebookInfoResponseSimpleDto> getRecent8Notebooks() {
-		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
-		List<NotebookInfoResponseSimpleDto> notebookDtos = new ArrayList<>();
+	public List<NotebookRecent8ResponseDto> getRecent8Notebooks() {
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "registerDate")));
+		List<NotebookRecent8ResponseDto> notebookRecent8ResponseDtos = new ArrayList<>();
 
 		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseSimpleDto.builder()
+			notebookRecent8ResponseDtos.add(NotebookRecent8ResponseDto.builder()
 					.id(notebook.get_id())
 					.name(notebook.getName())
 					.img(notebook.getImgs().get(0))
@@ -46,9 +43,24 @@ public class NotebookSearchService {
 					.build());
 		}
 
-		return notebookDtos;
+		return notebookRecent8ResponseDtos;
 	}
-	
+
+	public List<NotebookTop3ResponseDto> getTop3Notebooks() {
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "salesVolume")));
+		List<NotebookTop3ResponseDto> notebookTop3ResponseDtos = new ArrayList<>();
+
+
+		for(Notebook notebook: notebooks) {
+			notebookTop3ResponseDtos.add(NotebookTop3ResponseDto.builder()
+					.id(notebook.get_id())
+					.img(notebook.getImgs().get(0))
+					.build());
+		}
+
+		return notebookTop3ResponseDtos;
+	}
+
 	public Page<NotebookResponseBasicDto> getMyNotebook(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;

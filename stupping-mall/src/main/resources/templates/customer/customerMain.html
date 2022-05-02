@@ -40,7 +40,7 @@
             <div class="carousel">
                 <!--사실상 첫 번째 요소 header제일 상단에 위치!-->
                 <th:block th:each="topNotebook: ${topNotebooks}">
-                    <a th:onclick="|javascript:getItemById('${topNotebook._id}')|" class="carousel_container">
+                    <a th:onclick="|javascript:getItemById('${topNotebook.id}')|" class="carousel_container">
                         <!-- a태그로 감쌌음. -->
                         <div class="item">
                             <div class="image">
