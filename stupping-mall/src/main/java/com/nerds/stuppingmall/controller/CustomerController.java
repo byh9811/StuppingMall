@@ -50,7 +50,7 @@ public class CustomerController {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("topNotebooks", notebookSearchService.getTop3Notebooks());
 		model.addAttribute("recentNotebooks", notebookSearchService.getRecent8Notebooks());
-		model.addAttribute("categories", categoryStatusService.getCategoryNames());
+		model.addAttribute("categoryNames", categoryStatusService.getCategoryNames());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -31,10 +31,10 @@
                 </div>
                 <div class="sub_logo">
                     <ul class="sub">
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Sign up</a></li>
-                        <li><a href="">My Page</a></li>
-                        <li><a href="">Bucket</a></li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li><a href="/signUpPage">SignUp</a></li>
+                        <li><a href="/customer/myPage">MyPage</a></li>
                     </ul>
                 </div>
             </div>
@@ -165,8 +165,8 @@
                         </div>
                     </div>
                     <div class="find">
-                        <a href="http://localhost:3000/auth/sign-in/find-id">find id</a>
-                        <a href="http://localhost:3000/auth/sign-in/find-pw">find pw</a>
+                        <a href="/userIdFindPage">아이디 찾기</a>
+                        <a href="/changePasswordWithoutLogin">비밀번호 변경</a>
                     </div>
                 </form>
             </div>
