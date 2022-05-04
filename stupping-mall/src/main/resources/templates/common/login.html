@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../css/authSignIn.css">
+    <title>Stupping Mall 로그인</title>
+    <link rel="stylesheet" th:href="@{/css/authSignIn.css(ver=${date})}">
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Lobster&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Redressed&family=Roboto+Mono&family=Rowdies:wght@300;700&family=Single+Day&display=swap"
         rel="stylesheet">
@@ -19,7 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Festive&family=Lato:ital,wght@0,400;0,700;1,900&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&family=Roboto+Mono&family=Rowdies:wght@300;700&family=Single+Day&display=swap"
         rel="stylesheet">
-    <script defer src="/js/login.js"></script>
+    <script defer th:src="@{/js/login.js(ver=${date})}"></script>
 </head>
 
 <body>

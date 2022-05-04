@@ -69,7 +69,7 @@ public class PageController {
 	
 	@GetMapping("/userIdFindPage")
 	public String userIdFindPage() {
-		return "userIdFindPage";
+		return "common/findId";
 	}
 	
 	@GetMapping("/passwordChangePage")

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Stupping</title>
     <link rel="stylesheet" th:href="@{/css/authMain.css(ver=${date})}">
     <script defer th:src="@{/js/authMain.js(ver=${date})}"></script>
 </head>
@@ -116,12 +116,12 @@
                                         </div>
                                         <div class="item_ex">
                                             <div class="text_box">
-                                                <p th:text="recentNotebook.name">이름 : </p>
-                                                <p th:text="recentNotebook.price">가격 : </p>
-                                                <p th:text="recentNotebook.weight">무게 : </p>
-                                                <p th:text="recentNotebook.screenSize">화면크기 : </p>
-                                                <p th:text="recentNotebook.cpuName">CPU : </p>
-                                                <p th:text="recentNotebook.ramSize">RAM : </p>
+                                                <p th:text="|이름 : ${recentNotebook.name}|"></p>
+                                                <p th:text="|가격 : ${recentNotebook.price}|"></p>
+                                                <p th:text="|무게 : ${recentNotebook.weight}|"></p>
+                                                <p th:text="|화면크기 : ${recentNotebook.screenSize}|"></p>
+                                                <p th:text="|CPU : ${recentNotebook.cpuName}|"></p>
+                                                <p th:text="|RAM : ${recentNotebook.ramSize}|"></p>
                                             </div>
                                         </div>
                                     </div>
