@@ -24,9 +24,10 @@
                 </div>
                 <div class="sub_logo">
                     <ul class="sub">
-                        <li><a href="http://localhost:3000/login">Login</a></li>
-                        <li><a href="http://localhost:3000/authSignUp">Sign up</a></li>
-                        <li><a href="http://localhost:3000/myPage">My Page</a></li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li><a href="/signUpPage">SignUp</a></li>
+                        <li><a href="/customer/myPage">MyPage</a></li>
                     </ul>
                 </div>
             </nav>
@@ -35,20 +36,21 @@
         <main class="main">
             <div class="user_profile_info">
                 <div class="user_profile"></div>
-                <div class="user_name"><span>name님</span></div>
+                <div class="user_name"><span th:text="|${myInfo.name} 님|"></span></div>
 
                 <table class="user_info">
                     <tr>
-                        <td>point</td>
-                        <td>_id</td>
-                        <td>name</td>
-                        <td>role</td>
+                        <td th:text="|아이디: ${myInfo.id}|"></td>
+                        <td th:text="|이메일: ${myInfo.email}|"></td>
+                        <td th:text="|전화번호: ${myInfo.phoneNum}|"></td>
+                        <td th:text="|생년월일: ${myInfo.birth}|"></td>
                     </tr>
                     <tr>
-                        <td>phoneNum</td>
-                        <td>birth</td>
-                        <td>man</td>
-                        <td>account</td>
+                        <td th:if="${member.man}">성별: 남자</td>
+                        <td th:unless="${member.man}">성별: 여자</td>
+                        <td th:text="|계좌: ${myInfo.account.bank} ${myInfo.account.accountNumber}|"></td>
+                        <td th:text="|잔액: ${myInfo.balance}|"></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td><button class="chargeButton">잔액충전</button></td>

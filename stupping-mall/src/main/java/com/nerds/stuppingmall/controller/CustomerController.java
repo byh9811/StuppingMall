@@ -86,7 +86,7 @@ public class CustomerController {
 	public String MyPageDetail(@AuthenticationPrincipal Authentication authentication, Model model) {
 		MyPageResponseDto myPageDto = memberDetailsService.getMyPage(authentication.getId());
 		model.addAttribute("myInfo", myPageDto);
-		return "memberInfo";
+		return "customer/myPage";
 	}
 
 	@PostMapping("/updateMyInfo")
