@@ -99,101 +99,78 @@
             </ul>
         </nav>
         <main class="main">
-            <div class="content top8">
-                <div class="text">
-                    <h4 id="title">TOP8</h4>
-                </div>
-                <div class="stage">
-                    <div class="carousel_3d">
-                        <!-- 캐러셀 8번 반복할거야!!!!!-->
-                        <% for(let i=0; i<8; i++){ %>
-                            <div class="panel">
-                                <a href="" class="item_link">
-                                    <div class="item">
-                                        <div class="number">
-                                            <%= i + 1 %>
-                                            <!--dsdsds-->
-                                        </div>
-                                        <div class="item_img">
-                                            <img src="./img/img.png" alt="">
-                                        </div>
-                                        <div class="item_ex">
-                                            <div class="text_box">
-                                                <p>이름 : </p>
-                                                <p>가격 : </p>
-                                                <p>이미지 : </p>
-                                                <p>무게 : </p>
-                                                <p>스크린크기 : </p>
-                                                <p>cpu이름 : </p>
-                                                <p>ram크기 : </p>
+            <div class="main_container">
+                <div class="top8 content">
+                    <div class="title">
+                        <h2>top8</h2>
+                    </div>
+                    <form class="top8_contents" method="get" action="/user/item-detail">
+                        <% for(let i=0; i<3; i++){ %>
+                            <div class="item_container">
+                                <% for(let j=0; j<3; j++){ %>
+                                    <div class="item_box">
+                                        <div class="item_img"></div>
+                                        <div class="item_contents">
+                                            <h2 class="item_title">
+                                                <%= result2.names %>
+                                            </h2>
+                                            <div class="item_price">
+                                                <div class="price">
+                                                    <h2>
+                                                        <%= result2.prices %>$
+                                                    </h2>
+                                                </div>
+                                                <div class="itemButtonBox">
+                                                    <button class="submit" name="<%= result1._id %>">detail</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                    <% } %>
                             </div>
-                            <!-- 여기까지 반복문 8dssd번!! -->
                             <% } %>
-
+                    </form>
+                </div>
+                <div class="content advantage">
+                    <div class="text">
+                        <h4 id="title">홈페이지 장점</h4>
                     </div>
-                </div>
-            </div>
-            <div class="content category">
-                <div class="text">
-                    <h4 id="title">category</h4>
-                </div>
-                <div class="category_container">
-                    <div class="category_box">
+                    <div class="advantage_box">
                         <% for(i=0; i<4; i++){ %>
-                            <div class="category_items">
-                                <div class="items_name">
-                                    <span><h3>name</h3></span>
+                            <div class="advantage_items">
+                                <div class="logo">
+                                    <span>
+                                        <h3>장점<% i %>
+                                        </h3>
+                                    </span>
                                 </div>
-                                <div class="items_contents"></div>
-                                <input type="button" value="search" class="cate_ajax_button">
+                                <div class="ad_explain"></div>
                             </div>
-                        <% } %>
+                            <% } %>
                     </div>
-                    <div class="category_ajax"></div>
                 </div>
-            </div>
-
-            <div class="content advantage">
-                <div class="text">
-                    <h4 id="title">홈페이지 장점</h4>
-                </div>
-                <div class="advantage_box">
+                <!-- 우잘사 -->
+                <div class="content good_buy">
+                    <div class="text">
+                        <h4 id="title">우잘사</h4>
+                    </div>
                     <% for(i=0; i<4; i++){ %>
-                        <div class="advantage_items">
-                            <div class="logo">
+                        <div class="knowhow">
+                            <div class="knowhow_method">
                                 <span>
-                                    <h3>장점<% i %></h3>
+                                    <h3>노하우변수</h3>
                                 </span>
                             </div>
-                            <div class="ad_explain"></div>
+                            <ul class="knowhow_list">
+                                <li>방법변수</li>
+                                <li>방법변수</li>
+                                <li>방법변수</li>
+                            </ul>
                         </div>
-                    <% } %>
+                        <% } %>
                 </div>
             </div>
-            <!-- 우잘사 -->
-            <div class="content good_buy">
-                <div class="text">
-                    <h4 id="title">우잘사</h4>
-                </div>
-                <% for(i=0; i<4; i++){ %>
-                    <div class="knowhow">
-                        <div class="knowhow_method">
-                            <span>
-                                <h3>노하우변수</h3>
-                            </span>
-                        </div>
-                        <ul class="knowhow_list">
-                            <li>방법변수</li>
-                            <li>방법변수</li>
-                            <li>방법변수</li>
-                        </ul>
-                    </div>
-                <% } %>
-            </div>    
+            
         </main>
         <footer class="footer"></footer>
     </div>
