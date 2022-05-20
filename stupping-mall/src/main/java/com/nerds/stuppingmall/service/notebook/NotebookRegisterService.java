@@ -142,8 +142,7 @@ public class NotebookRegisterService {
 	}
 
 	private List<String> saveImgFile(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
-		String basePath = "C:\\img";
-		String folderPath = basePath + "/" + supplierId + "/" + notebookAddRequestDto.getName();
+		String folderPath = supplierId + "/" + notebookAddRequestDto.getName();
 		File folder = new File(folderPath);
 		List<String> urls = new ArrayList<>();
 		

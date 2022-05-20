@@ -44,7 +44,7 @@
                         <!-- a태그로 감쌌음. -->
                         <div class="item">
                             <div class="image">
-                                <img th:src="${topNotebook.img}" alt="" srcset="">
+                                <img th:src="'/display?name='+${topNotebook.img}" alt="" srcset="">
                             </div>
                         </div>
                     </a>
@@ -112,7 +112,7 @@
                                     <div class="item">
                                         <div th:text="${recentNotebookStat.count}" class="number"></div>
                                         <div class="item_img">
-                                            <img th:src="${recentNotebook.img}" alt="">
+                                            <img th:src="'/display?name='+${recentNotebook.img}" alt="">
                                         </div>
                                         <div class="item_ex">
                                             <div class="text_box">
