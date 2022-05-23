@@ -1,6 +1,5 @@
 package com.nerds.stuppingmall.controller;
 
-import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import com.nerds.stuppingmall.dto.OrderSalesInfoResponseDto;
 import com.nerds.stuppingmall.service.email.EmailSendService;
@@ -8,20 +7,13 @@ import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.*;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
@@ -42,7 +34,7 @@ public class RestController {
         return orderSearchService.findSales(duration, notebookId);
     }
 
-    @PostMapping("setKey")
+    @PostMapping("/authenticateEmail")
     public @ResponseBody String authenticateEmail(HttpServletRequest request, String email) {
         try {
             String key = emailSendService.sendMessage(email);

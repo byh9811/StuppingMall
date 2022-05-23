@@ -38,7 +38,9 @@
             <div class="title">
                 <h2>ID 찾기</h2>
             </div>
-            <form action="findUserId" method="get">
+            <!-- key 입력하는 파트랑 확인 버튼 있어야함 - 이땐 form을 쓰면 안될듯? -->
+            <!-- 아니면 페이지를 이동하던가 / UX가 구려지긴함 -->
+            <form action="/authenticateEmail" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input type="email" name="email" id="userId" placeholder="이메일 입력"><br />
                 <input type="submit" value="이메일 확인">

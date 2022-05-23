@@ -46,8 +46,8 @@
                         <td th:text="|생년월일: ${myInfo.birth}|"></td>
                     </tr>
                     <tr>
-                        <td th:if="${member.man}">성별: 남자</td>
-                        <td th:unless="${member.man}">성별: 여자</td>
+                        <td th:if="${myInfo.man}">성별: 남자</td>
+                        <td th:unless="${myInfo.man}">성별: 여자</td>
                         <td th:text="|계좌: ${myInfo.account.bank} ${myInfo.account.accountNumber}|"></td>
                         <td th:text="|잔액: ${myInfo.balance}|"></td>
                         <td></td>
