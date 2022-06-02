@@ -103,60 +103,24 @@
                     </div>
                 </div>
                 <!-- top8 contents 완료! ==> 기능까지 완료! -->
-                <div class="category_contents">
-                    <div class="title_box">
-                        <h2 class="title">CATEGORY</h2>
-                        <!-- result3로 통일한다. -->
+
+                <div class="content category">
+                    <div class="text">
+                        <h4 id="title">category</h4>
                     </div>
-                    <div class="category_box">
-                        <form action="/user/item-result" method="get" class="category_form">
-                            <div class="comName_category cate">
-                                <div class="category_imgBox">
-
+                    <div class="category_container">
+                        <div class="category_box">
+                            <th:block th:each="categoryName : ${categoryNames}">
+                                <div class="category_items">
+                                    <div class="items_name">
+                                        <span th:text="${categoryName}"><h3></h3></span>
+                                    </div>
+                                    <div class="items_contents"></div>
+                                    <input type="button" value="search" class="cate_ajax_button">
                                 </div>
-                                <div class="name_box"></div>
-                                <select name="title" id="dropdown_list">
-                                    <option value="상품1">상품1</option>
-                                    <option value="상품2">상품2</option>
-                                    <option value="ㄹㄹㄹ">ㄹㄹㄹ</option>
-                                </select>
-                            </div>
-                            <div class="gpuName_category cate">
-                                <div class="category_imgBox">
-
-                                </div>
-                                <div class="name_box"></div>
-                                <select name="price" id="dropdown_list">
-                                    <option value="1000">1000</option>
-                                    <option value="11">11</option>
-                                </select>
-                            </div>
-                            <div class="gpuName_category cate">
-                                <div class="category_imgBox">
-
-                                </div>
-                                <div class="name_box"></div>
-                                <select name="comName" id="dropdown_list">
-                                    <option value="apple">apple</option>
-                                    <option value="samsung">samsung</option>
-                                    <option value="lg">LG</option>
-                                    <option value="other">the other</option>
-                                </select>
-                            </div>
-                            <div class="register_category cate">
-                                <div class="category_imgBox">
-
-                                </div>
-                                <div class="name_box"></div>
-                                <select name="register" id="dropdown_list">
-                                    <option value="cpu1">cpu1</option>
-                                    <option value="cpu2">cpu2</option>
-                                    <option value="cpu3">cpu3</option>
-                                    <option value="cpu4">cpu4</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="cate_formButton">GO</button>
-                        </form>
+                            </th:block>
+                        </div>
+                        <div class="category_ajax"></div>
                     </div>
                 </div>
 
