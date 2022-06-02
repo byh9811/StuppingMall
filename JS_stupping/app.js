@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
-/**sdsdss */
+/** router설정 완료 */
 const indexRouter = require('./routes/auth/indexRouter.js');
 const authRouter = require('./routes/auth/authRouter.js');
 const loginRouter = require('./routes/auth/loginRouter.js');
@@ -14,8 +14,8 @@ app.set('view engine','ejs');
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
 app.use(express.static('public'));
-//routing middleware
 
+//routing middleware
 app.use('/auth',authRouter);
 app.use('/auth/sign-in',loginRouter); // /auth/login으로 시작하는 url은 다 여기 파일로!
 app.use('/auth/my-page',myPageRouter);
