@@ -51,14 +51,15 @@ public class PageController {
 
 	@GetMapping("/signUpPage")
 	public String signUpPage(Model model) {
+		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("roles", Role.values());
-		return "signUp";
+		return "common/signUp";
 	}
 	
 	@GetMapping("/login")
 	public String loginPage(Model model) {
 		model.addAttribute("date", LocalTime.now());
-		return "signIn";
+		return "common/login";
 	}
 	
 	@GetMapping("/memberBanPage")
@@ -68,13 +69,19 @@ public class PageController {
 	
 	@GetMapping("/userIdFindPage")
 	public String userIdFindPage() {
-		return "userIdFindPage";
+		return "common/findId";
 	}
 	
 	@GetMapping("/passwordChangePage")
 	public String passwordChangePage(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("id", authentication.getId());
 		return "passwordChangePage";
+	}
+
+	@GetMapping("changePasswordWithoutLogin")
+	public String changePasswordWithoutLogin(Model model) {
+		model.addAttribute("date", LocalTime.now());
+		return "common/changePasswordWithoutLogin";
 	}
 	
 	@GetMapping("/notebookAddPage")

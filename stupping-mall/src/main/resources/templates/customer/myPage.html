@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/authMyPage.css(ver=${date})}">
+</head>
+<body>
+    <div class="container">
+        <header class="header content">
+            <!-- 캐러셀 박스!!!!!!!!!!-->
+            <div class="search_box">
+                <form action="#" class="search_form" method="post">
+                    <input type="search" name="search" id="search" placeholder="모델명 or 회사이름">
+                    <input type="submit" value="go" class="search_button">
+                </form>
+            </div>
+            <nav class="sub_nav">
+                <div class="logo">
+                    <h1><a href="" class="stupping">stupping</a></h1>
+                </div>
+                <div class="sub_logo">
+                    <ul class="sub">
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li><a href="/signUpPage">SignUp</a></li>
+                        <li><a href="/customer/myPage">MyPage</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="user_profile_info">
+                <div class="user_profile"></div>
+                <div class="user_name"><span th:text="|${myInfo.name} 님|"></span></div>
+
+                <table class="user_info">
+                    <tr>
+                        <td th:text="|아이디: ${myInfo.id}|"></td>
+                        <td th:text="|이메일: ${myInfo.email}|"></td>
+                        <td th:text="|전화번호: ${myInfo.phoneNum}|"></td>
+                        <td th:text="|생년월일: ${myInfo.birth}|"></td>
+                    </tr>
+                    <tr>
+                        <td th:if="${myInfo.man}">성별: 남자</td>
+                        <td th:unless="${myInfo.man}">성별: 여자</td>
+                        <td th:text="|계좌: ${myInfo.account.bank} ${myInfo.account.accountNumber}|"></td>
+                        <td th:text="|잔액: ${myInfo.balance}|"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><button class="chargeButton">잔액충전</button></td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="mypage_nav">
+                <table class="mypage_list">
+                    <tr>
+                        <td class="nav">
+                            <a>내 찜 목록</a>
+                        </td>
+                        <td rowspan="4" class="page">2</td>
+                    </tr>
+                    <tr>
+                        <td class="nav">
+                            <a>최근 본 상품</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav">
+                            <a>구매 내역</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nav">
+                            <a>고객센터</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+    </div>
+
+
+
+    <script>
+        const page = document.querySelector('.page');
+        const nav = document.querySelectorAll('.nav');
+        const charge = document.querySelector('.chargeButton');
+
+        let pageList = ['my-picks','items','buy','center'];
+        nav.forEach((value,index) => {
+            value.addEventListener('click',()=>{
+                _fetch(pageList[index]);
+            })
+        })
+        
+        charge.addEventListener('click',()=>{
+            _fetch('charge');
+        })
+        function _fetch(url) {
+            fetch(`http://localhost:3000/auth/my-page/${url}`)
+                .then((response) => {
+                    response.text()
+                        .then((text) => {
+                            page.innerHTML = text;
+                        })
+                })
+        }
+    </script>
+</body>
+
+</html>

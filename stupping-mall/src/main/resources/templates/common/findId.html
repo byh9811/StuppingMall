@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID 찾기</title>
+    <link rel="stylesheet" th:href="@{/css/findId.css(ver=${date})}">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header content">
+            <!-- 캐러셀 박스!!!!!!!!!!-->
+            <div class="search_box">
+                <form action="#" class="search_form" method="post">
+                    <input type="search" name="search" id="search" placeholder="모델명 or 회사이름">
+                    <input type="submit" value="go" class="search_button">
+                </form>
+            </div>
+            <nav class="sub_nav">
+                <div class="logo">
+                    <h1><a href="" class="stupping">stupping</a></h1>
+                </div>
+                <div class="sub_logo">
+                    <ul class="sub">
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+                        <li><a href="/signUpPage">SignUp</a></li>
+                        <li><a href="/customer/myPage">MyPage</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <div class="title">
+                <h2>ID 찾기</h2>
+            </div>
+            <!-- key 입력하는 파트랑 확인 버튼 있어야함 - 이땐 form을 쓰면 안될듯? -->
+            <!-- 아니면 페이지를 이동하던가 / UX가 구려지긴함 -->
+            <form action="/authenticateEmail" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="email" name="email" id="userId" placeholder="이메일 입력"><br />
+                <input type="submit" value="이메일 확인">
+            </form>
+
+            <div class="id_here">
+                아이디 ajax로 돌려주기!
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const id = document.querySelector('.id_here');
+
+
+        function _fetch(url) {
+            fetch(`http://localhost:3000/admin/${url}`, get)
+                .then((response) => {
+                    response.text()
+                        .then((text) => {
+                            ajax.innerHTML = text;
+                        })
+                })
+        }
+    </script>
+</body>
+
+</html>
