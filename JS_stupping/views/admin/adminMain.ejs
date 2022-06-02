@@ -7,44 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../../css/adminIndex.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comforter&family=Cookie&family=Dancing+Script:wght@500&family=East+Sea+Dokdo&family=Festive&family=Gugi&family=Hi+Melody&family=IM+Fell+English+SC&family=Indie+Flower&family=Island+Moments&family=Jua&family=Lato:ital,wght@1,300&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Quintessential&family=Shadows+Into+Light&family=Single+Day&family=Sunflower&family=Tapestry&family=Water+Brush&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comforter&family=Cookie&family=Dancing+Script:wght@500&family=East+Sea+Dokdo&family=Festive&family=Gugi&family=Hi+Melody&family=IM+Fell+English+SC&family=Indie+Flower&family=Island+Moments&family=Josefin+Sans&family=Jua&family=Lato:ital,wght@1,300&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Quintessential&family=Shadows+Into+Light&family=Single+Day&family=Sunflower&family=Tapestry&family=Water+Brush&display=swap"
+            rel="stylesheet">
 </head>
 
 <body>
+    <h1 class="title">Stupping admin</h1>
     <div class="container">
         <ul class="admin_nav">
-            <li><a href="">
-                    <h3>Stupping</h3>
-                </a></li>
-            <li class="list two"><a>회원정보</a></li>
-            <li class="list five"><a>노트북정보</a></li>
-            <li class="list six"><a>주문정보</a></li>
-            <li class="list eleven"><a>신고</a></li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">사용자 편집</a></h3>
+                </div>
+            </li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">우잘사 편집</a></h3>
+                </div>
+            </li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">홈페이지 편집</a></h3>
+                </div>
+            </li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">우잘사 편집</a></h3>
+                </div>
+            </li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">로그아웃</a></h3>
+                </div>
+            </li>
+            <li class="list">
+                <div class="list_title">
+                    <h3><a href="">사용자 편집</a></h3>
+                </div>
+            </li>
         </ul>
-        <div class="main_contents">
-            <div class="ajax_contents"></div>
-        </div>
+        <div class="contents"></div>
     </div>
 
     <script>
-        const ajax = document.querySelector('.ajax_contents');
-        const list = document.querySelectorAll('.list');
-
-        let url_list = ['member-info','notebook-info', 'order-info','report'];
-        list.forEach((value, index) => {
-            value.addEventListener('click', () => {
-                _fetch(url_list[index]);
-            })
-        })
-
-        function _fetch(url) {
-            fetch(`http://localhost:3000/admin/${url}`,get)
-                .then((response) => {
-                    response.text()
-                        .then((text) => {
-                            ajax.innerHTML = text;
-                        })
-                })
-        }
+        //화면 크기 맞춰서 html을 띄워줘야 함! 
     </script>
 </body>
 

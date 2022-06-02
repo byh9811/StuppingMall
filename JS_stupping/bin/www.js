@@ -1,9 +1,10 @@
 'use strict';
-
-require('dotenv').config({path : 'variables.env'});
-// console.log(process.env.PORT);
+const express = require('express');
 const app = require('../app.js');
+require('dotenv').config({path : 'variables.env'});
 
-app.listen(process.env.PORT,()=>{
-    console.log(`${process.env.PORT}server is opened!`);
+
+app.listen(3000,()=>{
+    console.log('3000 server!');
 })
+console.log(process.env.PORT);

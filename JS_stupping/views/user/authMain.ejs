@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../user/css/userMain.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Fredoka+One&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Patrick+Hand&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Fredoka+One&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Patrick+Hand&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+        rel="stylesheet">
+    <script defer src="../../user/js/userMain.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container_contents">
+            <header class="header">
+                <div class="header_title">
+                    <h1 class="title">
+                        <a href="http://localhost:3000/user/">Stupping</a>
+                    </h1>
+                </div>
+
+
+                <nav class="header_nav">
+                    <ul class="list">
+                        <li><a href="/user/login">Login</a></li>
+                        <li><a href="/user/sign-up">SignUp</a></li>
+                        <li><a href="/user/my-page">MyPage</a></li>
+                        <li><a href="">Logout</a></li>
+                    </ul>
+                </nav>
+
+                <form action="/user/item-result" method="get" class="search_bar">
+                    <input type="search" name="item" id="item" placeholder="상품 or 회사이름">
+                    <button type="submit">
+                        Go
+                    </button>
+                </form>
+            </header>
+            <main class="main">
+                <div class="carousel_container">
+                    <div class="carousel">
+                        <% for(let i=0; i<3; i++){ %>
+                            <div class="carousel_item" data-id="<%= result1[0]._id + i%>">
+                                <div class="carousel_text">
+                                    <div class="carousel_title">
+                                        <h1 class="title">
+                                            <%= result1[0]._id + i%>
+                                        </h1>
+                                    </div>
+                                    <div class="carousel_content">
+                                        <p>
+                                            <%= result1[0].content %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="carousel_img">
+                                    <img src="../../user/img/11.png" alt="">
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="shift_box">
+                        <% for(let i=0; i<3; i++){ %>
+                            <div class="shift"></div>
+                            <% } %>
+                    </div>
+                </div>
+                <div class="main_contents">
+                    <div class="top8_contents">
+                        <div class="title_box">
+                            <h2 class="title">TOP8</h2>
+                        </div>
+                        <div class="top8_box">
+                            <table>
+                                <% for(let i=0; i<3; i++){ %>
+                                    <tr>
+                                        <% for(let j=0; j<3; j++){ %>
+                                            <td>
+                                                <div class="item_cart" data-id="<%= result2[i]._id %>">
+                                                    <div class="cart_info">
+                                                        <div class="cart_title_box">
+                                                            <h3>id : <%= result2[i]._id %>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="cart_price_box">
+                                                            <h3>
+                                                                <%= result2[i].price %>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="cart_content_box">
+                                                            <p>
+                                                                <%= result2[i].content %>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cart_button_box">
+                                                            <!-- fetch! 상품id 전송! -->
+                                                            <button class="top8_button"
+                                                                data-id="<%= result2[i]._id %>">detail</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cart_img">
+                                                        <img src="../../user/img/11.png" alt="">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <% } %>
+                                    </tr>
+                                    <% } %>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- top8 contents 완료! ==> 기능까지 완료! -->
+                    <div class="category_contents">
+                        <div class="title_box">
+                            <h2 class="title">CATEGORY</h2>
+                            <!-- result3로 통일한다. -->
+                        </div>
+                        <div class="category_box">
+                            <form action="/user/item-result" method="get" class="category_form">
+                                <div class="comName_category cate">
+                                    <div class="category_imgBox">
+
+                                    </div>
+                                    <div class="name_box"></div>
+                                    <select name="title" id="dropdown_list">
+                                        <option value="상품1">상품1</option>
+                                        <option value="상품2">상품2</option>
+                                        <option value="ㄹㄹㄹ">ㄹㄹㄹ</option>
+                                    </select>
+                                </div>
+                                <div class="gpuName_category cate">
+                                    <div class="category_imgBox">
+
+                                    </div>
+                                    <div class="name_box"></div>
+                                    <select name="price" id="dropdown_list">
+                                        <option value="1000">1000</option>
+                                        <option value="11">11</option>
+                                    </select>
+                                </div>
+                                <div class="gpuName_category cate">
+                                    <div class="category_imgBox">
+
+                                    </div>
+                                    <div class="name_box"></div>
+                                    <select name="comName" id="dropdown_list">
+                                        <option value="apple">apple</option>
+                                        <option value="samsung">samsung</option>
+                                        <option value="lg">LG</option>
+                                        <option value="other">the other</option>
+                                    </select>
+                                </div>
+                                <div class="register_category cate">
+                                    <div class="category_imgBox">
+
+                                    </div>
+                                    <div class="name_box"></div>
+                                    <select name="register" id="dropdown_list">
+                                        <option value="cpu1">cpu1</option>
+                                        <option value="cpu2">cpu2</option>
+                                        <option value="cpu3">cpu3</option>
+                                        <option value="cpu4">cpu4</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="cate_formButton">GO</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="homepageAD_contents">
+                        <!-- result3으로 받아준다!! -->
+                        <div class="title_box">
+                            <h2 class="title">HOMEPAGE AD</h2>
+                            <!-- result3로 통일한다. -->
+                        </div>
+                        <div class="AD_contents">
+                            <% for(let i=0; i<4; i++){ %>
+                                <div class="AD">
+                                    <div class="img_box">
+                                        <%= result3[0].title %>
+                                    </div>
+                                    <div class="text_box">
+                                        <%= result3[0].price %>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <div class="graph_contents">
+                        <div class="title_box">
+                            <h2 class="title">GRAPH</h2>
+                        </div>
+                        <div class="gph_contents">
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer"></footer>
+        </div>
+    </div>
+</body>
+
+</html>

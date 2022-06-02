@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
-
+/**sdsdss */
 const indexRouter = require('./routes/auth/indexRouter.js');
 const authRouter = require('./routes/auth/authRouter.js');
 const loginRouter = require('./routes/auth/loginRouter.js');
