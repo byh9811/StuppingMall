@@ -7,193 +7,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stupping</title>
     <link rel="stylesheet" th:href="@{/css/authMain.css(ver=${date})}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+            rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Fredoka+One&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Patrick+Hand&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+            rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Dancing+Script:wght@500&family=Festive&family=Fredoka+One&family=Gugi&family=IM+Fell+English+SC&family=Indie+Flower&family=Josefin+Sans&family=Jua&family=Noto+Sans+Display:wght@200&family=Oleo+Script+Swash+Caps&family=Patrick+Hand&family=Quintessential&family=Single+Day&family=Sunflower&family=Water+Brush&display=swap"
+            rel="stylesheet">
     <script defer th:src="@{/js/authMain.js(ver=${date})}"></script>
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
+    <div class="container_contents">
         <header class="header">
-            <div class="header_contents">
-                <div class="main_logo">
-                    <h2><a href="">Stupping</a></h2>
-                </div>
+            <div class="header_title">
+                <h1 class="title">
+                    <a href="/">Stupping</a>
+                </h1>
+            </div>
 
+
+            <nav class="header_nav">
                 <ul class="sub_nav">
                     <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
                     <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
                     <li><a href="/signUpPage">SignUp</a></li>
                     <li><a href="/customer/myPage">MyPage</a></li>
-                    <!-- <li>
-                        <form action="#" method="get" class="main_search">
-                            <input type="search" name="userSearchItem" id="userSearchItem" placeholder="상품 or 회사이름">
-                            <input type="submit" value="search">
-                        </form>
-                    </li> -->
-
                 </ul>
-                <div class="sub_toggle_nav"></div>
-                <form action="#" method="get" class="main_search_2">
-                    <input type="search" name="userSearchItem" id="userSearchItem" placeholder="상품 or 회사이름">
-                    <input type="submit" value="search">
-                </form>
-            </div> <!-- 여기는 fixed로 돼서 둥둥 떠다님. -->
-            <div class="carousel">
-                <!--사실상 첫 번째 요소 header제일 상단에 위치!-->
-                <th:block th:each="topNotebook: ${topNotebooks}">
-                    <a th:data-parameter1="${topNotebook.id}" th:onclick="getItemById(this.getAttribute('data-parameter1'))" class="carousel_container">
-                        <!-- a태그로 감쌌음. -->
-                        <div class="item">
-                            <div class="image">
+            </nav>
+
+            <form action="/notebooksInfo" method="get" class="search_bar">
+                <input type="search" name="name" id="item" placeholder="상품 or 회사이름">
+                <button type="submit">
+                    Go
+                </button>
+            </form>
+        </header>
+        <main class="main">
+            <div class="carousel_container">
+                <div class="carousel">
+                    <th:block th:each="topNotebook: ${topNotebooks}">
+                        <div class="carousel_item" th:attr="data-id=${topNotebook.id}">
+                            <div class="carousel_img">
                                 <img th:src="'/display?name='+${topNotebook.img}" alt="" srcset="">
                             </div>
                         </div>
-                    </a>
-                </th:block>
-                <div class="carousel_shift">
+                    </th:block>
+                </div>
+                <div class="shift_box">
                     <th:block th:each="num : ${#numbers.sequence(1,3)}">
                         <div class="shift"></div>
                     </th:block>
                 </div>
-            </div> <!-- ======= << carousel 끝 >> =======-->
-        </header>
-        <nav class="main_nav">
-            <ul class="main_bar">
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-        
-        
-                        </div>
-                    </a></li>
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-                            <h1>TOP8</h1>
-                            <img
-                                src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-eight-womens-day-flatart-icons-outline-flatart./img/img.png" />
-                        </div>
-                    </a></li>
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-                            <h1>CATEGORY</h1>
-                            <img src="https://img.icons8.com/ios-glyphs/30/000000/cat./img/img.png" />
-                        </div>
-                    </a></li>
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-                            <h1>EXPLAIN</h1>
-                            <img
-                                src="https://img.icons8.com/external-wanicon-lineal-wanicon/64/000000/external-presentation-world-oceans-day-wanicon-lineal-wa./img/img.png" />
-                        </div>
-                    </a></li>
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-                            <h1>TO BUY</h1>
-                            <img src="https://img.icons8.com/pastel-glyph/64/000000/sale-tim./img/img.png" />
-                        </div>
-                    </a></li>
-                <li class="hover"><a href="">
-                        <div class="menu_icon">
-                            <h1>GRAPH</h1>
-                            <img
-                                src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/000000/external-graph-cyber-monday-vitaliy-gorbachev-fill-vitaly-gorb./img/img.png" />
-                        </div>
-                    </a></li>
-            </ul>
-        </nav>
-        <main class="main">
-            <div class="content top8">
-                <div class="text">
-                    <h4 id="title">TOP8</h4>
-                </div>
-                <div class="stage">
-                    <div class="carousel_3d">
-                        <th:block th:each="recentNotebook : ${recentNotebooks}">
-                            <div class="panel">
-                                <a th:href="@{/notebookInfo(id=${recentNotebook.id})}" class="item_link">
-                                    <div class="item">
-                                        <div th:text="${recentNotebookStat.count}" class="number"></div>
-                                        <div class="item_img">
-                                            <img th:src="'/display?name='+${recentNotebook.img}" alt="">
-                                        </div>
-                                        <div class="item_ex">
-                                            <div class="text_box">
-                                                <p th:text="|이름 : ${recentNotebook.name}|"></p>
-                                                <p th:text="|가격 : ${recentNotebook.price}|"></p>
-                                                <p th:text="|무게 : ${recentNotebook.weight}|"></p>
-                                                <p th:text="|화면크기 : ${recentNotebook.screenSize}|"></p>
-                                                <p th:text="|CPU : ${recentNotebook.cpuName}|"></p>
-                                                <p th:text="|RAM : ${recentNotebook.ramSize}|"></p>
+            </div>
+            <div class="main_contents">
+                <div class="top8_contents">
+                    <div class="title_box">
+                        <h2 class="title">TOP8</h2>
+                    </div>
+                    <div class="top8_box">
+                        <table>
+                            <th:block th:each="row : ${#numbers.sequence(1,3)}">
+                                <tr>
+                                    <th:block th:each="col : ${#numbers.sequence(1,3)}">
+                                        <td th:with="index=${rowStat.index*3}+${colStat.index}">
+                                            <div class="item_cart" th:attr="data-id=${recentNotebooks[index].id}">
+                                                <div class="cart_info">
+                                                    <div class="cart_title_box">
+                                                        <h3>id : <%= result2[i]._id %>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="cart_price_box">
+                                                        <h3>
+                                                            <%= result2[i].price %>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="cart_content_box">
+                                                        <p>
+                                                            <%= result2[i].content %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="cart_button_box">
+                                                        <!-- fetch! 상품id 전송! -->
+                                                        <button class="top8_button"
+                                                                th:attr="data-id=${recentNotebooks[index].id}">detail</button>
+                                                    </div>
+                                                </div>
+                                                <div class="cart_img">
+                                                    <img th:src="'/display?name='+${recentNotebooks[index].img}" alt="">
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </th:block>
+                                        </td>
+                                    </th:block>
+                                </tr>
+                            </th:block>
+                        </table>
                     </div>
                 </div>
-            </div>
-            <div class="content category">
-                <div class="text">
-                    <h4 id="title">category</h4>
-                </div>
-                <div class="category_container">
+                <!-- top8 contents 완료! ==> 기능까지 완료! -->
+                <div class="category_contents">
+                    <div class="title_box">
+                        <h2 class="title">CATEGORY</h2>
+                        <!-- result3로 통일한다. -->
+                    </div>
                     <div class="category_box">
-                        <th:block th:each="categoryName : ${categoryNames}">
-                            <div class="category_items">
-                                <div class="items_name">
-                                    <span th:text="${categoryName}"><h3></h3></span>
+                        <form action="/user/item-result" method="get" class="category_form">
+                            <div class="comName_category cate">
+                                <div class="category_imgBox">
+
                                 </div>
-                                <div class="items_contents"></div>
-                                <input type="button" value="search" class="cate_ajax_button">
+                                <div class="name_box"></div>
+                                <select name="title" id="dropdown_list">
+                                    <option value="상품1">상품1</option>
+                                    <option value="상품2">상품2</option>
+                                    <option value="ㄹㄹㄹ">ㄹㄹㄹ</option>
+                                </select>
+                            </div>
+                            <div class="gpuName_category cate">
+                                <div class="category_imgBox">
+
+                                </div>
+                                <div class="name_box"></div>
+                                <select name="price" id="dropdown_list">
+                                    <option value="1000">1000</option>
+                                    <option value="11">11</option>
+                                </select>
+                            </div>
+                            <div class="gpuName_category cate">
+                                <div class="category_imgBox">
+
+                                </div>
+                                <div class="name_box"></div>
+                                <select name="comName" id="dropdown_list">
+                                    <option value="apple">apple</option>
+                                    <option value="samsung">samsung</option>
+                                    <option value="lg">LG</option>
+                                    <option value="other">the other</option>
+                                </select>
+                            </div>
+                            <div class="register_category cate">
+                                <div class="category_imgBox">
+
+                                </div>
+                                <div class="name_box"></div>
+                                <select name="register" id="dropdown_list">
+                                    <option value="cpu1">cpu1</option>
+                                    <option value="cpu2">cpu2</option>
+                                    <option value="cpu3">cpu3</option>
+                                    <option value="cpu4">cpu4</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="cate_formButton">GO</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="homepageAD_contents">
+                    <!-- result3으로 받아준다!! -->
+                    <div class="title_box">
+                        <h2 class="title">HOMEPAGE AD</h2>
+                        <!-- result3로 통일한다. -->
+                    </div>
+                    <div class="AD_contents">
+                        <th:block th:each="introduction: ${introductions}">
+                            <div class="AD">
+                                <div class="img_box" th:text="${introduction.title}"></div>
+                                <div class="text_box" th:text="${introduction.content}"></div>
                             </div>
                         </th:block>
                     </div>
-                    <div class="category_ajax"></div>
                 </div>
-            </div>
 
-            <div class="content advantage">
-                <div class="text">
-                    <h4 id="title">홈페이지 장점</h4>
-                </div>
-                <div class="advantage_box">
-                    <th:block th:each="introduction: ${introductions}">
-                        <div class="advantage_items">
-                            <div class="logo">
-                                <span>
-                                    <h3 th:text="${introduction.title}"></h3>
-                                </span>
-                            </div>
-                            <div th:text="${introduction.content}" class="ad_explain"></div>
-                        </div>
-                    </th:block>
-                </div>
-            </div>
-
-            <div class="content good_buy">
-                <div class="text">
-                    <h4 id="title">우잘사</h4>
-                </div>
-                <th:block th:each="knowhow: ${knowhows}">
-                    <div class="knowhow">
-                        <div class="knowhow_method">
-                            <span>
-                                <h3 th:text="${knowhow.purpose}"></h3>
-                            </span>
-                        </div>
-                        <ul class="knowhow_list">
-                            <li th:text="${knowhow.explanation1}"></li>
-                            <li th:text="${knowhow.explanation2}"></li>
-                            <li th:text="${knowhow.explanation3}"></li>
-                        </ul>
+                <div class="graph_contents">
+                    <div class="title_box">
+                        <h2 class="title">GRAPH</h2>
                     </div>
-                </th:block>
-            </div>    
+                    <div class="gph_contents">
+
+                    </div>
+                </div>
+            </div>
         </main>
         <footer class="footer"></footer>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</div>
 </body>
-
 </html>

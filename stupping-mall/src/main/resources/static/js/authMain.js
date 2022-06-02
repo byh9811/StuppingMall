@@ -1,44 +1,57 @@
+'use strict';
+//carousel animation
+const carousel = document.querySelector('.carousel');
 const shift = document.querySelectorAll('.shift');
-const carousel_container = document.querySelectorAll('.carousel_container');
-
-for(let i=0; i<shift.length; i++){
-    shift[i].addEventListener('mouseover',()=>{
-        move(i * -100);
+shift.forEach((value, index)=>{
+    value.addEventListener
+    ('mouseover',()=>{
+        carouselMove(-(index * 33.33) + '%')
     })
-}
-function move(number){
-    //속성값 파라미터임!!
-    for(let i=0; i<carousel_container.length; i++){
-        carousel_container[i].style.transform = `translateX(${number}%)`;
-        carousel_container[i].style.transition = `all 0.8s`;
-    }
+})
+function carouselMove(number){
+    carousel.style.transform = `translateX(${number})`;
+    carousel.style.transition = 'all 0.5s';
 }
 
-/** scroll ==> subnav change*/
 
-$(window).on('scroll',function(){
-    if( $(window).scrollTop() > 120){
-        $('.header_contents').addClass('nav_change');
-        $('.main_search_2').addClass('search_local_change');
-    }else{
-        $('.header_contents').removeClass('nav_change');
-    }
-});
-
-//top8 carousel
-const item = document.querySelectorAll('.item_link');
-const carousel_3d = document.querySelector('.carousel_3d');
-
-for(let i=0; i<item.length; i++){
-    item[i].addEventListener('mouseover',()=>{
-        //mouseover잘 돌아감!!!!
-        here(i * -45 + 'deg');
-        
+// const shift =
+// carousel_item을 누르면 id가 전달되는 fetch만들자!
+// item_detail로 한 번에!
+const carouselItem = document.querySelectorAll('.carousel_item');
+let carouselDataIdArr = [] // 요소의 data-id를 넣는 array!
+// 이 아이디를 이제... query문에다가 넣어서 리디렉션을 해주는 과정!
+let top8IdArr = [];
+const top8Button = document.querySelectorAll('.top8_button');
+top8Button.forEach((value,index)=>{
+    top8IdArr.push(value.getAttribute('data-id'));
+    //value.getAttribute('')로 data-id값을 가져온다!
+    value.addEventListener
+    ('click', ()=>{
+        top8FetchAPI(index)
     })
-
+})
+function top8FetchAPI(index){ //fetch매우 중요!! ==> 이걸로 이제 ajax까지!!
+    let url = '/user/item-detail';
+    fetch(url)
+        .then(()=>{
+            window.location.href = url + `?id=${top8IdArr[index]}`; //추가로 쿼리문 보낼 수 있음!!
+        })
+        .catch((err) => console.log(err))
 }
+carouselItem.forEach((value,index)=>{
+    carouselDataIdArr.push(value.getAttribute('data-id'));
+    //value.getAttribute('')로 data-id값을 가져온다!
+    value.addEventListener
+    ('click', ()=>{
+        fetchAPI(index)
+    })
+})
 
-function here(deg){
-    carousel_3d.style.transition = "all 1s";
-    carousel_3d.style.transform = `rotateY(${deg})`;
+function fetchAPI(index){ //fetch매우 중요!! ==> 이걸로 이제 ajax까지!!
+    let url = '/user/item-detail';
+    fetch(url)
+        .then(()=>{
+            window.location.href = url + `?id=${carouselDataIdArr[index]}`; //추가로 쿼리문 보낼 수 있음!!
+        })
+        .catch((err) => console.log(err))
 }

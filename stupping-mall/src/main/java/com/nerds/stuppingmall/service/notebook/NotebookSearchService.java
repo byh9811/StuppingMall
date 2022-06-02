@@ -26,12 +26,12 @@ public class NotebookSearchService {
 	final NotebookRepository notebookRepository;
 	final int SIZE_PER_PAGE = 10;
 	
-	public List<NotebookRecent8ResponseDto> getRecent8Notebooks() {
-		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "registerDate")));
-		List<NotebookRecent8ResponseDto> notebookRecent8ResponseDtos = new ArrayList<>();
+	public List<NotebookRecent9ResponseDto> getRecent9Notebooks() {
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 9, Sort.by(Sort.Direction.DESC, "registerDate")));
+		List<NotebookRecent9ResponseDto> notebookRecent9ResponseDtos = new ArrayList<>();
 
 		for(Notebook notebook: notebooks) {
-			notebookRecent8ResponseDtos.add(NotebookRecent8ResponseDto.builder()
+			notebookRecent9ResponseDtos.add(NotebookRecent9ResponseDto.builder()
 					.id(notebook.get_id())
 					.name(notebook.getName())
 					.img(notebook.getImgs().get(0))
@@ -43,7 +43,7 @@ public class NotebookSearchService {
 					.build());
 		}
 
-		return notebookRecent8ResponseDtos;
+		return notebookRecent9ResponseDtos;
 	}
 
 	public List<NotebookTop3ResponseDto> getTop3Notebooks() {

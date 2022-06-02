@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class NotebookRecent8ResponseDto {
+public class NotebookRecent9ResponseDto {
     private String id;
     private String name;
     private int price;
