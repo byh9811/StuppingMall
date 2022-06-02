@@ -31,7 +31,7 @@ top8Button.forEach((value,index)=>{
     })
 })
 function top8FetchAPI(index){ //fetch매우 중요!! ==> 이걸로 이제 ajax까지!!
-    let url = '/user/item-detail';
+    let url = '/notebookInfo';
     fetch(url)
         .then(()=>{
             window.location.href = url + `?id=${top8IdArr[index]}`; //추가로 쿼리문 보낼 수 있음!!
@@ -48,7 +48,7 @@ carouselItem.forEach((value,index)=>{
 })
 
 function fetchAPI(index){ //fetch매우 중요!! ==> 이걸로 이제 ajax까지!!
-    let url = '/user/item-detail';
+    let url = '/notebookInfo';
     fetch(url)
         .then(()=>{
             window.location.href = url + `?id=${carouselDataIdArr[index]}`; //추가로 쿼리문 보낼 수 있음!!
