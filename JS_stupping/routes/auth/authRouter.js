@@ -8,7 +8,7 @@ const router = express.Router();
 
 // ========= << get요청 >> =========
 router.get('/',(req,res)=>{
-    res.render('./auth/authMain.ejs');
+    res.render('./user/authMain.ejs');
 })
 router.get('/sign-in',(req,res)=>{
     res.render('./auth/authSignIn.ejs');
