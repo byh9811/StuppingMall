@@ -84,12 +84,12 @@
                                                             <tr class="cart_elements">
                                                                 <th:block th:each="j : ${#numbers.sequence(1,2)}">
                                                                     <td th:if="${iStat.index==0} and ${jStat.index==0}" th:text="${recentNotebooks[index].name}"></td>
-                                                                    <td th:if="${iStat.index==0} and ${jStat.index==1}" th:text="${recentNotebooks[index].price}"></td>
+                                                                    <td th:if="${iStat.index==0} and ${jStat.index==1}" th:text="|${recentNotebooks[index].price}원|"></td>
                                                                     <td th:if="${iStat.index==1} and ${jStat.index==0}" th:text="${recentNotebooks[index].img}"></td>
                                                                     <td th:if="${iStat.index==1} and ${jStat.index==1}" th:text="${recentNotebooks[index].cpuName}"></td>
-                                                                    <td th:if="${iStat.index==2} and ${jStat.index==0}" th:text="${recentNotebooks[index].weight}"></td>
-                                                                    <td th:if="${iStat.index==2} and ${jStat.index==1}" th:text="${recentNotebooks[index].screenSize}"></td>
-                                                                    <td th:if="${iStat.index==3} and ${jStat.index==0}" th:text="${recentNotebooks[index].ramSize}"></td>
+                                                                    <td th:if="${iStat.index==2} and ${jStat.index==0}" th:text="|${recentNotebooks[index].weight}kg|"></td>
+                                                                    <td th:if="${iStat.index==2} and ${jStat.index==1}" th:text="|${recentNotebooks[index].screenSize}인치|"></td>
+                                                                    <td th:if="${iStat.index==3} and ${jStat.index==0}" th:text="|${recentNotebooks[index].ramSize}GB|"></td>
                                                                     <td th:if="${iStat.index==3} and ${jStat.index==1}">
                                                                         <button class="top8_button" th:attr="data-id=${recentNotebooks[index].id}">detail</button>
                                                                     </td>
