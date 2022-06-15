@@ -14,9 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.service.member.MemberDeregisterService;
@@ -59,14 +57,14 @@ public class AdminController {
 		return "memberInfo";
 	}
 
-	@PostMapping("/banMember")
-	public String banMember(String id) {
+	@DeleteMapping("/banMember/{id}")
+	public String banMember(@PathVariable("id") String id) {
 		memberDeregisterService.removeMember(id);
 		return "redirect:/admin/allMembers";
 	}
 
 	@GetMapping("/reports")
-	public String reportList(Model model, int curPage) {
+	public String reportList(@RequestParam("page") int curPage, Model model) {
 		Page<Report> reportPage = reportSearchService.findAllReports(curPage);
 		model.addAttribute("reports", reportPage.getContent());
 		model.addAttribute("curPage", reportPage.getNumber());
@@ -74,14 +72,14 @@ public class AdminController {
 		return "report";
 	}
 
-	@PostMapping("/updateIntroduction")
-	public String updateIntroduction(List<Introduction> introductions) {
+	@PutMapping("/updateIntroduction")
+	public String updateIntroduction(@RequestParam("introductions") List<Introduction> introductions) {
 		introductionModifyService.updateIntroduction(introductions);
 		return "introductionModifyPage";
 	}
 
-	@PostMapping("/updateKnowhow")
-	public String updateKnowhow(List<Knowhow> knowhows) {
+	@PutMapping("/updateKnowhow")
+	public String updateKnowhow(@RequestParam("knowhows") List<Knowhow> knowhows) {
 		knowhowModifyService.updateKnowhow(knowhows);
 		return "updateKnowhow";
 	}
