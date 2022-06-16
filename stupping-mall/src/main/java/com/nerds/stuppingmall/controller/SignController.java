@@ -4,9 +4,7 @@ import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.member.MemberModifyService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.nerds.stuppingmall.dto.MemberSignUpRequestDto;
 import com.nerds.stuppingmall.service.member.MemberInfoService;
@@ -30,15 +28,15 @@ public class SignController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/findUserId")
-	public @ResponseBody String findMemberId(HttpServletRequest request, String email, String key) {
+	@GetMapping("/userId")
+	public @ResponseBody String findMemberId(HttpServletRequest request, @RequestParam("email") String email, @RequestParam("key") String key) {
 		if(request.getSession().getAttribute(email).equals(key))
 			return "redirect:/error/incorrectKey";
 		return memberInfoService.findMemberId(email);
 	}
 
-	@PostMapping("/changePassword")
-	public String changePassword(HttpServletRequest request, @AuthenticationPrincipal Authentication authentication, String email, String key, String newPassword) {
+	@PutMapping("/password")
+	public String changePassword(HttpServletRequest request, @AuthenticationPrincipal Authentication authentication, @RequestParam("email") String email, @RequestParam("key") String key, @RequestParam("newPassword") String newPassword) {
 		if(request.getSession().getAttribute(email).equals(key))
 			return "redirect:/error/incorrectKey";
 		else if(authentication == null)

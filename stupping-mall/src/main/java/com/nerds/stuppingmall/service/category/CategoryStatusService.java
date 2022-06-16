@@ -3,7 +3,6 @@ package com.nerds.stuppingmall.service.category;
 import com.nerds.stuppingmall.domain.Category;
 import org.springframework.stereotype.Service;
 
-import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.repository.CategoryRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ public class CategoryStatusService {
 		return categories.stream().map(category -> category.get_id()).collect(Collectors.toList());
 	}
 
-	public List<String> getExistingCategory(String category) {
+	public List<String> getCategoryDetail(String category) {
 		return categoryRepository.findById(category).get().getList();
 	}
 }

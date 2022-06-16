@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class NotebookInfoRequestDto {
+public class CategoryInfoRequestDto {
 	private List<String> supplierNames;
 	private List<String> cpuNames;
 	private List<String> gpuNames;

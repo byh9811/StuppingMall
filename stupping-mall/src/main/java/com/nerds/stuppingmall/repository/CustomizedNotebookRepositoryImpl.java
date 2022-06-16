@@ -3,6 +3,7 @@ package com.nerds.stuppingmall.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.CategoryInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,7 +14,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.support.PageableExecutionUtils;
 
-import com.nerds.stuppingmall.dto.NotebookInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookListResponseDto;
 
 public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepository {
@@ -78,40 +78,40 @@ public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepos
 
 	@Override
 	public Page<NotebookListResponseDto> customFindNotebooksByCategory(Pageable pageable, Sort sort,
-                                                                       NotebookInfoRequestDto notebookInfoRequestDto) {
+																	   CategoryInfoRequestDto categoryInfoRequestDto) {
 		
 		Query query = new Query();
 		List<Criteria> outerCriterias = new ArrayList<>();
 		
-		if(!notebookInfoRequestDto.getSupplierNames().isEmpty()) {
+		if(!categoryInfoRequestDto.getSupplierNames().isEmpty()) {
 			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getSupplierNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getSupplierNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("supplierName").is(notebookInfoRequestDto.getSupplierNames().get(i));
+			Criteria[] innerCriterias = new Criteria[categoryInfoRequestDto.getSupplierNames().size()];
+			for(int i=0; i<categoryInfoRequestDto.getSupplierNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("supplierName").is(categoryInfoRequestDto.getSupplierNames().get(i));
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
-		if(!notebookInfoRequestDto.getCpuNames().isEmpty()) {
+		if(!categoryInfoRequestDto.getCpuNames().isEmpty()) {
 			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getCpuNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getCpuNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("cpuName").is(notebookInfoRequestDto.getCpuNames().get(i));
+			Criteria[] innerCriterias = new Criteria[categoryInfoRequestDto.getCpuNames().size()];
+			for(int i=0; i<categoryInfoRequestDto.getCpuNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("cpuName").is(categoryInfoRequestDto.getCpuNames().get(i));
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
-		if(!notebookInfoRequestDto.getGpuNames().isEmpty()) {
+		if(!categoryInfoRequestDto.getGpuNames().isEmpty()) {
 			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getGpuNames().size()];
-			for(int i=0; i<notebookInfoRequestDto.getGpuNames().size(); i++) {
-				innerCriterias[i] = Criteria.where("gpuName").is(notebookInfoRequestDto.getGpuNames().get(i));
+			Criteria[] innerCriterias = new Criteria[categoryInfoRequestDto.getGpuNames().size()];
+			for(int i=0; i<categoryInfoRequestDto.getGpuNames().size(); i++) {
+				innerCriterias[i] = Criteria.where("gpuName").is(categoryInfoRequestDto.getGpuNames().get(i));
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}
-		if(!notebookInfoRequestDto.getRegisterYears().isEmpty()) {
+		if(!categoryInfoRequestDto.getRegisterYears().isEmpty()) {
 			Criteria criteria = new Criteria();
-			Criteria[] innerCriterias = new Criteria[notebookInfoRequestDto.getRegisterYears().size()];
-			for(int i=0; i<notebookInfoRequestDto.getRegisterYears().size(); i++) {
-				innerCriterias[i] = Criteria.where("registerDate").regex("("+notebookInfoRequestDto.getRegisterYears().get(i)+")+");
+			Criteria[] innerCriterias = new Criteria[categoryInfoRequestDto.getRegisterYears().size()];
+			for(int i=0; i<categoryInfoRequestDto.getRegisterYears().size(); i++) {
+				innerCriterias[i] = Criteria.where("registerDate").regex("("+categoryInfoRequestDto.getRegisterYears().get(i)+")+");
 			}
 			outerCriterias.add(criteria.orOperator(innerCriterias));
 		}

@@ -129,7 +129,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByName(pageable, sort, name);
 	}
 
-	public Page<NotebookListResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, NotebookInfoRequestDto notebookInfoRequestDto) {
+	public Page<NotebookListResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, CategoryInfoRequestDto categoryInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -143,7 +143,7 @@ public class NotebookSearchService {
 		default: throw new RuntimeException();
 		}
 		
-		return notebookRepository.customFindNotebooksByCategory(pageable, sort, notebookInfoRequestDto);
+		return notebookRepository.customFindNotebooksByCategory(pageable, sort, categoryInfoRequestDto);
 	}
 	
 	public Page<NotebookListResponseDto> getMyPicks(int curPage, String customerId) {

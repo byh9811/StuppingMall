@@ -23,19 +23,20 @@ public class RestController {
     final OrderSearchService orderSearchService;
     final EmailSendService emailSendService;
 
+    // 판매자가 그래프에서 노트북검색하는 용인듯? 추후 수정필요
     @GetMapping("notebooks/search")
     public List<NotebookResponseBasicDto> searchNotebooks(String reqModelName) {
         Page<NotebookResponseBasicDto> notebookResponseBasicDtoPage = notebookSearchService.findNotebookBasicDtosByName(0, "최신순", reqModelName);
         return notebookResponseBasicDtoPage.getContent();
     }
 
-    @GetMapping("sales")
-    public OrderSalesInfoResponseDto getSalesInfo(String notebookId, String duration) {
+    @GetMapping("sales/{id}")
+    public OrderSalesInfoResponseDto getSalesInfo(@PathVariable("id") String notebookId, @RequestParam("duration") String duration) {
         return orderSearchService.findSales(duration, notebookId);
     }
 
-    @PostMapping("/authenticateEmail")
-    public @ResponseBody String authenticateEmail(HttpServletRequest request, String email) {
+    @PostMapping("/auth/email")
+    public @ResponseBody String authenticateEmail(HttpServletRequest request, @RequestParam("email") String email) {
         try {
             String key = emailSendService.sendMessage(email);
             HttpSession session = request.getSession();
@@ -49,7 +50,7 @@ public class RestController {
     }
 
     @GetMapping("/display")
-    public @ResponseBody ResponseEntity<byte[]> getImage(String name) {
+    public @ResponseBody ResponseEntity<byte[]> getImage(@RequestParam("name") String name) {
         byte[] imageByteArray = null;
         try {
             String fileName = "C:\\img\\" + name; // 파일경로

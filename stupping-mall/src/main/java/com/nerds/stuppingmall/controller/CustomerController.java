@@ -12,9 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Order;
@@ -25,7 +23,6 @@ import com.nerds.stuppingmall.service.member.MemberModifyService;
 import com.nerds.stuppingmall.service.order.OrderRegisterService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -63,7 +60,7 @@ public class CustomerController {
 
 		model.addAttribute("orders", myOrders);
 
-		return "orderList";
+		return "orderInfo";
 	}
 
 	@GetMapping("/myPicks")
@@ -89,26 +86,26 @@ public class CustomerController {
 		return "/customer/myPage";
 	}
 
-	@PostMapping("/updateMyInfo")
-	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, AccessibleInfoRequestDto accessibleInfoRequestDto) {
+	@PutMapping("/updateMyInfo")
+	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, @RequestParam("info") AccessibleInfoRequestDto accessibleInfoRequestDto) {
 		memberModifyService.updateInfo(authentication.getId(), accessibleInfoRequestDto);
 		return "redirect:/customer/myPage";
 	}
 
-	@PostMapping("/leave")
+	@DeleteMapping("/leave")
 	public String leave(@AuthenticationPrincipal Authentication authentication) {
 		memberDeregisterService.removeMember(authentication.getId());
 		return "redirect:/logout";
 	}
 
-	@PostMapping("/addBalance")
-	public String addBalance(@AuthenticationPrincipal Authentication authentication, int money) {
+	@PutMapping("/addBalance")
+	public String addBalance(@AuthenticationPrincipal Authentication authentication, @RequestParam("money") int money) {
 		memberModifyService.updateBalance(authentication.getId(), money);
 		return "redirect:/customer/myPage";
 	}
 	
 	@PostMapping("/makeOrder")
-	public String makeOrder(@AuthenticationPrincipal Authentication authentication, String notebookId, int payment, Model model) {
+	public String makeOrder(@AuthenticationPrincipal Authentication authentication, @RequestParam("notebookId") String notebookId, @RequestParam("payment") int payment, Model model) {
 		Order order = orderRegisterService.addOrder(authentication.getId(), notebookId, payment);
 		Order[] orders = new Order[1];
 		orders[0] = order;
