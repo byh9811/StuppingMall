@@ -7,6 +7,7 @@ import com.nerds.stuppingmall.service.category.CategoryStatusService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
 import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
+import com.nerds.stuppingmall.service.order.OrderModifyService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -37,6 +38,7 @@ public class CustomerController {
 	final MemberModifyService memberModifyService;
 	final OrderRegisterService orderRegisterService;
 	final OrderSearchService orderSearchService;
+	final OrderModifyService orderModifyService;
 	final NotebookSearchService notebookSearchService;
 	final IntroductionSearchService introductionSearchService;
 	final KnowhowSearchService knowhowSearchService;
@@ -107,6 +109,15 @@ public class CustomerController {
 	@PostMapping("/makeOrder")
 	public String makeOrder(@AuthenticationPrincipal Authentication authentication, @RequestParam("notebookId") String notebookId, @RequestParam("payment") int payment, Model model) {
 		Order order = orderRegisterService.addOrder(authentication.getId(), notebookId, payment);
+		Order[] orders = new Order[1];
+		orders[0] = order;
+		model.addAttribute("orders", orders);
+		return "orderInfo";
+	}
+
+	@PostMapping("/objection/{id}")
+	public String makeObjection(@AuthenticationPrincipal Authentication authentication, @PathVariable("id") String orderId, Model model) {
+		Order order = orderModifyService.makeObjection(orderId);
 		Order[] orders = new Order[1];
 		orders[0] = order;
 		model.addAttribute("orders", orders);
