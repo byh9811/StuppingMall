@@ -194,10 +194,26 @@ form>.input__box {
 .main__list .nav__title {
     display: block;
 }
-
+@media screen and (max-width : 768px) {
+    .category__container {
+        width: 100vw;
+    }
+    .disappear {
+        transition: all 0.5s;
+        transform: translateX(-100vw);
+    }
+}
 @media screen and (max-width : 500px) {
     .main__list .nav__title {
         transition: all 0.5s;
         display: none;
+    }
+    .category__container {
+        width: 100vw;
+    }
+
+    .disappear {
+        transition: all 0.5s;
+        transform: translateX(-100vw);
     }
 }
