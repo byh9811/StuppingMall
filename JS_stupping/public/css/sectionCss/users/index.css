@@ -1,0 +1,200 @@
+.section {
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 6fr 2.5fr;
+    grid-template-rows: 5fr 2fr;
+    grid-gap: 1vh 1vw;
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 5fr 2fr 1fr; */
+    overflow-y: scroll;
+}
+
+.section>* {
+    /* border : 1px solid black; */
+    border-radius: 20px;
+    /* box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+            -10px -10px 30px rgba(9, 148, 255, 0.1),
+            inset -5px -5px 15px rgba(9, 148, 255, 0.5); */
+}
+
+.section>.section__footer {
+    /* border : 2px solid black; */
+    grid-column: span 2;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+/* 1. carousel design */
+.carousel {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+.carousel>.arrow__box {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translateX(-50%);
+    /* border : 2px solid black; */
+    width: 70px;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.carousel .arrow {
+    cursor: pointer;
+    border-radius: 20px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(56, 172, 244);
+}
+
+.carousel>.carousel__container {
+    width: 300%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    background-color: transparent;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+.carousel__container>.carousel__item {
+    width: 100%;
+    height: 100%;
+    /* background-color: aquamarine; */
+    /* border-right : 2px solid black; */
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr;
+    grid-template-rows: 1fr;
+}
+
+.carousel__item>.carousel__text {
+    /* border : 2px solid black; */
+}
+
+.carousel__img>img {
+    width: 100%;
+    height: 100%;
+}
+
+/* homepage 장점! */
+.homepage__using {
+    overflow: hidden;
+    position: relative;
+}
+
+.advantage__container {
+    width: 400%;
+    height: 100%;
+    /* background-color: black; */
+    display: flex;
+}
+
+.advantage__container>.advantages {
+    flex-grow: 1;
+    /* border : 3px solid black; */
+    background-color: transparent;
+    /* border : 2px solid black; */
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+.advantages>.advantages__box {
+    /*상자 박스 여기안에 이제 contents들어감*/
+    width: 90%;
+    height: 90%;
+    /* border : 2px solid black; */
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.advantages__box>.advantages__logo {
+    position: relative;
+    top: 5%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translateX(-50%);
+    border: 1px solid black;
+}
+
+.advantages__box>.advantages__explain {
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* border : 2px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 4px, rgba(0, 0, 0, 0.6) 0px 7px 13px -3px, rgba(0, 0, 0, 0.7) 0px -3px 0px inset;
+}
+
+.advantage__arrow__box {
+    width: 70px;
+    height: 20px;
+    /* border : 2px solid black; */
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.advantage__arrow {
+    flex-grow: 1;
+    height: 70%;
+    border-radius: 10px;
+    background-color: rgb(43, 166, 241);
+    margin: 0 2px;
+}
+
+/* tablet pc responsible ==> yet! */
+/* mobile responsible */
+@media screen and (max-width : 768px) {
+    .section {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 6fr 3fr;
+    }
+
+    .section>.section__footer {
+        grid-column: span 1;
+        /* border: 2px solid black; */
+    }
+
+    .carousel__container>.carousel__item {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .carousel__item>.carousel__text {
+        display: none;
+    }
+
+    .homepage__using {
+        /* 이거 오른쪽 navbar에서 나오게..! */
+        display: none;
+    }
+}

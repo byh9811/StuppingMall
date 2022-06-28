@@ -1,0 +1,203 @@
+.side__nav {
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 7fr;
+}
+
+.side__nav>.main__title {
+    position: relative;
+    /* border : 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__title>.main__logo>a {
+    font-size: 1.3rem;
+    color: #0994ff;
+    transition: all 0.5s;
+}
+
+.main__title>.category__logo {
+    margin-right: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: deepskyblue
+}
+
+/*category UI 작성*/
+.category__container {
+    position: absolute;
+    width: 500px;
+    height: 100vh;
+    background-color: rgb(142, 183, 242);
+    z-index: 1000000;
+    transition: all 0.5s;
+    transform: translateX(-500px);
+    border-radius: 20px;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr 5fr;
+}
+
+.close__button {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    /* border : 3px solid white; */
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+/* category 내부 디자인 */
+/* .category__container > *{border : 1px solid black;} */
+.category__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.category__items {
+    /* 요고 fetch로 보내야함! click event */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 2vh 2vw;
+    border-radius: 20px;
+}
+
+.item {
+    cursor: pointer;
+    /* border : 1px solid black; */
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5fr 1fr;
+}
+
+form>.input__box {
+    /* border : 2px solid black; */
+    /*data가 많으면 overflow scroll*/
+    overflow-y: scroll;
+}
+
+.category__button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* border : 5px solid black; */
+    height: 30px;
+}
+
+.category__button>button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: 1px solid rgb(77, 128, 237);
+    padding: 3px 3px;
+}
+
+/* category class */
+.appear {
+    transition: all 0.5s;
+    transform: translateX(0px);
+}
+
+.disappear {
+    transition: all 0.5s;
+    transform: translateX(-500px);
+}
+
+/* ======= << main nav >> =======*/
+.main__nav {
+    /* border : 2px solid black; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 2fr;
+}
+
+.main__list {
+    /* border : 2px solid black; */
+    display: flex;
+    flex-direction: column;
+}
+
+.main__list li {
+    /* border : 1px solid black; */
+    text-align: center;
+    flex-grow: 1;
+    position: relative;
+}
+
+.main__list>li>a {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: 70%;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0994ff;
+    /* color : gray; */
+}
+
+.main__list>li>a:hover {
+    background-color: aliceblue;
+    font-weight: 700;
+    color: white;
+    background-color: #0994ff;
+    transition: all 0.5s;
+    box-shadow: rgb(174, 202, 225) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.real__logo {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    /* background-color: #0994ff; */
+    padding: 10% 10%;
+}
+
+.main__list .nav__title {
+    display: block;
+}
+
+@media screen and (max-width : 500px) {
+    .main__list .nav__title {
+        transition: all 0.5s;
+        display: none;
+    }
+}
