@@ -1,0 +1,136 @@
+/* header 관련 css */
+.header {
+    display: flex;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.header>.search__bar {
+    /*header layout*/
+    flex-grow: 4;
+    /* border : 2px solid black; */
+    position: relative;
+}
+
+.header>.header__subnav {
+    /*header layout*/
+    flex-grow: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search__bar>form {
+    /* header안에 왼쪽 부분 */
+    position: relative;
+    /* border : 2px solid black; */
+    border-radius: 10px;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    width: fit-content;
+    display: flex;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+.search__bar>form:hover {
+    transition: all 0.5s;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.search__bar input[type="search"] {
+    width: calc(100% - 40px);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-align: center;
+}
+
+.search__bar input[type="search"]::placeholder {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: gray;
+}
+
+.search__bar button[type="submit"] {
+    width: 40px;
+    height: 25px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #0994ff;
+    cursor: pointer;
+}
+
+/* header__sub__nav*/
+.header__subnav>.header__sub__list {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header__sub__list a {
+    font-size: 0.7rem;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 20px;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+
+.header__sub__list a:hover {
+    transition: all 0.5s;
+    background-color: white;
+    /* color : white; */
+}
+
+.header__sub__list p {
+    color: rgb(143, 143, 143);
+}
+
+.header__sub__list a>i {
+    color: #0994ff;
+}
+
+.header .sub__nav__logo {
+    /* border : 2px solid black; */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    display: none;
+}
+
+/*desk top version >> responsible */
+@media screen and (max-width : 1024px) {
+    /* 주로 section파트에서만 이뤄질듯... */
+}
+
+/* tablet pc */
+@media screen and (max-width : 768px) {
+    .header__subnav>.header__sub__list {
+        display: none;
+    }
+
+    .search__bar>form {
+        width: 80%;
+        margin: 0 auto;
+        /*block 가운데 정렬*/
+    }
+
+    /* 이제 그.. */
+    .header .sub__nav__logo {
+        display: block;
+        padding: 0 5px;
+    }
+}

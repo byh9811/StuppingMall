@@ -10,7 +10,7 @@ const adminIndexRouter =  require('./routes/admin/adminIndexRouter.js');
 
 app.set("views",'./views'); //auth랑 admin은 따로 경로를 설정해서 나눠주자!
 app.set('view engine','ejs');
-
+//sdsdsd
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
 app.use(express.static('public'));
