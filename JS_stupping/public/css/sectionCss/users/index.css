@@ -80,13 +80,10 @@
     /* background-color: aquamarine; */
     /* border-right : 2px solid black; */
     display: grid;
-    grid-template-columns: 1.5fr 2.5fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 }
 
-.carousel__item>.carousel__text {
-    /* border : 2px solid black; */
-}
 
 .carousel__img>img {
     width: 100%;
@@ -188,11 +185,6 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
-
-    .carousel__item>.carousel__text {
-        display: none;
-    }
-
     .homepage__using {
         /* 이거 오른쪽 navbar에서 나오게..! */
         display: none;

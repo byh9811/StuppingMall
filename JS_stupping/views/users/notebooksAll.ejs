@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../css/container.css">
     <link rel="stylesheet" href="../../css/sideNav.css">
     <link rel="stylesheet" href="../../css/header.css">
-    <link rel="stylesheet" href="../../css/sectionCss/users/Index.css">
+    <link rel="stylesheet" href="../../css/sectionCss/users/notebookAll.css">
 
     <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
@@ -91,18 +91,18 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <div class="main__logo">
-                    <a href="">Stupping</a>
+                    <a href="/index">Stupping</a>
                 </div>
             </div>
             <div class="main__nav">
                 <ul class="main__list">
-                    <li class="list"><a href="">
+                    <li class="list"><a href="/top8/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-ranking-star"></i>
                                 <span class="nav__title">top8</span>
                             </div>
                         </a></li>
-                    <li class="list"><a href="">
+                    <li class="list"><a href="/notebooks/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-laptop"></i>
                                 <span class="nav__title">notebook</span>
@@ -111,10 +111,10 @@
                     <li class="list"><a href="">
                             <div class="real__logo">
                                 <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">advantage</span>
+                                <span class="nav__title">to buy</span>
                             </div>
                         </a></li>
-                    <li class="list"><a href="">
+                    <li class="list"><a href="/graph/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-chart-line"></i>
                                 <span class="nav__title">graph</span>
@@ -134,19 +134,19 @@
             </div>
             <nav class="header__subnav">
                 <ul class="header__sub__list">
-                    <li><a href="">
+                    <li><a href="/sign-in/index">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             <p>Login</p>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="/buyer/index">
                             <i class="fa-duotone fa-user-minus"></i>
                             <p>Logout</p>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="/sign-up/index">
                             <i class="fa-solid fa-user-plus"></i>
                             <p>signUp</p>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="/mypages/index">
                             <i class="fa-solid fa-user"></i>
                             <p>myPage</p>
                         </a></li>
@@ -157,42 +157,7 @@
             </div>
         </header>
         <main class="section">
-            <div class="carousel">
-                <div class="arrow__box">
-                    <% for(let i=0; i<result.length; i++){ %>
-                        <div class="arrow"></div>
-                        <% } %>
-                </div>
-                <div class="carousel__container">
-                    <!-- 여기에 이제 최신순 상품 3개 db에서 꺼내오자! 
-                    GET : /notebooks/:id -->
-                    <% for(let i=0; i<result.length; i++){ %>
-                        <div class="carousel__item" data-id="<%= result[i]._id %>">
-                            <div class="carousel__img">
-                                <img src="../../img/11.png" alt="">
-                            </div>
-                        </div>
-                        <% } %>
-                </div>
-            </div>
-            <div class="homepage__using">
-                <div class="advantage__container">
-                    <% for(let i=0; i<4; i++){ %>
-                        <div class="advantages">
-                            <div class="advantages__box">
-                                <div class="advantages__title"></div>
-                                <div class="advantages__explain"></div>
-                            </div>
-                        </div>
-                        <% } %>
-                </div>
-                <div class="advantage__arrow__box">
-                    <% for(let i=0; i<4; i++){ %>
-                        <div class="advantage__arrow"></div>
-                        <% } %>
-                </div>
-            </div>
-            <div class="section__footer">3</div>
+            <h1>노트북 전체보기</h1>
         </main>
     </div>
 
