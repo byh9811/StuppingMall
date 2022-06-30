@@ -24,26 +24,66 @@
         <div class="category__container">
             <i class="fa-solid fa-xmark close__button"></i>
             <div class="category__title">Category</div>
-            <div class="category__items">
-                <div class="item">
-                    <p>supplierName</p>
-                </div>
-                <div class="item">
-                    <p>cpuName</p>
-                </div>
-                <div class="item">
-                    <p>gpuName</p>
-                </div>
-                <div class="item">
-                    <p>registerDate</p>
-                </div>
+            <!-- /notebooks get요청으로 보내야하는 form button만들기! -->
+            <div class="category__list">
+                <ul class="category__nav">
+                    <li>
+                        <span><i class="fa-solid fa-building"></i></span>
+                        <span>supplierName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-microchip"></i></span>
+                        <span>cpuName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-g"></i></span>
+                        <span>gpuName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <span>registerDate</span>
+                    </li>
+                </ul>
             </div>
-            <form get="/notebooks" method="get" class="category__list">
-                <div class="input__box">1</div>
-                <div class="category__button">
-                    <button type="submit">submit</button>
+            <form action="/notebooks" method="get" class="category__contents">
+        
+                <div class="box">
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                </div>
+                <div class="box">
+                    박스2
+                    <label for="cpuInput"></label>
+                    <input type="checkbox" name="cpuName" id="cpuInput" value="CPU1">
+                </div>
+                <div class="box">
+                    박스3
+                    <label for="gpuInput"></label>
+                    <input type="checkbox" name="gpuName" id="gpuInput" value="LG">
+                </div>
+                <div class="box">
+                    박스4
+                    <label for="registerInput"></label>
+                    <input type="checkbox" name="registerDate" id="registerInput" value="LG">
                 </div>
             </form>
+            <div class="button__box">
+                <button type="submit" class="category__button">submit</button>
+            </div>
         </div>
         <nav class="side__nav">
             <div class="main__title">
@@ -128,9 +168,6 @@
                     GET : /notebooks/:id -->
                     <% for(let i=0; i<result.length; i++){ %>
                         <div class="carousel__item" data-id="<%= result[i]._id %>">
-                            <div class="carousel__text">
-                                <%= result[i].noteName %>
-                            </div>
                             <div class="carousel__img">
                                 <img src="../../img/11.png" alt="">
                             </div>
