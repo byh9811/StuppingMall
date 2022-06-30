@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +13,10 @@
 
     <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
     <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
     <script defer src="../../js/users/indexSection.js"></script>
 </head>
-
 <body>
     <div class="container">
         <div class="category__container">
@@ -46,9 +44,12 @@
                 </ul>
             </div>
             <form action="/notebooks" method="get" class="category__contents">
-        
+
                 <div class="box">
+                    <!-- box는 supplierName category를 hover했을 때 나오는 item목록-->
                     <div class="box__container">
+                        <!-- box__container는 item하나하나를 감싸는 박스
+                        grid로 좀 예쁘게 보기좋게 나오게 하려면 item하나하나를 감싸줘야함-->
                         <label for="supplierInput">LG</label>
                         <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
                     </div>
@@ -65,20 +66,24 @@
                         <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
                     </div>
                 </div>
-                <div class="box">
-                    박스2
-                    <label for="cpuInput"></label>
-                    <input type="checkbox" name="cpuName" id="cpuInput" value="CPU1">
+                <div class="box"> <!-- cpuName을 hover했을 때 나오는 box -->
+                    <div class="box__container">
+                        <!-- 이것도 마찬가지 => 그냥 front에서 임의로 data하나 만든거-->
+                        <label for="cpuInput">CPU1</label>
+                        <input type="checkbox" name="cpuName" id="cpuInput" value="cpu1">
+                    </div>
+                </div>
+                <div class="box"> <!-- 위와 같은 논리 -->
+                    <div class="box__container">
+                        <label for="gpuInput">gpu1</label>
+                        <input type="checkbox" name="gpuName" id="gpuInput" value="gpu1">
+                    </div>
                 </div>
                 <div class="box">
-                    박스3
-                    <label for="gpuInput"></label>
-                    <input type="checkbox" name="gpuName" id="gpuInput" value="LG">
-                </div>
-                <div class="box">
-                    박스4
-                    <label for="registerInput"></label>
-                    <input type="checkbox" name="registerDate" id="registerInput" value="LG">
+                    <div class="box__container">
+                        <label for="registerInput">2072</label>
+                        <input type="checkbox" name="registerDate" id="registerInput" value="2072">
+                    </div>
                 </div>
             </form>
             <div class="button__box">
@@ -91,35 +96,35 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <div class="main__logo">
-                    <a href="">Stupping</a>
+                    <a href="/index">Stupping</a>
                 </div>
             </div>
             <div class="main__nav">
                 <ul class="main__list">
                     <li class="list"><a href="">
-                            <div class="real__logo">
-                                <i class="fa-solid fa-ranking-star"></i>
-                                <span class="nav__title">top8</span>
-                            </div>
-                        </a></li>
+                        <div class="real__logo">
+                            <i class="fa-solid fa-ranking-star"></i>
+                            <span class="nav__title">top8</span>
+                        </div>
+                    </a></li>
                     <li class="list"><a href="">
-                            <div class="real__logo">
-                                <i class="fa-solid fa-laptop"></i>
-                                <span class="nav__title">notebook</span>
-                            </div>
-                        </a></li>
+                        <div class="real__logo">
+                            <i class="fa-solid fa-laptop"></i>
+                            <span class="nav__title">notebook</span>
+                        </div>
+                    </a></li>
+                    <li class="list"><a href="/buyer/index">
+                        <div class="real__logo">
+                            <i class="fa-solid fa-face-smile"></i>
+                            <span class="nav__title">tip</span>
+                        </div>
+                    </a></li>
                     <li class="list"><a href="">
-                            <div class="real__logo">
-                                <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">advantage</span>
-                            </div>
-                        </a></li>
-                    <li class="list"><a href="">
-                            <div class="real__logo">
-                                <i class="fa-solid fa-chart-line"></i>
-                                <span class="nav__title">graph</span>
-                            </div>
-                        </a></li>
+                        <div class="real__logo">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span class="nav__title">graph</span>
+                        </div>
+                    </a></li>
                 </ul>
             </div>
         </nav>
@@ -134,22 +139,22 @@
             </div>
             <nav class="header__subnav">
                 <ul class="header__sub__list">
+                    <li><a href="/sign-in/index">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <p>Login</p>
+                    </a></li>
                     <li><a href="">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            <p>Login</p>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fa-duotone fa-user-minus"></i>
-                            <p>Logout</p>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <p>signUp</p>
-                        </a></li>
-                    <li><a href="">
-                            <i class="fa-solid fa-user"></i>
-                            <p>myPage</p>
-                        </a></li>
+                        <i class="fa-duotone fa-user-minus"></i>
+                        <p>Logout</p>
+                    </a></li>
+                    <li><a href="/sign-up/index">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <p>signUp</p>
+                    </a></li>
+                    <li><a href="/mypages/index">
+                        <i class="fa-solid fa-user"></i>
+                        <p>myPage</p>
+                    </a></li>
                 </ul>
             </nav>
             <div class="sub__nav__logo">
@@ -161,7 +166,7 @@
                 <div class="arrow__box">
                     <% for(let i=0; i<result.length; i++){ %>
                         <div class="arrow"></div>
-                        <% } %>
+                    <% } %>
                 </div>
                 <div class="carousel__container">
                     <!-- 여기에 이제 최신순 상품 3개 db에서 꺼내오자! 
@@ -172,7 +177,7 @@
                                 <img src="../../img/11.png" alt="">
                             </div>
                         </div>
-                        <% } %>
+                    <% } %>
                 </div>
             </div>
             <div class="homepage__using">
@@ -180,16 +185,16 @@
                     <% for(let i=0; i<4; i++){ %>
                         <div class="advantages">
                             <div class="advantages__box">
-                                <div class="advantages__title"></div>
+                                <div class="advantages__logo"></div>
                                 <div class="advantages__explain"></div>
                             </div>
                         </div>
-                        <% } %>
+                    <% } %>
                 </div>
                 <div class="advantage__arrow__box">
                     <% for(let i=0; i<4; i++){ %>
                         <div class="advantage__arrow"></div>
-                        <% } %>
+                    <% } %>
                 </div>
             </div>
             <div class="section__footer">3</div>
@@ -197,8 +202,7 @@
     </div>
 
     <script>
-
+        
     </script>
 </body>
-
 </html>
