@@ -1,0 +1,136 @@
+.login__section{
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+            -10px -10px 30px rgba(9, 148, 255, 0.1),
+            inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__container{
+    width : 100%;
+    height : 100%;
+    /* border : 2px solid black; */
+    background-color: transparent;
+    display : grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+}
+.login__container > * {border : 1px solid black;}
+.login__explain{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*login__box 꾸미기 => 실제 로그인*/
+.login__box{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__box > .login__form{
+    width : 60%;
+    height : 90%;
+    /* border : 2px solid black; */
+    box-shadow: rgba(155, 207, 253, 0.954) 5px 22px 70px 4px;
+    border-radius : 20px;
+    display : grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+/* 내부 coding */
+.login__form > .login__title{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+.login__title > #title{
+    font-size : 1.3rem;
+    font-weight : 800;
+}
+.login__form > .login__main{
+    /* border : 1px solid black; */
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__main > .login__text{
+    /* border : 2px solid black; */
+    width : fit-content;
+    height : fit-content;
+    padding : 10px 10px;
+}
+.login__text > p{
+    border-radius: 5px;
+    margin : 10% 0;
+    display : flex;
+    justify-content: center;
+    align-items : center;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+            -10px -10px 30px rgba(9, 148, 255, 0.1),
+            inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+}
+.login__text .icon{
+    display : inline-block;
+    font-size : 1.5rem;
+    padding : 0 5px;
+    background-color: transparent;
+    color : #0994ff;
+}
+.login__text  #userID,#userPW{
+    /* chosen both id text and pw text */
+    border : none;
+    outline : none;
+    height : 30px;
+    background-color: transparent;
+}
+.login__text > .login__submit__button{
+    width : 100%;
+    height : 30px;
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+            -10px -10px 30px rgba(9, 148, 255, 0.1),
+            inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    outline : none;
+    border : none;
+    border-radius : 10px;
+    cursor : pointer;
+}
+.login__text > .login__submit__button:hover{
+    transition : all 0.5s;
+    color : white;
+    background-color: #0994ff;
+    font-weight : 800;
+}
+.login__text > .login__otherway{
+    margin : 10px 0;
+    /* border : 1px solid black; */
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login__otherway > span{
+    padding : 5px 5px;
+    cursor : pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius : 5px;
+}
+.login__otherway > span:hover{
+    transition : all 0.5s;
+    transform : scale(1.2);
+}
+.find__account{
+    /* border : 1px solid black; */
+    margin : 10px 0;
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.find__account > a{
+    padding : 5px 0;
+    color : black;
+    font-weight : 500;
+    font-family: 'Ubuntu', sans-serif;
+}
