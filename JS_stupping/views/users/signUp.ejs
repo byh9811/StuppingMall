@@ -169,20 +169,34 @@
                             <h2>역할</h2>
                         </div>
                         <div class="input">
-                            <label for="user">사용자
+                            <label for="user">개인
                                 <input type="radio" name="role" value='user' id="user">
+                                <span class="radio__span"></span>
                                 <label for="supplier">기업
                                     <input type="radio" name="role" value='supplier' id="supplier">
                         </div>
                     </div>
-
                     <div class="input__box">
                         <div class="input__label">
-                            <h2>패스워드</h2>
+                            <h2>성별</h2>
                         </div>
                         <div class="input">
-                            <label for="userPW">
-                                <input type="text" name="password" id="userPW">
+                            <label for="man">남자
+                                <input type="radio" name="man" value='man' id="man">
+                                <span class="radio__span"></span>
+                                <label for="woman">여자
+                                    <input type="radio" name="man" value='woman' id="woman">
+                        </div>
+                    </div>
+
+                    <!-- 아이디 -->
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>아이디</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userID">
+                                <input type="text" name="" id="userID">
                         </div>
                     </div>
                     <div class="input__box">
@@ -196,11 +210,11 @@
                     </div>
                     <div class="input__box">
                         <div class="input__label">
-                            <h2>이메일</h2>
+                            <h2>패스워드</h2>
                         </div>
                         <div class="input">
-                            <label for="userEmail">
-                                <input type="email" name="email" id="userEmail">
+                            <label for="userPW">
+                                <input type="text" name="password" id="userPW">
                         </div>
                     </div>
                     <div class="input__box">
@@ -214,24 +228,14 @@
                     </div>
                     <div class="input__box">
                         <div class="input__label">
-                            <h2>생년월일</h2>
+                            <h2>이메일</h2>
                         </div>
                         <div class="input">
-                            <label for="userBirth">
-                                <input type="date" name="birth" id="userBirth">
+                            <label for="userEmail">
+                                <input type="email" name="email" id="userEmail">
                         </div>
                     </div>
-                    <div class="input__box">
-                        <div class="input__label">
-                            <h2>성별</h2>
-                        </div>
-                        <div class="input">
-                            <label for="man">남자
-                                <input type="radio" name="man" value='man' id="man">
-                                <label for="woman">여자
-                                    <input type="radio" name="man" value='woman' id="woman">
-                        </div>
-                    </div>
+
                     <div class="input__box">
                         <div class="input__label">
                             <h2>은행</h2>
@@ -243,6 +247,16 @@
                                     <option value="kb">국민</option>
                                     <option value="woori">우리</option>
                                 </select>
+                        </div>
+                    </div>
+
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>생년월일</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userBirth">
+                                <input type="date" name="birth" id="userBirth">
                         </div>
                     </div>
                     <div class="input__box">
