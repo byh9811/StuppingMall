@@ -11,10 +11,10 @@ carousel.forEach((value,index) => {
 
 function fetchAPI(id){
     fetch(`/notebooks/${id}`)
-    .then(() => {
-        window.location.href = `/notebooks/${id}`;
-    })
-    .catch((err) => console.log(err));
+        .then(() => {
+            window.location.href = `/notebooks/${id}`;
+        })
+        .catch((err) => console.log(err));
 }
 
 /** carousel Sliding ==> notebooks */
@@ -60,29 +60,3 @@ function categoryClose(){
     categoryBox.classList.add('disappear');
 }
 
-// category click 해서 fetch로 보내기!
-const itemList = document.querySelectorAll('.item > p');
-const item = document.querySelectorAll('.item');
-const category = document.querySelector('.input__box');
-let categoryAJAX = ['supplier','cpu','gpu','date'];
-const categoryList = [];
-itemList.forEach((value,index) => {
-    categoryList.push(value.innerHTML);
-})
-// console.log(categoryList); 
-
-item.forEach((value,index) => {
-    value.addEventListener('click', ()=>{
-        categoryFetchAPI(index);
-    })
-})
-function categoryFetchAPI(index){
-    //카테고리 값을 보내는데 성공! => 이제 그걸 가지고 html로! 
-    fetch(`/categories/${categoryAJAX[index]}`) //요청
-    .then((response) => {
-        return response.text();
-    })
-    .then((text) => {
-        category.innerHTML = text; 
-    })
-}

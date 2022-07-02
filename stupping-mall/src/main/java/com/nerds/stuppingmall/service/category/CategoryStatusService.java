@@ -7,7 +7,10 @@ import com.nerds.stuppingmall.repository.CategoryRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,10 +18,17 @@ import java.util.stream.Collectors;
 public class CategoryStatusService {
 	final CategoryRepository categoryRepository;
 	
-	public List<String> getCategoryNames() {
+	public Map<String, List<String>> getCategories() {
 		List<Category> categories = categoryRepository.findAll();
+		Map<String, List<String>> ret = new HashMap<>();
 
-		return categories.stream().map(category -> category.get_id()).collect(Collectors.toList());
+		for(Category category: categories) {
+			String cateId = category.get_id();
+			cateId = cateId.substring(0, 1).toLowerCase() + cateId.substring(1);
+			ret.put(cateId, category.getList());
+		}
+
+		return ret;
 	}
 
 	public List<String> getCategoryDetail(String category) {

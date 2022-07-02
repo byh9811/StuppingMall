@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stupping</title>
-    <link rel="stylesheet" th:href="@{/css/reset.css(ver=${date})}">
-    <link rel="stylesheet" th:href="@{/css/container.css(ver=${date})}">
-    <link rel="stylesheet" th:href="@{/css/sideNav.css(ver=${date})}">
-    <link rel="stylesheet" th:href="@{/css/header.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/reset.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/container.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/sideNav.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/header.css(ver=${date})}">
     <link rel="stylesheet" th:href="@{/css/sectionCss/users/index.css(ver=${date})}">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
           rel="stylesheet">
@@ -22,26 +22,37 @@
     <div class="category__container">
         <i class="fa-solid fa-xmark close__button"></i>
         <div class="category__title">Category</div>
-        <div class="category__items">
-            <div class="item">
-                <p>supplierName</p>
-            </div>
-            <div class="item">
-                <p>cpuName</p>
-            </div>
-            <div class="item">
-                <p>gpuName</p>
-            </div>
-            <div class="item">
-                <p>registerDate</p>
-            </div>
+        <div class="category__list">
+            <ul class="category__nav">
+                <li>
+                    <span><i class="fa-solid fa-building"></i></span>
+                    <span>SupplierName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-microchip"></i></span>
+                    <span>CpuName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-g"></i></span>
+                    <span>GpuName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-calendar-days"></i></span>
+                    <span>RegisterDate</span>
+                </li>
+            </ul>
         </div>
-        <form action="/notebooks" method="get" class="category__list">
-            <div class="input__box">1</div>
-            <div class="category__button">
-                <button type="submit">submit</button>
+        <form action="/notebooks" method="get" class="category__contents">
+            <div class="box" th:each="category: ${categories}">
+                <div class="box__container" th:each="elem: ${category.value}">
+                    <label th:for="|${category.key}Input${elemStat.count}|" th:text="${elem}"></label>
+                    <input type="checkbox" th:name="${category.key}" th:id="|${category.key}Input${elemStat.count}|" th:value="${elem}">
+                </div>
             </div>
         </form>
+        <div class="button__box">
+            <button type="submit" class="category__button">submit</button>
+        </div>
     </div>
     <nav class="side__nav">
         <div class="main__title">
