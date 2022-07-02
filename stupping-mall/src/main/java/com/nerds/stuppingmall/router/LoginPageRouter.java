@@ -11,6 +11,6 @@ public class LoginPageRouter {
     @GetMapping("/login")
     public String loginPage(Model model) {
         model.addAttribute("date", LocalTime.now());
-        return "common/login";
+        return "common/signIn";
     }
 }
