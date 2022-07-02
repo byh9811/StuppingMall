@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../css/container.css">
     <link rel="stylesheet" href="../../css/sideNav.css">
     <link rel="stylesheet" href="../../css/header.css">
-    <link rel="stylesheet" href="../../css/sectionCss/users/login.css">
+    <link rel="stylesheet" href="../../css/sectionCss/users/signUp.css">
 
     <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
@@ -66,22 +66,19 @@
                     </div>
                 </div>
                 <div class="box">
-                    <div class="box__container">
-                        <label for="cpuInput">cpu2</label>
-                        <input type="checkbox" name="cpuName" id="cpuInput" value="CPU1">
-                    </div>
+                    박스2
+                    <label for="cpuInput"></label>
+                    <input type="checkbox" name="cpuName" id="cpuInput" value="CPU1">
                 </div>
                 <div class="box">
-                    <div class="box__container">
-                        <label for="gpuInput">gpu2</label>
-                        <input type="checkbox" name="gpuName" id="gpuInput" value="LG">
-                    </div>
+                    박스3
+                    <label for="gpuInput"></label>
+                    <input type="checkbox" name="gpuName" id="gpuInput" value="LG">
                 </div>
                 <div class="box">
-                    <div class="box__container">
-                        <label for="registerInput"></label>
-                        <input type="checkbox" name="registerDate" id="registerInput" value="LG">
-                    </div>
+                    박스4
+                    <label for="registerInput"></label>
+                    <input type="checkbox" name="registerDate" id="registerInput" value="LG">
                 </div>
             </form>
             <div class="button__box">
@@ -114,7 +111,7 @@
                     <li class="list"><a href="/buyer/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">tip</span>
+                                <span class="nav__title">to buy</span>
                             </div>
                         </a></li>
                     <li class="list"><a href="/graph/index">
@@ -159,51 +156,122 @@
                 <i class="fa-solid fa-bars sub__nav__logo"></i>
             </div>
         </header>
-        <main class="section login__section">
-            <div class="login__container">
-                <div class="login__explain">
-                    1
+        <main class="section">
+            <div class="sign-up__section">
+                <div class="sign-up__title">
+                    <h2 id="title">Sign Up</h2>
                 </div>
-                <div class="login__box">
-                    <form class="login__form" action="/api/auth/local" method="POST">
-                        <div class="login__title">
-                            <h2 id="title">Sign In</h2>
+                <form class="sign-up__contents" method="POST" action="/api/auth/local/new">
+                    <!-- 여기 get요청 되면 이제 back에서 
+                    checkbox나 은행관한 data만들어놔야함.. -->
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>역할</h2>
                         </div>
-                        <div class="login__main">
-                            <div class="login__text">
-                                <p>
-                                    <span class="icon id__icon">
-                                        <i class="fa-solid fa-id-badge"></i>
-                                    </span>
-                                    <input type="text" name="userID" id="userID" placeholder="ID">
-                                </p>
-                                <p>
-                                    <span class="icon pw__icon">
-                                        <i class="fa-solid fa-lock"></i>
-                                    </span>
-                                    <input type="password" name="userPW" id="userPW" placeholder="PW">
-                                </p>
-                                <button type="submit" class="login__submit__button">LOGIN</button>
-                                <div class="login__otherway">
-                                    <span class="other__icon instagram">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </span>
-                                    <span class="other__icon github">
-                                        <i class="fa-brands fa-github"></i>
-                                    </span>
-                                    <span class="other__icon facebook">
-                                        <i class="fa-brands fa-facebook"></i>
-                                    </span>
-                                </div>
-                                <div class="find__account">
-                                    <a href="/users/help/id" class="find__id">find ID</a>
-                                    <a href="/users/help/pw" class="find__pw">find PW</a>
-                                </div>
-                            </div>
+                        <div class="input">
+                            <label for="user">개인
+                                <input type="radio" name="role" value='user' id="user">
+                                <span class="radio__span"></span>
+                                <label for="supplier">기업
+                                    <input type="radio" name="role" value='supplier' id="supplier">
                         </div>
-                        <div class="login__footer"></div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>성별</h2>
+                        </div>
+                        <div class="input">
+                            <label for="man">남자
+                                <input type="radio" name="man" value='man' id="man">
+                                <span class="radio__span"></span>
+                                <label for="woman">여자
+                                    <input type="radio" name="man" value='woman' id="woman">
+                        </div>
+                    </div>
+
+                    <!-- 아이디 -->
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>아이디</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userID">
+                                <input type="text" name="" id="userID">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>이름</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userName">
+                                <input type="text" name="name" id="userName">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>패스워드</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userPW">
+                                <input type="text" name="password" id="userPW">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>핸드폰번호</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userPhone">
+                                <input type="text" name="phoneNum" id="userPhone">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>이메일</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userEmail">
+                                <input type="email" name="email" id="userEmail">
+                        </div>
+                    </div>
+
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>은행</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userBank">
+                                <select name="bank" id="userBank">
+                                    <option value="shinhan">신한</option>
+                                    <option value="kb">국민</option>
+                                    <option value="woori">우리</option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>생년월일</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userBirth">
+                                <input type="date" name="birth" id="userBirth">
+                        </div>
+                    </div>
+                    <div class="input__box">
+                        <div class="input__label">
+                            <h2>계좌</h2>
+                        </div>
+                        <div class="input">
+                            <label for="userAccount">
+                                <input type="text" name="accountNumber" id="userAccount">
+                        </div>
+                    </div>
+                    <div class="input__button__box">
+                        <input type="submit" value="회원가입" class="signUp__button">
+                    </div>
+                </form>
             </div>
         </main>
     </div>
