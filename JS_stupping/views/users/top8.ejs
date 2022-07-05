@@ -17,6 +17,7 @@
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
     <script defer src="../../js/users/indexSection.js"></script>
+    <script defer src="../../js/users/top8.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                 </ul>
             </div>
             <form action="/notebooks" method="get" class="category__contents">
-        
+
                 <div class="box">
                     <div class="box__container">
                         <label for="supplierInput">LG</label>
@@ -111,7 +112,7 @@
                     <li class="list"><a href="/buyer/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">to buy</span>
+                                <span class="nav__title">tip</span>
                             </div>
                         </a></li>
                     <li class="list"><a href="/graph/index">
@@ -157,7 +158,60 @@
             </div>
         </header>
         <main class="section">
-            <h1>top8</h1>
+            <div class="top8__title">
+                <h2 class="title">TOP8</h2>
+                <!-- 여기에다가 이제 정렬 ajax작성하면 돼! -->
+            </div>
+            <div class="top8__itembox">
+                <div class="top8__item__container">
+                    <% for(let i=0; i < result.length; i++){ %>
+                        <div class="item__card" data-id="<%= result[i]._id %>">
+                            <div class="card__img">
+                                <div class="img">
+                                    <img src="../../img/11.png" alt="">
+                                </div>
+                            </div>
+                            <div class="card__contents">
+                                <div class="contents__box">
+                                    <div class="card card__title">
+                                        <p>
+                                            <%= result[i].noteName %>
+                                        </p>
+                                    </div>
+                                    <div class="card card__price">
+                                        <p>
+                                            <%= result[i].price %>$
+                                        </p>
+                                    </div>
+                                    <div class="card card__cpu">
+                                        <p><span>cpu</span>
+                                            <%= result[i].cpuName %>
+                                        </p>
+                                    </div>
+                                    <div class="card card__ram">
+                                        <p><span>ram</span>
+                                            <%= result[i].ramSize %>GB
+                                        </p>
+                                    </div>
+                                    <div class="card card__screenSize">
+                                        <p><span>battery</span>
+                                            <%= result[i].batterySize %>Wh
+                                        </p>
+                                        <!-- 보니까 db에 screenSize가 없어서
+                                        배터리 사이즈 넣어둔거니까 
+                                    넌 screenSize여기다가 받아주면 돼... ㅈㅅ-->
+                                    </div>
+                                    <div class="card card__weight">
+                                        <p><span>무게</span>
+                                            <%= result[i].weight %>kg
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
         </main>
     </div>
 
