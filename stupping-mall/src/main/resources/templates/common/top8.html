@@ -1,0 +1,162 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stupping</title>
+    <link rel="stylesheet" th:href="@{/css/sectionCss/reset.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/container.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/sideNav.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/header.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/users/top8.css(ver=${date})}">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
+    <script defer th:src="@{/js/users/top8.js(ver=${date})}"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="category__container">
+        <i class="fa-solid fa-xmark close__button"></i>
+        <div class="category__title">Category</div>
+        <div class="category__list">
+            <ul class="category__nav">
+                <li>
+                    <span><i class="fa-solid fa-building"></i></span>
+                    <span>SupplierName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-microchip"></i></span>
+                    <span>CpuName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-g"></i></span>
+                    <span>GpuName</span>
+                </li>
+                <li>
+                    <span><i class="fa-solid fa-calendar-days"></i></span>
+                    <span>RegisterDate</span>
+                </li>
+            </ul>
+        </div>
+        <form action="/notebooks" method="get" class="category__contents">
+            <div class="box" th:each="category: ${categories}">
+                <div class="box__container" th:each="elem: ${category.value}">
+                    <label th:for="|${category.key}Input${elemStat.count}|" th:text="${elem}"></label>
+                    <input type="checkbox" th:name="${category.key}" th:id="|${category.key}Input${elemStat.count}|" th:value="${elem}">
+                </div>
+            </div>
+            <div class="button__box">
+                <button type="submit" class="category__button">submit</button>
+            </div>
+        </form>
+    </div>
+    <nav class="side__nav">
+        <div class="main__title">
+            <div class="category__logo">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="main__logo">
+                <a href="/static">Stupping</a>
+            </div>
+        </div>
+        <div class="main__nav">
+            <ul class="main__list">
+                <li class="list"><a href="">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-ranking-star"></i>
+                        <span class="nav__title">top8</span>
+                    </div>
+                </a></li>
+                <li class="list"><a href="">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span class="nav__title">notebook</span>
+                    </div>
+                </a></li>
+                <li class="list"><a href="/buyer/index">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-face-smile"></i>
+                        <span class="nav__title">tip</span>
+                    </div>
+                </a></li>
+                <li class="list"><a href="">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="nav__title">graph</span>
+                    </div>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="header">
+        <div class="search__bar">
+            <form action="/notebooksInfo" method="get">
+                <input type="search" name="notebook" id="" placeholder="회사 이름 or 상품 이름">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <nav class="header__subnav">
+            <ul class="header__sub__list">
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="fa-solid fa-arrow-right-to-bracket"></i><p>Login</p></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa-duotone fa-user-minus"></i><p>Logout</p></a></li>
+                <li><a href="/signUpPage"><i class="fa-solid fa-user-plus"></i><p>signUp</p></a></li>
+                <li><a href="/customer/myPage"><i class="fa-solid fa-user"></i><p>myPage</p></a></li>
+            </ul>
+        </nav>
+        <div class="sub__nav__logo">
+            <i class="fa-solid fa-bars sub__nav__logo"></i>
+        </div>
+    </header>
+    <main class="section">
+        <div class="carousel">
+            <div class="top8__title">
+                <h2 class="title">TOP8</h2>
+                <!-- 여기에다가 이제 정렬 ajax작성하면 돼! -->
+            </div>
+            <div class="top8__itembox">
+                <div class="top8__item__container">
+                    <th:block th:each="notebook: ${recentNotebooks}">
+                        <div class="item__card" th:attr="data-id=${notebook.id}">
+                            <div class="card__img">
+                                <div class="img">
+                                    <img th:src="'/display?name='+${notebook.img}" alt="">
+                                </div>
+                            </div>
+                            <div class="card__contents">
+                                <div class="contents__box">
+                                    <div class="card card__title">
+                                        <p th:text="${notebook.name}"></p>
+                                    </div>
+                                    <div class="card card__price">
+                                        <p th:text="${notebook.price}"></p>
+                                    </div>
+                                    <div class="card card__cpu">
+                                        <p th:text="${notebook.cpuName}"><span>CPU</span></p>
+                                    </div>
+                                    <div class="card card__ram">
+                                        <p th:text="${notebook.ramSize}"><span>RAM</span></p>
+                                    </div>
+                                    <div class="card card__screenSize">
+                                        <p th:text="${notebook.screenSize}"><span>화면</span></p>
+                                    </div>
+                                    <div class="card card__weight">
+                                        <p th:text="${notebook.weight}"><span>무게</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+
+</html>

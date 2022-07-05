@@ -48,7 +48,6 @@ public class CustomerController {
 	public String customerMain(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("topNotebooks", notebookSearchService.getTop3Notebooks());
-		model.addAttribute("recentNotebooks", notebookSearchService.getRecent9Notebooks());
 		model.addAttribute("categories", categoryStatusService.getCategories());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());

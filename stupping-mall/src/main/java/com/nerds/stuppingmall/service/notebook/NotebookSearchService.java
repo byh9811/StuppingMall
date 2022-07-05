@@ -27,7 +27,7 @@ public class NotebookSearchService {
 	final int SIZE_PER_PAGE = 10;
 	
 	public List<NotebookRecent9ResponseDto> getRecent9Notebooks() {
-		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 9, Sort.by(Sort.Direction.DESC, "registerDate")));
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "registerDate")));
 		List<NotebookRecent9ResponseDto> notebookRecent9ResponseDtos = new ArrayList<>();
 
 		for(Notebook notebook: notebooks) {
