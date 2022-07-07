@@ -10,14 +10,14 @@ import java.time.LocalTime;
 
 @Controller
 @RequiredArgsConstructor
-public class Top8PageRouter {
+public class New8PageRouter {
     final NotebookSearchService notebookSearchService;
 
-    @GetMapping("/top8Page")
+    @GetMapping("/new8Page")
     public String introductionModifyPage(Model model) {
         model.addAttribute("date", LocalTime.now());
-        model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
+        model.addAttribute("newNotebooks", notebookSearchService.getNew8Notebooks());
 
-        return "common/top8";
+        return "common/new8";
     }
 }

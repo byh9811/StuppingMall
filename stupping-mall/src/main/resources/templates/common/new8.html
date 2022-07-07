@@ -60,12 +60,12 @@
                 <i class="fa-solid fa-bars"></i>
             </div>
             <div class="main__logo">
-                <a href="/static">Stupping</a>
+                <a href="/">Stupping</a>
             </div>
         </div>
         <div class="main__nav">
             <ul class="main__list">
-                <li class="list"><a href="">
+                <li class="list"><a href="/new8Page">
                     <div class="real__logo">
                         <i class="fa-solid fa-ranking-star"></i>
                         <span class="nav__title">New</span>
@@ -124,7 +124,7 @@
         </div>
         <div class="top8__itembox">
             <div class="top8__item__container">
-                <th:block th:each="notebook: ${recentNotebooks}">
+                <th:block th:each="notebook: ${newNotebooks}">
                     <div class="item__card" th:attr="data-id=${notebook.id}">
                         <div class="card__img">
                             <div class="img">
