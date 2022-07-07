@@ -161,6 +161,11 @@
             <div class="top8__title">
                 <h2 class="title">TOP8</h2>
                 <!-- 여기에다가 이제 정렬 ajax작성하면 돼! -->
+                <select name="sort" id="sort__input" onchange="changeSelect()">
+                    <option value="new" class="sort__option">최신순</option>
+                    <option value="low" class="sort__option">낮은가격순</option>
+                    <option value="high" class="sort__option">높은가격순</option>
+                </select>
             </div>
             <div class="top8__itembox">
                 <div class="top8__item__container">
@@ -174,37 +179,37 @@
                             <div class="card__contents">
                                 <div class="contents__box">
                                     <div class="card card__title">
-                                        <p>
-                                            <%= result[i].noteName %>
-                                        </p>
+                                        <p><span class="noteName__span title">
+                                                <%= result[i].noteName %>
+                                            </span></p>
                                     </div>
                                     <div class="card card__price">
-                                        <p>
-                                            <%= result[i].price %>$
-                                        </p>
+                                        <p><span class="price__span title">
+                                                <%= result[i].price %>
+                                            </span></p>
                                     </div>
                                     <div class="card card__cpu">
-                                        <p><span>cpu</span>
-                                            <%= result[i].cpuName %>
-                                        </p>
+                                        <p><span class="unit">cpu</span><span class="title">
+                                                <%= result[i].cpuName %>
+                                            </span></p>
                                     </div>
                                     <div class="card card__ram">
-                                        <p><span>ram</span>
-                                            <%= result[i].ramSize %>GB
-                                        </p>
+                                        <p><span class="unit">ram</span><span class="title">
+                                                <%= result[i].ramSize %>
+                                            </span><span class="unit__">GB</span></p>
                                     </div>
                                     <div class="card card__screenSize">
-                                        <p><span>battery</span>
-                                            <%= result[i].batterySize %>Wh
-                                        </p>
+                                        <p><span class="unit">battery</span><span class="title">
+                                                <%= result[i].batterySize %>
+                                            </span><span class="unit__">Wh</span></p>
                                         <!-- 보니까 db에 screenSize가 없어서
                                         배터리 사이즈 넣어둔거니까 
                                     넌 screenSize여기다가 받아주면 돼... ㅈㅅ-->
                                     </div>
                                     <div class="card card__weight">
-                                        <p><span>무게</span>
-                                            <%= result[i].weight %>kg
-                                        </p>
+                                        <p><span class="unit">무게</span><span class="title">
+                                                <%= result[i].weight %>
+                                            </span><span class="unit__">kg</span></p>
                                     </div>
                                 </div>
                             </div>
