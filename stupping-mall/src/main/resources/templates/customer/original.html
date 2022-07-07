@@ -119,17 +119,17 @@
             <div class="text">
                 <h4 id="title">우잘사</h4>
             </div>
-            <th:block th:each="knowhow: ${knowhows}">
-                <div class="knowhow">
+            <th:block th:each="tip: ${tips}">
+                <div class="tip">
                     <div class="knowhow_method">
                             <span>
-                                <h3 th:text="${knowhow.purpose}"></h3>
+                                <h3 th:text="${tip.purpose}"></h3>
                             </span>
                     </div>
                     <ul class="knowhow_list">
-                        <li th:text="${knowhow.explanation1}"></li>
-                        <li th:text="${knowhow.explanation2}"></li>
-                        <li th:text="${knowhow.explanation3}"></li>
+                        <li th:text="${tip.explanation1}"></li>
+                        <li th:text="${tip.explanation2}"></li>
+                        <li th:text="${tip.explanation3}"></li>
                     </ul>
                 </div>
             </th:block>

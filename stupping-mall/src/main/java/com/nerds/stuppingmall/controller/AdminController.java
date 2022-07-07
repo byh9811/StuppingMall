@@ -1,13 +1,13 @@
 package com.nerds.stuppingmall.controller;
 
 import com.nerds.stuppingmall.domain.Introduction;
-import com.nerds.stuppingmall.domain.Knowhow;
+import com.nerds.stuppingmall.domain.Tip;
 import com.nerds.stuppingmall.domain.Report;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.introduction.IntroductionModifyService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
-import com.nerds.stuppingmall.service.knowhow.KnowhowModifyService;
-import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
+import com.nerds.stuppingmall.service.tip.TipModifyService;
+import com.nerds.stuppingmall.service.tip.TipSearchService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.report.ReportSearchService;
 import org.springframework.data.domain.Page;
@@ -33,17 +33,16 @@ public class AdminController {
 	final MemberDetailsService memberDetailsService;
 	final ReportSearchService reportSearchService;
 	final IntroductionModifyService introductionModifyService;
-	final KnowhowModifyService knowhowModifyService;
+	final TipModifyService tipModifyService;
 	final NotebookSearchService notebookSearchService;
 	final IntroductionSearchService introductionSearchService;
-	final KnowhowSearchService knowhowSearchService;
+	final TipSearchService tipSearchService;
 
 	@GetMapping("/main")
 	public String adminMain(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 
 		return "adminMain";
 	}
@@ -79,8 +78,8 @@ public class AdminController {
 	}
 
 	@PutMapping("/updateKnowhow")
-	public String updateKnowhow(@RequestParam("knowhows") List<Knowhow> knowhows) {
-		knowhowModifyService.updateKnowhow(knowhows);
+	public String updateKnowhow(@RequestParam("tips") List<Tip> tips) {
+		tipModifyService.updateKnowhow(tips);
 		return "updateKnowhow";
 	}
 }

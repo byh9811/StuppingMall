@@ -2,20 +2,17 @@ package com.nerds.stuppingmall.controller;
 
 import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
 import com.nerds.stuppingmall.dto.MyPageResponseDto;
-import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
 import com.nerds.stuppingmall.service.category.CategoryStatusService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
-import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
+import com.nerds.stuppingmall.service.tip.TipSearchService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderModifyService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.member.MemberDeregisterService;
@@ -26,7 +23,6 @@ import com.nerds.stuppingmall.service.order.OrderRegisterService;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -41,7 +37,7 @@ public class CustomerController {
 	final OrderModifyService orderModifyService;
 	final NotebookSearchService notebookSearchService;
 	final IntroductionSearchService introductionSearchService;
-	final KnowhowSearchService knowhowSearchService;
+	final TipSearchService tipSearchService;
 	final CategoryStatusService categoryStatusService;
 
 	@GetMapping("/main")
@@ -50,7 +46,6 @@ public class CustomerController {
 		model.addAttribute("topNotebooks", notebookSearchService.getTop3Notebooks());
 		model.addAttribute("categories", categoryStatusService.getCategories());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 
 		return "customer/customerMain";
 	}

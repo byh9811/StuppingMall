@@ -1,24 +1,19 @@
 package com.nerds.stuppingmall.domain;
 
-
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.mongodb.lang.NonNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection="knowhows")
+@Document(collection="tips")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Knowhow {
+public class Tip {
 	@Id
 	private String _id;
 	private String purpose;

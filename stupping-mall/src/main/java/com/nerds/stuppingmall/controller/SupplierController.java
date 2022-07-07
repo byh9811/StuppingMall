@@ -1,13 +1,10 @@
 package com.nerds.stuppingmall.controller;
 
-import com.nerds.stuppingmall.domain.Introduction;
 import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
-import com.nerds.stuppingmall.service.category.CategoryStatusService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
-import com.nerds.stuppingmall.service.knowhow.KnowhowSearchService;
+import com.nerds.stuppingmall.service.tip.TipSearchService;
 import com.nerds.stuppingmall.service.order.OrderModifyService;
 import org.springframework.data.domain.Page;
-import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,14 +34,13 @@ public class SupplierController {
 	final OrderSearchService orderSearchService;
 	final OrderModifyService orderModifyService;
 	final IntroductionSearchService introductionSearchService;
-	final KnowhowSearchService knowhowSearchService;
+	final TipSearchService tipSearchService;
 
 	@GetMapping("/main")
 	public String supplierMain(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 
 		Page<NotebookResponseBasicDto> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
 		model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
