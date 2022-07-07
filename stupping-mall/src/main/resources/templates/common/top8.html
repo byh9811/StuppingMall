@@ -68,7 +68,7 @@
                 <li class="list"><a href="">
                     <div class="real__logo">
                         <i class="fa-solid fa-ranking-star"></i>
-                        <span class="nav__title">top8</span>
+                        <span class="nav__title">New</span>
                     </div>
                 </a></li>
                 <li class="list"><a href="">
@@ -114,45 +114,47 @@
         </div>
     </header>
     <main class="section">
-        <div class="carousel">
-            <div class="top8__title">
-                <h2 class="title">TOP8</h2>
-                <!-- 여기에다가 이제 정렬 ajax작성하면 돼! -->
-            </div>
-            <div class="top8__itembox">
-                <div class="top8__item__container">
-                    <th:block th:each="notebook: ${recentNotebooks}">
-                        <div class="item__card" th:attr="data-id=${notebook.id}">
-                            <div class="card__img">
-                                <div class="img">
-                                    <img th:src="'/display?name='+${notebook.img}" alt="">
-                                </div>
+        <div class="top8__title">
+            <h2 class="title">New Item</h2>
+            <select name="sort" id="sort__input" onchange="changeSelect()">
+                <option value="new" class="sort__option">최신순</option>
+                <option value="low" class="sort__option">낮은가격순</option>
+                <option value="high" class="sort__option">높은가격순</option>
+            </select>
+        </div>
+        <div class="top8__itembox">
+            <div class="top8__item__container">
+                <th:block th:each="notebook: ${recentNotebooks}">
+                    <div class="item__card" th:attr="data-id=${notebook.id}">
+                        <div class="card__img">
+                            <div class="img">
+                                <img th:src="'/display?name='+${notebook.img}" alt="">
                             </div>
-                            <div class="card__contents">
-                                <div class="contents__box">
-                                    <div class="card card__title">
-                                        <p th:text="${notebook.name}"></p>
-                                    </div>
-                                    <div class="card card__price">
-                                        <p th:text="${notebook.price}"></p>
-                                    </div>
-                                    <div class="card card__cpu">
-                                        <p th:text="${notebook.cpuName}"><span>CPU</span></p>
-                                    </div>
-                                    <div class="card card__ram">
-                                        <p th:text="${notebook.ramSize}"><span>RAM</span></p>
-                                    </div>
-                                    <div class="card card__screenSize">
-                                        <p th:text="${notebook.screenSize}"><span>화면</span></p>
-                                    </div>
-                                    <div class="card card__weight">
-                                        <p th:text="${notebook.weight}"><span>무게</span></p>
-                                    </div>
+                        </div>
+                        <div class="card__contents">
+                            <div class="contents__box">
+                                <div class="card card__title">
+                                    <p><span class="noteName__span title" th:text="${notebook.name}"></span></p>
+                                </div>
+                                <div class="card card__price">
+                                    <p><span class="price__span title" th:text="${notebook.price}"></span></p>
+                                </div>
+                                <div class="card card__cpu">
+                                    <p><span class="unit">CPU</span><span class="title" th:text="${notebook.cpuName}"></span></p>
+                                </div>
+                                <div class="card card__ram">
+                                    <p><span class="unit">RAM</span><span class="title" th:text="${notebook.ramSize}"></span><span class="unit__">GB</span></p>
+                                </div>
+                                <div class="card card__screenSize">
+                                    <p><span class="unit">화면</span><span class="title" th:text="${notebook.screenSize}"></span><span class="unit__">인치</span></p>
+                                </div>
+                                <div class="card card__weight">
+                                    <p><span class="unit">무게</span><span class="title" th:text="${notebook.weight}"></span><span class="unit__">kg</span></p>
                                 </div>
                             </div>
                         </div>
-                    </th:block>
-                </div>
+                    </div>
+                </th:block>
             </div>
         </div>
     </main>

@@ -22,8 +22,25 @@
     justify-content: flex-start;
     align-items: center;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 2vh 2vw;
+}
+
+/* title옆에 정렬순 */
+#sort__input {
+    border: none;
+    outline: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin: 0 3vw;
+    cursor: pointer;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+#sort__input>option {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    font-size: 0.7rem;
+    font-weight: 700;
 }
 
 .section>.top8__itembox {
@@ -124,10 +141,18 @@
     align-items: center;
 }
 
-.contents__box span {
+.contents__box span[class="unit"] {
     display: block;
     font-size: 0.7rem;
     color: gray;
+}
+
+.contents__box span[class='title'] {
+    font-size: 0.8rem;
+}
+
+span[class='unit__'] {
+    font-size: 0.7rem;
 }
 
 .card__title {
@@ -141,6 +166,8 @@
     font-weight: 700;
 }
 
+/* responsible web media query */
+/* tablet pc */
 @media screen and (max-width : 1024px) {
     .top8__item__container {
         min-height: 220%;
@@ -151,6 +178,7 @@
     }
 }
 
+/* mobile - tablet pc */
 @media screen and (max-width : 768px) {
     .top8__item__container {
         min-height: 300%;
@@ -161,6 +189,7 @@
     }
 }
 
+/* mobile */
 @media screen and (max-width : 500px) {
     .top8__item__container {
         min-height: 600%;
