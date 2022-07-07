@@ -41,7 +41,7 @@ public class AdminController {
 	@GetMapping("/main")
 	public String adminMain(@AuthenticationPrincipal Authentication authentication, Model model) {
 		model.addAttribute("date", LocalTime.now());
-		model.addAttribute("recentNotebooks", notebookSearchService.getRecent9Notebooks());
+		model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
 		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
 		model.addAttribute("knowhows", knowhowSearchService.getAllKnowhows());
 

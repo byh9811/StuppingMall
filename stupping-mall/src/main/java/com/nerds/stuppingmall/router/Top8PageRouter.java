@@ -16,7 +16,7 @@ public class Top8PageRouter {
     @GetMapping("/top8Page")
     public String introductionModifyPage(Model model) {
         model.addAttribute("date", LocalTime.now());
-        model.addAttribute("recentNotebooks", notebookSearchService.getRecent9Notebooks());
+        model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
 
         return "common/top8";
     }
