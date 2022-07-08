@@ -128,7 +128,7 @@
                     <div class="item__card" th:attr="data-id=${notebook.id}">
                         <div class="card__img">
                             <div class="img">
-                                <img th:src="'/display?name='+${notebook.img}" alt="">
+                                <img th:src="|/display?name=${notebook.img}&w=960&h=480|" alt="">
                             </div>
                         </div>
                         <div class="card__contents">

@@ -11,8 +11,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
 
@@ -50,13 +53,21 @@ public class RestController {
     }
 
     @GetMapping("/display")
-    public @ResponseBody ResponseEntity<byte[]> getImage(@RequestParam("name") String name) {
+    public @ResponseBody ResponseEntity<byte[]> getImage(@RequestParam("name") String name, @RequestParam("w") int width, @RequestParam("h") int height) {
         byte[] imageByteArray = null;
         try {
             String fileName = "C:\\img\\" + name; // 파일경로
-            InputStream imageStream = new FileInputStream(fileName);
-            imageByteArray = IOUtils.toByteArray(imageStream);
-            imageStream.close();
+            File file = new File(fileName);
+            BufferedImage image = ImageIO.read(file);
+            Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+            BufferedImage imgBuff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            imgBuff.getGraphics().drawImage(resizedImage, 0, 0, new Color(0, 0, 0), null);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(imgBuff, "jpg", baos);
+            imageByteArray = baos.toByteArray();
+//            InputStream imageStream = new FileInputStream(fileName);
+//            imageByteArray = IOUtils.toByteArray(imageStream);
+//            imageStream.close();
         } catch (FileNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         } catch (IOException e) {

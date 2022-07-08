@@ -124,7 +124,7 @@
                 <th:block th:each="topNotebook: ${topNotebooks}">
                     <div class="carousel__item" th:attr="data-id=${topNotebook.id}">
                         <div class="carousel__img">
-                            <img th:src="'/display?name='+${topNotebook.img}" alt="">
+                            <img th:src="|/display?name=${topNotebook.img}&w=960&h=400|" alt="">
                         </div>
                     </div>
                 </th:block>
