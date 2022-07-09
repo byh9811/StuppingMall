@@ -45,7 +45,7 @@
 
 .section>.top8__itembox {
     /*겉의 box => 크기 고정 시켜줘야함. */
-    overflow-y: scroll;
+    overflow-y: hidden;
     min-height: calc(100% - 50px);
     max-height: calc(100% - 50px);
     /* border : 4px solid black; */
@@ -96,8 +96,10 @@
 }
 
 .card__img>.img {
-    width: 90%;
-    height: 90%;
+    min-width: 90%;
+    max-width : 90%;
+    min-height: 90%;
+    max-height : 90%;
     /* border : 1px solid black; */
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
         rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
@@ -106,9 +108,9 @@
 
 .img>img {
     max-width: 100%;
+    min-width: 100%;
     max-height: 100%;
     min-height: 100%;
-    min-width: 100%;
 }
 
 /* << card contents design >> */
