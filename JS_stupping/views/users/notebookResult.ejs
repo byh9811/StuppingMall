@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="../../css/container.css">
     <link rel="stylesheet" href="../../css/sideNav.css">
     <link rel="stylesheet" href="../../css/header.css">
-    <link rel="stylesheet" href="../../css/sectionCss/users/notebookResult.css">
+    <link rel="stylesheet" href="../../css/sectionCss/users/notebookAll.css">
 
     <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
     <script defer src="../../js/users/indexSection.js"></script>
+    <script defer src="../../js/users/notebooksAll.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                 </ul>
             </div>
             <form action="/notebooks" method="get" class="category__contents">
-        
+
                 <div class="box">
                     <div class="box__container">
                         <label for="supplierInput">LG</label>
@@ -108,10 +109,10 @@
                                 <span class="nav__title">notebook</span>
                             </div>
                         </a></li>
-                    <li class="list"><a href="/buyer/index">
+                    <li class="list"><a href="/tip/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">to buy</span>
+                                <span class="nav__title">tip</span>
                             </div>
                         </a></li>
                     <li class="list"><a href="/graph/index">
@@ -138,7 +139,7 @@
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             <p>Login</p>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="/buyer/index">
                             <i class="fa-duotone fa-user-minus"></i>
                             <p>Logout</p>
                         </a></li>
@@ -157,8 +158,65 @@
             </div>
         </header>
         <main class="section">
-            <h1>노트북 결과 페이지 >> <%= notebook %>
-            </h1>
+            <div class="all__title">
+                <h2 class="title">Notebook Result</h2>
+                <!-- 여기에다가 이제 정렬 ajax작성하면 돼! -->
+                <select name="sort" id="sort__input" onchange="">
+                    <option value="new" class="sort__option">최신순</option>
+                    <option value="low" class="sort__option">낮은가격순</option>
+                    <option value="high" class="sort__option">높은가격순</option>
+                </select>
+            </div>
+            <div class="all__notebooks">
+                <!-- backend에서 자료 받기 o -->
+                <!-- mouseover하면 effect o 넣기 -->
+                <!-- id 넣어서 fetch로! 아직 -->
+                <!-- 반응형도!!!!!!!!! -->
+                <% for(let i=0; i<result.length; i++){ %>
+                    <div class="notebook" data-id="<%= result[i]._id %>">
+                        <!-- <%= result[i].noteName %> -->
+                        <div class="notebook__content notebook__img">
+                            <img src="../../img/11.png" alt="">
+                        </div>
+                        <div class="notebook__content notebook__notename">
+                            <h2>
+                                <p>
+                                    <%= result[i].noteName %>
+                                </p>
+                            </h2>
+                        </div>
+                        <div class="notebook__content notebook__price">
+                            <h2>
+                                <%= result[i].price %>
+                            </h2>
+                        </div>
+                        <div class="notebook__content notebook__cpu">
+                            <span class="value">
+                                <%= result[i].cpuName %>
+                            </span>
+                        </div>
+                        <div class="notebook__content notebook__ram">
+                            <span class="value">
+                                <%= result[i].ramSize %>
+                            </span>
+                            <span class="unit">GB</span>
+                        </div>
+                        <div class="notebook__content notebook__battery">
+                            <span class="value">
+                                <%= result[i].batterySize %>
+                            </span>
+                            <span class="unit">Wh</span>
+                        </div>
+                        <div class="notebook__content notebook__weight">
+                            <span class="value">
+                                <%= result[i].weight %>
+                            </span>
+                            <span class="unit">kg</span>
+                        </div>
+
+                    </div>
+                    <% } %>
+            </div>
         </main>
     </div>
 

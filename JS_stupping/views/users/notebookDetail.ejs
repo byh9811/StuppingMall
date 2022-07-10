@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user mainpage</title>
+    <!-- css file -->
     <link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/container.css">
     <link rel="stylesheet" href="../../css/sideNav.css">
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/sectionCss/users/notebookDetail.css">
-
     <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
+    <!-- icon font-awsome -->
     <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
+    <!-- js file => 정리가 좀 필요함 -->
     <script defer src="../../js/users/indexSection.js"></script>
+
 </head>
 
 <body>
@@ -108,10 +111,10 @@
                                 <span class="nav__title">notebook</span>
                             </div>
                         </a></li>
-                    <li class="list"><a href="/buyer/index">
+                    <li class="list"><a href="/tip/index">
                             <div class="real__logo">
                                 <i class="fa-solid fa-face-smile"></i>
-                                <span class="nav__title">to buy</span>
+                                <span class="nav__title">tip</span>
                             </div>
                         </a></li>
                     <li class="list"><a href="/graph/index">
@@ -157,52 +160,107 @@
             </div>
         </header>
         <main class="section">
-            <div class="detail__container">
-                <div class="main__img">
-                    <img src="../../img/11.png" alt="">
+            <div class="detail__img">
+                <div class="detail__imgbox">
+                    <!-- 이미지 4장을 감싸는 box -->
+                    <div class="main__img"></div>
+                    <ul class="sub__img__list">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
                 </div>
-                <div class="detail__contents">
-                    <div class="detail__notebook">
-                        <div class="noteName">
-                            <h2 class="title"><span>
-                                    <%= result.noteName %>
-                                </span></h2>
+            </div>
+            <div class="detail__contents__container">
+                <div class="detail__contentsbox">
+                    <!-- 모든 격자를 감싸는 box 여기가 contents라고 생각하면 돼 -->
+                    <div class="detail supplier">
+                        <div class="supplierName">
+                            <span class="property">
+                                <%= result.supplierName %>
+                            </span>
                         </div>
-                        <div class="detail">
-                            <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</span>
+                        <div class="registerDate">
+                            <span class="property">
+                                <%= result.registerDate %>
+                            </span>
                         </div>
-                        <div class="price">
-                            <h3><span>
-                                    <%= result.price %>
-                                </span></h3>
+                        <div class="salesVolume"><span class="property">판매량</span></div>
+                    </div>
+                    <div class="detail noteName">
+                        <span class="property">
+                            <%= result.noteName %> samsung notebook three
+                        </span>
+                    </div>
+                    <div class="detail rateView">
+                        <div class="rating">
+                            <span class="property">평점</span>
                         </div>
-                        <div class="cpuName">
-                            <span>
+                        <div class="views">
+                            <span class="property">조회수</span>
+                        </div>
+                    </div>
+                    <div class="detail price">
+                        <span class="property">
+                            <%= result.price %>
+                        </span>
+                    </div>
+                    <div class="detail cgw">
+                        <div class="cpu">
+                            <span class="cgwName">cpu</span>
+                            <span class="property">
                                 <%= result.cpuName %>
                             </span>
                         </div>
-                        <div class="ramSize">
-                            <span>
-                                <%= result.ramSize %>
-                            </span>GB
+                        <div class="gpu">
+                            <span class="cgwName">gpu</span>
+                            <span class="property">
+                                <%= result.gpuName %>
+                            </span>
                         </div>
                         <div class="weight">
-                            <span>
+                            <span class="cgwName">weight</span>
+                            <span class="property">
                                 <%= result.weight %>
-                            </span>kg
+                            </span>
+                            <span class="unit">kg</span>
                         </div>
-                        <div class="purchase__button">
-                            <button>purchase</button>
-                        </div>
-                        <div class="other__button"></div>
                     </div>
+                    <div class="detail rshb">
+                        <div class="ramSize">
+                            <span class="rshbName">ram</span>
+                            <span class="property">
+                                <%= result.ramSize %>
+                            </span>
+                            <span class="unit">GB</span>
+                        </div>
+                        <div class="ssdSize">
+                            <span class="rshbName">ssd</span>
+                            <span class="property">
+                                <%= result.ssdSize %>
+                            </span>
+                            <span class="unit">GB</span>
+                        </div>
+                        <div class="hhdSize">
+                            <span class="rshbName">hhd</span>
+                            <span class="property">hddsize</span>
+                            <span class="unit">GB</span>
+                        </div>
+                        <div class="batterySize">
+                            <span class="rshbName">battery</span>
+                            <span class="property">
+                                <%= result.batterySize %>
+                            </span>
+                            <span class="unit">Wh</span>
+                        </div>
+                    </div>
+                    <div class="detail buttonbox">
+                        <div class="purchase__button">
+                            <button class="purchase">구매</button>
+                        </div>
+                    </div>
+
                 </div>
-                <ul class="sub__img">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                </ul>
-                <!-- <div class="detail__sub">4</div> -->
             </div>
         </main>
     </div>
