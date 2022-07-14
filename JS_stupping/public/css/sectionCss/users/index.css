@@ -9,7 +9,7 @@
     grid-gap: 1vh 1vw;
     /* grid-template-columns: 1fr;
     grid-template-rows: 5fr 2fr 1fr; */
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .section>* {

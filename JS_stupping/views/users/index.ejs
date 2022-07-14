@@ -19,76 +19,62 @@
 </head>
 <body>
     <div class="container">
-        <div class="category__container">
-            <i class="fa-solid fa-xmark close__button"></i>
-            <div class="category__title">Category</div>
-            <!-- /notebooks get요청으로 보내야하는 form button만들기! -->
-            <div class="category__list">
-                <ul class="category__nav">
-                    <li>
-                        <span><i class="fa-solid fa-building"></i></span>
-                        <span>supplierName</span>
-                    </li>
-                    <li>
-                        <span><i class="fa-solid fa-microchip"></i></span>
-                        <span>cpuName</span>
-                    </li>
-                    <li>
-                        <span><i class="fa-solid fa-g"></i></span>
-                        <span>gpuName</span>
-                    </li>
-                    <li>
-                        <span><i class="fa-solid fa-calendar-days"></i></span>
-                        <span>registerDate</span>
-                    </li>
-                </ul>
-            </div>
-            <form action="/notebooks" method="get" class="category__contents">
-
-                <div class="box">
-                    <!-- box는 supplierName category를 hover했을 때 나오는 item목록-->
-                    <div class="box__container">
-                        <!-- box__container는 item하나하나를 감싸는 박스
-                        grid로 좀 예쁘게 보기좋게 나오게 하려면 item하나하나를 감싸줘야함-->
-                        <label for="supplierInput">LG</label>
-                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
-                    </div>
-                    <div class="box__container">
-                        <label for="supplierInput">LG</label>
-                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
-                    </div>
-                    <div class="box__container">
-                        <label for="supplierInput">LG</label>
-                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
-                    </div>
-                    <div class="box__container">
-                        <label for="supplierInput">LG</label>
-                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
-                    </div>
+        <div class="close__button">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </div>
+        <div class="category__title">
+            <!-- /notebooks => 이후 쿼리문으로! -->
+            <h2 class="title">category</h2>
+        </div>
+        <ul class="category__list">
+            <li class="list">
+                <div class="list__container">
+                    <span class="list__icon">
+                        <i class="fa-solid fa-building"></i>
+                    </span>
+                    <span class="list__content">
+                        supplierName
+                    </span>
                 </div>
-                <div class="box"> <!-- cpuName을 hover했을 때 나오는 box -->
-                    <div class="box__container">
-                        <!-- 이것도 마찬가지 => 그냥 front에서 임의로 data하나 만든거-->
-                        <label for="cpuInput">CPU1</label>
-                        <input type="checkbox" name="cpuName" id="cpuInput" value="cpu1">
-                    </div>
+            </li>
+            <li class="list">
+                <div class="list__container">
+                    <span class="list__icon">
+                        <i class="fa-solid fa-c"></i>
+                    </span>
+                    <span class="list__content">
+                        cpuName
+                    </span>
                 </div>
-                <div class="box"> <!-- 위와 같은 논리 -->
-                    <div class="box__container">
-                        <label for="gpuInput">gpu1</label>
-                        <input type="checkbox" name="gpuName" id="gpuInput" value="gpu1">
-                    </div>
+            </li>
+            <li class="list">
+                <div class="list__container">
+                    <span class="list__icon">
+                        <i class="fa-solid fa-g"></i>
+                    </span>
+                    <span class="list__content">
+                        gpuName
+                    </span>
                 </div>
-                <div class="box">
-                    <div class="box__container">
-                        <label for="registerInput">2072</label>
-                        <input type="checkbox" name="registerDate" id="registerInput" value="2072">
-                    </div>
+            </li>
+            <li class="list">
+                <div class="list__container">
+                    <span class="list__icon">
+                        <i class="fa-solid fa-calendar"></i>
+                    </span>
+                    <span class="list__content">
+                        registerDate
+                    </span>
                 </div>
-            </form>
-            <div class="button__box">
-                <button type="submit" class="category__button">submit</button>
-            </div>
+            </li>
+        </ul>
+        <div class="category__contents">
+            <div class="supplierName__content content">index-0</div>
+            <div class="cpuName__content content">index-1</div>
+            <div class="gpuName__content content">index-2</div>
+            <div class="registerDate__content content">index-3</div>
+        </div>
+        <div class="category__button"></div>
         </div>
         <nav class="side__nav">
             <div class="main__title">
