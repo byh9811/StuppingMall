@@ -7,95 +7,143 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(231, 247, 253);
 }
 
-.detail__container {
-    /*반응형 main이라고 보면 돼! */
-    box-shadow: 40px 40px 60px rgba(9, 148, 255, 0.25),
-        -10px -10px 30px rgba(9, 148, 255, 0.1),
-        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
-    width: 90%;
-    height: 90%;
+.section>* {
+    /* border : 2px solid black; */
+}
+
+.section>.detail__img {
+    flex-grow: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.section>.detail__contents__container {
+    flex-grow: 1.5;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* 실제 contents container */
+.detail__imgbox {
+    width: 100%;
+    height: 85%;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 5fr 1.5fr;
+    grid-gap: 1vh 1vw;
+    border-radius: 10px;
+}
+
+.sub__img__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub__img__list>li {
+    flex-grow: 1;
+    height: 100%;
+    margin-left: 3%;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    border-radius: 10px;
     /* border : 1px solid black; */
+}
+
+/* 여기서 이제 contents들 시작! */
+.detail__contentsbox {
+    width: 80%;
+    height: 85%;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    grid-template-rows: 5fr 1fr;
-    overflow: hidden;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(7, auto);
 }
 
-/* .detail__container > *{border : 1px solid black;} */
-
-/*main__img*/
-.main__img>img {
-    width: 100%;
-    height: 100%;
-}
-
-/*detail__contents*/
-.detail__contents {
-    box-shadow: rgb(204, 219, 232) 5px 5px 8px 2px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+.detail {
+    /* 각각의 rows */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    /* grid-row: 1/-3; */
 }
 
-.detail__notebook {
-    width: 80%;
-    height: 90%;
+.detail>* {
     /* border : 1px solid black; */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2fr 2fr 1fr 1fr 1fr;
+    padding: 0 1vw;
+    /* 모든 특성에 공통으로 넣을 속성*/
 }
 
-.detail__notebook>* {
-    /* border : 1px solid black;  */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.detail__notebook>.noteName,
-.detail {
-    grid-column: 1/3;
-}
-
-/*contents 하나하나 꾸미기!*/
-.title {
-    font-size: 1.5rem;
+/*1 열부터 꾸며주기 */
+.supplier>* {
+    /* border : 1px solid black; */
+    flex-basis: fit-content;
+    font-size: 0.9rem;
     font-weight: 700;
+    color: gray;
 }
 
-.detail {
-    text-align: center;
-}
-
-.price {
+/* 2번째 열 noteName */
+.noteName {
     font-size: 1.2rem;
-    color: rgba(9, 148, 255, 0.5);
     font-weight: 700;
 }
 
-.purchase__button>button {
-    width: 80%;
-    height: 80%;
-    background-color: rgb(184, 232, 247);
-    color: #0994ff;
-    font-weight: 800;
+/* 평점 조회수 */
+.rateView {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(9, 148, 255, 0.5);
+}
+
+/* price */
+.price {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.cgw>* {
+    /* padding : 1vh 2vw; */
+}
+
+.cgw .cgwName {
+    display: block;
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 1vh 0;
+    color: rgba(9, 148, 255, 0.5);
+}
+
+/*rshb => ram ssd hhd battery 앞글자!*/
+.rshbName {
+    display: block;
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 1vh 0;
+    color: rgba(9, 80, 133, 0.5);
+}
+
+/* 구매 버튼 fetch 쓸거야! form 말고 */
+.purchase {
+    height: 30px;
+    width: 80px;
+    color: white;
+    background-color: rgb(115, 161, 247);
     border: none;
     outline: none;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-/* sub img */
-.sub__img {
-    border: 2px solid black;
-    display: flex;
-}
-
-.sub__img>li {
-    flex-grow: 1;
 }

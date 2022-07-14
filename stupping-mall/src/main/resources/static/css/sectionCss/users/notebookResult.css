@@ -1,0 +1,159 @@
+.section {
+    box-shadow: 25px 25px 50px rgba(9, 148, 255, 0.25),
+        -10px -10px 30px rgba(9, 148, 255, 0.1),
+        inset -5px -5px 15px rgba(9, 148, 255, 0.5);
+    border-radius: 20px;
+    overflow-y: scroll;
+    background-color: rgb(231, 247, 253);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto;
+}
+
+/* .section > *{ border : 1px solid black;} */
+.section>.all__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.all__title>.title {
+    padding: 2vh 2vw;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#sort__input {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+#sort__input>option {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* all notebooks */
+.all__notebooks {
+    /* border : 1px solid black; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    overflow-y: scroll;
+    grid-gap: 1vh 1vw;
+}
+
+.all__notebooks>.notebook {
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+/* .notebook > *{border : 1px solid black;} */
+.notebook__content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1vw;
+}
+
+.notebook__content>.unit {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgb(126, 126, 126);
+    padding: 0 0.2vw;
+}
+
+.notebook__content>.value {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.notebook>.notebook__img {
+    grid-row: 1/span 6;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.notebook__img>img {
+    min-width: 100%;
+    min-height: 80%;
+    max-width: 100%;
+    max-height: 80%;
+}
+
+.notebook>.notebook__notename {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-column-end: 6;
+}
+
+.notebook>.notebook__ram {
+    grid-column-start: 2;
+    grid-row-start: 3;
+}
+
+.notebook>.notebook__battery {
+    grid-column-start: 3;
+    grid-row-start: 3;
+}
+
+.notebook>.notebook__weight {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.notebook>.notebook__cpu {
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+@media screen and (max-width : 1024px) {
+    .notebook {}
+}
+
+@media screen and (max-width : 768px) {
+    .notebook__img {
+        display: none;
+    }
+
+    .notebook__price {
+        grid-column-start: 3;
+        grid-row-start: 2;
+    }
+
+    .notebook>.notebook__notename {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-column-end: 6;
+    }
+
+    .notebook>.notebook__ram {
+        grid-column-start: 1;
+        grid-row-start: 3;
+    }
+
+    .notebook>.notebook__battery {
+        grid-column-start: 2;
+        grid-row-start: 3;
+    }
+
+    .notebook>.notebook__weight {
+        grid-column-start: 1;
+        grid-row-start: 2;
+    }
+
+    .notebook>.notebook__cpu {
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+}

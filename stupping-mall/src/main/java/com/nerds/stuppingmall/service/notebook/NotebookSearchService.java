@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nerds.stuppingmall.dto.*;
+import com.nerds.stuppingmall.util.SearchParameterInitializer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,9 +26,30 @@ public class NotebookSearchService {
 	final MemberRepository memberRepository;
 	final NotebookRepository notebookRepository;
 	final int SIZE_PER_PAGE = 10;
+	final SearchParameterInitializer searchParameterInitializer;
 	
 	public List<NotebookInfoResponseSimpleDto> getNew8Notebooks() {
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "registerDate")));
+		List<NotebookInfoResponseSimpleDto> notebookInfoResponseSimpleDtoList = new ArrayList<>();
+
+		for(Notebook notebook: notebooks) {
+			notebookInfoResponseSimpleDtoList.add(NotebookInfoResponseSimpleDto.builder()
+					.id(notebook.get_id())
+					.name(notebook.getName())
+					.img(notebook.getImgs().get(0))
+					.price(notebook.getPrice())
+					.cpuName(notebook.getCpuName())
+					.weight(notebook.getWeight())
+					.screenSize(notebook.getScreenSize())
+					.ramSize(notebook.getRamSize())
+					.build());
+		}
+
+		return notebookInfoResponseSimpleDtoList;
+	}
+
+	public List<NotebookInfoResponseSimpleDto> getNotebooksTemp() {
+		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "registerDate")));
 		List<NotebookInfoResponseSimpleDto> notebookInfoResponseSimpleDtoList = new ArrayList<>();
 
 		for(Notebook notebook: notebooks) {
@@ -81,7 +103,7 @@ public class NotebookSearchService {
 	public Page<NotebookListResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
-		
+
 		switch(sortingOrder) {
 		case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
 		case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
@@ -91,7 +113,7 @@ public class NotebookSearchService {
 		case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
 		default: throw new RuntimeException();
 		}
-		
+
 		return notebookRepository.customFindNotebooksBySupplierId(pageable, sort, supplierId);
 	}
 

@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Notebook Detail</title>
 
+    <!-- css file -->
     <link rel="stylesheet" th:href="@{/css/sectionCss/reset.css(ver=${date})}">
     <link rel="stylesheet" th:href="@{/css/sectionCss/container.css(ver=${date})}">
     <link rel="stylesheet" th:href="@{/css/sectionCss/sideNav.css(ver=${date})}">
     <link rel="stylesheet" th:href="@{/css/sectionCss/header.css(ver=${date})}">
-    <link rel="stylesheet" th:href="@{/css/sectionCss/users/login.css(ver=${date})}">
+    <link rel="stylesheet" th:href="@{/css/sectionCss/users/notebookDetail.css(ver=${date})}">
+
+    <!-- font style -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
           rel="stylesheet">
+
+    <!-- icon font-awsome -->
     <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
+
+    <!-- js file -->
     <script defer th:src="@{/js/users/indexSection.js(ver=${date})}"></script>
 </head>
 
@@ -73,7 +79,7 @@
                         <span class="nav__title">New</span>
                     </div>
                 </a></li>
-                <li class="list"><a href="/notebookAllPage">
+                <li class="list"><a href="">
                     <div class="real__logo">
                         <i class="fa-solid fa-laptop"></i>
                         <span class="nav__title">notebook</span>
@@ -115,49 +121,7 @@
             <i class="fa-solid fa-bars sub__nav__logo"></i>
         </div>
     </header>
-    <main class="section login__section">
-        <div class="login__container">
-            <div class="login__explain">
-                1
-            </div>
-            <div class="login__box">
-                <form class="login__form" th:action="@{/login}" method="post">
-                    <div class="login__title">
-                        <h2 id="title">Sign In</h2>
-                    </div>
-                    <div class="login__main">
-                        <div class="login__text">
-                            <p>
-                                <span class="icon id__icon"><i class="fa-solid fa-id-badge"></i></span>
-                                <input type="text" name="id" id="userID" placeholder="ID">
-                            </p>
-                            <p>
-                                <span class="icon pw__icon"><i class="fa-solid fa-lock"></i></span>
-                                <input type="password" name="password" id="userPW" placeholder="PW">
-                            </p>
-                            <button type="submit" class="login__submit__button">LOGIN</button>
-                            <div class="login__otherway">
-                                    <span class="other__icon instagram">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </span>
-                                <span class="other__icon github">
-                                        <i class="fa-brands fa-github"></i>
-                                    </span>
-                                <span class="other__icon facebook">
-                                        <i class="fa-brands fa-facebook"></i>
-                                    </span>
-                            </div>
-                            <div class="find__account">
-                                <a href="/userIdFindPage" class="find__id">find ID</a>
-                                <a href="/changePasswordWithoutLogin" class="find__pw">find PW</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="login__footer"></div>
-                </form>
-            </div>
-        </div>
-    </main>
+    <!-- main 보류(이미지 수정 및 상품 설명 대화가 필요할듯) -->
 </div>
 </body>
 
