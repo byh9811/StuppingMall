@@ -73,22 +73,34 @@
                         <span class="nav__title">New</span>
                     </div>
                 </a></li>
-                <li class="list"><a href="/notebookAllPage">
+                <li class="list"><a href="notebookAllPage">
                     <div class="real__logo">
                         <i class="fa-solid fa-laptop"></i>
-                        <span class="nav__title">notebook</span>
+                        <span class="nav__title">Notebooks</span>
                     </div>
                 </a></li>
-                <li class="list"><a href="/tipPage">
+                <li sec:authorize="hasRole('ROLE_CUSTOMER')" class="list"><a href="/tipPage">
                     <div class="real__logo">
                         <i class="fa-solid fa-face-smile"></i>
-                        <span class="nav__title">tip</span>
+                        <span class="nav__title">Tips</span>
                     </div>
                 </a></li>
-                <li class="list"><a href="">
+                <li sec:authorize="hasRole('ROLE_SUPPLIER')" class="list"><a href="/notebookAddPage">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-face-smile"></i>
+                        <span class="nav__title">Add Notebook</span>
+                    </div>
+                </a></li>
+                <li sec:authorize="hasRole('ROLE_CUSTOMER')" class="list"><a href="/">
                     <div class="real__logo">
                         <i class="fa-solid fa-chart-line"></i>
-                        <span class="nav__title">graph</span>
+                        <span class="nav__title">Sales</span>
+                    </div>
+                </a></li>
+                <li sec:authorize="hasRole('ROLE_SUPPLIER')" class="list"><a href="/">
+                    <div class="real__logo">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="nav__title">Compare</span>
                     </div>
                 </a></li>
             </ul>

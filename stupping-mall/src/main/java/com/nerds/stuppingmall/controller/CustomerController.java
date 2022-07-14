@@ -35,20 +35,6 @@ public class CustomerController {
 	final OrderRegisterService orderRegisterService;
 	final OrderSearchService orderSearchService;
 	final OrderModifyService orderModifyService;
-	final NotebookSearchService notebookSearchService;
-	final IntroductionSearchService introductionSearchService;
-	final TipSearchService tipSearchService;
-	final CategoryStatusService categoryStatusService;
-
-	@GetMapping("/main")
-	public String customerMain(@AuthenticationPrincipal Authentication authentication, Model model) {
-		model.addAttribute("date", LocalTime.now());
-		model.addAttribute("topNotebooks", notebookSearchService.getTop3Notebooks());
-		model.addAttribute("categories", categoryStatusService.getCategories());
-		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-
-		return "customer/customerMain";
-	}
 
 	@GetMapping("/myOrders")
 	public String getMyOrders(@AuthenticationPrincipal Authentication authentication, Model model) {
