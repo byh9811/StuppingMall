@@ -28,62 +28,38 @@ public class NotebookSearchService {
 	final int SIZE_PER_PAGE = 10;
 	final SearchParameterInitializer searchParameterInitializer;
 	
-	public List<NotebookInfoResponseSimpleDto> getNew8Notebooks() {
+	public List<NotebookDto.ListResponse> getNew8Notebooks() {
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "registerDate")));
-		List<NotebookInfoResponseSimpleDto> notebookInfoResponseSimpleDtoList = new ArrayList<>();
+		List<NotebookDto.ListResponse> notebookList = new ArrayList<>();
 
-		for(Notebook notebook: notebooks) {
-			notebookInfoResponseSimpleDtoList.add(NotebookInfoResponseSimpleDto.builder()
-					.id(notebook.get_id())
-					.name(notebook.getName())
-					.img(notebook.getImgs().get(0))
-					.price(notebook.getPrice())
-					.cpuName(notebook.getCpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.build());
-		}
+		for(Notebook notebook: notebooks)
+			notebookList.add(new NotebookDto.ListResponse(notebook));
 
-		return notebookInfoResponseSimpleDtoList;
+		return notebookList;
 	}
 
-	public List<NotebookInfoResponseSimpleDto> getNotebooksTemp() {
+	public List<NotebookDto.ListResponse> getNotebooksTemp() {
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "registerDate")));
-		List<NotebookInfoResponseSimpleDto> notebookInfoResponseSimpleDtoList = new ArrayList<>();
+		List<NotebookDto.ListResponse> notebookList = new ArrayList<>();
 
-		for(Notebook notebook: notebooks) {
-			notebookInfoResponseSimpleDtoList.add(NotebookInfoResponseSimpleDto.builder()
-					.id(notebook.get_id())
-					.name(notebook.getName())
-					.img(notebook.getImgs().get(0))
-					.price(notebook.getPrice())
-					.cpuName(notebook.getCpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.build());
-		}
+		for(Notebook notebook: notebooks)
+			notebookList.add(new NotebookDto.ListResponse(notebook));
 
-		return notebookInfoResponseSimpleDtoList;
+		return notebookList;
 	}
 
-	public List<NotebookTop3ResponseDto> getTop3Notebooks() {
+	public List<NotebookDto.IdImgResponse> getTop3Notebooks() {
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "salesVolume")));
-		List<NotebookTop3ResponseDto> notebookTop3ResponseDtos = new ArrayList<>();
+		List<NotebookDto.IdImgResponse> notebookDtos = new ArrayList<>();
 
 
-		for(Notebook notebook: notebooks) {
-			notebookTop3ResponseDtos.add(NotebookTop3ResponseDto.builder()
-					.id(notebook.get_id())
-					.img(notebook.getImgs().get(0))
-					.build());
-		}
+		for(Notebook notebook: notebooks)
+			notebookDtos.add(new NotebookDto.IdImgResponse(notebook));
 
-		return notebookTop3ResponseDtos;
+		return notebookDtos;
 	}
 
-	public Page<NotebookResponseBasicDto> getMyNotebook(int curPage, String sortingOrder, String supplierId) {
+	public Page<NotebookDto.IdNameResponse> getMyNotebook(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 
@@ -100,7 +76,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebookBasicDtosBySupplierId(pageable, sort, supplierId);
 	}
 
-	public Page<NotebookListResponseDto> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
+	public Page<NotebookDto.ListResponse> findNotebooksBySupplierId(int curPage, String sortingOrder, String supplierId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 
@@ -117,7 +93,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksBySupplierId(pageable, sort, supplierId);
 	}
 
-	public Page<NotebookResponseBasicDto> findNotebookBasicDtosByName(int curPage, String sortingOrder, String name) {
+	public Page<NotebookDto.IdNameResponse> findNotebookBasicDtosByName(int curPage, String sortingOrder, String name) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 
@@ -134,7 +110,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebookBasicDtosByName(pageable, sort, name);
 	}
 
-	public Page<NotebookListResponseDto> findNotebooksByName(int curPage, String sortingOrder, String name) {
+	public Page<NotebookDto.ListResponse> findNotebooksByName(int curPage, String sortingOrder, String name) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -151,7 +127,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByName(pageable, sort, name);
 	}
 
-	public Page<NotebookListResponseDto> findNotebooksByCategory(int curPage, String sortingOrder, CategoryInfoRequestDto categoryInfoRequestDto) {
+	public Page<NotebookDto.ListResponse> findNotebooksByCategory(int curPage, String sortingOrder, CategoryInfoRequestDto categoryInfoRequestDto) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		Sort sort;
 		
@@ -168,7 +144,7 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByCategory(pageable, sort, categoryInfoRequestDto);
 	}
 	
-	public Page<NotebookListResponseDto> getMyPicks(int curPage, String customerId) {
+	public Page<NotebookDto.ListResponse> getMyPicks(int curPage, String customerId) {
 		Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);
 		
 		Member customer = memberRepository.findById(customerId).get();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nerds.stuppingmall.dto.CategoryInfoRequestDto;
-import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.dto.NotebookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,70 +14,68 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.support.PageableExecutionUtils;
 
-import com.nerds.stuppingmall.dto.NotebookListResponseDto;
-
 public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepository {
 	@Autowired
 	MongoTemplate mongoTemplate;
 
 	@Override
-	public Page<NotebookResponseBasicDto> customFindNotebookBasicDtosBySupplierId(Pageable pageable, Sort sort, String supplierId) {
+	public Page<NotebookDto.IdNameResponse> customFindNotebookBasicDtosBySupplierId(Pageable pageable, Sort sort, String supplierId) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("supplierId").is(supplierId));
 		query.with(sort);
 		query.with(pageable);
 
-		List<NotebookResponseBasicDto> notebooks = mongoTemplate.find(query, NotebookResponseBasicDto.class, "notebooks");
+		List<NotebookDto.IdNameResponse> notebooks = mongoTemplate.find(query, NotebookDto.IdNameResponse.class, "notebooks");
 
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookResponseBasicDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.IdNameResponse.class));
 	}
 
 	@Override
-	public Page<NotebookResponseBasicDto> customFindNotebookBasicDtosByName(Pageable pageable, Sort sort, String name) {
+	public Page<NotebookDto.IdNameResponse> customFindNotebookBasicDtosByName(Pageable pageable, Sort sort, String name) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("name").regex(name));
 		query.with(sort);
 		query.with(pageable);
 
-		List<NotebookResponseBasicDto> notebooks = mongoTemplate.find(query, NotebookResponseBasicDto.class, "notebooks");
+		List<NotebookDto.IdNameResponse> notebooks = mongoTemplate.find(query, NotebookDto.IdNameResponse.class, "notebooks");
 
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookResponseBasicDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.IdNameResponse.class));
 	}
 
 	@Override
-	public Page<NotebookListResponseDto> customFindNotebooksBySupplierId(Pageable pageable, Sort sort, String supplierId) {
+	public Page<NotebookDto.ListResponse> customFindNotebooksBySupplierId(Pageable pageable, Sort sort, String supplierId) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("supplierId").is(supplierId));
 		query.with(sort);
 		query.with(pageable);
 		
-		List<NotebookListResponseDto> notebooks = mongoTemplate.find(query, NotebookListResponseDto.class, "notebooks");
+		List<NotebookDto.ListResponse> notebooks = mongoTemplate.find(query, NotebookDto.ListResponse.class, "notebooks");
 
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookListResponseDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.ListResponse.class));
 	}
 
 	@Override
-	public Page<NotebookListResponseDto> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
+	public Page<NotebookDto.ListResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
 		Query query = new Query();
 		query.addCriteria(Criteria.where("name").regex(name));
 		query.with(sort);
 		query.with(pageable);
 		
-		List<NotebookListResponseDto> notebooks = mongoTemplate.find(query, NotebookListResponseDto.class, "notebooks");
+		List<NotebookDto.ListResponse> notebooks = mongoTemplate.find(query, NotebookDto.ListResponse.class, "notebooks");
 		
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookListResponseDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.ListResponse.class));
 	}
 
 	@Override
-	public Page<NotebookListResponseDto> customFindNotebooksByCategory(Pageable pageable, Sort sort,
+	public Page<NotebookDto.ListResponse> customFindNotebooksByCategory(Pageable pageable, Sort sort,
 																	   CategoryInfoRequestDto categoryInfoRequestDto) {
 		
 		Query query = new Query();
@@ -123,15 +121,15 @@ public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepos
 			query.with(pageable);
 		}
 		
-		List<NotebookListResponseDto> notebooks = mongoTemplate.find(query, NotebookListResponseDto.class, "notebooks");
+		List<NotebookDto.ListResponse> notebooks = mongoTemplate.find(query, NotebookDto.ListResponse.class, "notebooks");
 		
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookListResponseDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.ListResponse.class));
 	}
 
 	@Override
-	public Page<NotebookListResponseDto> customFindNotebooksByNotebookIds(Pageable pageable, List<String> notebookIds) {
+	public Page<NotebookDto.ListResponse> customFindNotebooksByNotebookIds(Pageable pageable, List<String> notebookIds) {
 		List<Criteria> criterias = new ArrayList<>();
 		Query query = new Query();
 		for(String notebookId: notebookIds)
@@ -140,10 +138,10 @@ public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepos
 		query.addCriteria(criteria.orOperator(criterias));
 		query.with(pageable);
 		
-		List<NotebookListResponseDto> notebooks = mongoTemplate.find(query, NotebookListResponseDto.class, "notebooks");
+		List<NotebookDto.ListResponse> notebooks = mongoTemplate.find(query, NotebookDto.ListResponse.class, "notebooks");
 		
 		return PageableExecutionUtils.getPage(
 				notebooks, pageable,
-				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookListResponseDto.class));
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.ListResponse.class));
 	}
 }

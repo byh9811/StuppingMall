@@ -1,12 +1,11 @@
 package com.nerds.stuppingmall.controller;
 
-import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.dto.NotebookDto;
 import com.nerds.stuppingmall.dto.OrderSalesInfoResponseDto;
 import com.nerds.stuppingmall.service.email.EmailSendService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,8 @@ public class RestController {
 
     // 판매자가 그래프에서 노트북검색하는 용인듯? 추후 수정필요
     @GetMapping("notebooks/search")
-    public List<NotebookResponseBasicDto> searchNotebooks(String reqModelName) {
-        Page<NotebookResponseBasicDto> notebookResponseBasicDtoPage = notebookSearchService.findNotebookBasicDtosByName(0, "최신순", reqModelName);
+    public List<NotebookDto.IdNameResponse> searchNotebooks(String reqModelName) {
+        Page<NotebookDto.IdNameResponse> notebookResponseBasicDtoPage = notebookSearchService.findNotebookBasicDtosByName(0, "최신순", reqModelName);
         return notebookResponseBasicDtoPage.getContent();
     }
 
