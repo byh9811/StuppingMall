@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookDto;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,8 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nerds.stuppingmall.domain.Category;
-import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
 import com.nerds.stuppingmall.repository.CategoryRepository;
 import com.nerds.stuppingmall.repository.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
@@ -31,33 +30,13 @@ public class NotebookRegisterService {
 	final MemberRepository memberRepository;
 	final CategoryRepository categoryRepository;
 	
-	public String addNotebook(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
-		List<String> urls = saveImgFile(supplierId, notebookAddRequestDto);
-		addCategories(supplierId, notebookAddRequestDto);
-		int cpuScore = getCpuScore(notebookAddRequestDto.getCpuName());
-		int gpuScore = getGpuScore(notebookAddRequestDto.getGpuName());
-		Notebook notebook = Notebook.builder()
-								.name(notebookAddRequestDto.getName())
-								.supplierId(supplierId)
-								.registerDate(notebookAddRequestDto.getRegisterDate())
-								.imgs(urls)
-								.price(notebookAddRequestDto.getPrice())
-								.view(0)
-								.rate(0.0)
-								.salesVolume(0)
-								.cpuName(notebookAddRequestDto.getCpuName())
-								.gpuName(notebookAddRequestDto.getGpuName())
-								.weight(notebookAddRequestDto.getWeight())
-								.screenSize(notebookAddRequestDto.getScreenSize())
-								.cpuScore(cpuScore)
-								.gpuScore(gpuScore)
-								.ramSize(notebookAddRequestDto.getRamSize())
-								.ssdSize(notebookAddRequestDto.getSsdSize())
-								.hddSize(notebookAddRequestDto.getHddSize())
-								.batterySize(notebookAddRequestDto.getBatterySize())
-								.build();
+	public String addNotebook(String supplierId, NotebookDto.Request notebook) {
+		List<String> urls = saveImgFile(supplierId, notebook);
+		addCategories(supplierId, notebook);
+		int cpuScore = getCpuScore(notebook.getCpuName());
+		int gpuScore = getGpuScore(notebook.getGpuName());
 								
-		return notebookRepository.save(notebook).get_id();
+		return notebookRepository.save(notebook.toNotebook(supplierId, urls, cpuScore, gpuScore)).get_id();
 	}
 
 	private int getGpuScore(String gpuName) {
@@ -94,11 +73,11 @@ public class NotebookRegisterService {
 		return score;
 	}
 
-	private void addCategories(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
+	private void addCategories(String supplierId, NotebookDto.Request notebook) {
 		addSupplierNameCategory(memberRepository.findById(supplierId).get().getName());
-		addCpuNameCategory(notebookAddRequestDto.getCpuName());
-		addGpuNameCategory(notebookAddRequestDto.getGpuName());
-		addRegistYearCategory(notebookAddRequestDto.getRegisterDate());
+		addCpuNameCategory(notebook.getCpuName());
+		addGpuNameCategory(notebook.getGpuName());
+		addRegistYearCategory(notebook.getRegisterDate());
 	}
 
 	private void addSupplierNameCategory(String name) {
@@ -141,16 +120,16 @@ public class NotebookRegisterService {
 		categoryRepository.save(cate);
 	}
 
-	private List<String> saveImgFile(String supplierId, NotebookAddRequestDto notebookAddRequestDto) {
-		String folderPath = supplierId + "/" + notebookAddRequestDto.getName();
+	private List<String> saveImgFile(String supplierId, NotebookDto.Request notebook) {
+		String folderPath = supplierId + "/" + notebook.getName();
 		File folder = new File(folderPath);
 		List<String> urls = new ArrayList<>();
 		
 		if(!folder.exists())
 			folder.mkdirs();
 		
-		if(!notebookAddRequestDto.getImgFiles().isEmpty()) {
-			for(MultipartFile imgFile: notebookAddRequestDto.getImgFiles()) {
+		if(!notebook.getImgFiles().isEmpty()) {
+			for(MultipartFile imgFile: notebook.getImgFiles()) {
 	            // jpeg, png, gif 파일들만 받아서 처리
 	            String contentType = imgFile.getContentType();
 	            String originalFileExtension;

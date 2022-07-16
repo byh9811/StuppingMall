@@ -13,7 +13,7 @@ public class NotebookListPage {
 
     @GetMapping("/notebookAllPage")
     public String getNotebookAllPage(Model model) {
-        model.addAttribute("notebooks", notebookSearchService.getNotebooksTemp());
+        model.addAttribute("notebooks", notebookSearchService.getNotebookList(0, "최신순", ""));
         model.addAttribute("curPage", 0);
         model.addAttribute("maxPage", 10);
 

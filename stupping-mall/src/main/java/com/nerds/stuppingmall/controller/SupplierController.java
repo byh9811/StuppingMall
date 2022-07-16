@@ -1,6 +1,6 @@
 package com.nerds.stuppingmall.controller;
 
-import com.nerds.stuppingmall.dto.NotebookResponseBasicDto;
+import com.nerds.stuppingmall.dto.*;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
 import com.nerds.stuppingmall.service.tip.TipSearchService;
 import com.nerds.stuppingmall.service.order.OrderModifyService;
@@ -11,9 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.nerds.stuppingmall.domain.Order;
-import com.nerds.stuppingmall.dto.Authentication;
-import com.nerds.stuppingmall.dto.NotebookAddRequestDto;
-import com.nerds.stuppingmall.dto.NotebookListResponseDto;
 import com.nerds.stuppingmall.service.notebook.NotebookDeregisterService;
 import com.nerds.stuppingmall.service.notebook.NotebookRegisterService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
@@ -36,31 +33,20 @@ public class SupplierController {
 	final IntroductionSearchService introductionSearchService;
 	final TipSearchService tipSearchService;
 
-	@GetMapping("/main")
-	public String supplierMain(@AuthenticationPrincipal Authentication authentication, Model model) {
-		model.addAttribute("date", LocalTime.now());
-		model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
-		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-
-		Page<NotebookResponseBasicDto> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
-		model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
-		model.addAttribute("curPage", notebookResponseBasicDtoPages.getNumber());
-		model.addAttribute("maxPage", notebookResponseBasicDtoPages.getTotalPages());
-
-		return "supplierMain";
-	}
-
 	@PostMapping("/notebook")
-	public String addNotebook(@AuthenticationPrincipal Authentication authentication, @RequestParam("notebook") NotebookAddRequestDto notebookAddRequestDto) {
-		if(notebookAddRequestDto.getGpuName().isEmpty())
-			notebookAddRequestDto.setGpuName("내장 그래픽");
-		String id = notebookRegisterService.addNotebook(authentication.getId(), notebookAddRequestDto);
+	public String addNotebook(@AuthenticationPrincipal Authentication authentication, @RequestParam("notebook") NotebookDto.Request notebookRequestDto) {
+		if(notebookRequestDto.getGpuName().isEmpty())
+			notebookRequestDto.setGpuName("내장 그래픽");
+		String id = notebookRegisterService.addNotebook(authentication.getId(), notebookRequestDto);
 		return "redirect:/notebookInfo?id=" + id;
 	}
 	
 	@GetMapping("/myNotebooks")
-	public String getMyNotebooks(@RequestParam("page") int curPage, @RequestParam("order") String sortingOrder, @AuthenticationPrincipal Authentication authentication, Model model) {
-		Page<NotebookListResponseDto> notebookPages = notebookSearchService.findNotebooksBySupplierId(curPage, sortingOrder, authentication.getId());
+	public String getMyNotebooks(@RequestParam(value = "page", defaultValue = "0") int curPage,
+								 @RequestParam(value = "order", defaultValue = "최신순") String sortingOrder,
+								 @RequestParam(value = "name", defaultValue = "") String name,
+								 @AuthenticationPrincipal Authentication authentication, Model model) {
+		Page<NotebookDto.IdNameResponse> notebookPages = notebookSearchService.getMyNotebook(curPage, sortingOrder, authentication.getId(), name);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());
