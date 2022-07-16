@@ -25,13 +25,6 @@ public class RestController {
     final OrderSearchService orderSearchService;
     final EmailSendService emailSendService;
 
-    // 판매자가 그래프에서 노트북검색하는 용인듯? 추후 수정필요
-    @GetMapping("notebooks/search")
-    public List<NotebookDto.IdNameResponse> searchNotebooks(String reqModelName) {
-        Page<NotebookDto.IdNameResponse> notebookResponseBasicDtoPage = notebookSearchService.findNotebookBasicDtosByName(0, "최신순", reqModelName);
-        return notebookResponseBasicDtoPage.getContent();
-    }
-
     @GetMapping("sales/{id}")
     public OrderSalesInfoResponseDto getSalesInfo(@PathVariable("id") String notebookId, @RequestParam("duration") String duration) {
         return orderSearchService.findSales(duration, notebookId);

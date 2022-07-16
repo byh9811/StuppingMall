@@ -15,13 +15,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class NotebookController {
 	final NotebookDetailsService notebookDetailsService;
 	final NotebookSearchService notebookSearchService;
-	
-	@GetMapping("/notebookInfo/{id}")
+
+	@GetMapping("/notebook/{id}")
 	public String getProductInfoById(@PathVariable("id") String id, Model model) {
 		Notebook notebook = notebookDetailsService.findNotebook(id);
 
@@ -29,9 +31,11 @@ public class NotebookController {
 		return "notebookInfo";
 	}
 
-	@GetMapping("/notebooksInfo")
-	public String getProductsInfoByName(@RequestParam("page") int curPage, @RequestParam("order") String sortingOrder, @RequestParam("keyword") String keyword, Model model) {
-		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.findNotebooksByName(curPage, sortingOrder, keyword);
+	@GetMapping("/notebooks")
+	public String getProductsInfoByName(@RequestParam(value = "page", defaultValue = "0") int curPage,
+										@RequestParam(value = "order", defaultValue = "최신순") String sortingOrder,
+										@RequestParam(value = "name", defaultValue = "") String name, Model model) {
+		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.getNotebookList(curPage, sortingOrder, name);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());

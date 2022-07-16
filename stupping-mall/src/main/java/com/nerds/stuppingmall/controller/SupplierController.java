@@ -33,20 +33,6 @@ public class SupplierController {
 	final IntroductionSearchService introductionSearchService;
 	final TipSearchService tipSearchService;
 
-	@GetMapping("/main")
-	public String supplierMain(@AuthenticationPrincipal Authentication authentication, Model model) {
-		model.addAttribute("date", LocalTime.now());
-		model.addAttribute("recentNotebooks", notebookSearchService.getNew8Notebooks());
-		model.addAttribute("introductions", introductionSearchService.getAllIntroductions());
-
-		Page<NotebookDto.IdNameResponse> notebookResponseBasicDtoPages = notebookSearchService.getMyNotebook(0, "최신순", authentication.getId());
-		model.addAttribute("myNotebooks", notebookResponseBasicDtoPages.getContent());
-		model.addAttribute("curPage", notebookResponseBasicDtoPages.getNumber());
-		model.addAttribute("maxPage", notebookResponseBasicDtoPages.getTotalPages());
-
-		return "supplierMain";
-	}
-
 	@PostMapping("/notebook")
 	public String addNotebook(@AuthenticationPrincipal Authentication authentication, @RequestParam("notebook") NotebookDto.Request notebookRequestDto) {
 		if(notebookRequestDto.getGpuName().isEmpty())
@@ -56,8 +42,11 @@ public class SupplierController {
 	}
 	
 	@GetMapping("/myNotebooks")
-	public String getMyNotebooks(@RequestParam("page") int curPage, @RequestParam("order") String sortingOrder, @AuthenticationPrincipal Authentication authentication, Model model) {
-		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.findNotebooksBySupplierId(curPage, sortingOrder, authentication.getId());
+	public String getMyNotebooks(@RequestParam(value = "page", defaultValue = "0") int curPage,
+								 @RequestParam(value = "order", defaultValue = "최신순") String sortingOrder,
+								 @RequestParam(value = "name", defaultValue = "") String name,
+								 @AuthenticationPrincipal Authentication authentication, Model model) {
+		Page<NotebookDto.IdNameResponse> notebookPages = notebookSearchService.getMyNotebook(curPage, sortingOrder, authentication.getId(), name);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());

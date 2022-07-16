@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nerds.stuppingmall.dto.NotebookDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,6 @@ public class NotebookRepositoryTest {
 						.ssdSize(512)
 						.hddSize(1000)
 						.batterySize(65.4)
-						.usage("사무용")
 						.build();
 			
 			// when
@@ -75,19 +75,10 @@ public class NotebookRepositoryTest {
 		
 		// when
 		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
-		List<NotebookInfoResponseSimpleDto> notebookDtos = new ArrayList<>();
+		List<NotebookDto.ListResponse> notebookDtos = new ArrayList<>();
 
-		for(Notebook notebook: notebooks) {
-			notebookDtos.add(NotebookInfoResponseSimpleDto.builder()
-					.name(notebook.getName())
-					.img(notebook.getImgs().get(0))
-					.price(notebook.getPrice())
-					.cpuName(notebook.getCpuName())
-					.weight(notebook.getWeight())
-					.screenSize(notebook.getScreenSize())
-					.ramSize(notebook.getRamSize())
-					.build());
-		}
+		for(Notebook notebook: notebooks)
+			notebookDtos.add(new NotebookDto.ListResponse(notebook));
 
 		// then
 		assertEquals(8, notebooks.size());
