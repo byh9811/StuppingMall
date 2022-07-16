@@ -1,0 +1,184 @@
+<메인페이지>
+- top8 -> recentNotebooks
+ 0. 아이디: id
+ 1. 이름: name
+ 2. 가격: price
+ 3. 이미지: img
+ 4. (호버시)
+  a. 무게: weight
+  b. 스크린크기: screenSize
+  c. cpu이름: cpuName
+  d. ram크기: ramSize
+
+- category -> categories
+ 1. 회사명: supplierName
+ 2. cpu이름: cpuName
+ 3. gpu이름: gpuName
+ 4. 등록년도: registerYear
+
+- 홈페이지 장점 -> introductions
+ 1. 제목: title
+ 2. 내용: content
+
+- 우잘사 -> knowhows
+ 1. 용도: purpose
+ 2. 내용: explanation
+
+- 사용자 그래프
+ 1. 서치바에서 검색하는 이름: reqModelName -> 서버로 요청, 방식은 get
+ 2. 받는 이름: resModelNames -> restController로 응답
+
+- 제조사 그래프 -> myNotebooks
+ 1. 노트북ID: id
+ 2. 노트북이름: name
+ 3. 프론트단에서 보내는 데이터
+  a. 노트북ID: notebookId
+  b. 기간: duration
+ 4. 보내면 응답할 데이터
+  a. 최대치: max
+  b. 해시맵: salesMap
+
+- 상품상세정보페이지
+ 1. 서버에서 최초로 보낼 데이터
+	private String _id;		// 노트북 ID
+	private String name;	// 노트북 이름
+	private String supplierId;	// 제조사 ID
+	private String supplierName;	// 제조사 이름
+	private String registerDate;	// 등록년월
+	private List<String> imgs;	// 상품이미지들
+	private int price;		// 가격
+	private int view;		// 조회수
+	private double rate;	// 평점
+	private int salesVolume;	// 판매량
+	private String cpuName;	// cpu이름
+	private String gpuName;	// gpu이름
+	private double weight;	// 무게
+	private double screenSize;	// 화면 크기
+	private int ramSize;		// 램 크기
+	private int ssdSize;		// ssd 크기
+	private int hddSize;	// 하드디스크 크기
+	private double batterySize;	// 배터리 크기
+
+ 2. 구매버튼 눌렀을때 보내는 데이터
+  a. 노트북ID: notebookId
+  b. 가격: payment
+
+- 충전페이지
+ 1. 서버에 보내는 충전할 돈: money
+ 2. 완료되면 마이페이지로 리다이렉트
+
+- 에러페이지
+ 서버에서 보낼 데이터 에러메시지: errorMessage
+(여러 에러 처리 url 만들어놓고 에러생기면 리다이렉트하도록)
+
+- 마이페이지
+ 1. 아이디: _id 
+ (비밀번호 변경 버튼 넣어놔야할듯)
+ 3. 이름: name
+ 4. 유형: role
+ 5. 핸드폰번호: phoneNum
+ 6. 생년월일: birth
+ 7. 성별: man
+ 8. 찜 목록: myPicks
+ 9. 계좌: account
+  9-1. 은행: bank
+  9-2. 계좌번호: accountNumber
+ 10. 잔액: balance (충전 버튼 넣어놔야할듯)
+ 11. 최근 본 상품
+ 12. 구매내역
+
+- 비밀번호변경페이지
+ 1. 현재 비밀번호: curPassword
+ 2. 다음 비밀번호: nextPassword
+ 3. 비밀번호 확인: passwordCheck
+
+- 노트북 추가페이지
+	private String _id;		// 노트북 ID
+	private String name;	// 노트북 이름
+	private String supplierId;	// 제조사 ID
+	private String supplierName;	// 제조사 이름
+	private String registerDate;	// 등록년월
+	private List<String> imgs;	// 상품이미지들
+	private int price;		// 가격
+	private int view;		// 조회수
+	private double rate;	// 평점
+	private int salesVolume;	// 판매량
+	private String cpuName;	// cpu이름
+	private String gpuName;	// gpu이름
+	private double weight;	// 무게
+	private double screenSize;	// 화면 크기
+	private int ramSize;		// 램 크기
+	private int ssdSize;		// ssd 크기
+	private int hddSize;	// 하드디스크 크기
+	private double batterySize;	// 배터리 크기
+
+- 내 노트북 조회 페이지
+	private String _id;		// 노트북 ID
+	private String name;	// 노트북 이름
+	private String supplierId;	// 제조사 ID
+	private String supplierName;	// 제조사 이름
+	private String registerDate;	// 등록년월
+	private List<String> imgs;	// 상품이미지들
+	private int price;		// 가격
+	private int view;		// 조회수
+	private double rate;	// 평점
+	private int salesVolume;	// 판매량
+	private String cpuName;	// cpu이름
+	private String gpuName;	// gpu이름
+	private double weight;	// 무게
+	private double screenSize;	// 화면 크기
+	private int ramSize;		// 램 크기
+	private int ssdSize;		// ssd 크기
+	private int hddSize;	// 하드디스크 크기
+	private double batterySize;	// 배터리 크기
+
+- 회원가입페이지
+ 1. 아이디: _id
+ 2. 비밀번호: password
+ 3. 이름: name
+ 4. 유형: role
+ 5. 핸드폰번호: phoneNum
+ 6. 생년월일: birth
+ 7. 성별: man
+ 8. 찜 목록: myPicks
+ 9. 계좌: account
+  9-1. 은행: bank
+  9-2. 계좌번호: accountNumber
+ 
+- id찾기페이지
+ 1. 이메일: email (이메일 인증)
+ 2. 이메일로 키를 보내서 세션을 체크하여 아이디를 보여줌.
+
+- pw변경페이지
+ 1. 아이디: id
+ 2. 이메일 인증: email (이메일 인증)
+ 3. 비밀번호: newPassword
+ 4. 이메일로 링크를 보내서 세션을 체크한뒤 비밀번호를 변경함.
+--------------------------------------------------진행완료-----------------------------------------------------------
+
+- 회원 조회 페이지 -> members(페이징 필요)
+ 1. 아이디: _id
+ 3. 이름: name
+ 4. 유형: role
+ 5. 핸드폰번호: phoneNum
+ 6. 생년월일: birth
+ 7. 성별: man
+ 8. 찜 목록: myPicks
+ 9. 계좌: account
+  9-1. 은행: bank
+  9-2. 계좌번호: accountNumber
+ 10. 잔액: balance
+
+- 회원 수정 페이지
+ 1. 회원 조회 페이지 옆에 확인 버튼 만들어서 데이터 다 보내면 될듯
+
+- 회원 삭제 페이지
+ 1. 회원 조회 페이지 옆에 삭제 버튼 만들어서 id만 보내게 하면 될듯
+
+- 신고 접수 페이지
+ 1. 신고자ID: reporterID
+ 2. 피신고자ID: reporteeID
+ 3. 신고 사유: reason
+
+- 우잘사 편집 페이지 / 홈페이지이용 편집 페이지
+1. 변수 그대로 쓰고 확인버튼 만들어서 데이터 다 보내는 방식

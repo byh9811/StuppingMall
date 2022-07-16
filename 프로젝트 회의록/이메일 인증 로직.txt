@@ -1,0 +1,7 @@
+1. 이메일 인증 버튼을 누르면 rest api로 key를 생성하라는 post요청을 보냄. (signup.html)
+2. 컨트롤러에서 요청을 받음. (RestController)
+3. key를 생성하여 이메일로 보냄. (EmailSendService)
+4. 세션을 생성해서 보낸 key를 20분간 저장. (RestController)
+5. 사용자는 이메일을 통해 key를 획득.
+6. 획득한 key를 입력하면 컨트롤러에서 맞는지 체크하고 맞다면 아이디 찾아서 페이지에 리턴해줌. (SignController)
+7. 틀리면 에러페이지로 이동. (ErrorController)

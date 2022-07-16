@@ -1,0 +1,5 @@
+0. branch 만들어서 변환작업 시작
+1. 3캐러셀에 들어갈 인기 top 3 노트북 id랑 이미지 main페이지 줄때 같이 넘기기
+2. 8캐러셀에 들어갈 최신 8 노트북 정보 7개 한번에 주기
+3. categoryrepository findAllId() 수정해야됨.
+4. knowhow explanation 3개로 수정.

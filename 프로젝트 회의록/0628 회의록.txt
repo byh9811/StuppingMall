@@ -1,0 +1,5 @@
+1. index.ejs -> customerMain.html로 변환
+ ------ 완료 -------
+2. main페이지역할 분담으로 인한 controller 로직 변경
+3. top8, 전체상품, knowhow, graph 페이지 구현시 main__nav a태그 url 수정
+4. 다른 페이지 수정되는 대로 변환해야함.

@@ -1,0 +1,12 @@
+<백엔드 피드백>
+1. util 패키지 만들어서 SortMethodParser 생성해서 정렬방식 정하는 코드 중복 줄이기. 빈으로 만들어야 되는지 추상클래스 쓰는건지 등 공부필요.
+2. Dto 패키지 상세하게 정리하고 하나하나 필요한지 재고.
+3. customerMain이랑 supplierMain이랑 합치는게 좋을듯?
+4. Member를 customer랑 supplier로 나누는게 맞을듯.
+
+<프론트엔드 피드백>
+1. notebookAll에 의미없는 스크롤바 2개 생김.
+2. new8에 스크롤바 스크롤 불가능.
+3. tip페이지 아직 완성 안됐었나?
+4. 페이징도 아직 안됐나?
+5. all이랑 result 뭐가 다른지?
