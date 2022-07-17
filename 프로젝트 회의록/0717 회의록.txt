@@ -1,0 +1,12 @@
+- Member를 역할에 따라 분할하면?
+1. Member클래스에서 몇몇 필드만 남기고, 나머지는 Customer, Supplier로 이동.
+2. Customer, Supplier는 Member를 상속받음.
+
+- Member를 저장하거나 조회할 때 문제가 생기지는 않는지?
+1. Customer, Supplier 클래스가 자식 클래스이기 때문에 문제가 발생한다.
+2. 저장할 때 members 컬렉션 내에 Customer, Supplier 두 클래스의 데이터가 공존하게 된다.
+3. 조회할때 Member 클래스로 조회하므로 데이터를 전부 조회할 수 없다.
+
+- 해결 방법은?
+1. Customer와 Supplier 컬렉션을 따로 만들어 따로 저장한다.
+2. 스키마가 정해져있지 않은 NoSql의 특징을 이용해 두 클래스의 데이터를 members에 공존하게 둔다.
