@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user mainpage</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/container.css">
+    <link rel="stylesheet" href="../../css/sideNav.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/sectionCss/users/tip.css">
+
+    <!-- font style -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@300;400&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/388ade87ec.js" crossorigin="anonymous"></script>
+    <script defer src="../../js/users/indexSection.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="category__container">
+            <i class="fa-solid fa-xmark close__button"></i>
+            <div class="category__title">Category</div>
+            <!-- /notebooks get요청으로 보내야하는 form button만들기! -->
+            <div class="category__list">
+                <ul class="category__nav">
+                    <li>
+                        <span><i class="fa-solid fa-building"></i></span>
+                        <span>supplierName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-microchip"></i></span>
+                        <span>cpuName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-g"></i></span>
+                        <span>gpuName</span>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <span>registerDate</span>
+                    </li>
+                </ul>
+            </div>
+            <form action="/notebooks" method="get" class="category__contents">
+
+                <div class="box">
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                    <div class="box__container">
+                        <label for="supplierInput">LG</label>
+                        <input type="checkbox" name="supplierName" id="supplierInput" value="LG">
+                    </div>
+                </div>
+                <div class="box">
+                    박스2
+                    <label for="cpuInput"></label>
+                    <input type="checkbox" name="cpuName" id="cpuInput" value="CPU1">
+                </div>
+                <div class="box">
+                    박스3
+                    <label for="gpuInput"></label>
+                    <input type="checkbox" name="gpuName" id="gpuInput" value="LG">
+                </div>
+                <div class="box">
+                    박스4
+                    <label for="registerInput"></label>
+                    <input type="checkbox" name="registerDate" id="registerInput" value="LG">
+                </div>
+            </form>
+            <div class="button__box">
+                <button type="submit" class="category__button">submit</button>
+            </div>
+        </div>
+        <nav class="side__nav">
+            <div class="main__title">
+                <div class="category__logo">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="main__logo">
+                    <a href="/index">Stupping</a>
+                </div>
+            </div>
+            <div class="main__nav">
+                <ul class="main__list">
+                    <li class="list"><a href="/top8/index">
+                            <div class="real__logo">
+                                <i class="fa-solid fa-ranking-star"></i>
+                                <span class="nav__title">top8</span>
+                            </div>
+                        </a></li>
+                    <li class="list"><a href="/notebooks/index">
+                            <div class="real__logo">
+                                <i class="fa-solid fa-laptop"></i>
+                                <span class="nav__title">notebook</span>
+                            </div>
+                        </a></li>
+                    <li class="list"><a href="/tip/index">
+                            <div class="real__logo">
+                                <i class="fa-solid fa-face-smile"></i>
+                                <span class="nav__title">tip</span>
+                            </div>
+                        </a></li>
+                    <li class="list"><a href="/graph/index">
+                            <div class="real__logo">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span class="nav__title">graph</span>
+                            </div>
+                        </a></li>
+                </ul>
+            </div>
+        </nav>
+        <header class="header">
+            <div class="search__bar">
+                <form action="/notebooks" method="get">
+                    <input type="search" name="notebook" id="" placeholder="회사 이름 or 상품 이름">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+            <nav class="header__subnav">
+                <ul class="header__sub__list">
+                    <li><a href="/sign-in/index">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            <p>Login</p>
+                        </a></li>
+                    <li><a href="">
+                            <i class="fa-duotone fa-user-minus"></i>
+                            <p>Logout</p>
+                        </a></li>
+                    <li><a href="/sign-up/index">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <p>signUp</p>
+                        </a></li>
+                    <li><a href="/mypages/index">
+                            <i class="fa-solid fa-user"></i>
+                            <p>myPage</p>
+                        </a></li>
+                </ul>
+            </nav>
+            <div class="sub__nav__logo">
+                <i class="fa-solid fa-bars sub__nav__logo"></i>
+            </div>
+        </header>
+        <main class="section">
+            <div class="tip__title">
+                <div class="title">Tips</div>
+            </div>
+            <div class="tip__container">
+                <div class="tips__box">
+                    <% for(let i=0; i<3; i++){ %>
+                        <div class="tip">
+                            <div class="tip__title">
+                                <h2 class="title">사무용</h2>
+                            </div>
+                            <ol class="tips">
+                                <li class="tip__list">안녕</li>
+                                <li class="tip__list">안녕</li>
+                                <li class="tip__list">안녕</li>
+                            </ol>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
