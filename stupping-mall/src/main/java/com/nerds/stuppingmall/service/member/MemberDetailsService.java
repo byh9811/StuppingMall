@@ -2,7 +2,8 @@ package com.nerds.stuppingmall.service.member;
 
 import java.util.List;
 
-import com.nerds.stuppingmall.dto.MyPageResponseDto;
+import com.nerds.stuppingmall.domain.Customer;
+import com.nerds.stuppingmall.dto.CustomerMyPageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,28 +29,19 @@ public class MemberDetailsService {
 		return memberRepository.findById(id).get();
 	}
 
-	public MyPageResponseDto getMyPage(String email) {
-		Member member = memberRepository.findCustomerByEmail(email);
-		return MyPageResponseDto.builder()
-				.id(member.get_id())
-				.name(member.getName())
-				.email(member.getEmail())
-				.phoneNum(member.getPhoneNum())
-				.birth(member.getBirth())
-				.man(member.isMan())
-				.account(member.getAccount())
-				.balance(member.getBalance())
-				.build();
+	public CustomerMyPageResponse getMyPage(String email) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		return new CustomerMyPageResponse(customer);
 	}
 
-	public List<String> getMyPicks(String id) {
-		Member member = memberRepository.findById(id).get();
-		return member.getMyPicks();
+	public List<String> getMyPicks(String email) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		return customer.getMyPicks();
 	}
 
-	public List<String> getMyRecentFinds(String id) {
-		Member member = memberRepository.findById(id).get();
-		return member.getRecentFinds();
+	public List<String> getMyRecentFinds(String email) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		return customer.getRecentFinds();
 	}
 
 	public Page<Member> findAllMembers(int curPage) {

@@ -6,7 +6,8 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.nerds.stuppingmall.domain.Account;
-import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
+import com.nerds.stuppingmall.domain.Customer;
+import com.nerds.stuppingmall.dto.CustomerMyPageModifyRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,26 +22,20 @@ public class MemberModifyService {
 	final MemberRepository memberRepository;
 	final BCryptPasswordEncoder pwdEncoder;
 
-	public Member updateInfo(String id, AccessibleInfoRequestDto newInfo) {
-		Member member = memberRepository.findById(id).get();
-		member.setName(newInfo.getName());
-		String newPassword = newInfo.getPassword();
-		if(newPassword.length()!=0) {
-			if(Pattern.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,20}$", newPassword))
-				member.setPassword(newInfo.getPassword());
-			else throw new NoSuchElementException("패턴이 올바르지 않습니다.");
-		}
-		member.setEmail(newInfo.getEmail());
-		member.setPhoneNum(newInfo.getPhoneNum());
-		member.setBirth(newInfo.getBirth());
-		member.setAccount(new Account(newInfo.getBank(), newInfo.getBankNumber()));
-		memberRepository.save(member);
+	public Customer updateInfo(String email, CustomerMyPageModifyRequest newInfo) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		customer.setName(newInfo.getName());
+		customer.setPhoneNum(newInfo.getPhoneNum());
+		customer.setAddress(new Member.Address(newInfo.getBaseAddress(), newInfo.getDetailAddress()));
+		customer.setAccount(new Account(newInfo.getBank(), newInfo.getAccountNumber()));
 
-		return member;
+		memberRepository.save(customer);
+
+		return customer;
 	}
 
-	public Member updatePassword(String id, String password) {
-		Optional<Member> memberWrapper = memberRepository.findById(id);
+	public Member updatePassword(String email, String password) {
+		Optional<Member> memberWrapper = memberRepository.findById(email);
 		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 		
@@ -49,27 +44,27 @@ public class MemberModifyService {
 		return memberRepository.save(member);
 	}
 
-	public Member updateBalance(String id, int money) {
-		Optional<Member> memberWrapper = memberRepository.findById(id);
+	public Member updateBalance(String email, int money) {
+		Optional<Member> memberWrapper = memberRepository.findById(email);
 		Member member = memberWrapper.get();
 		// 페이 서비스 작동 성공
 		member.setBalance(member.getBalance() + money);
 		return memberRepository.save(member);
 	}
 	
-	public Member addMyPick(String customerId, String notebookId) {
-		Member member = memberRepository.findById(customerId).get();
-		List<String> myPicks = member.getMyPicks();
+	public Member addMyPick(String email, String notebookId) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		List<String> myPicks = customer.getMyPicks();
 		myPicks.add(notebookId);
-		member.setMyPicks(myPicks);
-		return memberRepository.save(member);
+		customer.setMyPicks(myPicks);
+		return memberRepository.save(customer);
 	}
 	
-	public Member removeMyPick(String customerId, String notebookId) {
-		Member member = memberRepository.findById(customerId).get();
-		List<String> myPicks = member.getMyPicks();
+	public Member removeMyPick(String email, String notebookId) {
+		Customer customer = memberRepository.findCustomerByEmail(email);
+		List<String> myPicks = customer.getMyPicks();
 		myPicks.remove(notebookId);
-		member.setMyPicks(myPicks);
-		return memberRepository.save(member);
+		customer.setMyPicks(myPicks);
+		return memberRepository.save(customer);
 	}
 }

@@ -17,6 +17,6 @@ public class MemberInfoService {
 	public String findMemberId(String email) {
 		Optional<Member> memberWrapper = memberRepository.findByEmail(email);
 		Member member = memberWrapper.get();
-		return member.get_id();
+		return member.getEmail();
 	}
 }

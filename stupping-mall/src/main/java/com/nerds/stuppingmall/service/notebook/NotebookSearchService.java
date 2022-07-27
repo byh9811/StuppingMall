@@ -46,9 +46,9 @@ public class NotebookSearchService {
 		return notebookRepository.customFindNotebooksByCategory(searchParameterInitializer.getPageable(curPage),
 				searchParameterInitializer.getSortMethod(sortingOrder), categoryInfoRequestDto);
 	}
-	
-	public Page<NotebookDto.ListResponse> getMyPicks(int curPage, String customerId) {
-		return notebookRepository.customFindNotebooksByNotebookIds(searchParameterInitializer.getPageable(curPage),
-				memberRepository.findById(customerId).get().getMyPicks());
-	}
+
+//	public Page<NotebookDto.ListResponse> getMyPicks(int curPage, String customerId) {
+//		return notebookRepository.customFindNotebooksByNotebookIds(searchParameterInitializer.getPageable(curPage),
+//				memberRepository.findById(customerId).get().getMyPicks());
+//	}
 }

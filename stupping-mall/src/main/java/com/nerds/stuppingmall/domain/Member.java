@@ -1,20 +1,16 @@
 package com.nerds.stuppingmall.domain;
 
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 
 import com.mongodb.lang.NonNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @SuperBuilder
-public class Member {
+public abstract class Member {
 	@Id
 	private String email;
 	@NonNull
@@ -28,6 +24,7 @@ public class Member {
 	private Address address;
 
 	@AllArgsConstructor
+	@Getter
 	public static class Address {
 		private String base;
 		private String detail;

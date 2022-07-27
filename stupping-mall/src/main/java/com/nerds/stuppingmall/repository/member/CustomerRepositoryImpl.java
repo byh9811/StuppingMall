@@ -12,6 +12,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public Customer findCustomerByEmail(String email) {
-        return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("email").is(email)), Customer.class, "members");
+        return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("_id").is(email)), Customer.class, "members");
     }
 }

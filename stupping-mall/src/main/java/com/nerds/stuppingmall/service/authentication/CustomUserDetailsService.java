@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,13 +16,13 @@ import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
-	@Autowired
-	MemberRepository memberRepository;
+	final MemberRepository memberRepository;
 	
 	@Override
-	public Authentication loadUserByUsername(String id) {
-		Optional<Member> memberWrapper = memberRepository.findById(id);
+	public Authentication loadUserByUsername(String email) {
+		Optional<Member> memberWrapper = memberRepository.findById(email);
 		if(!memberWrapper.isPresent())
 			throw new NoSuchElementException("해당 아이디가 존재하지 않습니다!!");
 

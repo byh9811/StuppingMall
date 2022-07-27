@@ -31,13 +31,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = StuppingMallApplication.class)
 @DirtiesContext
-@DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
+@DataMongoTest
 public class MemberRepositoryTest {
 	@Autowired
 	MemberRepository memberRepository;
 
-	@Autowired
-	BCryptPasswordEncoder pwdEncoder;
+//	@Autowired
+//	BCryptPasswordEncoder pwdEncoder;
 
 	@Test
 	@DisplayName("개인회원 저장")
@@ -48,15 +48,13 @@ public class MemberRepositoryTest {
 
 		Customer customer = Customer.builder()
 				.email("byh9811@gachon.ac.kr")
-				.password(pwdEncoder.encode("byh1004"))
+				.password("byh1004")
 				.name("배용현")
 				.role("ROLE_CUSTOMER")
 				.account(new Account("신한", "110-209-778808"))
 				.balance(0)
 				.address(new Member.Address("서울시 노원구 초안산로 1길 18", "211동 404호"))
 				.phoneNum("010-7185-2569")
-				.birth("1998-11-28")
-				.man(true)
 				.myPicks(myPicks)
 				.recentFinds(recentFinds)
 				.build();
@@ -68,20 +66,21 @@ public class MemberRepositoryTest {
 		assertEquals(customer, savedCustomer);
 	}
 	
-//	@Test
-//	public void readNotebook() {
-//		// given
-//		String supplierId = "Samsung";
-//
-//		// when
-//		List<Notebook> notebooks = notebookRepository.findBy(PageRequest.of(0, 8));
-//		List<NotebookDto.ListResponse> notebookDtos = new ArrayList<>();
-//
-//		for(Notebook notebook: notebooks)
-//			notebookDtos.add(new NotebookDto.ListResponse(notebook));
-//
-//		// then
-//		assertEquals(8, notebooks.size());
-//		assertNotNull(notebookDtos.get(0).getImg());
-//	}
+	@Test
+	public void readMember() {
+		// given
+		String email = "byh9811@gachon.ac.kr";
+
+		// when
+		Member member1 = memberRepository.findById(email).get();
+		Member member2 = memberRepository.findByEmail(email).get();
+//		Member member3 = memberRepository.findCustomerByEmail(email);
+		Customer customer = memberRepository.findCustomerByEmail(email);
+
+		// then
+		assertEquals(member1.getEmail(), email);
+		assertEquals(member2.getEmail(), email);
+//		assertEquals(member3.getEmail(), email);
+		assertEquals(customer.getEmail(), email);
+	}
 }

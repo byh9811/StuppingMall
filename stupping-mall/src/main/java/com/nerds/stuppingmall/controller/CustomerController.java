@@ -1,11 +1,7 @@
 package com.nerds.stuppingmall.controller;
 
-import com.nerds.stuppingmall.dto.AccessibleInfoRequestDto;
-import com.nerds.stuppingmall.dto.MyPageResponseDto;
-import com.nerds.stuppingmall.service.category.CategoryStatusService;
-import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
-import com.nerds.stuppingmall.service.tip.TipSearchService;
-import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
+import com.nerds.stuppingmall.dto.CustomerMyPageModifyRequest;
+import com.nerds.stuppingmall.dto.CustomerMyPageResponse;
 import com.nerds.stuppingmall.service.order.OrderModifyService;
 import com.nerds.stuppingmall.service.order.OrderSearchService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +18,6 @@ import com.nerds.stuppingmall.service.order.OrderRegisterService;
 
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -63,13 +58,13 @@ public class CustomerController {
 
 	@GetMapping("/myPage")
 	public String MyPageDetail(@AuthenticationPrincipal Authentication authentication, Model model) {
-		MyPageResponseDto myPageDto = memberDetailsService.getMyPage(authentication.getId());
+		CustomerMyPageResponse myPageDto = memberDetailsService.getMyPage(authentication.getId());
 		model.addAttribute("myInfo", myPageDto);
 		return "/customer/myPage";
 	}
 
 	@PutMapping("/updateMyInfo")
-	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, @RequestParam("info") AccessibleInfoRequestDto accessibleInfoRequestDto) {
+	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, @RequestParam("info") CustomerMyPageModifyRequest accessibleInfoRequestDto) {
 		memberModifyService.updateInfo(authentication.getId(), accessibleInfoRequestDto);
 		return "redirect:/customer/myPage";
 	}
