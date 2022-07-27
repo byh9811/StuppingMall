@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nerds.stuppingmall.domain.Category;
 import com.nerds.stuppingmall.repository.CategoryRepository;
-import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.member.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
 
 import lombok.RequiredArgsConstructor;

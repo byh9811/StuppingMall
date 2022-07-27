@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
-import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.member.MemberRepository;
 import com.nerds.stuppingmall.repository.NotebookRepository;
 
 import lombok.RequiredArgsConstructor;

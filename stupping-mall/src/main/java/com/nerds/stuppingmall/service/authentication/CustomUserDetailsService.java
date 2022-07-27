@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.dto.Authentication;
-import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		authorities.add(new SimpleGrantedAuthority(member.getRole()));
 		
 		return Authentication.builder()
-				.id(member.get_id())
+				.id(member.getEmail())
 				.password(member.getPassword())
 				.authorities(authorities)
 				.build();

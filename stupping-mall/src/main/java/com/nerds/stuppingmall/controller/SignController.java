@@ -1,12 +1,12 @@
 package com.nerds.stuppingmall.controller;
 
 import com.nerds.stuppingmall.dto.Authentication;
+import com.nerds.stuppingmall.dto.CustomerSignUpRequestDto;
 import com.nerds.stuppingmall.service.member.MemberModifyService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.nerds.stuppingmall.dto.MemberSignUpRequestDto;
 import com.nerds.stuppingmall.service.member.MemberInfoService;
 import com.nerds.stuppingmall.service.member.MemberRegisterService;
 
@@ -23,8 +23,8 @@ public class SignController {
 	final MemberModifyService memberModifyService;
 	
 	@PostMapping("/signUp")
-	public String save(@Valid MemberSignUpRequestDto memberSignUpRequestDto) {
-		memberRegisterService.addMember(memberSignUpRequestDto);
+	public String save(@Valid CustomerSignUpRequestDto customerSignUpRequestDto) {
+		memberRegisterService.addCustomer(customerSignUpRequestDto);
 		return "redirect:/";
 	}
 

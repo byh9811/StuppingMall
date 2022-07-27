@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 

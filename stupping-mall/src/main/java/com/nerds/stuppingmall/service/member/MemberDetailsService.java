@@ -13,8 +13,7 @@ import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.repository.MemberRepository;
+import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,8 +28,8 @@ public class MemberDetailsService {
 		return memberRepository.findById(id).get();
 	}
 
-	public MyPageResponseDto getMyPage(String id) {
-		Member member = memberRepository.findById(id).get();
+	public MyPageResponseDto getMyPage(String email) {
+		Member member = memberRepository.findCustomerByEmail(email);
 		return MyPageResponseDto.builder()
 				.id(member.get_id())
 				.name(member.getName())
