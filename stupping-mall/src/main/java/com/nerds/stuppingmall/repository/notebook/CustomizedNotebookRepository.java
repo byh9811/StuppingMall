@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.repository;
+package com.nerds.stuppingmall.repository.notebook;
 
 import java.util.List;
 

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.nerds.stuppingmall.domain.Customer;
 import com.nerds.stuppingmall.dto.CustomerMyPageResponse;
+import com.nerds.stuppingmall.repository.member.CustomerRepository;
+import com.nerds.stuppingmall.repository.member.CustomizedCustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberDetailsService {
 	final MemberRepository memberRepository;
+	final CustomerRepository customerRepository;
 	final MongoTemplate mongoTemplate;
 	final int SIZE_PER_PAGE = 10;
 	
@@ -30,17 +33,17 @@ public class MemberDetailsService {
 	}
 
 	public CustomerMyPageResponse getMyPage(String email) {
-		Customer customer = memberRepository.findCustomerByEmail(email);
+		Customer customer = customerRepository.findCustomerByEmail(email);
 		return new CustomerMyPageResponse(customer);
 	}
 
 	public List<String> getMyPicks(String email) {
-		Customer customer = memberRepository.findCustomerByEmail(email);
+		Customer customer = customerRepository.findCustomerByEmail(email);
 		return customer.getMyPicks();
 	}
 
 	public List<String> getMyRecentFinds(String email) {
-		Customer customer = memberRepository.findCustomerByEmail(email);
+		Customer customer = customerRepository.findCustomerByEmail(email);
 		return customer.getRecentFinds();
 	}
 

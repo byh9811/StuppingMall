@@ -2,6 +2,7 @@ package com.nerds.stuppingmall.service.member;
 
 import com.nerds.stuppingmall.domain.Customer;
 import com.nerds.stuppingmall.dto.CustomerSignUpRequestDto;
+import com.nerds.stuppingmall.repository.member.CustomerRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MemberRegisterService {
-	final MemberRepository memberRepository;
+	final CustomerRepository customerRepository;
 	final BCryptPasswordEncoder pwdEncoder;
 	
 	public Customer addCustomer(CustomerSignUpRequestDto customerSignUpRequestDto) {
 		customerSignUpRequestDto.setPassword(pwdEncoder.encode(customerSignUpRequestDto.getPassword()));
-		Customer customer = customerSignUpRequestDto.toDomain();
-		memberRepository.save(customer);
-		return customer;
+		return customerRepository.save(customerSignUpRequestDto.toDomain());
 	}
 }

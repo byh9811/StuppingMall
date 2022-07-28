@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.repository.member.MemberRepository;
-import com.nerds.stuppingmall.repository.NotebookRepository;
+import com.nerds.stuppingmall.repository.notebook.NotebookRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.repository.member.MemberRepository;
-import com.nerds.stuppingmall.repository.NotebookRepository;
+import com.nerds.stuppingmall.repository.notebook.NotebookRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NotebookDetailsService {
 	final NotebookRepository notebookRepository;
-	final MemberRepository memberRepository;
 	
 	public Notebook findNotebook(String id) {
 		Optional<Notebook> notebookWrapper = notebookRepository.findById(id);

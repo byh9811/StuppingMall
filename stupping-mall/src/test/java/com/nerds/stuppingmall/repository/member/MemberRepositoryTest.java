@@ -1,28 +1,20 @@
-package com.nerds.stuppingmall.repository;
+package com.nerds.stuppingmall.repository.member;
 
 import com.nerds.stuppingmall.StuppingMallApplication;
 import com.nerds.stuppingmall.domain.Account;
 import com.nerds.stuppingmall.domain.Customer;
 import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.domain.Notebook;
-import com.nerds.stuppingmall.dto.NotebookDto;
-import com.nerds.stuppingmall.repository.member.MemberRepository;
+import com.nerds.stuppingmall.repository.member.CustomizedCustomerRepository;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataMongoTest
 public class MemberRepositoryTest {
 	@Autowired
-	MemberRepository memberRepository;
+	CustomerRepository customerRepository;
 
 //	@Autowired
 //	BCryptPasswordEncoder pwdEncoder;
@@ -60,7 +52,7 @@ public class MemberRepositoryTest {
 				.build();
 
 		// when
-		Customer savedCustomer = memberRepository.save(customer);
+		Customer savedCustomer = customerRepository.save(customer);
 
 		// then
 		assertEquals(customer, savedCustomer);
@@ -72,15 +64,15 @@ public class MemberRepositoryTest {
 		String email = "byh9811@gachon.ac.kr";
 
 		// when
-		Member member1 = memberRepository.findById(email).get();
-		Member member2 = memberRepository.findByEmail(email).get();
-//		Member member3 = memberRepository.findCustomerByEmail(email);
-		Customer customer = memberRepository.findCustomerByEmail(email);
+//		Customer member1 = customerRepository.findById(email).get();
+		Customer member2 = customerRepository.findByEmail(email);
+		Customer member3 = customerRepository.findCustomerByEmail(email);
+		Customer customer = customerRepository.findCustomerByEmail(email);
 
 		// then
-		assertEquals(member1.getEmail(), email);
+//		assertEquals(member1.getEmail(), email);
 		assertEquals(member2.getEmail(), email);
-//		assertEquals(member3.getEmail(), email);
+		assertEquals(member3.getEmail(), email);
 		assertEquals(customer.getEmail(), email);
 	}
 }

@@ -5,12 +5,14 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 
 import com.mongodb.lang.NonNull;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("members")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @SuperBuilder
-public abstract class Member {
+public class Member {
 	@Id
 	private String email;
 	@NonNull

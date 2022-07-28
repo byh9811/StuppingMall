@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 @RequiredArgsConstructor
-public class CustomerRepositoryImpl implements CustomerRepository {
+public class CustomizedCustomerRepositoryImpl implements CustomizedCustomerRepository {
     final MongoTemplate mongoTemplate;
 
     @Override

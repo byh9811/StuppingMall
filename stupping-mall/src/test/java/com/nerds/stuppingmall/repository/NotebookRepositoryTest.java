@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nerds.stuppingmall.dto.NotebookDto;
+import com.nerds.stuppingmall.repository.notebook.NotebookRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import com.nerds.stuppingmall.domain.Notebook;
 @DataMongoTest
 public class NotebookRepositoryTest {
 	@Autowired
-	NotebookRepository notebookRepository;
+    NotebookRepository notebookRepository;
 	
 	final int SIZE_PER_PAGE = 10;
 	
