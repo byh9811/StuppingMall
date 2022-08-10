@@ -62,7 +62,7 @@ public class CustomerSignUpRequestDto {
 				.phoneNum(phoneNum)
 				.role(role.getValue())
 				.account(new Account(bank, accountNumber))
-				.address(new Member.Address(baseAddress, detailAddress))
+				.address(new Customer.Address(baseAddress, detailAddress))
 				.balance(0)
 				.myPicks(new ArrayList<>())
 				.recentFinds(new ArrayList<>())

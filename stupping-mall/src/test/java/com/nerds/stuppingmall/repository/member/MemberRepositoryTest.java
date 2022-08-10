@@ -45,7 +45,7 @@ public class MemberRepositoryTest {
 				.role("ROLE_CUSTOMER")
 				.account(new Account("신한", "110-209-778808"))
 				.balance(0)
-				.address(new Member.Address("서울시 노원구 초안산로 1길 18", "211동 404호"))
+				.address(new Customer.Address("서울시 노원구 초안산로 1길 18", "211동 404호"))
 				.phoneNum("010-7185-2569")
 				.myPicks(myPicks)
 				.recentFinds(recentFinds)

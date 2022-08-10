@@ -5,4 +5,5 @@ import com.nerds.stuppingmall.domain.Supplier;
 
 public interface SupplierRepository {
     Supplier findSupplierByEmail(String email);
+    Supplier save(Supplier supplier);
 }

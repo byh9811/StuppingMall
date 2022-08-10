@@ -21,12 +21,6 @@ public class SignController {
 	final MemberRegisterService memberRegisterService;
 	final MemberInfoService memberInfoService;
 	final MemberModifyService memberModifyService;
-	
-	@PostMapping("/signUp")
-	public String save(@Valid CustomerSignUpRequestDto customerSignUpRequestDto) {
-		memberRegisterService.addCustomer(customerSignUpRequestDto);
-		return "redirect:/";
-	}
 
 	@GetMapping("/userId")
 	public @ResponseBody String findMemberId(HttpServletRequest request, @RequestParam("email") String email, @RequestParam("key") String key) {

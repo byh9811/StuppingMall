@@ -28,7 +28,7 @@ public class MemberModifyService {
 		Customer customer = customerRepository.findCustomerByEmail(email);
 		customer.setName(newInfo.getName());
 		customer.setPhoneNum(newInfo.getPhoneNum());
-		customer.setAddress(new Member.Address(newInfo.getBaseAddress(), newInfo.getDetailAddress()));
+		customer.setAddress(new Customer.Address(newInfo.getBaseAddress(), newInfo.getDetailAddress()));
 		customer.setAccount(new Account(newInfo.getBank(), newInfo.getAccountNumber()));
 
 		memberRepository.save(customer);

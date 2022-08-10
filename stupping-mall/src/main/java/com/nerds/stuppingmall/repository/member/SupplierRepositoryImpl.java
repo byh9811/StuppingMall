@@ -15,4 +15,9 @@ public class SupplierRepositoryImpl implements SupplierRepository {
     public Supplier findSupplierByEmail(String email) {
         return mongoTemplate.findOne(new Query().addCriteria(Criteria.where("email").is(email)), Supplier.class, "members");
     }
+
+    @Override
+    public Supplier save(Supplier supplier) {
+        return mongoTemplate.save(supplier);
+    }
 }

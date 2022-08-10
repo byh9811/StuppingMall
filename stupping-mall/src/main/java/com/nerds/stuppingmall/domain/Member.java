@@ -23,12 +23,5 @@ public class Member {
 	private String role;
 	private Account account;
 	private Integer balance;
-	private Address address;
-
-	@AllArgsConstructor
-	@Getter
-	public static class Address {
-		private String base;
-		private String detail;
-	}
+	private String phoneNum;
 }
