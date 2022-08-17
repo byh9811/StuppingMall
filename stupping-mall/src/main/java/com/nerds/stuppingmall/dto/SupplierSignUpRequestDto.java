@@ -61,6 +61,7 @@ public class SupplierSignUpRequestDto {
                 .role(role.getValue())
                 .account(new Account(bank, accountNumber))
                 .balance(0)
+                .enable(false)
                 .build();
     }
 }

@@ -24,4 +24,5 @@ public class Member {
 	private Account account;
 	private Integer balance;
 	private String phoneNum;
+	private Boolean enable;
 }

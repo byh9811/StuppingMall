@@ -66,6 +66,7 @@ public class CustomerSignUpRequestDto {
 				.balance(0)
 				.myPicks(new ArrayList<>())
 				.recentFinds(new ArrayList<>())
+				.enable(true)
 				.build();
 	}
 }

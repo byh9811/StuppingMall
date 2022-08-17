@@ -6,6 +6,7 @@ import com.nerds.stuppingmall.domain.Report;
 import com.nerds.stuppingmall.dto.Authentication;
 import com.nerds.stuppingmall.service.introduction.IntroductionModifyService;
 import com.nerds.stuppingmall.service.introduction.IntroductionSearchService;
+import com.nerds.stuppingmall.service.member.MemberModifyService;
 import com.nerds.stuppingmall.service.tip.TipModifyService;
 import com.nerds.stuppingmall.service.tip.TipSearchService;
 import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
@@ -31,6 +32,7 @@ import java.util.List;
 public class AdminController {
 	final MemberDeregisterService memberDeregisterService;
 	final MemberDetailsService memberDetailsService;
+	final MemberModifyService memberModifyService;
 	final ReportSearchService reportSearchService;
 	final IntroductionModifyService introductionModifyService;
 	final TipModifyService tipModifyService;
@@ -81,5 +83,17 @@ public class AdminController {
 	public String updateKnowhow(@RequestParam("tips") List<Tip> tips) {
 		tipModifyService.updateKnowhow(tips);
 		return "updateKnowhow";
+	}
+
+	@GetMapping("/disabledMembers")
+	public String disabledMemberList() {
+		memberDetailsService.findDisableMembers();
+		return ;
+	}
+
+	@PutMapping("/allowSignUp/{id}")
+	public String allowSignUp(@PathVariable("id") String email) {
+		memberModifyService.updateEnable(email);
+		return "allowSignUp";
 	}
 }

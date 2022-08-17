@@ -64,4 +64,10 @@ public class MemberModifyService {
 		customer.setMyPicks(myPicks);
 		return customerRepository.save(customer);
 	}
+
+	public Member updateEnable(String email) {
+		Member member = memberRepository.findById(email).get();
+		member.setEnable(true);
+		return memberRepository.save(member);
+	}
 }

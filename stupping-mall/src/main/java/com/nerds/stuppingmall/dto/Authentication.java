@@ -20,6 +20,7 @@ public class Authentication implements UserDetails, Serializable {
 	
 	private String id;
 	private String password;
+	private boolean enable;
 	private Collection<GrantedAuthority> authorities;
 	
 	
@@ -36,7 +37,7 @@ public class Authentication implements UserDetails, Serializable {
 	public boolean isCredentialsNonExpired() { return true; }
 
 	@Override
-	public boolean isEnabled() { return true; }
+	public boolean isEnabled() { return enable; }
 
 	@Override
 	public String getUsername() { return id; }

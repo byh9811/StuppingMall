@@ -32,6 +32,10 @@ public class MemberDetailsService {
 		return memberRepository.findById(id).get();
 	}
 
+	public List<Member> findDisableMembers() {
+		return memberRepository.findByEnable(false);
+	}
+
 	public CustomerMyPageResponse getMyPage(String email) {
 		Customer customer = customerRepository.findCustomerByEmail(email);
 		return new CustomerMyPageResponse(customer);

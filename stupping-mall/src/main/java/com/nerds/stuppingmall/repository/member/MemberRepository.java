@@ -10,4 +10,5 @@ import com.nerds.stuppingmall.domain.Member;
 public interface MemberRepository extends MongoRepository<Member, String> {
 	List<Member> findByName(String name);
 	Optional<Member> findByEmail(String email);
+	List<Member> findByEnable(Boolean enable);
 }
