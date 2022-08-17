@@ -6,9 +6,11 @@ import java.util.Optional;
 
 import com.nerds.stuppingmall.domain.Account;
 import com.nerds.stuppingmall.domain.Customer;
+import com.nerds.stuppingmall.domain.Supplier;
 import com.nerds.stuppingmall.dto.CustomerMyPageModifyRequest;
 import com.nerds.stuppingmall.repository.member.CustomerRepository;
 import com.nerds.stuppingmall.repository.member.CustomizedCustomerRepository;
+import com.nerds.stuppingmall.repository.member.SupplierRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberModifyService {
 	final MemberRepository memberRepository;
 	final CustomerRepository customerRepository;
+	final SupplierRepository supplierRepository;
 	final BCryptPasswordEncoder pwdEncoder;
 
 	public Customer updateInfo(String email, CustomerMyPageModifyRequest newInfo) {
@@ -48,7 +51,7 @@ public class MemberModifyService {
 		customer.setBalance(customer.getBalance() + money);
 		return memberRepository.save(customer);
 	}
-	
+
 	public Customer addMyPick(String email, String notebookId) {
 		Customer customer = customerRepository.findCustomerByEmail(email);
 		List<String> myPicks = customer.getMyPicks();
@@ -56,7 +59,7 @@ public class MemberModifyService {
 		customer.setMyPicks(myPicks);
 		return customerRepository.save(customer);
 	}
-	
+
 	public Customer removeMyPick(String email, String notebookId) {
 		Customer customer = customerRepository.findCustomerByEmail(email);
 		List<String> myPicks = customer.getMyPicks();
@@ -65,9 +68,9 @@ public class MemberModifyService {
 		return customerRepository.save(customer);
 	}
 
-	public Member updateEnable(String email) {
-		Member member = memberRepository.findById(email).get();
-		member.setEnable(true);
-		return memberRepository.save(member);
+	public Supplier updateEnable(String email) {
+		Supplier supplier = supplierRepository.findSupplierByEmail(email);
+		supplier.setEnable(true);
+		return supplierRepository.save(supplier);
 	}
 }

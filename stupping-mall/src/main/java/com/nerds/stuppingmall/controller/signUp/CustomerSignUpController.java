@@ -18,5 +18,4 @@ public class CustomerSignUpController {
         memberRegisterService.addCustomer(customerSignUpRequestDto);
         return "redirect:/";
     }
-
 }

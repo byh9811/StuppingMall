@@ -85,12 +85,6 @@ public class AdminController {
 		return "updateKnowhow";
 	}
 
-	@GetMapping("/disabledMembers")
-	public String disabledMemberList() {
-		memberDetailsService.findDisableMembers();
-		return ;
-	}
-
 	@PutMapping("/allowSignUp/{id}")
 	public String allowSignUp(@PathVariable("id") String email) {
 		memberModifyService.updateEnable(email);
