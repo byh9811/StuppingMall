@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.controller.signUp;
+package com.nerds.stuppingmall.controller.membership;
 
 import com.nerds.stuppingmall.dto.CustomerSignUpRequestDto;
 import com.nerds.stuppingmall.dto.SupplierSignUpRequestDto;
@@ -11,12 +11,18 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-public class SupplierSignUpController {
+public class MemberSignUpController {
     private final MemberRegisterService memberRegisterService;
 
-    @PostMapping("/signUp")
-    public String save(@Valid SupplierSignUpRequestDto supplierSignUpRequestDto) {
+    @PostMapping("/auth/register/supplier")
+    public String registerSupplier(@Valid SupplierSignUpRequestDto supplierSignUpRequestDto) {
         memberRegisterService.addSupplier(supplierSignUpRequestDto);
+        return "redirect:/";
+    }
+
+    @PostMapping("/auth/register/customer")
+    public String registerCustomer(@Valid CustomerSignUpRequestDto customerSignUpRequestDto) {
+        memberRegisterService.addCustomer(customerSignUpRequestDto);
         return "redirect:/";
     }
 

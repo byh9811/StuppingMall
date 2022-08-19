@@ -1,20 +1,17 @@
 package com.nerds.stuppingmall.service.member;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import com.nerds.stuppingmall.domain.Account;
 import com.nerds.stuppingmall.domain.Customer;
 import com.nerds.stuppingmall.domain.Supplier;
 import com.nerds.stuppingmall.dto.CustomerMyPageModifyRequest;
 import com.nerds.stuppingmall.repository.member.CustomerRepository;
-import com.nerds.stuppingmall.repository.member.CustomizedCustomerRepository;
+import com.nerds.stuppingmall.repository.member.CustomizedSupplierRepository;
 import com.nerds.stuppingmall.repository.member.SupplierRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.nerds.stuppingmall.domain.Member;
 import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;

@@ -5,12 +5,10 @@ import com.nerds.stuppingmall.domain.Supplier;
 import com.nerds.stuppingmall.dto.CustomerSignUpRequestDto;
 import com.nerds.stuppingmall.dto.SupplierSignUpRequestDto;
 import com.nerds.stuppingmall.repository.member.CustomerRepository;
+import com.nerds.stuppingmall.repository.member.CustomizedSupplierRepository;
 import com.nerds.stuppingmall.repository.member.SupplierRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.nerds.stuppingmall.domain.Member;
-import com.nerds.stuppingmall.repository.member.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
