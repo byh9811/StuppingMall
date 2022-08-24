@@ -1,27 +1,44 @@
-package com.nerds.stuppingmall.controller;
+package com.nerds.stuppingmall.controller.notebook;
 
 import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.dto.CategoryInfoRequestDto;
 import com.nerds.stuppingmall.dto.NotebookDto;
+import com.nerds.stuppingmall.service.notebook.NotebookDetailsService;
+import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.nerds.stuppingmall.service.notebook.NotebookDetailsService;
-import com.nerds.stuppingmall.service.notebook.NotebookSearchService;
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import java.time.LocalTime;
 
 @Controller
 @RequiredArgsConstructor
 public class NotebookController {
 	final NotebookDetailsService notebookDetailsService;
 	final NotebookSearchService notebookSearchService;
+
+	@GetMapping("/items")
+	public String getNotebooks(Model model) {
+		// 미완. 전체 노트북 검색 페이지를 하나로 합치면서 로직이 달라짐.
+
+		model.addAttribute("notebooks", notebookSearchService.getNotebookList(0, "최신순", ""));
+		model.addAttribute("curPage", 0);
+		model.addAttribute("maxPage", 10);
+
+		return "common/notebooksAll";
+	}
+
+	@GetMapping("/new8Page")
+	public String enterNew8Page(Model model) {
+		model.addAttribute("date", LocalTime.now());
+		model.addAttribute("newNotebooks", notebookSearchService.getNew8Notebooks());
+
+		return "common/new8";
+	}
 
 	@GetMapping("/items/{id}")
 	public String getProductInfoById(@PathVariable("id") String id, Model model) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class CommonBankController {
+public class BankController {
 	final BankSearchService bankSearchService;
 
 	@GetMapping("/bankList")
