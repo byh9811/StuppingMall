@@ -18,7 +18,7 @@ public class CustomerMyPageResponse {
     private String detailAddress;
     private String bank;
     private String accountNumber;
-    private Integer balance;
+    private int balance;
 
     public CustomerMyPageResponse(Customer customer) {
         this.email = customer.getEmail();

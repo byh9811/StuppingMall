@@ -22,7 +22,7 @@ public class Member {
 	@NonNull
 	private String role;
 	private Account account;
-	private Integer balance;
+	private int balance;
 	private String phoneNum;
-	private Boolean enable;
+	private boolean enable;
 }
