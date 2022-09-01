@@ -1,17 +1,12 @@
 package com.nerds.stuppingmall.service.report;
 
-import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.domain.Report;
-import com.nerds.stuppingmall.dto.OrderSalesInfoResponseDto;
-import com.nerds.stuppingmall.repository.OrderRepository;
 import com.nerds.stuppingmall.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

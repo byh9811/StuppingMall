@@ -5,22 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.nerds.stuppingmall.repository.order.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.nerds.stuppingmall.StuppingMallApplication;
 import com.nerds.stuppingmall.domain.Order;
@@ -33,7 +28,7 @@ public class OrderRepositoryTest {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	@Autowired
-	OrderRepository orderRepository;
+    OrderRepository orderRepository;
 	
 	final int SIZE_PER_PAGE = 10;
 	

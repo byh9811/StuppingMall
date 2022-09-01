@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.repository;
+package com.nerds.stuppingmall.repository.order;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

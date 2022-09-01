@@ -1,21 +1,15 @@
 package com.nerds.stuppingmall.service.order;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.dto.OrderSalesInfoResponseDto;
-import com.nerds.stuppingmall.repository.OrderRepository;
+import com.nerds.stuppingmall.repository.order.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
 

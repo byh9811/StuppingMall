@@ -31,15 +31,6 @@ public class CustomerController {
 	final OrderSearchService orderSearchService;
 	final OrderModifyService orderModifyService;
 
-	@GetMapping("/myOrders")
-	public String getMyOrders(@AuthenticationPrincipal Authentication authentication, Model model) {
-		List<Order> myOrders = orderSearchService.findMyOrders(authentication.getId());
-
-		model.addAttribute("orders", myOrders);
-
-		return "orderInfo";
-	}
-
 	@GetMapping("/myPicks")
 	public String getMyPicks(@AuthenticationPrincipal Authentication authentication, Model model) {
 		List<String> myPicks = memberDetailsService.getMyPicks(authentication.getId());
