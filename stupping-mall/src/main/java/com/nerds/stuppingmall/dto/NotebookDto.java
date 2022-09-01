@@ -15,15 +15,15 @@ public class NotebookDto {
         private String name;
         private String registerDate;
         private List<MultipartFile> imgFiles;
-        private Integer price;
+        private int price;
         private String cpuName;
         private String gpuName;
-        private Double weight;
-        private Double screenSize;
-        private Integer ramSize;
-        private Integer ssdSize;
-        private Integer hddSize;
-        private Double batterySize;
+        private double weight;
+        private double screenSize;
+        private int ramSize;
+        private int ssdSize;
+        private int hddSize;
+        private double batterySize;
 
         public Notebook toNotebook(String supplierId, List<String> urls, int cpuScore, int gpuScore) {
             Notebook notebook = Notebook.builder()
@@ -54,12 +54,12 @@ public class NotebookDto {
     public static class ListResponse {
         private String id;
         private String name;
-        private Integer price;
+        private int price;
         private String img;
         private String cpuName;
-        private Double weight;
-        private Double screenSize;
-        private Integer ramSize;
+        private double weight;
+        private double screenSize;
+        private int ramSize;
 
         public ListResponse(Notebook notebook) {
             this.id = notebook.get_id();
@@ -86,12 +86,12 @@ public class NotebookDto {
 
     @Getter
     public static class CompareInfoResponse {
-        private Integer cpuScore;
-        private Integer gpuScore;
-        private Integer ramSize;
-        private Double weight;
-        private Double batterySize;
-        private Double screenSize;
+        private int cpuScore;
+        private int gpuScore;
+        private int ramSize;
+        private double weight;
+        private double batterySize;
+        private double screenSize;
 
         public CompareInfoResponse(Notebook notebook) {
             this.cpuScore = notebook.getCpuScore();

@@ -1,4 +1,4 @@
-package com.nerds.stuppingmall.repository;
+package com.nerds.stuppingmall.repository.order;
 
 import java.util.List;
 import java.util.Map;

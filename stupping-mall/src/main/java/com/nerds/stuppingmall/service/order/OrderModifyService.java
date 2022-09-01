@@ -10,7 +10,7 @@ import com.nerds.stuppingmall.domain.Notebook;
 import com.nerds.stuppingmall.domain.Order;
 import com.nerds.stuppingmall.repository.member.MemberRepository;
 import com.nerds.stuppingmall.repository.notebook.NotebookRepository;
-import com.nerds.stuppingmall.repository.OrderRepository;
+import com.nerds.stuppingmall.repository.order.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
 
