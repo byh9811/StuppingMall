@@ -21,18 +21,7 @@ public class NotebookController {
 	final NotebookDetailsService notebookDetailsService;
 	final NotebookSearchService notebookSearchService;
 
-	@GetMapping("/items")
-	public String getNotebooks(Model model) {
-		// 미완. 전체 노트북 검색 페이지를 하나로 합치면서 로직이 달라짐.
-
-		model.addAttribute("notebooks", notebookSearchService.getNotebookList(0, "최신순", ""));
-		model.addAttribute("curPage", 0);
-		model.addAttribute("maxPage", 10);
-
-		return "common/notebooksAll";
-	}
-
-	@GetMapping("/new8Page")
+	@GetMapping("/items/new/index")
 	public String enterNew8Page(Model model) {
 		model.addAttribute("date", LocalTime.now());
 		model.addAttribute("newNotebooks", notebookSearchService.getNew8Notebooks());
@@ -48,23 +37,25 @@ public class NotebookController {
 		return "notebookInfo";
 	}
 
-	@GetMapping("/notebooks")
-	public String getProductsInfoByName(@RequestParam(value = "page", defaultValue = "0") int curPage,
-										@RequestParam(value = "order", defaultValue = "최신순") String sortingOrder,
-										@RequestParam(value = "name", defaultValue = "") String name, Model model) {
-		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.getNotebookList(curPage, sortingOrder, name);
-		model.addAttribute("notebooks", notebookPages.getContent());
-		model.addAttribute("curPage", notebookPages.getNumber());
-		model.addAttribute("maxPage", notebookPages.getTotalPages());
-		return "notebookInfo";
+	@GetMapping("/items/{id}/imgs")
+	public String getNotebookImgs(@PathVariable("id") String id, Model model) {
+		model.addAttribute("imgs", notebookDetailsService.findNotebookImgs(id));
+		return "notebookImgs";
 	}
-	
-	@GetMapping("/categoryResults")
-	public String getProductsInfoByCategory(@RequestParam("page") int curPage, @RequestParam("order") String sortingOrder, @RequestParam("category") CategoryInfoRequestDto categoryInfoRequestDto, Model model) {
-		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.findNotebooksByCategory(curPage, sortingOrder, categoryInfoRequestDto);
+
+	@GetMapping("/items")
+	public String getNotebooks(@RequestParam(value = "page", defaultValue = "0") int curPage,
+							   @RequestParam(value = "sort", defaultValue = "recent") String sortingOrder,
+							   @RequestParam(value = "name", defaultValue = "") String name,
+							   @RequestParam("category") CategoryInfoRequestDto categoryInfoRequestDto, Model model) {
+		Page<NotebookDto.ListResponse> notebookPages = notebookSearchService.findNotebooks(curPage, sortingOrder, name, categoryInfoRequestDto);
 		model.addAttribute("notebooks", notebookPages.getContent());
 		model.addAttribute("curPage", notebookPages.getNumber());
 		model.addAttribute("maxPage", notebookPages.getTotalPages());
-		return "notebookInfo";
+		model.addAttribute("sort", sortingOrder);
+		model.addAttribute("category", categoryInfoRequestDto);
+		model.addAttribute("searchWord", name);
+
+		return "common/notebooksAll";
 	}
 }

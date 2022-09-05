@@ -32,19 +32,19 @@ public class NotebookSearchService {
 				.stream().map(NotebookDto.ListResponse::new).collect(Collectors.toList());
 	}
 
-	public Page<NotebookDto.ListResponse> getNotebookList(int curPage, String sortingOrder, String name) {
-		return notebookRepository.customFindNotebooksByName(searchParameterInitializer.getPageable(curPage),
-				searchParameterInitializer.getSortMethod(sortingOrder), name);
-	}
+//	public Page<NotebookDto.ListResponse> getNotebookList(int curPage, String sortingOrder, String name) {
+//		return notebookRepository.customFindNotebooksByName(searchParameterInitializer.getPageable(curPage),
+//				searchParameterInitializer.getSortMethod(sortingOrder), name);
+//	}
 
 	public Page<NotebookDto.IdNameResponse> getMyNotebook(int curPage, String sortingOrder, String supplierId, String name) {
 		return notebookRepository.customFindMyNotebookList(searchParameterInitializer.getPageable(curPage),
 				searchParameterInitializer.getSortMethod(sortingOrder), supplierId, name);
 	}
 
-	public Page<NotebookDto.ListResponse> findNotebooksByCategory(int curPage, String sortingOrder, CategoryInfoRequestDto categoryInfoRequestDto) {
-		return notebookRepository.customFindNotebooksByCategory(searchParameterInitializer.getPageable(curPage),
-				searchParameterInitializer.getSortMethod(sortingOrder), categoryInfoRequestDto);
+	public Page<NotebookDto.ListResponse> findNotebooks(int curPage, String sortingOrder, String name, CategoryInfoRequestDto categoryInfoRequestDto) {
+		return notebookRepository.customFindNotebooks(searchParameterInitializer.getPageable(curPage),
+				searchParameterInitializer.getSortMethod(sortingOrder), name, categoryInfoRequestDto);
 	}
 
 //	public Page<NotebookDto.ListResponse> getMyPicks(int curPage, String customerId) {

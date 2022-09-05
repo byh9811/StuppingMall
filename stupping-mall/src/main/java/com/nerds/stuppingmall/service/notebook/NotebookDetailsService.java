@@ -1,5 +1,6 @@
 package com.nerds.stuppingmall.service.notebook;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -23,5 +24,9 @@ public class NotebookDetailsService {
 			throw new NoSuchElementException("해당 상품이 존재하지 않습니다!!");
 		
 		return notebookWrapper.get();
+	}
+
+	public List<String> findNotebookImgs(String id) {
+		return notebookRepository.findImgsBy_id(id);
 	}
 }

@@ -13,12 +13,11 @@ public final class SearchParameterInitializer {
         Sort sort;
 
         switch(sortingOrder) {
-            case "최신순": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
-            case "인기순": sort = Sort.by(Sort.Direction.DESC, "rate"); break;
-            case "판매순": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
-            case "조회순": sort = Sort.by(Sort.Direction.DESC, "view"); break;
-            case "낮은가격순": sort = Sort.by(Sort.Direction.ASC, "price"); break;
-            case "높은가격순": sort = Sort.by(Sort.Direction.DESC, "price"); break;
+            case "recent": sort = Sort.by(Sort.Direction.DESC, "registerDate"); break;
+            case "sales": sort = Sort.by(Sort.Direction.DESC, "salesVolume"); break;
+            case "views": sort = Sort.by(Sort.Direction.DESC, "view"); break;
+            case "price-low": sort = Sort.by(Sort.Direction.ASC, "price"); break;
+            case "price-high": sort = Sort.by(Sort.Direction.DESC, "price"); break;
             default: throw new RuntimeException();
         }
 

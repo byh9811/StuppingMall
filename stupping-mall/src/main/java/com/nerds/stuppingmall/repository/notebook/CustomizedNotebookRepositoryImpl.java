@@ -40,20 +40,21 @@ public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepos
 
 		return getListResponseResult(query, pageable);
 	}
+//
+//	@Override
+//	public Page<NotebookDto.ListResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
+//		Query query = setDefaultQuery(pageable, sort);
+//		query.addCriteria(Criteria.where("name").regex(name));
+//
+//		return getListResponseResult(query, pageable);
+//	}
 
 	@Override
-	public Page<NotebookDto.ListResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
-		Query query = setDefaultQuery(pageable, sort);
-		query.addCriteria(Criteria.where("name").regex(name));
-
-		return getListResponseResult(query, pageable);
-	}
-
-	@Override
-	public Page<NotebookDto.ListResponse> customFindNotebooksByCategory(Pageable pageable, Sort sort, CategoryInfoRequestDto categoryInfoRequestDto) {
+	public Page<NotebookDto.ListResponse> customFindNotebooks(Pageable pageable, Sort sort, String name, CategoryInfoRequestDto categoryInfoRequestDto) {
 		Query query = new Query();
 		List<Criteria> outerCriterias = new ArrayList<>();
-		
+		outerCriterias.add(Criteria.where("name").regex(name));
+
 		if(!categoryInfoRequestDto.getSupplierNames().isEmpty()) {
 			Criteria criteria = new Criteria();
 			Criteria[] innerCriterias = new Criteria[categoryInfoRequestDto.getSupplierNames().size()];

@@ -11,4 +11,5 @@ public interface NotebookRepository extends MongoRepository<Notebook, String>, C
 	List<Notebook> findBy(Pageable pageable);
 	List<Notebook> findByName(String name);
 	List<Notebook> findBySupplierId(String supplierId);
+	List<String> findImgsBy_id(String _id);
 }
