@@ -12,7 +12,7 @@ import com.nerds.stuppingmall.dto.CategoryInfoRequestDto;
 public interface CustomizedNotebookRepository {
 	Page<NotebookDto.IdNameResponse> customFindMyNotebookList(Pageable pageable, Sort sort, String supplierId, String name);
 	Page<NotebookDto.ListResponse> customFindNotebooksBySupplierId(Pageable pageable, Sort sort, String supplierId);
-//	Page<NotebookDto.ListResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name);
+	Page<NotebookDto.CompareInfoResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name);
 	Page<NotebookDto.ListResponse> customFindNotebooks(Pageable pageable, Sort sort, String name, CategoryInfoRequestDto categoryInfoRequestDto);
 	Page<NotebookDto.ListResponse> customFindNotebooksByNotebookIds(Pageable pageable, List<String> notebookIds);
 }

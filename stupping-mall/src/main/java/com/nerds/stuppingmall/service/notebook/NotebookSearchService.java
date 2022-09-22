@@ -32,10 +32,10 @@ public class NotebookSearchService {
 				.stream().map(NotebookDto.ListResponse::new).collect(Collectors.toList());
 	}
 
-//	public Page<NotebookDto.ListResponse> getNotebookList(int curPage, String sortingOrder, String name) {
-//		return notebookRepository.customFindNotebooksByName(searchParameterInitializer.getPageable(curPage),
-//				searchParameterInitializer.getSortMethod(sortingOrder), name);
-//	}
+	public Page<NotebookDto.CompareInfoResponse> getCompareInfos(int curPage, String sortingOrder, String name) {
+		return notebookRepository.customFindNotebooksByName(searchParameterInitializer.getPageable(curPage),
+				searchParameterInitializer.getSortMethod(sortingOrder), name);
+	}
 
 	public Page<NotebookDto.IdNameResponse> getMyNotebook(int curPage, String sortingOrder, String supplierId, String name) {
 		return notebookRepository.customFindMyNotebookList(searchParameterInitializer.getPageable(curPage),

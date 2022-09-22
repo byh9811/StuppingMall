@@ -40,14 +40,18 @@ public class CustomizedNotebookRepositoryImpl implements CustomizedNotebookRepos
 
 		return getListResponseResult(query, pageable);
 	}
-//
-//	@Override
-//	public Page<NotebookDto.ListResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
-//		Query query = setDefaultQuery(pageable, sort);
-//		query.addCriteria(Criteria.where("name").regex(name));
-//
-//		return getListResponseResult(query, pageable);
-//	}
+
+	@Override
+	public Page<NotebookDto.CompareInfoResponse> customFindNotebooksByName(Pageable pageable, Sort sort, String name) {
+		Query query = setDefaultQuery(pageable, sort);
+		query.addCriteria(Criteria.where("name").regex(name));
+
+		List<NotebookDto.CompareInfoResponse> notebooks = mongoTemplate.find(query, NotebookDto.CompareInfoResponse.class, "notebooks");
+
+		return PageableExecutionUtils.getPage(
+				notebooks, pageable,
+				() -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), NotebookDto.CompareInfoResponse.class));
+	}
 
 	@Override
 	public Page<NotebookDto.ListResponse> customFindNotebooks(Pageable pageable, Sort sort, String name, CategoryInfoRequestDto categoryInfoRequestDto) {
