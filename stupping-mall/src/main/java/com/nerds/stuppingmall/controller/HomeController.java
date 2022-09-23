@@ -24,9 +24,9 @@ public class HomeController {
         String redirectURI;
 
         if(authentication!=null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")))
-            redirectURI = "/admin/main";
+            redirectURI = "/admin/index";
         else
-            redirectURI = "/main";
+            redirectURI = "/index";
 
         return "redirect:"+redirectURI;
     }

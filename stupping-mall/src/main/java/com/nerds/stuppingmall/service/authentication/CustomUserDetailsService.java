@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		return Authentication.builder()
 				.id(member.getEmail())
 				.password(member.getPassword())
-				.enable(member.getEnable())
+				.enable(member.isEnable())
 				.authorities(authorities)
 				.build();
 	}

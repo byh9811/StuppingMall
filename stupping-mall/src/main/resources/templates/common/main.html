@@ -115,9 +115,9 @@
         </div>
         <nav class="header__subnav">
             <ul class="header__sub__list">
-                <li sec:authorize="isAnonymous()"><a th:href="@{/login}"><i class="fa-solid fa-arrow-right-to-bracket"></i><p>Login</p></a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login/index}"><i class="fa-solid fa-arrow-right-to-bracket"></i><p>Login</p></a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa-duotone fa-user-minus"></i><p>Logout</p></a></li>
-                <li><a href="/signUpPage"><i class="fa-solid fa-user-plus"></i><p>signUp</p></a></li>
+                <li><a href="/register/index"><i class="fa-solid fa-user-plus"></i><p>signUp</p></a></li>
                 <li><a href="/customer/myPage"><i class="fa-solid fa-user"></i><p>myPage</p></a></li>
             </ul>
         </nav>

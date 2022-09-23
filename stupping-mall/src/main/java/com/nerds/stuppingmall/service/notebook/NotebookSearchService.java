@@ -23,7 +23,7 @@ public class NotebookSearchService {
 	final SearchParameterInitializer searchParameterInitializer;
 
 	public List<NotebookDto.IdImgResponse> getTop3Notebooks() {
-		return notebookRepository.findBy(searchParameterInitializer.getPageable(0, 3, "판매순"))
+		return notebookRepository.findBy(searchParameterInitializer.getPageable(0, 3, "sales"))
 				.stream().map(NotebookDto.IdImgResponse::new).collect(Collectors.toList());
 	}
 
