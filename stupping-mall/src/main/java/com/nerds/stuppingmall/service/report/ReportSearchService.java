@@ -8,11 +8,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ReportSearchService {
 	private final ReportRepository reportRepository;
     private final int SIZE_PER_PAGE = 10;
+
+    public List<Report> findMyReports(String reporter) {
+        return reportRepository.findByReporterID(reporter);
+    }
 
     public Page<Report> findAllReports(int curPage) {
         Pageable pageable = PageRequest.of(curPage, SIZE_PER_PAGE);

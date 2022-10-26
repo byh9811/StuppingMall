@@ -14,7 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Builder
 public class Report {
-	@Id
 	private String reporterID;
 	private String reportedID;
 	private String reason;

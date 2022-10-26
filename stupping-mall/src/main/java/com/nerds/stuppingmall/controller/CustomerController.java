@@ -31,35 +31,6 @@ public class CustomerController {
 	final OrderSearchService orderSearchService;
 	final OrderModifyService orderModifyService;
 
-	@GetMapping("/myPicks")
-	public String getMyPicks(@AuthenticationPrincipal Authentication authentication, Model model) {
-		List<String> myPicks = memberDetailsService.getMyPicks(authentication.getId());
-		model.addAttribute("picks", myPicks);
-		return "pickList";
-	}
-
-	@GetMapping("/myRecentFinds")
-	public String myRecentFinds(@AuthenticationPrincipal Authentication authentication, Model model) {
-		List<String> myFinds = memberDetailsService.getMyRecentFinds(authentication.getId());
-
-		model.addAttribute("recentFinds", myFinds);
-
-		return "recentFindList";
-	}
-
-	@GetMapping("/myPage")
-	public String MyPageDetail(@AuthenticationPrincipal Authentication authentication, Model model) {
-		CustomerMyPageResponse myPageDto = memberDetailsService.getMyPage(authentication.getId());
-		model.addAttribute("myInfo", myPageDto);
-		return "/customer/myPage";
-	}
-
-	@PutMapping("/updateMyInfo")
-	public String updateMyInfo(@AuthenticationPrincipal Authentication authentication, @RequestParam("info") CustomerMyPageModifyRequest accessibleInfoRequestDto) {
-		memberModifyService.updateInfo(authentication.getId(), accessibleInfoRequestDto);
-		return "redirect:/customer/myPage";
-	}
-
 	@DeleteMapping("/leave")
 	public String leave(@AuthenticationPrincipal Authentication authentication) {
 		memberDeregisterService.removeMember(authentication.getId());
