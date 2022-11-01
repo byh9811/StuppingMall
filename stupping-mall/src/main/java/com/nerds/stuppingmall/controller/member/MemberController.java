@@ -47,13 +47,6 @@ public class MemberController {
         return "common/findId";
     }
 
-    @GetMapping("/customer/index")
-    public String enterMyPage(@AuthenticationPrincipal Authentication authentication, Model model) {
-        CustomerMyPageResponse myPageDto = memberDetailsService.getMyPage(authentication.getId());
-        model.addAttribute("myInfo", myPageDto);
-        return "/customer/myPage";
-    }
-
     @GetMapping("/idInquiry/{email}")
     public @ResponseBody String findMemberId(HttpServletRequest request, @PathVariable("email") String email, @RequestParam("key") String key) {
         // 미완. id찾기가 가능하려면 email인증 말고 다른 방법이 필요함.
@@ -78,34 +71,6 @@ public class MemberController {
         memberModifyService.updatePassword(email, newPassword);
         return "redirect:/logout";
     }
-
-    @PutMapping("/customer")
-    public String changeCustomerInfo(@AuthenticationPrincipal Authentication authentication, @RequestParam("info") CustomerMyPageModifyRequest accessibleInfoRequestDto) {
-        memberModifyService.updateInfo(authentication.getId(), accessibleInfoRequestDto);
-        return "redirect:/customer/index";
-    }
-
-    @GetMapping("/customer/myPicks")
-    public HashMap<String, List<String>> getMyPicks(@AuthenticationPrincipal Authentication authentication) {
-        HashMap<String, List<String>> json = new HashMap<>();
-        json.put("myPicks", memberDetailsService.getMyPicks(authentication.getId()));
-        return json;
-    }
-
-    @GetMapping("/customer/recentFinds")
-    public HashMap<String, List<String>> getRecentFinds(@AuthenticationPrincipal Authentication authentication) {
-        HashMap<String, List<String>> json = new HashMap<>();
-        json.put("recentFinds", memberDetailsService.getMyRecentFinds(authentication.getId()));
-        return json;
-    }
-
-    @GetMapping("/customer/recentFinds")
-    public HashMap<String, List<Report>> getMyReports(@AuthenticationPrincipal Authentication authentication) {
-        HashMap<String, List<Report>> json = new HashMap<>();
-        json.put("reports", reportSearchService.findMyReports(authentication.getId()));
-        return json;
-    }
-
     @PostMapping("/auth/register/supplier")
     public String registerSupplier(@Valid SupplierSignUpRequestDto supplierSignUpRequestDto) {
         memberRegisterService.addSupplier(supplierSignUpRequestDto);

@@ -13,7 +13,7 @@ import java.util.List;
 public class BankController {
 	final BankSearchService bankSearchService;
 
-	@GetMapping("/bankList")
+	@GetMapping("/banks")
 	public List<Bank> getBankList() {
 		return bankSearchService.getBankList();
 	}

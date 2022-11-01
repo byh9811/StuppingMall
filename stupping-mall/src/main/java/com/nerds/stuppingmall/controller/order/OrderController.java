@@ -55,13 +55,8 @@ public class OrderController {
 		return "orderCompletePage";
 	}
 
-//  물건이 도착하지 않았거나 이상이 있는데 도착 완료 처리가 된 경우 이의를 제기하기 위한 메서드 -> 신고 기능으로 대체?
-//	@PostMapping("/objection/{id}")
-//	public String makeObjection(@AuthenticationPrincipal Authentication authentication, @PathVariable("id") String orderId, Model model) {
-//		Order order = orderModifyService.makeObjection(orderId);
-//		Order[] orders = new Order[1];
-//		orders[0] = order;
-//		model.addAttribute("orders", orders);
-//		return "orderInfo";
-//	}
+	@GetMapping("/order/done")
+	public String checkReceipt() {
+		return "receipt";
+	}
 }
