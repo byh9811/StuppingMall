@@ -12,7 +12,7 @@ carousel.forEach((value,index) => {
 function fetchAPI(id){
     fetch(`/notebooks/${id}`)
     .then(() => {
-        window.location.href = `/notebooks/${id}`;
+        window.location.href = `/items/${id}`;
     })
     .catch((err) => console.log(err));
 }

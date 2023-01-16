@@ -25,7 +25,6 @@
 	        <th>SSD</th>
 	        <th>HDD</th>
 	        <th>배터리</th>
-	        <th>추천용도</th>
 	    </tr>
 		<tr th:each="notebook : ${notebooks}">
 			<td th:text="${notebook.name}"></td>
@@ -44,7 +43,6 @@
 			<td th:text="${notebook.ssdSize}"></td>
 			<td th:text="${notebook.hddSize}"></td>
 			<td th:text="${notebook.batterySize}"></td>
-			<td th:text="${notebook.usage.name()}"></td>
 		</tr>
 	</table>
 	<hr>
